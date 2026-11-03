@@ -3,7 +3,7 @@ import { curriculumTables, gridText, htmlTables, subjectHits, xlsxGrids } from '
 import { makeZip } from './testing'
 import { isZip, unzip, ZipError } from './zip'
 
-// 울산 남창고 페이지의 표 모양을 줄여 옮긴 것
+// 울산 남창고 페이지 표 모양을 줄인 것
 const TABLE = `
 <table>
   <tr><th rowspan="2">교과(군)</th><th rowspan="2">구분</th><th rowspan="2">세부과목</th><th colspan="2">1학년</th><th colspan="2">2학년</th></tr>
@@ -66,6 +66,16 @@ describe('엑셀', () => {
       ['국어', '공통국어2', '', '택1'],
       ['국어', '대수 & 기하', '', ''],
     ])
+  })
+
+  it('서식만 있는 빈 칸(<c/>) 뒤의 칸도 제자리에 읽는다', () => {
+    const sheet = makeZip({
+      'xl/workbook.xml': '<workbook><sheets><sheet name="편제표" sheetId="1" r:id="rId1"/></sheets></workbook>',
+      'xl/_rels/workbook.xml.rels': '<Relationships><Relationship Id="rId1" Target="worksheets/sheet1.xml"/></Relationships>',
+      'xl/worksheets/sheet1.xml':
+        '<worksheet><sheetData><row r="1"><c r="A1" t="inlineStr"><is><t>국어</t></is></c><c r="B1" s="3"/><c r="C1"><v>4</v></c></row></sheetData></worksheet>',
+    })
+    expect(xlsxGrids(sheet)[0].grid).toEqual([['국어', '', '4']])
   })
 
   it('zip 목록이 이상하면 거절한다', () => {
