@@ -16,12 +16,12 @@ export class RateLimiter {
     this.windowMs = windowMs
   }
 
-  /** 한도를 다 썼는지 (세지는 않는다) */
+  /** 한도를 다 썼는지 (세지 않음) */
   full(key: string, now = Date.now()): boolean {
     return (this.hits.get(key) ?? []).filter((t) => now - t < this.windowMs).length >= this.max
   }
 
-  /** 성공하면 기록을 지운다 (로그인 실패 횟수처럼 실패만 셀 때) */
+  /** 기록 지우기. 실패만 세다가 성공했을 때 (로그인 실패 횟수처럼) */
   clear(key: string): void {
     this.hits.delete(key)
   }
@@ -43,7 +43,7 @@ export class RateLimiter {
   }
 }
 
-/** 하루 전체 호출 상한. 키가 새어도 하루 비용이 정해진 선을 넘지 않게 한다. 한도는 관리자 설정에서 온다. */
+/** 하루 전체 호출 상한. 키가 새어도 하루 비용이 정해진 선을 넘지 않게. 한도는 관리자 설정에서 */
 export class DailyBudget {
   private day = ''
   private count = 0
@@ -117,7 +117,7 @@ export class DailyUsage {
     return r?.count ?? 0
   }
 
-  /** 한도 안이면 하나 세고 true (세는 것과 한도 확인을 한 번에 해서 동시에 들어온 요청도 넘치지 않는다) */
+  /** 한도 안이면 하나 세고 true. 확인과 세기를 쿼리 하나로 해서 동시에 들어온 요청도 넘치지 않음 */
   take(key: string, limit: number, now = new Date()): boolean {
     if (!(limit > 0)) return false
     const day = kstDay(now)

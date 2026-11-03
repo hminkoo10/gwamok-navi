@@ -32,9 +32,9 @@ const FAQ: [string, string][] = [
 
 export function HomePage() {
   const { store, user, features, authReady } = useApp()
-  // 누가 로그인했는지 확인한 뒤에만 이 기기 설계를 본다 (다른 사람이 남긴 것일 수 있다)
+  // 로그인한 사람을 확인한 뒤에만 이 기기 설계를 봄 (다른 사람이 남긴 것일 수 있음)
   const started = !!store.school && authReady && (!!user || !features.server)
-  // 로그인해야 쓴다: 로그인하지 않았으면 로그인 화면을 거쳐 시작한다
+  // 로그인 필수: 로그인 전이면 로그인 화면을 거쳐 시작
   const guest = features.server && !user
   const subjects = SUBJECTS.filter((s) => s.kind !== '기타').length
   const tracks = admissionsMeta.tracks

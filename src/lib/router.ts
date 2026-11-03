@@ -1,8 +1,8 @@
 import { useSyncExternalStore } from 'react'
 import { smoothly } from './motion'
 
-// 주소 기반 화면 이동. 페이지마다 주소가 있어 새로고침·뒤로 가기·링크 공유가 된다.
-// (서버는 확장자 없는 주소를 index.html로 돌려준다)
+// 주소 기반 화면 이동(History API). 페이지마다 주소가 있어 새로고침·뒤로 가기·링크 공유가 된다.
+// 서버는 확장자 없는 주소에 index.html을 돌려준다
 
 const listeners = new Set<() => void>()
 const emit = () => {
@@ -25,11 +25,11 @@ export function navigate(to: string, opts: { replace?: boolean; keepScroll?: boo
       history[opts.replace ? 'replaceState' : 'pushState'](null, '', to)
       emit()
     }
-    // '#자료' 같은 주소면 화면이 바뀐 다음 그 칸으로 내려간다. 맨 위로는 바로 올린다 (부드러운 스크롤이면 새 화면이 늦게 맞춰진다)
+    // '#자료' 같은 주소면 그린 다음 그 요소로 내려간다. 맨 위로는 instant (부드러운 스크롤이면 새 화면이 늦게 맞춰진다)
     if (hash) requestAnimationFrame(() => document.getElementById(decodeURIComponent(hash))?.scrollIntoView())
     else if (!opts.keepScroll) window.scrollTo({ top: 0, behavior: 'instant' })
   }
-  // 누른 링크로 다른 화면에 갈 때만 스르륵 넘어간다 (주소만 고치는 replace는 바로)
+  // 링크로 다른 화면에 갈 때만 전환 효과. 주소만 고치는 replace는 바로 바꾼다
   if (moving && !opts.replace) smoothly(change, opts.keepScroll ? 'swap' : 'page')
   else change()
 }

@@ -20,7 +20,7 @@ interface Choice {
   where: string
 }
 
-/** 학교 편제표에서 고를 수 있는 과목을 찾아 바로 넣거나 뺀다 (선택 칸·두 학기 세트) */
+/** 학교 편제표에서 고를 수 있는 과목을 찾아 바로 넣거나 빼기 (선택 칸·두 학기 세트) */
 export function SubjectPicker({ plan, scores, onTogglePin, onToggleExclude }: Props) {
   const [query, setQuery] = useState('')
   const choices = useMemo(() => {
@@ -42,7 +42,7 @@ export function SubjectPicker({ plan, scores, onTogglePin, onToggleExclude }: Pr
     return out
   }, [plan])
 
-  // 같은 두 학기 세트의 과목을 빼서 함께 빠진 과목 (세트는 통째로 듣는다)
+  // 같은 두 학기 세트 과목을 빼서 함께 빠진 과목 (세트는 통째로 들음)
   const locked = useMemo(() => lockedBy(plan.school, plan.excluded), [plan])
   const q = norm(query)
   const status = (s: string) => (plan.pinned.has(s) ? 'pin' : plan.excluded.has(s) ? 'out' : locked.has(s) ? 'locked' : plan.taken.has(s) ? 'on' : 'off')

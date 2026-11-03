@@ -7,8 +7,8 @@ import { gzip } from 'node:zlib'
 // Node의 req/res와 웹 표준 Request/Response 사이 변환. Vite 개발 서버와 운영 서버가 함께 쓴다.
 
 /**
- * 요청한 사람 IP. 앞에 nginx 같은 프록시를 둘 때만 TRUST_PROXY=1로 X-Forwarded-For를 믿는다.
- * nginx의 proxy_add_x_forwarded_for는 클라이언트가 보낸 값 뒤에 실제 IP를 덧붙이므로 맨 오른쪽 값을 쓴다.
+ * 요청한 사람 IP. X-Forwarded-For는 TRUST_PROXY=1(앞단 nginx 등)일 때만 믿는다.
+ * nginx proxy_add_x_forwarded_for는 클라이언트가 보낸 값 뒤에 실제 IP를 붙여서 맨 오른쪽 값 (앞쪽은 위조 가능)
  */
 export function clientIp(req: IncomingMessage, trustProxy: boolean): string {
   if (trustProxy) {
@@ -37,15 +37,12 @@ export function toWebRequest(req: IncomingMessage, origin: string): Request {
     method,
     headers,
     body: hasBody ? (Readable.toWeb(req) as ReadableStream<Uint8Array>) : undefined,
-    // Node의 fetch 구현은 스트림 본문에 duplex 지정을 요구한다
+    // Node fetch는 스트림 본문에 duplex 지정을 요구
     ...(hasBody ? { duplex: 'half' } : {}),
   } as RequestInit)
 }
 
-/**
- * HTTPS로 들어온 요청인지. 앞단 프록시를 믿을 때만 X-Forwarded-Proto를 본다.
- * COOKIE_SECURE=1이면 늘 HTTPS로 본다 (프록시가 그 헤더를 안 넘길 때).
- */
+/** HTTPS 요청인지. X-Forwarded-Proto는 프록시를 믿을 때만. COOKIE_SECURE=1이면 늘 HTTPS (프록시가 그 헤더를 안 넘길 때) */
 export function isSecure(req: IncomingMessage, trustProxy: boolean, env: Record<string, string | undefined> = process.env): boolean {
   if (env.COOKIE_SECURE === '1') return true
   if (trustProxy)
@@ -59,7 +56,7 @@ export function isSecure(req: IncomingMessage, trustProxy: boolean, env: Record<
 
 const gzipAsync = promisify(gzip)
 const COMPRESSIBLE = /^(application\/(json|javascript)|text\/)/
-/** 전형 자료처럼 큰 응답은 내용이 같으면 한 번만 압축한다 (판이 바뀌면 내용 해시도 바뀐다) */
+/** 64KB 넘는 응답(전형 자료 등)의 압축 결과. 내용 sha1 키라 판이 바뀌면 새로 압축, 최근 8개 */
 const gzipCache = new Map<string, Buffer>()
 
 async function gzipped(body: Buffer): Promise<Buffer> {
@@ -78,11 +75,11 @@ export async function sendWebResponse(res: ServerResponse, response: Response, e
   response.headers.forEach((value, key) => {
     if (key !== 'set-cookie') headers[key] = value
   })
-  // 쿠키는 여러 개일 수 있어 따로 넘긴다
+  // Set-Cookie는 여러 개일 수 있어 따로
   const cookies = response.headers.getSetCookie()
   if (cookies.length) headers['set-cookie'] = cookies
   let body: Buffer = Buffer.from(await response.arrayBuffer())
-  // 브라우저가 gzip을 받으면 1KB 넘는 JSON·글은 압축해서 보낸다 (전형 자료 1.4MB → 약 1/10)
+  // gzip을 받는 브라우저면 1KB 넘는 JSON·글은 압축 (전형 자료 1.4MB → 약 1/10)
   const accept = String(res.req?.headers['accept-encoding'] ?? '')
   if (body.byteLength >= 1024 && !headers['content-encoding'] && COMPRESSIBLE.test(String(headers['content-type'] ?? '')) && /\bgzip\b/.test(accept)) {
     body = await gzipped(body)

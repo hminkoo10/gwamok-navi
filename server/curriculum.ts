@@ -11,7 +11,8 @@ import { type DocTable, type HangulDoc, hangulDoc, HwpError, isHwp5 } from './hw
 import { curriculumTables, gridText, htmlTables, subjectHits, xlsxGrids } from './tables'
 import { isZip, unzip } from './zip'
 
-// 학교 공식 홈페이지의 편제표 파일을 서버가 직접 받아 → 그리고 → AI로 읽는 흐름.
+// 학교 홈페이지의 편제표를 서버가 직접 받아 AI로 읽는다.
+// PDF·그림은 그림으로, 엑셀·한글·HTML 표는 칸 위치가 보이는 글로 보낸다. 학기 합계가 어긋나면 한 번 더 묻는다.
 
 export interface SchoolRef {
   office: string
@@ -27,7 +28,7 @@ export interface SchoolRef {
 
 /**
  * 사용자가 보낸 학교 코드를 믿지 않고 나이스에서 다시 찾아 공식 홈페이지 주소를 얻는다.
- * 그런 학교가 없으면 null, 나이스가 오류를 내거나 한도에 걸리면 던진다 (잠깐의 오류를 '학교 없음'으로 기억하지 않게)
+ * 없는 학교면 null, 나이스 오류·한도면 던진다 (잠깐의 오류를 '학교 없음'으로 기억하지 않게)
  */
 export async function schoolByCode(office: string, code: string, key: string | undefined, fetchImpl: typeof fetch = fetch): Promise<SchoolRef | null> {
   if (!/^[A-Z]\d{2}$/.test(office) || !/^\d{7}$/.test(code)) return null
@@ -37,7 +38,7 @@ export async function schoolByCode(office: string, code: string, key: string | u
   if (!res.ok) throw new Error(`나이스 HTTP ${res.status}`)
   const data = (await res.json().catch(() => null)) as { schoolInfo?: [unknown, { row?: Record<string, string>[] }]; RESULT?: { CODE?: string } } | null
   if (!data) throw new Error('나이스 응답을 읽지 못함')
-  // INFO-200: 해당하는 데이터가 없음. 그 밖의 결과 코드(인증키·트래픽 한도·서버 오류)는 오류다
+  // INFO-200: 해당 데이터 없음. 그 밖의 결과 코드(인증키·트래픽 한도·서버 오류)는 오류
   const result = data.RESULT?.CODE
   if (result && result !== 'INFO-200') throw new Error(`나이스 ${result}`)
   const row = data.schoolInfo?.[1]?.row?.[0]
@@ -60,7 +61,7 @@ export async function schoolByCode(office: string, code: string, key: string | u
   }
 }
 
-/** 읽은 결과를 공유해도 될 만큼 표 모양을 갖췄는지: 여섯 학기 모두 과목이 있고, 학기 학점이 고르다 */
+/** 공유해도 될 만큼 표 모양을 갖췄는지: 여섯 학기 모두 과목이 있고 학기 학점이 고름 */
 export function looksComplete(school: School): boolean {
   const filled = (t: TermId) => {
     const term = school.terms.find((x) => x.id === t)
@@ -71,7 +72,7 @@ export function looksComplete(school: School): boolean {
   const later = TERMS.filter((t) => !t.startsWith('1-'))
   const credits = later.map((t) => termCredits(school, t))
   if (!credits.every((c) => c >= 14 && c <= 45)) return false
-  // 한 학기만 크게 튀면(같은 칸을 두 번 옮기는 등) 잘못 읽은 것으로 본다
+  // 한 학기만 중앙값에서 5학점 넘게 튀면 잘못 읽은 것 (같은 칸을 두 번 옮기는 등)
   const sorted = [...credits].sort((a, b) => a - b)
   const median = sorted[Math.floor(sorted.length / 2)]
   return credits.every((c) => Math.abs(c - median) <= 5)
@@ -88,7 +89,7 @@ const termName = (id: TermId) => `${id[0]}학년 ${id[2]}학기`
 
 /**
  * totals: 모델이 표의 합계 행에서 읽은 학기별 교과 학점.
- * 창체가 들어간 합계처럼 모든 학기에 똑같이 나는 차이는 봐주고, 학기마다 다르게 어긋난 곳만 짚는다.
+ * 창체가 든 합계처럼 학기마다 똑같은 차이(1~4학점)는 봐주고, 그 밖에 2학점 이상 어긋난 학기만 짚는다
  */
 export function totalMismatch(school: School, totals: unknown): Mismatch[] {
   if (!totals || typeof totals !== 'object') return []
@@ -97,7 +98,7 @@ export function totalMismatch(school: School, totals: unknown): Mismatch[] {
     const read = termCredits(school, term)
     return Number.isInteger(table) && table > 0 && table <= 60 ? [{ term, table, read }] : []
   })
-  // 표 합계는 있는데 한 과목도 옮기지 못한 학기는 그대로 어긋난 학기다
+  // 표 합계는 있는데 한 과목도 못 옮긴 학기는 그대로 어긋난 학기
   const empty = rows.filter((r) => r.read === 0)
   const read = rows.filter((r) => r.read > 0)
   if (read.length < 2) return empty
@@ -108,7 +109,7 @@ export function totalMismatch(school: School, totals: unknown): Mismatch[] {
   return [...empty, ...read.filter((r) => Math.abs(r.table - r.read - offset) >= 2)]
 }
 
-/** 문서에 학과·과정별 편제표가 여러 개 있을 때 그 이름들 (모델이 적은 값을 정리한다) */
+/** 문서에 학과·과정별 편제표가 여러 개일 때 그 이름들 (모델이 적은 값을 정리) */
 export function variantsOf(raw: unknown): string[] {
   const list = raw && typeof raw === 'object' && Array.isArray((raw as { variants?: unknown }).variants) ? (raw as { variants: unknown[] }).variants : []
   const names = list
@@ -130,11 +131,11 @@ export interface ReadResult {
   sourceUrl: string
   pages: number
   used: number[]
-  /** 표의 합계와 다르게 옮긴 학기 (있으면 공유하지 않는다) */
+  /** 표 합계와 다르게 옮긴 학기. 있으면 공유하지 않음 */
   mismatch?: Mismatch[]
-  /** 문서에 학과·과정별 편제표가 여러 개 있으면 그 이름들 */
+  /** 문서에 학과·과정별 편제표가 여러 개면 그 이름들 */
   variants?: string[]
-  /** 옮긴 표에 적힌 입학년도 (적혀 있지 않거나 학년별 단면이면 없다) */
+  /** 표에 적힌 입학년도. 안 적혀 있거나 학년별 단면이면 없음 */
   year?: number
 }
 
@@ -144,15 +145,15 @@ export function yearOf(raw: unknown): number | undefined {
   return Number.isInteger(y) && y >= 2000 && y <= 2099 ? y : undefined
 }
 
-/** 읽기 전체 시간 상한: nginx가 210초에 끊으므로 그 전에 답한다 */
+/** 읽기 전체 시간 상한. nginx가 210초에 끊으므로 그 전에 답함 */
 const READ_MS = 190_000
 /** 합계가 어긋날 때 다시 묻는 데 남아 있어야 하는 시간 */
 const FOLLOW_UP_MS = 60_000
 
 export interface ReadDeps {
   /**
-   * AI를 부르기 직전에 하루 사용량을 센다 (파일을 받지 못하면 세지 않게). 처음 묻기에서 한도가 없으면 던지고,
-   * 합계가 어긋나 다시 물을 때는 false면 다시 묻지 않는다
+   * AI를 부르기 직전에 하루 사용량을 센다 (파일을 못 받으면 세지 않게).
+   * 첫 묻기에서 한도가 없으면 던지고, 합계가 어긋나 다시 물을 때는 false면 다시 묻지 않는다
    */
   reserve?: (followUp: boolean) => boolean
   download?: typeof safeFetch
@@ -161,12 +162,12 @@ export interface ReadDeps {
   fetchImpl?: typeof fetch
 }
 
-/** 읽을 문서: 파일 하나(PDF·엑셀·한글), 한 페이지에 붙은 그림 여러 장, 또는 본문 표 */
+/** 읽을 문서: 파일 하나(PDF·엑셀·한글), 한 페이지에 붙은 그림 여러 장, 본문 표 */
 export interface ReadTarget {
   url: string
   kind: DocKind
   images?: string[]
-  /** 학교 홈페이지에서 받는 것이면 robots.txt를 다시 확인한다 */
+  /** 학교 홈페이지에서 받는 것이면 robots.txt를 다시 확인 */
   source?: 'homepage' | 'schoolinfo'
 }
 
@@ -212,7 +213,7 @@ function sheetsText(buf: Buffer, track: string): Loaded {
 
 /**
  * 한글 문서: 편제표로 보이는 표를 표 위 제목과 함께 글로 옮긴다.
- * 표가 없고 편제표를 그림으로 붙여 넣은 문서면, 제목이 편제·편성을 가리키는 그림을 쓴다.
+ * 표 없이 편제표를 그림으로 붙인 문서면 제목에 편제·편성이 든 그림을 쓴다
  */
 async function hangulLoad(buf: Buffer, cohort: number, deps: ReadDeps, track: string): Promise<Loaded> {
   let doc: HangulDoc
@@ -223,7 +224,7 @@ async function hangulLoad(buf: Buffer, cohort: number, deps: ReadDeps, track: st
   }
   const tableText = (t: DocTable) => `${t.caption} ${t.grid.slice(0, 3).flat().join(' ')}`
   const curricular = doc.tables.filter((t) => curriculumTables([t.grid]).length)
-  // 학과를 고른 경우 그 학과가 나오는 표를 먼저 (한 표에 학과별 열이 나뉜 경우도 있다)
+  // 학과를 골랐으면 그 학과가 나오는 표를 먼저 (한 표에 학과별 열이 나뉜 경우도 있음)
   const forTrack = track ? curricular.filter((t) => mentionsTrack(tableText(t), track)) : []
   const tables = pickByCohort(forTrack.length ? forTrack : curricular, tableText, cohort, 4)
   if (tables.length)
@@ -265,7 +266,7 @@ async function loadFile(target: ReadTarget, site: Site, cohort: number, deps: Re
     accept: 'application/pdf,*/*',
   })
   if (res.status >= 400) throw new FetchBlocked(`파일을 받지 못했어요 (${res.status}).`)
-  // 확장자·Content-Type보다 파일 내용으로 판단한다 (PDF가 x-msdownload, 엑셀이 text/html로 오는 서버가 있다)
+  // 확장자·Content-Type보다 파일 내용으로 판단 (PDF가 x-msdownload, 엑셀이 text/html로 오는 서버가 있음)
   const body = res.body
   if (looksLikePdf(body))
     return (deps.render ?? renderPdf)(body, cohort, 4).catch((e: unknown) => {
@@ -335,7 +336,7 @@ export async function readFromUrl(
   }
   const parse = (out: string) => {
     const raw = extractJson(out)
-    // 학점을 읽지 못한 칸은 3학점으로 채우지 않고 뺀다 (합계 검사가 빠진 곳을 잡는다)
+    // 학점을 못 읽은 칸은 3학점으로 채우지 않고 뺀다 (합계 검사가 빠진 곳을 잡게)
     const data = schoolFromLoose(
       raw,
       {
@@ -352,11 +353,11 @@ export async function readFromUrl(
   deps.reserve?.(false)
   const first = await ask()
   let best = parse(first)
-  // 다시 물을 시간이 없으면 첫 결과를 쓴다 (합계가 어긋난 결과는 공유하지 않는다)
+  // 다시 물을 시간·한도가 없으면 첫 결과를 쓴다 (어긋난 결과는 공유하지 않음)
   if (best.mismatch.length && deadline - Date.now() > FOLLOW_UP_MS && (deps.reserve?.(true) ?? true)) {
-    // 합계가 어긋난 학기를 짚어 한 번 더 확인하게 한다 (과목을 옆 학기 열로 옮기는 실수가 잦다)
+    // 어긋난 학기를 짚어 한 번 더 묻는다 (과목을 옆 학기 열로 옮기는 실수가 잦음)
     const note = best.mismatch.map((m) => `${termName(m.term)}: 표 합계 ${m.table}학점, 옮긴 학점 ${m.read}학점`).join('\n')
-    // 모자란 학기는 과목을 빠뜨린 것이다. 예술처럼 학기마다 과목이 바뀌는 줄을 짝으로 묶어 한 학기에만 적는 실수가 잦다
+    // 모자란 학기는 과목을 빠뜨린 것. 예술처럼 학기마다 과목이 바뀌는 줄을 짝으로 묶어 한 학기에만 적는 실수가 잦다
     const missing = best.mismatch.some((m) => m.read < m.table)
       ? '\n옮긴 학점이 모자란 학기는 빠뜨린 과목이 있다. 예술(음악·미술)·체육·교양처럼 학기마다 과목이 바뀌는 줄을 줄마다 다시 보고, 과목마다 따로 줄이 있으면 짝(alt)으로 묶지 말고 학점이 적힌 학기마다 따로 적어.'
       : ''

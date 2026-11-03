@@ -6,13 +6,13 @@ import type { Duplex } from 'node:stream'
 import tls from 'node:tls'
 import { isConnectFailure, markRelay, needsRelay, relayable, relayUrl, tunnel } from './relay'
 
-// 학교 홈페이지에서 편제표 파일을 받아 올 때 쓰는 fetch.
-// 서버가 사용자가 고른 주소로 요청을 보내므로(SSRF 위험) 다음을 지킨다.
+// 학교 홈페이지에서 편제표 파일을 받는 fetch.
+// 바깥에서 얻은 주소로 서버가 요청하므로(SSRF 위험) 다음을 지킨다:
 // - http/https, 기본 포트만
-// - 연결할 IP를 직접 검사: 사설·루프백·링크로컬·멀티캐스트 등 내부 주소 차단 (DNS 조회 함수 안에서 검사해 조회-연결 사이 바뀜도 막는다)
-// - 리다이렉트는 직접 따라가며 매번 같은 검사와 호출자의 주소 검사(allow)를 다시 한다
+// - 연결할 IP를 직접 검사해 사설·루프백·링크로컬·멀티캐스트 등 내부 주소 차단. DNS 조회 함수 안에서 검사해 조회와 연결 사이 바뀜도 막음
+// - 리다이렉트는 직접 따라가며 매번 같은 검사와 호출자 allow를 다시
 // - 크기·시간 상한
-// - 해외 접속을 막는 한국 사이트는 한국 서버 중계(KR_RELAY)로 다시 받는다 (중계도 .kr 공개 주소만 이어 준다)
+// - 해외 접속을 막는 한국 사이트는 한국 서버 중계(KR_RELAY)로 다시 받음 (중계도 .kr 공개 주소만 이어 줌)
 
 export class FetchBlocked extends Error {}
 
@@ -35,7 +35,7 @@ const V4_BLOCKS: [number, number][] = [
 
 const v4Public = (n: number) => !V4_BLOCKS.some(([base, bits]) => n >>> (32 - bits) === base >>> (32 - bits))
 
-/** IPv6 주소를 16비트 8칸으로 편다. ::ffff:1.2.3.4 같은 IPv4 꼬리도 처리한다. */
+/** IPv6를 16비트 8칸으로 펼침. ::ffff:1.2.3.4 같은 IPv4 꼬리도 처리, 형식이 틀리면 null */
 function v6Words(ip: string): number[] | null {
   let s = ip.toLowerCase().replace(/%.*$/, '')
   const tail = s.match(/(\d+)\.(\d+)\.(\d+)\.(\d+)$/)
@@ -85,11 +85,11 @@ function safeLookup(hostname: string, options: object, callback: LookupCallback)
   })
 }
 
-/** 한 번 둘러보는 동안만 쓰는 쿠키 저장소. 세션 쿠키가 없으면 첫 화면으로 계속 돌려보내는 학교 홈페이지가 있다. */
+/** 한 번 둘러보는 동안만 쓰는 쿠키 저장소. 세션 쿠키가 없으면 첫 화면으로 계속 돌려보내는 학교 홈페이지가 있어서 */
 export class CookieJar {
   private jar = new Map<string, Map<string, string>>()
 
-  // 여러 학교·기관이 함께 쓰는 kr의 2단계 끝 주소. 쿠키 Domain으로 쓰면 다른 학교에 쿠키가 샌다.
+  // 여러 학교·기관이 함께 쓰는 .kr 2단계 도메인. 쿠키 Domain으로 받으면 다른 학교로 쿠키가 샘
   private static readonly KR_SECOND = new Set([
     'co',
     'go',
@@ -123,7 +123,7 @@ export class CookieJar {
     'jeju',
   ])
 
-  /** 쿠키 Domain으로 쓰면 안 되는 공용 끝 주소인지 (단일 TLD(kr·com 등)나 co.kr·hs.kr·seoul.kr 같은 kr 2단계) */
+  /** 쿠키 Domain으로 쓰면 안 되는 공용 접미사: 단일 TLD(kr·com 등), co.kr·hs.kr·seoul.kr 같은 kr 2단계 */
   private static publicSuffix(domain: string): boolean {
     const labels = domain.split('.')
     if (labels.length < 2) return true
@@ -148,9 +148,9 @@ export class CookieJar {
             ?.toLowerCase(),
         )
         .find(Boolean)
-      // 공용 끝 주소(hs.kr·.kr 등)에 건 쿠키는 다른 학교로 새므로 버린다
+      // 공용 접미사(hs.kr·kr 등)에 건 쿠키는 다른 학교로 새므로 버림
       if (domainAttr && CookieJar.publicSuffix(domainAttr)) continue
-      // 다른 사이트용 쿠키는 브라우저처럼 버린다
+      // 다른 사이트용 쿠키도 브라우저처럼 버림
       if (domainAttr && host !== domainAttr && !host.endsWith(`.${domainAttr}`)) continue
       const domain = domainAttr ?? host
       if (!this.jar.has(domain)) this.jar.set(domain, new Map())
@@ -177,14 +177,14 @@ export interface SafeFetchOptions {
   /** 이 주소로 가도 되는지 (리다이렉트마다 다시 확인) */
   allow: (url: URL) => boolean
   maxBytes: number
-  /** 전체 시간 상한 (조금씩 흘려 보내는 서버도 끊는다) */
+  /** 전체 시간 상한. 조금씩 흘려 보내는 서버도 끊음 */
   timeoutMs: number
   maxRedirects?: number
   accept?: string
   jar?: CookieJar
-  /** 폼으로 보내는 POST (일부 학교 게시판은 목록·글을 POST로만 준다) */
+  /** 폼 POST. 목록·글을 POST로만 주는 학교 게시판용 */
   form?: Record<string, string>
-  /** 이미 인코딩한 폼 본문 (EUC-KR 사이트처럼 UTF-8이 아닌 폼) */
+  /** 이미 인코딩한 폼 본문 (EUC-KR처럼 UTF-8이 아닌 사이트) */
   rawForm?: string
   referer?: string
 }
@@ -196,14 +196,14 @@ export interface SafeResponse {
   body: Buffer
 }
 
-/** 직접 연결이 이 시간 안에 이어지지 않으면 막힌 것으로 본다 (해외 접속 차단은 연결 단계에서 멈춘다) */
+/** 직접 연결 시간 상한. 넘으면 막힌 것으로 봄 (해외 접속 차단은 연결 단계에서 멈춤) */
 const CONNECT_MS = 10_000
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0 Safari/537.36 GwamokNavi/1.0'
 
 type RawResult = { status: number; headers: http.IncomingHttpHeaders; body: Buffer }
 
-/** 청크 전송 본문을 푼다. 형식이 깨졌으면 null */
+/** chunked 본문 풀기. 형식이 깨졌으면 null */
 export function dechunk(buf: Buffer): Buffer | null {
   const out: Buffer[] = []
   let p = 0
@@ -220,7 +220,7 @@ export function dechunk(buf: Buffer): Buffer | null {
   }
 }
 
-/** 헤더 형식이 조금 틀린 응답(예: "P3P : CP=...")을 너그럽게 읽는다 */
+/** 헤더 형식이 조금 틀린 응답(예: "P3P : CP=...")을 너그럽게 읽기 */
 export function parseRawResponse(raw: Buffer): RawResult | null {
   const end = raw.indexOf('\r\n\r\n')
   const sep = end >= 0 ? end + 4 : raw.indexOf('\n\n') >= 0 ? raw.indexOf('\n\n') + 2 : -1
@@ -232,7 +232,7 @@ export function parseRawResponse(raw: Buffer): RawResult | null {
   for (const line of lines.slice(1)) {
     const i = line.indexOf(':')
     if (i <= 0) continue
-    // 헤더 값에 남은 홑 CR·LF·NUL은 떼어 낸다 (raw 경로로 다시 내보낼 때 헤더가 쪼개지지 않게)
+    // 남은 홑 CR·LF·NUL 제거 (다시 내보낼 때 헤더가 쪼개지지 않게)
     const name = line
       .slice(0, i)
       .trim()
@@ -251,7 +251,7 @@ export function parseRawResponse(raw: Buffer): RawResult | null {
   return { status, headers, body: Buffer.from(body) }
 }
 
-/** Node의 엄격한 HTTP 파서가 거절한 서버에만 쓰는 예비 요청 (같은 주소 검사·크기·시간 상한) */
+/** Node 엄격 파서가 거절한 서버에만 쓰는 예비 요청. 주소 검사·크기·시간 상한은 같음 */
 function rawOnce(
   url: URL,
   opts: SafeFetchOptions,
@@ -265,7 +265,7 @@ function rawOnce(
     if (left <= 0) return reject(new FetchBlocked('응답이 너무 늦어요.'))
     const port = Number(url.port) || (url.protocol === 'https:' ? 443 : 80)
     if (relay) {
-      // 중계로 이은 소켓은 이미 연결(TLS까지)돼 있다
+      // 중계 소켓은 TLS까지 이미 연결됨
       tunnel(relay, url.hostname, port, url.protocol === 'https:', Math.min(15_000, left)).then((socket) => readRaw(socket, true), reject)
       return
     }
@@ -287,7 +287,7 @@ function rawOnce(
         'accept-encoding: identity',
       ]
       for (const [k, v] of Object.entries(headers)) lines.push(`${k}: ${v}`)
-      // 보내고 나서 끊지 않는다 (connection: close라 서버가 응답 뒤 닫는다. TLS에서 먼저 닫으면 응답 없이 끊는 서버가 있다)
+      // 보낸 뒤 먼저 닫지 않음: connection: close라 서버가 응답 뒤 닫고, TLS에서 먼저 닫으면 응답 없이 끊는 서버가 있음
       const send = () => socket.write(`${lines.join('\r\n')}\r\n\r\n${body ?? ''}`)
       if (ready) send()
       else socket.on(url.protocol === 'https:' ? 'secureConnect' : 'connect', send)
@@ -335,7 +335,7 @@ function once(url: URL, opts: SafeFetchOptions, body: string | undefined, deadli
     }
     const lib = url.protocol === 'https:' ? https : http
     const headers: Record<string, string> = {
-      // 중계로 이은 소켓을 쓸 때도 기본 포트를 붙이지 않은 Host를 보낸다 (가상 호스트를 가르는 서버가 있다)
+      // 중계 소켓이어도 Host는 기본 포트 없이 (Host로 가상 호스트를 가르는 서버가 있음)
       host: url.host,
       'user-agent': UA,
       accept: opts.accept ?? '*/*',
@@ -352,7 +352,7 @@ function once(url: URL, opts: SafeFetchOptions, body: string | undefined, deadli
     const left = deadline - Date.now()
     if (left <= 0) return reject(new FetchBlocked('응답이 너무 늦어요.'))
 
-    // 응답 형식이 HTTP 규칙에서 벗어나 Node 파서가 거절하면(예: 헤더 이름 뒤 공백) 한 번만 너그러운 방식으로 다시 받는다
+    // Node 파서가 거절한 응답(HPE_*, 예: 헤더 이름 뒤 공백)은 rawOnce로 한 번만 다시
     const fail = (e: Error & { code?: string }) => {
       if (settled) return
       if (typeof e.code === 'string' && e.code.startsWith('HPE_')) {
@@ -367,7 +367,7 @@ function once(url: URL, opts: SafeFetchOptions, body: string | undefined, deadli
       url,
       {
         method: body === undefined ? 'GET' : 'POST',
-        // 중계로 갈 때는 중계가 주소를 찾고(공개 주소만) 이어 준 소켓을 쓴다
+        // 중계면 중계가 주소를 찾아(공개 주소만) 이은 소켓을 씀
         ...(relay
           ? {
               createConnection: (_o: unknown, cb: (err: Error | null, socket: Duplex) => void) => {
@@ -380,12 +380,12 @@ function once(url: URL, opts: SafeFetchOptions, body: string | undefined, deadli
           : { lookup: safeLookup as never }),
         headers,
         timeout: left,
-        // 엄격한 파서로 받는다. 오래된 학교 서버가 헤더 형식이 틀려 거절당하면(HPE_*) fail에서 rawOnce로 한 번만 느슨하게 다시 받는다.
-        // (요청 스머글링을 막으려고 느슨한 파싱은 그 예비 경로에만 둔다)
+        // 엄격 파서로 받고, 헤더 형식이 틀린 오래된 학교 서버(HPE_*)만 fail에서 rawOnce로 한 번 느슨하게.
+        // 느슨한 파싱은 요청 스머글링 위험이 있어 그 예비 경로에만 둔다
         insecureHTTPParser: false,
       },
       (res) => {
-        // 리다이렉트는 본문을 읽지 않는다 (본문 형식이 깨진 오래된 서버가 있다)
+        // 리다이렉트 본문은 안 읽음 (본문이 깨진 오래된 서버가 있음)
         if ((res.statusCode ?? 0) >= 300 && (res.statusCode ?? 0) < 400 && res.headers.location) {
           opts.jar?.store(url, res.headers['set-cookie'])
           resolve({ status: res.statusCode ?? 0, headers: res.headers, body: Buffer.alloc(0) })
@@ -418,7 +418,7 @@ function once(url: URL, opts: SafeFetchOptions, body: string | undefined, deadli
     )
     timer = setTimeout(() => req.destroy(new FetchBlocked('응답이 너무 늦어요.')), left)
     req.on('timeout', () => req.destroy(new FetchBlocked('응답이 너무 늦어요.')))
-    // 직접 연결이 오래 이어지지 않으면 막힌 것으로 보고 끊는다 (해외 접속 차단이면 중계로 다시 한다)
+    // 직접 연결이 CONNECT_MS 안에 안 되면 끊음 (해외 접속 차단이면 중계로 다시)
     if (!relay)
       req.on('socket', (sock: net.Socket) => {
         if (!sock.connecting) return
@@ -459,7 +459,7 @@ export async function safeFetch(input: string, opts: SafeFetchOptions): Promise<
       try {
         res = await once(url, opts, body, deadline)
       } catch (e) {
-        // 해외 접속을 막는 한국 사이트: 한국 서버 중계로 다시 받고, 한동안 바로 중계로 보낸다
+        // 해외 접속 차단으로 보이면 한국 중계로 다시, 그 사이트는 6시간 동안 바로 중계로
         if (!canRelay || !isConnectFailure(e)) throw e
         markRelay(url.hostname)
         res = await once(url, opts, body, deadline, relay)
@@ -476,7 +476,7 @@ export async function safeFetch(input: string, opts: SafeFetchOptions): Promise<
 
 const SHARED_SUFFIXES = new Set(['hs.kr', 'ms.kr', 'es.kr', 'go.kr', 'or.kr', 'co.kr', 'ac.kr', 'ne.kr', 're.kr', 'sc.kr', 'kg.kr', 'pe.kr'])
 
-/** 학교 홈페이지 주소로부터, 같은 학교(또는 같은 교육청 학교 홈페이지 시스템)의 파일 주소인지 판단하는 함수를 만든다 */
+/** 같은 학교(또는 같은 교육청 학교 홈페이지 시스템) 주소인지 보는 allow. hs.kr 같은 공용 접미사면 세 마디까지 비교 */
 export function sameSchoolSite(homepage: string): (url: URL) => boolean {
   let host: string
   try {

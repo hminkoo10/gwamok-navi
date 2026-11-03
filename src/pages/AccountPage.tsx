@@ -19,7 +19,7 @@ const SYNC_TEXT: Record<SyncState, string> = {
   rejected: '계정에 저장하지 못했어요.',
 }
 
-/** 내 이름(실명): 가입할 때 적은 이름. 예전에 이름 없이 가입했으면 여기서 적는다 */
+/** 내 이름(실명). 예전에 이름 없이 가입했으면 여기서 적음 */
 function NameCard() {
   const { user, setUser, notify } = useApp()
   const [editing, setEditing] = useState(false)
@@ -100,8 +100,8 @@ function NameCard() {
 }
 
 /**
- * 내 Gemini API 키: 관리자가 '사용자 키로 AI 쓰기'를 켰을 때 편제표 읽기·파일 읽기·문장으로 찾기에 쓴다.
- * 꺼져 있어도 등록해 둔 키가 있으면 보여서 지울 수 있게 한다
+ * 내 Gemini API 키: '사용자 키로 AI 쓰기'가 켜졌을 때 편제표 읽기·파일 읽기·문장으로 찾기에 씀.
+ * 꺼져 있어도 등록한 키가 있으면 보여 줘서 지울 수 있게
  */
 function AiKeyCard() {
   const { user, setUser, features, notify } = useApp()

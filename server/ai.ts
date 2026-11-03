@@ -1,8 +1,8 @@
-// AI 호출. 세 가지 연결을 받는다.
+// AI 호출. 연결 세 가지:
 // - openai: OpenAI 호환 Chat Completions 주소 (환경변수 AI_BASE_URL·AI_API_KEY·AI_MODEL, 또는 관리자가 넣은 연결)
-// - anthropic: Claude Messages API (관리자가 넣은 연결, 공식 SDK로 부른다: ai-anthropic.ts)
-// - google: Gemini API (관리자가 넣은 Google AI Studio 키). Google이 공식으로 내는 OpenAI 호환 주소로 부른다
-// 키는 서버에서만 쓰고, 응답·기록에 절대 담지 않는다.
+// - anthropic: Claude Messages API (관리자가 넣은 연결, 공식 SDK: ai-anthropic.ts)
+// - google: Gemini API (관리자가 넣은 Google AI Studio 키). Google 공식 OpenAI 호환 주소로 부른다
+// 키는 서버에서만 쓰고 응답·기록에 절대 담지 않는다.
 
 import { chatAnthropic } from './ai-anthropic'
 import { type AiConfig, AiError, type ChatRequest } from './ai-types'
@@ -14,7 +14,7 @@ const effort = (v: string | undefined) => {
   return t && /^[a-z]{2,10}$/.test(t) ? t : undefined
 }
 
-/** 환경변수에 적힌 연결 (관리자가 연결을 고르지 않았을 때 쓴다) */
+/** 환경변수 연결 (관리자가 연결을 고르지 않았을 때) */
 export function aiConfig(env: Record<string, string | undefined> = process.env): AiConfig | null {
   const baseUrl = env.AI_BASE_URL?.trim().replace(/\/+$/, '')
   const apiKey = env.AI_API_KEY?.trim()
@@ -37,18 +37,18 @@ export function aiConfig(env: Record<string, string | undefined> = process.env):
 
 type Part = { type: 'text'; text: string } | { type: 'image_url'; image_url: { url: string } }
 
-/** Gemini는 생각에도 출력 토큰을 써서(max_tokens = 생각 + 답) 짧은 요청도 이만큼은 둔다. 한 번에 받는 상한은 65,536 */
+/** Gemini는 생각에도 출력 토큰을 쓰므로(max_tokens = 생각 + 답) 짧은 요청도 최소 4096. 한 번에 받는 상한은 65,536 */
 const GEMINI_MIN_TOKENS = 4096
 const GEMINI_MAX_TOKENS = 65_536
 
 type ErrorBody = { error?: { type?: unknown; code?: unknown; status?: unknown; message?: unknown } | string }
 
-/** 공급자 오류 본문에서 짧은 오류 종류만 꺼낸다 (본문 전체에는 계정 정보가 섞일 수 있다) */
+/** 공급자 오류 본문에서 짧은 오류 종류만 꺼낸다 (본문 전체에는 계정 정보가 섞일 수 있음) */
 async function errorKind(res: Response): Promise<string> {
   const raw = (await res.json().catch(() => null)) as ErrorBody | ErrorBody[] | null
   // Gemini는 [{ error: { code: 429, status: 'RESOURCE_EXHAUSTED' } }]처럼 배열로 줄 때가 있다
   const e = (Array.isArray(raw) ? raw[0] : raw)?.error
-  // 맞지 않는 키: Gemini는 400 INVALID_ARGUMENT에 'Please pass a valid API key'만 준다 (사용자 키 안내에 쓴다)
+  // 맞지 않는 키: Gemini는 400 INVALID_ARGUMENT에 'Please pass a valid API key'만 줌 (사용자 키 안내에 씀)
   if (typeof e === 'object' && e && typeof e.message === 'string' && /api key/i.test(e.message)) return 'API_KEY_INVALID'
   const kind = typeof e === 'object' && e ? ([e.code, e.status, e.type].find((v): v is string => typeof v === 'string') ?? '') : ''
   return /^[\w.-]{1,40}$/.test(kind) ? kind : ''
@@ -91,11 +91,11 @@ export async function chat(cfg: AiConfig, req: ChatRequest, fetchImpl: typeof fe
     throw new AiError(timedOut ? 504 : 502, timedOut ? 'AI 응답이 너무 늦어요.' : 'AI 서버에 연결하지 못했어요.', timedOut ? 'timeout' : 'connection')
   }
   if (!res.ok) {
-    // 공급자 오류 본문에는 계정 정보가 섞일 수 있어 그대로 돌려주지 않는다
+    // 오류 본문은 그대로 돌려주지 않는다 (계정 정보가 섞일 수 있음)
     const kind = await errorKind(res)
     const detail = `HTTP ${res.status}${kind ? ` ${kind}` : ''}`
     if (res.status === 429) throw new AiError(429, 'AI 사용량이 몰려 있어요. 잠시 후 다시 해 주세요.', detail)
-    // 503: 모델에 요청이 몰림 (Gemini는 새 모델에서 자주 낸다. 보통 잠깐이다)
+    // 503: 모델에 요청이 몰림 (Gemini 새 모델에서 잦고 보통 잠깐)
     if (res.status === 503) throw new AiError(503, 'AI 서버에 요청이 몰려 있어요. 잠시 후 다시 해 주세요.', detail)
     throw new AiError(502, 'AI 서버가 오류를 냈어요.', detail)
   }

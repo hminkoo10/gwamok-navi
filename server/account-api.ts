@@ -8,26 +8,26 @@ import { clearSessionCookie, cookieName, json, readCookie, redirect, sessionCook
 import { HttpError, RateLimiter, readJson } from './limits'
 import { accountCall, type Call, requireUser, type Route } from './services'
 
-// Google 계정 로그인·가입 동의·로그아웃·탈퇴, 계정에 설계 저장
+// Google 로그인·가입 동의·로그아웃·탈퇴, 내 Gemini 키·이름, 계정에 설계 저장
 
 /** 화면에 보내는 사용자 정보 */
 export const publicUser = (u: User) => ({ id: u.id, email: u.email, name: u.name, role: u.role, createdAt: u.createdAt })
 
 const NAME_RULE = '이름은 실명으로 2~30자, 글자로만 적어 주세요.'
 
-/** 로그인한 본인에게 보내는 정보: 등록한 Gemini API 키가 있는지(끝 4자리)도 담는다 */
+/** 본인에게 보내는 정보. 등록한 Gemini 키 여부(끝 4자리) 포함 */
 const meOf = (call: Call, u: User) => ({ ...publicUser(u), aiKey: call.services.userKeys.info(u.id) })
 
-/** 계정에 저장하는 설계의 크기 상한 (학교 편제표 20개 정도) */
+/** 계정에 저장하는 설계의 크기 상한, 글자 수 (학교 편제표 20개 정도) */
 const MAX_DATA = 400_000
 
-/** Google 로그인을 시작한 브라우저인지 맞춰 보는 쿠키, 처음 로그인한 사람의 가입 동의를 기다리는 쿠키 */
+/** FLOW: 로그인을 시작한 브라우저인지 맞춰 보는 쿠키, PENDING: 첫 로그인의 가입 동의를 기다리는 쿠키 */
 const FLOW_COOKIE = 'gwamok_oauth'
 const PENDING_COOKIE = 'gwamok_pending'
 
 /**
- * 로그인 뒤 돌아갈 주소: 이 사이트 안의 화면 경로만 (다른 사이트나 API로 보내지 못하게).
- * 주소 규칙대로 정리해 '/./api', '/.//x' 같은 우회를 풀고, 한글 같은 글자는 %로 바꿔 둔다 (Location 머리글에 그대로 넣으면 오류가 난다)
+ * 로그인 뒤 돌아갈 주소. 이 사이트의 화면 경로만 (다른 사이트·API로 못 보내게).
+ * URL로 정리해 '/./api', '/.//x' 같은 우회를 풀고, 한글 등은 %로 바꿔 둔다 (Location 머리글에 그대로 넣으면 오류)
  */
 export function safeNext(next: unknown): string {
   if (typeof next !== 'string' || next.length > 300 || !/^\/(?!\/)[^\s\\]*$/.test(next)) return '/'
@@ -42,12 +42,12 @@ export function safeNext(next: unknown): string {
   return path
 }
 
-/** 설계에 담는 목록의 길이 상한 (화면이 만드는 것보다 넉넉하게. 너무 긴 목록은 저장할 때마다 견주는 데 시간이 든다) */
+/** 설계 속 목록의 길이 상한. 화면이 만드는 것보다 넉넉하게 (너무 길면 저장할 때마다 견주는 데 오래 걸림) */
 const PREF_LISTS: Record<string, number> = { majors: 100, univs: 200, pinned: 500, excluded: 500, picks: 300, unitIds: 5000 }
 const prefsFit = (p: Record<string, unknown>) =>
   Object.entries(PREF_LISTS).every(([k, max]) => p[k] === undefined || p[k] === null || (Array.isArray(p[k]) && (p[k] as unknown[]).length <= max))
 
-/** 한 번 저장할 때 남기는 설계 기록 줄 수, 한 사람이 10분에 남기는 줄 수 (넘으면 한 줄로 모은다) */
+/** 저장 한 번에 남기는 설계 기록 줄 수, 한 사람이 10분에 남기는 줄 수. 넘으면 한 줄로 모음 */
 const LOG_ROWS_PER_SAVE = 8
 const LOG_ROWS_PER_10MIN = 60
 
@@ -55,7 +55,7 @@ export interface AccountDeps {
   fetch: typeof fetch
 }
 
-/** 글자 칸에 넣을 짧은 한 줄 (사용자가 보낸 값이라 줄바꿈·제어 문자를 뺀다) */
+/** 기록 칸에 넣을 한 줄. 사용자가 보낸 값이라 줄바꿈·제어 문자를 뺌 */
 const oneLine = (x: unknown, max: number) =>
   typeof x === 'string'
     ? x
@@ -66,7 +66,7 @@ const oneLine = (x: unknown, max: number) =>
     : ''
 
 /**
- * 계정에 저장한 설계를 관리 기록에 남길 한 줄로: 대상은 지금 고른 학교(학과), 내용은 분야·대학·꼭 듣기·빼기·슬롯 수.
+ * 저장한 설계를 기록 한 줄로. 대상: 지금 고른 학교와 학과, 내용: 분야·대학·꼭 듣기·빼기·슬롯 수.
  * 화면이 보낸 값이라 모양을 믿지 않고, 분야는 아는 id만 이름으로 바꾼다
  */
 export function planSummary(d: { prefs: unknown; schools: unknown[]; plans: unknown[] }): { target: string; detail: string } {
@@ -97,16 +97,16 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
     complete: new RateLimiter(10, 3600_000),
     remove: new RateLimiter(5, 3600_000),
     data: new RateLimiter(120, 10 * 60_000),
-    // 키를 등록할 때마다 Google에 짧게 물어 확인하므로 넉넉하지 않게
+    // 등록할 때마다 Google에 실제로 물어 확인하므로 적게
     aiKey: new RateLimiter(10, 3600_000),
     name: new RateLimiter(10, 3600_000),
     designRows: new RateLimiter(LOG_ROWS_PER_10MIN, 10 * 60_000),
   }
 
-  /** 요청이 들어온 주소 (Google에서 돌아올 주소를 만든다. PUBLIC_URL이 있으면 그것을 쓴다) */
+  /** 요청이 들어온 주소. Google에서 돌아올 주소에 씀 (PUBLIC_URL이 있으면 그쪽) */
   const originOf = (call: Call) => `${call.ctx.secure ? 'https' : 'http'}://${call.url.host}`
 
-  /** 새 세션 쿠키 (이 브라우저에 남은 이전 세션은 끊는다) */
+  /** 새 세션 쿠키. 이 브라우저의 이전 세션은 끊음 */
   const newSession = (call: Call, user: User) => {
     if (call.token) call.services.accounts.revokeSession(call.token)
     return sessionCookie(call.services.accounts.createSession(user.id).token, !!call.ctx.secure)
@@ -115,7 +115,7 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
   return {
     'GET /api/auth/me': (call) => json({ user: call.user ? meOf(call, call.user) : null }),
 
-    /** Google 로그인 시작: Google 계정 고르는 화면으로 보낸다 */
+    /** Google 로그인 시작: 계정 고르는 화면으로 */
     'GET /api/auth/google': (call) => {
       const secure = !!call.ctx.secure
       const cfg = googleConfig(call.ctx.env, originOf(call))
@@ -127,15 +127,15 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
       return redirect(authUrl(cfg, { state, nonce, challenge }), [shortCookie(FLOW_COOKIE, state, secure, 600)])
     },
 
-    /** Google에서 돌아옴: 이미 가입한 계정이면 로그인, 처음이면 가입 동의 화면으로 */
+    /** Google에서 돌아옴: 가입한 계정이면 로그인, 처음이면 가입 동의 화면으로 */
     'GET /api/auth/google/callback': async (call) => {
       const secure = !!call.ctx.secure
       const clearFlow = shortCookie(FLOW_COOKIE, '', secure, 0)
       const fail = (reason: string) => redirect(`/login?error=${reason}`, [clearFlow])
       const cfg = googleConfig(call.ctx.env, originOf(call))
       if (!cfg) return fail('unavailable')
-      // 이 브라우저에서 시작한 로그인인지 맞춰 본다 (남이 만든 로그인 주소로 끌어들이는 것을 막는다). state는 한 번만 쓴다.
-      // 요청 수는 맞는 쿠키가 있을 때만 센다 (아무 요청으로 같은 IP의 로그인을 막지 못하게)
+      // 이 브라우저에서 시작한 로그인인지 쿠키로 맞춰 봄 (남이 만든 로그인 주소로 끌어들이기 방지). state는 한 번만.
+      // 요청 수는 쿠키가 맞을 때만 센다 (아무 요청으로 같은 IP의 로그인을 막지 못하게)
       const state = call.url.searchParams.get('state') ?? ''
       if (!state || state !== readCookie(call.req, cookieName(FLOW_COOKIE, secure))) return fail('expired')
       if (!limits.callback.take(call.ctx.ip)) return fail('busy')
@@ -165,7 +165,7 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
       return redirect(`/signup?next=${encodeURIComponent(flow.next)}`, [clearFlow, shortCookie(PENDING_COOKIE, token, !!call.ctx.secure, 900)])
     },
 
-    /** 가입 동의를 기다리는 Google 계정 (동의 화면에 이메일을 보여 준다) */
+    /** 가입 동의를 기다리는 Google 계정. 동의 화면에 이메일을 보여 줌 */
     'GET /api/auth/pending': (call) => {
       const token = readCookie(call.req, cookieName(PENDING_COOKIE, !!call.ctx.secure))
       const p = token ? call.services.accounts.pending(token) : null
@@ -177,20 +177,20 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
       const secure = !!call.ctx.secure
       const body = (await readJson(call.req, 1_000)) as { agreeAge?: unknown; agreePrivacy?: unknown; name?: unknown }
       if (body.agreeAge !== true || body.agreePrivacy !== true) throw new HttpError(400, '필수 항목에 동의해 주세요.')
-      // 가입할 때 실명을 받는다 (관리자가 가입한 사람을 알아보는 데 쓴다)
+      // 실명 필수 (관리자가 가입자를 알아보게)
       const name = cleanName(body.name)
       if (!name) throw new HttpError(400, NAME_RULE)
       const { accounts, settings } = call.services
       const token = readCookie(call.req, cookieName(PENDING_COOKIE, secure))
       const expired = '시간이 지났어요. Google 로그인을 다시 해 주세요.'
-      // 가입을 기다리는 쿠키가 맞을 때만 요청 수를 센다 (쿠키 없는 요청으로 같은 IP의 가입을 막지 못하게)
+      // 요청 수는 가입 대기 쿠키가 맞을 때만 센다 (쿠키 없는 요청으로 같은 IP의 가입을 막지 못하게)
       if (!token || !accounts.pending(token)) throw new HttpError(400, expired)
       if (!limits.complete.take(call.ctx.ip)) throw new HttpError(429, '가입 요청이 너무 많아요. 잠시 후 다시 해 주세요.')
       const p = accounts.pending(token, { take: true })
       if (!p) throw new HttpError(400, expired)
       const owner = isOwnerEmail(call.ctx.env, p.email)
       if (!settings.get().signupOpen && !owner) throw new HttpError(403, '지금은 회원가입을 받지 않아요.')
-      // 그사이 다른 창에서 가입을 마쳤으면 그 계정으로 로그인한다
+      // 그사이 다른 창에서 가입을 마쳤으면 그 계정으로 로그인
       const existing = accounts.bySub(p.sub)
       if (existing?.disabled) throw new HttpError(403, '이용이 정지된 계정이에요.')
       if (existing && !existing.name) accounts.setName(existing.id, name)
@@ -210,23 +210,23 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
       return json({ ok: true }, 200, { 'set-cookie': clearSessionCookie(!!call.ctx.secure) })
     },
 
-    /** 탈퇴: 계정과 계정에 저장한 설계를 지운다 (대표 관리자는 탈퇴할 수 없다) */
+    /** 탈퇴: 계정과 저장한 설계를 지움. 대표 관리자는 불가 */
     'POST /api/auth/delete': async (call) => {
       const user = requireUser(call)
       const body = (await readJson(call.req, 1_000)) as { confirm?: unknown }
       if (body.confirm !== true) throw new HttpError(400, '탈퇴에 동의해 주세요.')
       if (!limits.remove.take(`u:${user.id}`)) throw new HttpError(429, '요청이 너무 많아요. 잠시 후 다시 해 주세요.')
       if (user.role === 'owner') throw new HttpError(409, '대표 관리자 계정은 탈퇴할 수 없어요.')
-      // 탈퇴도 기록하되, 계정을 지우면서 이 사람이 한 일의 기록은 누구였는지 알 수 없게 바뀐다
+      // 탈퇴도 기록. 계정을 지우면 이 사람의 기록은 누구였는지 모르게 바뀐다
       call.services.accounts.activity(user, 'auth.delete')
-      // 세션·설계·등록한 Gemini 키까지 함께 지운다
+      // 세션·설계·등록한 Gemini 키까지 함께 지움
       call.services.accounts.remove(user.id)
       return json({ ok: true }, 200, { 'set-cookie': clearSessionCookie(!!call.ctx.secure) })
     },
 
     /**
-     * 내 Gemini API 키 등록: 모양을 보고, 관리자가 정한 모델에 짧은 질문 하나를 보내 맞는 키인지 확인한 뒤 암호화해 저장한다.
-     * 무료 한도·모델 혼잡 때문에 확인이 안 되면 키는 맞는 것으로 보고 저장하되 그 사실을 알린다
+     * 내 Gemini API 키 등록: 모양 검사 → 관리자가 정한 모델에 짧은 질문으로 확인 → 암호화해 저장.
+     * 무료 한도·혼잡(429·503)으로 확인이 안 되면 맞는 키로 보고 저장하되 그 사실을 알린다
      */
     'POST /api/me/ai-key': async (call) => {
       const user = requireUser(call)
@@ -245,7 +245,7 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
       } catch (e) {
         if (!(e instanceof AiError)) throw e
         const code = Number(/^HTTP (\d{3})/.exec(e.detail)?.[1] ?? 0)
-        // 한도(429)·혼잡(503)이면 키 자체는 받아들여진 것이다
+        // 429·503이면 키 자체는 통과한 것
         if (code === 429 || code === 503)
           note = code === 429 ? '키는 맞지만 지금은 사용 한도에 걸려 있어요.' : '키는 맞지만 지금은 Gemini에 요청이 몰려 있어요.'
         else {
@@ -274,7 +274,7 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
       return json({ aiKey: null })
     },
 
-    /** 내 이름(실명) 바꾸기. 예전에 이름 없이 가입한 사람도 여기서 적는다 */
+    /** 실명 바꾸기. 예전에 이름 없이 가입한 사람도 여기서 적는다 */
     'POST /api/me/name': async (call) => {
       const user = requireUser(call)
       const body = (await readJson(call.req, 1_000)) as { name?: unknown }
@@ -295,9 +295,9 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
     },
 
     /**
-     * 설계 저장. base는 화면이 마지막으로 받거나 저장한 판(저장 시각, 계정에 없다고 알면 null)이다.
-     * 그사이 다른 탭·기기가 먼저 저장했으면 덮어쓰지 않고 409와 지금 계정의 설계를 돌려준다 (화면이 합쳐서 다시 저장한다).
-     * base를 보내지 않는 예전 화면은 그대로 덮어쓴다
+     * 설계 저장. base: 화면이 마지막으로 받거나 저장한 판의 저장 시각, 계정에 없다고 알면 null.
+     * 그사이 다른 탭·기기가 먼저 저장했으면 덮지 않고 409와 지금 설계를 돌려준다 (화면이 합쳐 다시 저장).
+     * base를 안 보내는 예전 화면은 그대로 덮어쓴다
      */
     'POST /api/me/data': async (call) => {
       const user = requireUser(call)
@@ -308,7 +308,7 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
       const d = data as { prefs?: unknown; schools?: unknown; plans?: unknown }
       if (!d.prefs || typeof d.prefs !== 'object' || Array.isArray(d.prefs) || !Array.isArray(d.schools) || d.schools.length > 20) throw new HttpError(400, bad)
       if (!prefsFit(d.prefs as Record<string, unknown>)) throw new HttpError(400, bad)
-      // plans: 설계 슬롯 (화면의 MAX_SLOTS와 같다)
+      // plans: 설계 슬롯 (화면 MAX_SLOTS와 같게)
       if (d.plans !== undefined && (!Array.isArray(d.plans) || d.plans.length > 10)) throw new HttpError(400, '슬롯은 10개까지 저장할 수 있어요.')
       if (body.base !== undefined && body.base !== null && typeof body.base !== 'string') throw new HttpError(400, bad)
       if (!limits.data.take(`u:${user.id}`)) throw new HttpError(429, '저장 요청이 너무 많아요. 잠시 후 다시 해 주세요.')
@@ -319,9 +319,9 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
         return json({ error: '다른 곳에서 먼저 저장했어요.', saved: accounts.getData(user.id) }, 409)
       const before = accounts.dataText(user.id)
       const updatedAt = accounts.putData(user.id, text)
-      // 저장하는 사이 계정이 지워졌다
+      // 저장하는 사이 계정이 지워짐
       if (!updatedAt) throw new HttpError(401, '로그인이 필요해요.')
-      // 사용자 로그: 앞서 저장한 설계와 견줘 무엇을 했는지 한 줄씩 남긴다 (화면을 열 때 같은 내용을 다시 올린 것은 남기지 않는다)
+      // 사용자 기록: 이전 설계와 견줘 바뀐 것을 한 줄씩 (화면을 열 때 같은 내용을 다시 올린 것은 남기지 않음)
       if (before !== text) {
         const next = { prefs: d.prefs, schools: d.schools, plans: Array.isArray(d.plans) ? d.plans : [] }
         let prev: unknown = null
@@ -331,7 +331,7 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
           prev = null
         }
         if (!prev) {
-          // 처음 저장: 아직 아무것도 고르지 않은 빈 설계면 남기지 않는다 (그다음부터 바뀐 것을 남긴다)
+          // 첫 저장: 아무것도 안 고른 빈 설계면 남기지 않음
           const p = (d.prefs ?? {}) as { schoolId?: unknown; majors?: unknown; univs?: unknown }
           const chosen = !!p.schoolId || (Array.isArray(p.majors) && p.majors.length > 0) || (Array.isArray(p.univs) && p.univs.length > 0)
           if (chosen) {
@@ -339,7 +339,7 @@ export function accountRoutes(deps: AccountDeps): Record<string, Route> {
             accounts.activity(user, 'plan.save', target, `처음 저장 · ${detail}`)
           }
         } else {
-          // 한 번에 너무 많이 바뀌었거나 아주 자주 바꾸면 나머지는 한 줄로 모은다 (기록이 넘치지 않게)
+          // 한 번에 너무 많이 바뀌거나 아주 자주 바꾸면 나머지는 한 줄로 모음 (기록이 넘치지 않게)
           const changes = designChanges(prev, next)
           for (const [i, c] of changes.entries()) {
             if (i < LOG_ROWS_PER_SAVE && limits.designRows.take(`u:${user.id}`)) {

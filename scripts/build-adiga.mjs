@@ -1,5 +1,5 @@
 // 대교협 「2028 모집단위별 반영과목 및 대학별 권장과목 자료집」을 옮긴 원본(data-src/adiga2028/*.json)을
-// 앱이 쓰는 형태(src/data/adiga2028.json)로 바꾼다. 과목 이름·묶음 표기를 검사하고, 엔진이 그대로 쓸 수 있게 정리한다.
+// 앱이 쓰는 src/data/adiga2028.json으로 바꾼다. 과목 이름·묶음 표기를 검사하고 엔진이 그대로 쓰게 정리한다.
 //   node scripts/build-adiga.mjs
 import { readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
@@ -13,7 +13,7 @@ const OUT = join(root, 'src/data/adiga2028.json')
 const subjectsTs = readFileSync(join(root, 'src/data/subjects.ts'), 'utf8')
 const SUBJECTS = [...subjectsTs.matchAll(/s\('([^']+)', '([^']+)', '([^']+)'/g)].map((m) => ({ name: m[1], area: m[2], kind: m[3] }))
 for (const m of subjectsTs.matchAll(/\['([^']+)', '([^']+)'\],/g)) {
-  // 제2외국어 회화·심화·문화 과목은 목록에서 만들어진다
+  // 제2외국어 회화·심화·문화 과목은 언어 목록으로 만듦
   SUBJECTS.push(
     { name: `${m[1]} 회화`, area: '제2외국어', kind: '진로선택' },
     { name: `심화 ${m[1]}`, area: '제2외국어', kind: '진로선택' },
@@ -52,7 +52,7 @@ const cell = (s) =>
     .filter((x) => x && x !== '-')
     .join(' / ')
 
-// 앱에 손으로 검토한 공식 자료가 따로 있는 대학은 자료집 판을 넣지 않는다 (중앙대: 입학처 원문 표)
+// 손으로 검토한 공식 자료가 앱에 따로 있는 대학은 자료집 판을 넣지 않는다 (중앙대: 입학처 원문 표)
 const SKIP = new Set(['cau'])
 
 function normalizeClauses(unit, where) {
@@ -127,13 +127,13 @@ for (const file of readdirSync(SRC)
       region: clean(u.region),
       pages: pages.length ? [Math.min(...pages), Math.max(...pages)] : [],
       general: clean(u.general),
-      // 대교협 자료집이 아니라 대학 입학처가 따로 낸 공식 자료에서 옮긴 대학은 그 출처를 적는다
+      // 자료집이 아니라 대학 입학처의 공식 자료에서 옮긴 대학은 그 출처
       ...(u.source ? { source: sourceOf(u.source, u.id) } : {}),
       // 자료집과 함께 본 대학 원문 (자료집과 다른 곳을 원문대로 고쳤을 때)
       ...(Array.isArray(u.extra) && u.extra.length ? { extra: u.extra.map((x) => sourceOf(x, u.id)) } : {}),
       // 대학 안내 문장을 직접 적을 때 (없으면 general로 만든다)
       ...(clean(u.policy) ? { policy: clean(u.policy) } : {}),
-      // 원문의 성격 때문에 함께 알려야 할 점 (예: 2028학년도가 아닌 자료에서 옮김)
+      // 원문 성격상 함께 알릴 점 (예: 2028학년도가 아닌 자료에서 옮김)
       ...(clean(u.caveat) ? { caveat: clean(u.caveat) } : {}),
       // 그 출처를 마지막으로 확인한 날 (없으면 자료집 확인일)
       ...(/^20\d\d-\d\d-\d\d$/.test(clean(u.checked)) ? { checked: clean(u.checked) } : {}),

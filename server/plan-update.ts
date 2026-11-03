@@ -5,29 +5,27 @@ import type { AdmissionPlan, AdmissionTrack, RecordRule, Stage, SuneungRule } fr
 import { type AiConfig, AiError, chat, type ChatRequest, extractJson } from './ai'
 import type { Datasets } from './datasets'
 
-// 대입 자료 자동 갱신.
-// 원문이 바뀌면 새 파일을 받아 쪽(한글 파일은 줄)마다 글자를 뽑고, 지난번과 달라진 곳만 골라 AI에게 보여 준다.
-// AI는 지금 자료에서 고칠 곳만 답하고, 그 답을 자료에 적용해 검사(checkPlan)를 통과해야 제안으로 남는다.
-// 제안은 관리자가 반영을 눌러야 바뀐다. 설정에서 '바로 반영'을 켜도 곧바로 반영하는 것은 작은 고침뿐이다
-// (모집인원 ±20% 안이고 모집시기별 합계와 맞을 때, 원문 쪽). 전형 추가·삭제, 수능·학생부 반영 방법, 그 밖의 항목은 관리자를 기다린다.
-// 제안에는 바꾸는 곳과 바꾸기 전 값만 둔다. 반영할 때 지금 자료에 다시 옮기므로 그 사이 고친 곳을 되돌리지 않는다.
+// 대입 자료 자동 갱신. 원문이 바뀌면 새 파일의 쪽(한글 파일은 줄)마다 글자를 뽑아 지난번과 달라진 곳만 AI에게 보여 준다.
+// AI는 고칠 곳만 답하고, 적용한 자료가 checkPlan을 통과해야 제안으로 남는다. 반영은 관리자가 누를 때.
+// '바로 반영'을 켜도 곧바로 반영하는 것은 작은 고침뿐이다 (모집인원 ±20% 안이고 모집시기별 합계와 맞을 때, 원문 쪽).
+// 제안에는 바꾸는 곳과 바꾸기 전 값만 둔다. 반영할 때 지금 자료에 다시 옮겨서 그 사이 고친 곳을 되돌리지 않는다.
 
 export interface DocText {
   kind: 'pdf' | 'hwp'
-  /** PDF는 쪽마다, 한글 파일은 줄마다 */
+  /** PDF는 쪽별, 한글 파일은 줄별 글자 */
   pages: string[]
 }
 
 export interface UpdateDeps {
-  /** 원문 파일을 받는다 (못 받으면 null) */
+  /** 원문 받기. 못 받으면 null */
   download: (plan: Pick<AdmissionPlan, 'univ' | 'url' | 'page' | 'watch'>) => Promise<Buffer | null>
   read: (buf: Buffer) => Promise<DocText>
-  /** PDF의 고른 쪽(1부터)을 그림으로 (못 그리면 빈 배열) */
+  /** PDF의 고른 쪽(1부터)을 그림으로. 실패하면 빈 배열 */
   render: (buf: Buffer, pages: number[]) => Promise<string[]>
-  /** AI 설정, 또는 부를 때마다 지금 설정을 돌려주는 함수 (관리자가 연결을 바꾸면 바로 따른다) */
+  /** AI 설정 또는 그때그때 설정을 돌려주는 함수 (관리자가 연결을 바꾸면 바로 따름) */
   ai: AiConfig | null | (() => AiConfig | null)
   chat?: (cfg: AiConfig, req: ChatRequest) => Promise<string>
-  /** 하루 AI 확인 한도. AI를 부르기 바로 앞에서 그때 설정을 본다 (없으면 한도 없음) */
+  /** 하루 AI 확인 한도, AI 호출 직전에 그때 설정을 봄. 없으면 무제한 */
   limit?: () => number
   now?: () => Date
 }
@@ -58,7 +56,7 @@ export interface Proposal {
 export type CheckResult =
   { state: 'baseline' } | { state: 'same' } | { state: 'skipped'; reason: string } | { state: 'none' | 'pending' | 'applied' | 'failed'; proposal: Proposal }
 
-/** 제안이 바꾸는 곳: 전형 필드, 더한 전형, 지운 전형, 대학 단위 값. 바꾸기 전 값을 함께 둬서 반영할 때 그 사이 바뀌었는지 본다 */
+/** 제안이 바꾸는 곳: 전형 필드, 더한·지운 전형, 대학 단위 값. before로 반영할 때 그 사이 바뀌었는지 봄 */
 export interface PlanPatch {
   fields: { id: string; name: string; key: string; before?: unknown; after?: unknown }[]
   added: AdmissionTrack[]
@@ -66,15 +64,15 @@ export interface PlanPatch {
   plan: { key: string; before?: unknown; after?: unknown }[]
 }
 
-/** 그 사이 자료가 바뀌어 제안을 반영하지 못했다 (제안은 직접 확인으로 돌린다) */
+/** 그 사이 자료가 바뀌어 반영 못 함. 제안은 직접 확인으로 돌림 */
 export class ProposalConflict extends Error {}
 
-/** PDF에서 AI에게 한 번에 보여 줄 쪽 수, 한글 파일에서 보여 줄 줄 수 */
+/** AI에 보여 줄 최대 쪽 수(PDF)와 줄 수(한글 파일). 넘게 바뀌면 자동으로 고치지 않음 */
 const MAX_PAGES = 8
 const MAX_LINES = 400
-/** AI 답 하나에 받는 고칠 곳 수 */
+/** AI 답 하나의 고칠 곳 상한 */
 const MAX_OPS = 60
-/** 바로 반영하는 모집인원 변화 (비율, 작은 전형은 1명까지) */
+/** 바로 반영하는 모집인원 변화 비율 (작은 전형은 1명까지) */
 const AUTO_SEATS = 0.2
 
 const FIELD_LABEL: Record<string, string> = {
@@ -104,7 +102,7 @@ const EDITABLE = new Set(Object.keys(FIELD_LABEL))
 /** 대학 단위로 고칠 수 있는 상세: 정시 수능 반영, 학생부 반영 방법 */
 const PLAN_EDITABLE = new Set(['suneung', 'record'])
 const PLAN_LABEL: Record<string, string> = { totals: '모집시기별 합계', suneung: '정시 수능 반영 방법', record: '학생부 반영 방법' }
-/** 원문 쪽 표기 (12, 12-13, Ⅲ-4 …). 바로 반영할 때 이 모양만 받는다 */
+/** 원문 쪽 표기 (12, 12-13, Ⅲ-4 …). 바로 반영은 이 모양만 */
 const PAGES_RE = /^[\d\sⅠ-Ⅻ가-힣,~·–-]{1,20}$/u
 
 const stageText = (s: Stage) =>
@@ -125,7 +123,7 @@ const recordText = (r: RecordRule) => [r.subjects, r.grades, r.formula].filter(B
 
 const norm = (t: string) => t.replace(/\s+/g, ' ').trim()
 const sha = (x: Buffer | string) => createHash('sha256').update(x).digest('hex').slice(0, 16)
-/** 키 순서와 빠진 키(undefined)는 따지지 않고 같은 값인지 */
+/** 비교용 정규화: 키 순서와 undefined 키를 무시 */
 const canon = (v: unknown): unknown =>
   Array.isArray(v)
     ? v.map(canon)
@@ -214,7 +212,7 @@ export function changeLines(before: AdmissionPlan, after: AdmissionPlan): Change
     if (!after.tracks.some((t) => t.id === b.id)) out.push({ track: b.name, field: '전형 삭제', before: `${b.seats ?? '?'}명`, after: '' })
   if (JSON.stringify(before.totals) !== JSON.stringify(after.totals))
     out.push({ track: '전체', field: '모집시기별 합계', before: show(before.totals), after: show(after.totals) })
-  // 대학 단위 상세는 묶음(정시 수능)·전형 묶음(학생부)마다 비교한다
+  // 대학 단위 상세는 묶음별로 비교: 정시 수능은 group, 학생부는 전형 목록
   const pairs = <T>(b: T[] | undefined, a: T[] | undefined, key: (x: T) => string) => {
     const mb = new Map((b ?? []).map((x) => [key(x), x]))
     const ma = new Map((a ?? []).map((x) => [key(x), x]))
@@ -225,7 +223,7 @@ export function changeLines(before: AdmissionPlan, after: AdmissionPlan): Change
   const trackName = (ids: string[]) =>
     ids.map((id) => after.tracks.find((t) => t.id === id)?.name ?? before.tracks.find((t) => t.id === id)?.name ?? id).join('·')
   for (const [group, b, a] of pairs(before.suneung, after.suneung, (r) => r.group)) {
-    // 이 방법을 쓰는 전형이 바뀌면 함께 보인다 (빈 배열은 그 대학 정시 수능 전형 모두)
+    // 쓰는 전형이 바뀌었으면 함께 표시 (빈 배열은 그 대학 정시 수능 전형 모두)
     const scope = (r: SuneungRule) => (b && a && !same(b.tracks, a.tracks) ? ` / 전형: ${trackName(r.tracks) || '정시 수능 전형 모두'}` : '')
     out.push({ track: `정시 수능 (${group})`, field: '반영 방법', before: b ? suneungText(b) + scope(b) : '', after: a ? suneungText(a) + scope(a) : '' })
   }
@@ -239,9 +237,9 @@ export function changeLines(before: AdmissionPlan, after: AdmissionPlan): Change
   return out
 }
 
-/** 소식에 남길 한 줄. AI가 쓴 요약 대신 바뀐 곳(changeLines)으로 서버가 만든다 */
+/** 소식에 남길 한 줄. AI 요약 대신 changeLines로 서버가 만듦 */
 export function linesSummary(lines: ChangeLine[]): string {
-  // 합계 줄은 다른 줄이 있으면 뺀다 (모집인원이 바뀌면 거의 늘 따라온다)
+  // 합계 줄은 다른 줄이 있으면 뺌 (모집인원이 바뀌면 거의 늘 따라옴)
   const main = lines.some((l) => l.track !== '전체') ? lines.filter((l) => l.track !== '전체') : lines
   const say = (l: ChangeLine) =>
     l.field === '전형 추가'
@@ -256,8 +254,8 @@ export function linesSummary(lines: ChangeLine[]): string {
 }
 
 /**
- * AI가 답한 고칠 곳을 지금 자료에 적용한다 (값 검사는 checkPlan이 한다).
- * 모양이 틀린 고칠 곳(모르는 op, 없는 전형, 배열이 아닌 묶음)은 버리지 않고 PlanError. id처럼 고칠 수 없는 항목은 자료를 바꾸지 못하므로 건드리지 않는다
+ * AI가 답한 고칠 곳을 지금 자료에 적용 (값 검사는 checkPlan).
+ * 모양이 틀린 고칠 곳(모르는 op, 없는 전형, 배열이 아닌 묶음)은 조용히 버리지 않고 PlanError. id처럼 고칠 수 없는 필드는 무시
  */
 export function applyChanges(plan: AdmissionPlan, answer: unknown): AdmissionPlan {
   const a = (answer && typeof answer === 'object' && !Array.isArray(answer) ? answer : {}) as { changes?: unknown; totals?: unknown }
@@ -288,18 +286,18 @@ export function applyChanges(plan: AdmissionPlan, answer: unknown): AdmissionPla
       if (!set) throw bad('plan에는 set이 있어야 해요')
       for (const [k, v] of set) {
         if (!PLAN_EDITABLE.has(k)) continue
-        // 묶음은 배열 전체로만 바꾼다 (null·객체로 묶음을 통째로 지우지 않게)
+        // 묶음은 배열 전체로만 (null·객체로 통째로 지우지 못하게)
         if (!Array.isArray(v)) throw bad(`${k}는 배열이어야 해요`)
         ;(planSet as Record<string, unknown>)[k] = v
       }
     } else throw bad(`모르는 op ${String(op.op).slice(0, 20)}`)
   })
-  // 합계는 없거나 null이면 그대로 둔다. 그 밖의 값은 그대로 검사에 넘긴다 (빈 객체·배열은 검사에서 막힌다)
+  // 합계가 없거나 null이면 그대로. 그 밖의 값은 검사로 넘김 (빈 객체·배열은 검사에서 막힘)
   const totals = a.totals === undefined || a.totals === null ? plan.totals : (a.totals as AdmissionPlan['totals'])
   return { ...plan, ...planSet, totals, tracks }
 }
 
-/** AI가 적은 확실하지 않은 점. 배열이 아니어도(글 하나, 객체) 무언가 적었으면 확실하지 않은 것으로 본다 */
+/** AI가 적은 확실하지 않은 점. 배열이 아니어도(글 하나, 객체) 뭔가 적었으면 확실하지 않은 것으로 */
 export function unsureOf(x: unknown): string[] {
   if (x === null || x === undefined || x === false) return []
   return (Array.isArray(x) ? x : [x])
@@ -307,7 +305,7 @@ export function unsureOf(x: unknown): string[] {
     .filter(Boolean)
 }
 
-/** 바뀐 곳만: 고치기 전 판과 고친 판을 견준다 */
+/** 고치기 전 판과 고친 판의 차이 */
 export function diffPlan(before: AdmissionPlan, after: AdmissionPlan): PlanPatch {
   const patch: PlanPatch = { fields: [], added: [], removed: [], plan: [] }
   for (const t of after.tracks) {
@@ -329,7 +327,7 @@ export function diffPlan(before: AdmissionPlan, after: AdmissionPlan): PlanPatch
   return patch
 }
 
-/** 제안을 지금 자료에 옮긴다. 제안이 바꾸는 곳을 그 사이 다르게 고쳤으면 그곳 이름을 conflict로 */
+/** 제안을 지금 자료에 옮김. 바꾸는 곳을 그 사이 다르게 고쳤으면 그곳 이름을 conflict로 */
 export function rebase(current: AdmissionPlan, patch: PlanPatch): { plan: AdmissionPlan } | { conflict: string } {
   const tracks = current.tracks.map((t) => ({ ...t }) as unknown as Record<string, unknown>)
   const put = (o: Record<string, unknown>, key: string, v: unknown) => {
@@ -364,7 +362,7 @@ export function rebase(current: AdmissionPlan, patch: PlanPatch): { plan: Admiss
   return { plan: plan as unknown as AdmissionPlan }
 }
 
-/** 바로 반영하지 않을 까닭 (빈 배열이면 확인 없이 반영해도 되는 작은 고침) */
+/** 바로 반영하지 않을 까닭. 빈 배열이면 확인 없이 반영해도 되는 작은 고침 */
 export function autoApplyBlockers(before: AdmissionPlan, after: AdmissionPlan): string[] {
   const out = new Set<string>()
   const patch = diffPlan(before, after)
@@ -381,7 +379,7 @@ export function autoApplyBlockers(before: AdmissionPlan, after: AdmissionPlan): 
       if (typeof f.after !== 'string' || !PAGES_RE.test(f.after)) out.add(FIELD_LABEL.pages)
     } else out.add(FIELD_LABEL[f.key] ?? f.key)
   }
-  // 모집시기별 합계: 합계나 모집인원이 바뀐 시기는 고치기 전에도 뒤에도 합계가 그 시기 모집인원 합과 같아야 한다
+  // 합계나 모집인원이 바뀐 모집 시기는 고치기 전·후 모두 합계가 그 시기 모집인원 합과 같아야 함
   const sums = (p: AdmissionPlan) => {
     const m = new Map<string, number>()
     for (const t of p.tracks) if (typeof t.seats === 'number') m.set(t.period, (m.get(t.period) ?? 0) + t.seats)
@@ -401,9 +399,9 @@ export function autoApplyBlockers(before: AdmissionPlan, after: AdmissionPlan): 
   return [...out]
 }
 
-/** 지난 글자와 비교해 달라진 쪽(줄) 번호. 순서가 밀려도 같은 내용이 남아 있으면 그대로로 본다 */
+/** 지난 글자와 비교해 달라진 쪽(줄) 번호, 1부터. 순서가 밀려도 같은 내용이 남아 있으면 그대로로 봄 */
 export function changedParts(before: string[], after: string[]): number[] {
-  // 띄어쓰기만 다른 쪽(목차 점선 정렬 등)은 같은 쪽으로 본다
+  // 공백만 다른 쪽(목차 점선 정렬 등)은 같은 쪽
   const key = (t: string) => sha(t.replace(/\s+/g, ''))
   const seen = new Set(before.map(key))
   const out: number[] = []
@@ -419,9 +417,9 @@ interface Row {
   created_at: string
   status: ProposalStatus
   summary: string
-  /** 예전 제안이 담던 자료 전체 (이제 쓰지 않는다) */
+  /** 예전 제안이 담던 자료 전체. 이제 안 씀 */
   plan: string | null
-  /** 바꾸는 곳 (PlanPatch) */
+  /** PlanPatch JSON */
   patch: string | null
   lines: string
   pages: string
@@ -486,7 +484,7 @@ export class PlanUpdater {
     `)
     if (!(db.prepare('pragma table_info(data_proposals)').all() as { name: string }[]).some((c) => c.name === 'patch'))
       db.exec('alter table data_proposals add column patch text')
-    // 예전 제안은 자료 전체를 담고 있어 그 뒤에 고친 곳을 지킬 수 없다. 반영하지 않고 직접 확인으로 돌린다
+    // 예전 제안(patch 없음)은 자료 전체를 담아 그 뒤 고친 곳을 지킬 수 없어 직접 확인으로 돌림
     db.prepare("update data_proposals set status = 'failed', detail = substr(trim(? || ' ' || detail), 1, 500) where status = 'pending' and patch is null").run(
       `예전 방식으로 만든 제안이라 반영하지 않았어요. ${AFTER_STALE}`,
     )
@@ -504,19 +502,19 @@ export class PlanUpdater {
     return (this.db.prepare("select count(*) n from data_proposals where status = 'pending'").get() as { n: number }).n
   }
 
-  /** 오늘(서울) AI로 확인한 횟수 (AI가 답하지 못한 것도 센다) */
+  /** 오늘(한국 시간) AI로 확인한 횟수. AI가 답하지 못한 것도 셈 */
   usedToday(): number {
     const day = new Date(Date.parse(this.now()) + 9 * 3600_000).toISOString().slice(0, 10)
     const from = new Date(Date.parse(`${day}T00:00:00+09:00`)).toISOString()
     return (this.db.prepare('select count(*) n from data_ai_calls where at >= ?').get(from) as { n: number }).n
   }
 
-  /** 하루 한도 안이면 AI 확인 한 번을 잡아 둔다. 한 번에 하나씩 도는 run 안에서 AI를 부르기 바로 앞에서만 부른다 */
+  /** 하루 한도 안이면 AI 확인 1회를 잡아 둠. 한 번에 하나씩 도는 run 안, AI 호출 직전에서만 부름 */
   private reserve(univ: string): boolean {
     if (this.usedToday() >= (this.deps.limit?.() ?? Infinity)) return false
     const at = this.now()
     this.db.prepare('insert into data_ai_calls (univ, at) values (?, ?)').run(univ, at)
-    // 한도는 오늘 것만 세므로 오래된 기록은 지운다
+    // 한도는 오늘 것만 세서 40일 지난 기록은 지움
     this.db.prepare('delete from data_ai_calls where at < ?').run(new Date(Date.parse(at) - 40 * 86400_000).toISOString())
     return true
   }
@@ -538,7 +536,7 @@ export class PlanUpdater {
     return [...this.running]
   }
 
-  /** 아직 기준이 없는 대학 원문을 받아 기준을 잡는다 (서버를 처음 띄웠을 때, AI는 부르지 않는다) */
+  /** 기준이 없는 대학의 원문을 받아 기준으로 (서버 첫 기동 때, AI는 안 부름) */
   async ensureBaselines(univs: string[]): Promise<number> {
     let n = 0
     for (const univ of univs) {
@@ -549,12 +547,12 @@ export class PlanUpdater {
     return n
   }
 
-  /** 가져오기로 새로 넣은 대학: 옮긴 원문을 기준으로 잡는다 (다음에 원문이 바뀌면 바뀐 쪽만 본다) */
+  /** 가져오기로 새로 넣은 대학은 옮긴 원문을 기준으로 (다음에 바뀌면 바뀐 쪽만 봄) */
   baseline(univ: string, buf: Buffer, doc: DocText): void {
     this.saveSnapshot(univ, sha(buf), doc)
   }
 
-  /** 기준으로 받아 둔 원문 글자 (검수할 때 원문을 다시 받지 않게). 없으면 null */
+  /** 기준 원문 글자. 검수할 때 다시 받지 않게, 없으면 null */
   snapshotDoc(univ: string): DocText | null {
     const r = this.db.prepare('select kind, pages from plan_snapshots where univ = ?').get(univ) as { kind: string; pages: string } | undefined
     if (!r) return null
@@ -613,7 +611,7 @@ export class PlanUpdater {
       { sha: string; kind: string; pages: string } | undefined
     if (!snap) {
       this.saveSnapshot(univ, digest, doc)
-      // 자료를 옮긴 파일과 같으면 기준만 잡는다. 다르면 옮긴 뒤에 원문이 바뀐 것인데, 비교할 지난 글자가 없어 직접 보게 한다
+      // 자료를 옮긴 파일(fileSha)과 같으면 기준만. 다르면 옮긴 뒤 원문이 바뀐 것인데 비교할 지난 글자가 없어 직접 보게 함
       if (!plan.fileSha || plan.fileSha === digest) return { state: 'baseline' }
       const proposal = this.record(
         univ,
@@ -649,8 +647,8 @@ export class PlanUpdater {
     }
     const ai = typeof this.deps.ai === 'function' ? this.deps.ai() : this.deps.ai
     if (!ai) return { state: 'skipped', reason: 'AI가 설정되지 않았어요.' }
-    // 하루 한도는 차례를 기다릴 때가 아니라 AI를 부르기 바로 앞에서 센다 (한꺼번에 여러 곳이 바뀌어도 넘지 않는다)
-    // 기준은 그대로 둬서 한도가 풀린 뒤 다시 확인하면 같은 곳을 본다
+    // 하루 한도는 차례를 기다릴 때가 아니라 AI 호출 직전에 셈 (여러 곳이 한꺼번에 바뀌어도 넘지 않게).
+    // 기준은 그대로 둬서 한도가 풀린 뒤 같은 곳을 다시 봄
     if (!this.reserve(univ)) return { state: 'skipped', reason: '오늘 AI 확인 한도를 다 썼어요.' }
 
     const oldPages = JSON.parse(snap.pages) as string[]
@@ -681,11 +679,11 @@ export class PlanUpdater {
       const text = await (this.deps.chat ?? chat)(ai, { system: SYSTEM, user, images, heavy: true, maxTokens: 6000, timeoutMs: 180_000 })
       answer = extractJson(text)
     } catch (e) {
-      // AI가 답하지 못하면 기준을 그대로 둬서 다음 확인 때 다시 본다 (한도에서는 한 번으로 센다)
+      // AI가 답하지 못하면 기준을 그대로 둬 다음 확인 때 다시 (한도에는 1회로 셈)
       const proposal = this.record(univ, 'failed', 'AI가 답하지 못했어요', null, [], changed, e instanceof AiError ? e.message : 'AI 응답을 읽지 못했어요.')
       return { state: 'failed', proposal }
     }
-    // AI를 기다리는 사이 관리자가 자료를 되돌려 기준이 지워졌으면 이번 답은 버린다 (다음 확인 때 처음부터 본다)
+    // AI를 기다리는 사이 관리자가 되돌려 기준이 지워졌으면 이번 답은 버림 (다음 확인 때 처음부터)
     if ((this.db.prepare('select sha from plan_snapshots where univ = ?').get(univ) as { sha: string } | undefined)?.sha !== snap.sha)
       return { state: 'skipped', reason: '확인하는 사이에 자료를 되돌렸어요.' }
 
@@ -701,7 +699,7 @@ export class PlanUpdater {
     const lines = changeLines(plan, next)
     const unsure = unsureOf((answer as { unsure?: unknown }).unsure)
     if (!lines.length) return { state: 'none', proposal: this.record(univ, 'none', '바뀐 전형 없음', null, [], changed, unsure.join(' / ')) }
-    // 바로 반영은 작은 고침만. 나머지는 까닭을 남기고 관리자를 기다린다
+    // 바로 반영은 작은 고침만, 나머지는 까닭을 남기고 관리자를 기다림
     const blockers = opts.autoApply ? autoApplyBlockers(plan, next) : []
     const detail = [
       unsure.length ? `확실하지 않은 점: ${unsure.slice(0, 5).join(' / ')}` : '',
@@ -709,13 +707,13 @@ export class PlanUpdater {
     ]
       .filter(Boolean)
       .join(' ')
-    // 요약은 소식에 그대로 남으므로 AI가 쓴 글이 아니라 바뀐 곳으로 만든다
+    // 요약은 소식에 그대로 남아서 AI 글이 아니라 바뀐 곳으로 만듦
     const proposal = this.record(univ, 'pending', linesSummary(lines), diffPlan(plan, next), lines, changed, detail)
     if (!opts.autoApply || unsure.length || blockers.length) return { state: 'pending', proposal }
     try {
       this.apply(proposal.id, opts.by ?? 'AI')
     } catch (e) {
-      // AI를 기다리는 사이 관리자가 같은 곳을 고쳤으면 반영하지 않고 직접 확인으로 남는다
+      // AI를 기다리는 사이 관리자가 같은 곳을 고쳤으면 직접 확인으로 남김
       if (e instanceof ProposalConflict) return { state: 'failed', proposal: this.get(proposal.id)! }
       throw e
     }
@@ -742,7 +740,7 @@ export class PlanUpdater {
     }
   }
 
-  /** 기다리던 제안을 반영할 수 없게 돌린다 (직접 확인) */
+  /** 기다리던 제안을 직접 확인(failed)으로 돌림 */
   private stale(id: number, reason: string) {
     this.db
       .prepare("update data_proposals set status = 'failed', detail = substr(trim(? || ' ' || detail), 1, 500) where id = ? and status = 'pending'")
@@ -750,8 +748,8 @@ export class PlanUpdater {
   }
 
   /**
-   * 제안을 지금 자료에 반영한다 (판이 올라가고 소식이 남는다).
-   * 제안이 바꾸는 곳만 지금 자료에 옮기므로 그 사이 다른 곳을 고친 것은 그대로 남는다. 같은 곳을 고쳤으면 직접 확인으로 돌리고 ProposalConflict
+   * 제안을 지금 자료에 반영 (판이 올라가고 소식이 남음).
+   * 바꾸는 곳만 옮겨서 그 사이 다른 곳을 고친 것은 남는다. 같은 곳을 고쳤으면 직접 확인으로 돌리고 ProposalConflict
    */
   apply(id: number, by: string): Proposal | null {
     const r = this.db.prepare("select * from data_proposals where id = ? and status = 'pending'").get(id) as unknown as Row | undefined
@@ -767,7 +765,7 @@ export class PlanUpdater {
     return this.get(id)
   }
 
-  /** 자료가 바뀐 뒤 같은 대학의 기다리는 제안을 다시 본다. 지금 자료에 옮길 수 없게 된 것은 직접 확인으로 돌린다 */
+  /** 자료가 바뀐 뒤 같은 대학의 기다리는 제안을 다시 봄. 옮길 수 없게 된 것은 직접 확인으로 */
   revalidate(univ: string): number {
     let n = 0
     for (const r of this.db.prepare("select * from data_proposals where univ = ? and status = 'pending'").all(univ) as unknown as Row[]) {
@@ -781,8 +779,8 @@ export class PlanUpdater {
   }
 
   /**
-   * 고친 것을 지우고 배포한 자료로 되돌린다. 원문 기준도 지운다: 기준이 남으면 배포한 자료와 그 기준 사이에 바뀐 곳을 다시는 찾지 않는다.
-   * 다음 확인 때 지금 원문이 배포한 자료를 옮긴 파일(fileSha)과 다르면 직접 확인하게 알린다. 기다리던 제안은 직접 확인으로 돌린다
+   * 고친 것을 지우고 배포한 자료로 되돌림. 원문 기준도 지운다: 남으면 배포 자료와 그 기준 사이에 바뀐 곳을 다시는 못 찾음.
+   * 다음 확인 때 지금 원문이 배포 자료를 옮긴 파일(fileSha)과 다르면 직접 확인하게 알림. 기다리던 제안은 직접 확인으로
    */
   revert(univ: string, by: string): boolean {
     if (!this.datasets.revert(univ, by)) return false
@@ -800,7 +798,7 @@ export class PlanUpdater {
   }
 }
 
-/** 달라진 줄 앞뒤를 붙여 덩어리로 (한글 파일) */
+/** 한글 파일: 달라진 줄에 앞뒤 3줄씩 붙인 덩어리, 30개까지 */
 function hunks(lines: string[], changed: number[]): { from: number; to: number; text: string }[] {
   const out: { from: number; to: number; text: string }[] = []
   for (const n of changed) {

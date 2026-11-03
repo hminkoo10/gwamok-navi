@@ -5,5 +5,5 @@ dist-server
 .env.*
 !.env.example
 
-# 공유 편제표 저장소
+# 서버 데이터(SQLite)
 /data

@@ -31,7 +31,7 @@ export function ProfileForm({ compact = false }: { compact?: boolean }) {
   const toggleSpecial = (code: SpecialCode) =>
     store.setProfile({ special: profile.special.includes(code) ? profile.special.filter((s) => s !== code) : [...profile.special, code] })
   const toggleType = (t: AdmissionType) => store.setProfile({ types: profile.types.includes(t) ? profile.types.filter((x) => x !== t) : [...profile.types, t] })
-  // 대부분은 해당하는 자격이 없다: 고른 것이 없으면 목록을 접어 둔다
+  // 대부분은 해당 자격이 없어서, 고른 것이 없으면 목록을 접어 둠
   const [showSpecials, setShowSpecials] = useState(() => profile.special.length > 0)
   const picked = PROFILE_SPECIALS.filter((s) => profile.special.includes(s.code))
 

@@ -26,7 +26,7 @@ export function AdmissionsPage() {
   const [period, setPeriod] = useState<'' | '수시' | '정시'>('')
   const [noMin, setNoMin] = useState(false)
   const [onlyMine, setOnlyMine] = useState(false)
-  // 학과별 인원표가 있는 대학에서는 내 학과를 뽑지 않는 전형을 거를 수 있다
+  // 학과별 인원표가 있는 대학은 내 학과를 뽑지 않는 전형을 거를 수 있음
   const seats = useUnitSeats()
   const [q, setQ] = useState('')
   const [editing, setEditing] = useState(false)
@@ -58,7 +58,7 @@ export function AdmissionsPage() {
       .filter((g): g is NonNullable<typeof g> => !!g && g.visible.length > 0)
   }, [scope, prefs.univs, prefs.profile.types, prefs.majors, prefs.unitIds, data.byUniv, ctx, onlyOk, period, noMin, onlyMine, seats, query])
 
-  // 전형 자료가 없는 대학: 담은 대학 중에서만 이름을 보여 준다 (전체는 수가 많아 개수만)
+  // 전형 자료가 없는 대학: 담은 대학만 이름을 보여 줌 (전체는 수가 많아 개수만)
   const missing = (scope === 'mine' && prefs.univs.length ? prefs.univs.map((id) => UNIV_BY_ID.get(id)).filter((u) => !!u) : []).filter(
     (u) => !data.byUniv.has(u.id),
   )

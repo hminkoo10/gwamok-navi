@@ -2,20 +2,19 @@ import { createHash, randomBytes } from 'node:crypto'
 import type { DatabaseSync } from 'node:sqlite'
 
 // 계정·로그인 세션·계정에 저장한 설계·관리 기록.
-// 로그인은 Google 계정으로만 한다: Google 계정 고유 번호(sub)와 이메일만 보관하고 비밀번호는 없다.
-// 세션 토큰과 로그인 중간 단계의 값은 SHA-256으로만 저장한다 (저장소가 새어도 바로 쓸 수 없게).
+// 로그인은 Google 계정으로만. Google 고유 번호(sub)와 이메일만 보관, 비밀번호 없음.
+// 세션 토큰과 로그인 중간 값은 SHA-256 해시로만 저장 (저장소가 새어도 바로 못 쓰게).
 
-/** owner: 대표 관리자 (OWNER_EMAIL로 정한 한 사람, 관리자 지정·취소를 한다), admin: 지정된 관리자, user: 일반 */
+/** owner: 대표 관리자 (OWNER_EMAIL 한 사람, 관리자 지정·취소), admin: 지정된 관리자, user: 일반 */
 export type Role = 'user' | 'admin' | 'owner'
 
-/** 관리 화면을 쓸 수 있는 권한 */
 export const isAdmin = (u: { role: Role }) => u.role === 'admin' || u.role === 'owner'
 
 export interface User {
   id: number
-  /** Google 계정 이메일 (관리 화면에서 사람을 알아보는 데 쓴다. 로그인할 때마다 맞춘다) */
+  /** Google 계정 이메일. 로그인할 때마다 맞춤 */
   email: string
-  /** 가입할 때 적은 실명 (관리자가 사람을 알아보는 데 쓴다. 예전에 가입한 사람은 비어 있을 수 있다) */
+  /** 가입 때 적은 실명. 예전 가입자는 비어 있을 수 있음 */
   name: string
   role: Role
   disabled: boolean
@@ -45,8 +44,8 @@ const toUser = (r: UserRow): User => ({
 })
 
 /**
- * 실명: 빈칸을 정리하고, 글자(한글·영문 등)로 시작하고 끝나며 사이에는 글자·빈칸·가운뎃점·하이픈·아포스트로피만, 2~30자.
- * 숫자·기호나 자음·모음만 쓴 이름(ㅇㅇ)은 받지 않는다. 맞지 않으면 null
+ * 실명 검사: 2~30자, 글자로 시작·끝, 사이에는 글자·빈칸·가운뎃점·하이픈·아포스트로피만.
+ * 숫자·기호, 자음·모음만 쓴 이름(ㅇㅇ)은 거부. 맞지 않으면 null
  */
 export function cleanName(raw: unknown): string | null {
   if (typeof raw !== 'string') return null
@@ -73,9 +72,9 @@ const hashOf = (token: string) => createHash('sha256').update(token).digest('hex
 const newToken = () => randomBytes(32).toString('base64url')
 const TOKEN_RE = /^[A-Za-z0-9_-]{40,60}$/
 
-/** Google 로그인 중간 단계(로그인 시작 → Google → 돌아옴)의 유효 시간 */
+/** 로그인 시작 → Google → 돌아옴까지의 유효 시간 */
 const FLOW_MINUTES = 10
-/** 처음 로그인한 사람이 동의하고 가입을 마칠 때까지의 유효 시간 */
+/** 첫 로그인 뒤 가입 동의를 마칠 때까지의 유효 시간 */
 const PENDING_MINUTES = 15
 
 export interface SavedData {
@@ -83,39 +82,39 @@ export interface SavedData {
   updatedAt: string
 }
 
-/** admin: 관리자가 바꾼 것 (지우지 않는다), user: 사용자가 한 일 (ACTIVITY_DAYS 뒤에 지운다) */
+/** admin: 관리자가 바꾼 것 (지우지 않음), user: 사용자가 한 일 (ACTIVITY_DAYS 뒤 지움) */
 export type LogKind = 'admin' | 'user'
 
 export interface LogEntry {
   id: number
   kind: LogKind
-  /** 한 사람의 이메일 (사용자가 탈퇴했거나 지워졌으면 그 사실만) */
+  /** 이메일. 탈퇴·삭제한 계정이면 GONE_USER */
   who: string
-  /** 그 사람의 지금 이름 (이름이 없거나 탈퇴·삭제했으면 빈 문자열) */
+  /** 지금 계정 이름. 없거나 탈퇴·삭제했으면 빈 문자열 */
   name: string
   action: string
   target: string
   detail: string
-  /** 같은 일을 잠깐 사이에 여러 번 했으면 그 횟수 (한 줄로 모은다) */
+  /** 잠깐 사이 되풀이한 같은 일을 한 줄로 모은 횟수 */
   times: number
   createdAt: string
 }
 
-/** 사용자가 한 일을 남겨 두는 날수 */
+/** 사용자 기록 보관 날수 */
 export const ACTIVITY_DAYS = 365
-/** 한 사람의 기록을 남겨 두는 줄 수 (넘으면 오래된 것부터 지운다) */
+/** 한 사람 기록의 최대 줄 수. 넘으면 오래된 것부터 지움 */
 export const ACTIVITY_PER_USER = 5000
-/** 탈퇴하거나 지운 계정이 남긴 기록에 쓰는 이름 (누구였는지 알 수 없게) */
+/** 탈퇴·삭제한 계정의 기록에 남기는 이름 (누구였는지 모르게) */
 export const GONE_USER = '탈퇴·삭제한 계정'
 
-/** 로그인 시작 때 정한 값 (Google에서 돌아왔을 때 맞춰 본다) */
+/** 로그인 시작 때 정한 값. Google에서 돌아오면 맞춰 봄 */
 export interface OAuthFlow {
   verifier: string
   nonce: string
   next: string
 }
 
-/** Google 로그인은 했지만 아직 가입 동의를 하지 않은 사람 */
+/** Google 로그인은 했고 가입 동의는 아직인 사람 */
 export interface PendingSignup {
   sub: string
   email: string
@@ -127,7 +126,7 @@ export class Accounts {
 
   constructor(db: DatabaseSync) {
     this.db = db
-    // 아이디·비밀번호 시절의 표는 지우지 않고 이름만 바꿔 둔다. 그 계정의 세션은 끊고, 설계는 새 계정 id와 겹치지 않게 옮긴다
+    // 아이디·비밀번호 시절 표는 지우지 않고 이름만 바꿔 둔다. 세션은 끊고, 설계 표도 옮겨 새 계정 id와 겹치지 않게
     const legacy = (db.prepare('pragma table_info(users)').all() as { name: string }[]).some((c) => c.name === 'password')
     if (legacy) {
       const tables = new Set((db.prepare("select name from sqlite_master where type = 'table'").all() as { name: string }[]).map((t) => t.name))
@@ -194,10 +193,10 @@ export class Accounts {
         created_at text not null
       );
     `)
-    // 실명 칸 (예전에 가입한 사람은 비어 있다)
+    // 실명 칸 (예전 가입자는 빈 값)
     if (!(db.prepare('pragma table_info(users)').all() as { name: string }[]).some((c) => c.name === 'name'))
       db.exec("alter table users add column name text not null default ''")
-    // 관리 기록에 사용자가 한 일도 함께 남긴다 (예전 표에는 kind·times 칸을 더한다)
+    // 사용자 기록도 admin_log에 함께 남김. 예전 표에는 kind·times 칸 추가
     const logCols = new Set((db.prepare('pragma table_info(admin_log)').all() as { name: string }[]).map((c) => c.name))
     if (!logCols.has('kind')) db.exec("alter table admin_log add column kind text not null default 'admin'")
     if (!logCols.has('times')) db.exec('alter table admin_log add column times integer not null default 1')
@@ -207,9 +206,9 @@ export class Accounts {
   }
 
   /**
-   * 지운 계정의 번호를 새 가입자가 물려받지 않게 한다. 예전 표는 autoincrement 없이 만들어 가장 큰 번호를 다시 썼고,
-   * 탈퇴와 겹쳐 늦게 들어온 저장이 남긴 설계·키를 다음 가입자가 받을 수 있었다.
-   * 표를 autoincrement로 다시 만들고, 주인 없는 설계·키·세션은 지우고, 다음 번호가 기록에 남은 어떤 번호보다 크게 한다
+   * 지운 계정 번호를 새 가입자가 물려받지 않게 한다.
+   * 예전 표는 autoincrement가 없어 가장 큰 번호를 다시 썼고, 탈퇴와 겹쳐 늦게 들어온 저장의 설계·키가 다음 가입자에게 넘어갈 수 있었다.
+   * 표를 autoincrement로 다시 만들고, 주인 없는 설계·키·세션을 지우고, 다음 번호를 기록에 남은 어떤 번호보다 크게 둔다
    */
   private keepIdsUnique(): void {
     const db = this.db
@@ -248,7 +247,7 @@ export class Accounts {
     }
   }
 
-  /** 사용자 Gemini 키 표가 있는지 (UserAiKeys가 만든다) */
+  /** 사용자 Gemini 키 표가 있는지 (UserAiKeys가 만듦) */
   private hasKeys(): boolean {
     return !!this.db.prepare("select 1 from sqlite_master where type = 'table' and name = 'user_ai_keys'").get()
   }
@@ -264,7 +263,7 @@ export class Accounts {
     return r ? toUser(r) : null
   }
 
-  /** Google 계정 고유 번호로 찾는다 */
+  /** Google 계정 고유 번호(sub)로 찾기 */
   bySub(sub: string): User | null {
     const r = this.row('google_sub', sub)
     return r ? toUser(r) : null
@@ -278,12 +277,12 @@ export class Accounts {
     return this.byId(Number(res.lastInsertRowid))!
   }
 
-  /** 실명을 바꾼다 (cleanName을 거친 값만) */
+  /** cleanName을 거친 값만 */
   setName(id: number, name: string): void {
     this.db.prepare('update users set name = ? where id = ?').run(name, id)
   }
 
-  /** 로그인할 때 Google 계정 이메일이 바뀌었으면 맞춘다 */
+  /** 로그인할 때 Google 이메일이 바뀌었으면 맞춤 */
   setEmail(id: number, email: string): void {
     this.db.prepare('update users set email = ? where id = ? and email != ?').run(email, id, email)
   }
@@ -293,8 +292,8 @@ export class Accounts {
   }
 
   /**
-   * 대표 관리자를 OWNER_EMAIL에 맞춘다: 그 이메일 계정은 owner, 예전 owner였던 다른 계정은 지정된 관리자로 둔다.
-   * 서버를 켤 때와 로그인할 때 부른다 (이메일 비교는 소문자로)
+   * 대표 관리자를 OWNER_EMAIL에 맞춘다: 그 계정은 owner, 예전 owner였던 다른 계정은 admin으로.
+   * 서버를 켤 때와 로그인할 때 부름. 이메일은 소문자로 비교
    */
   syncOwner(email: string): void {
     const owner = email.trim().toLowerCase()
@@ -307,7 +306,7 @@ export class Accounts {
     if (disabled) this.revokeAll(id)
   }
 
-  /** 계정을 지운다: 세션·설계·등록한 Gemini 키까지 한 번에. 그 사람이 한 일의 기록은 남기되 누가 했는지는 지운다 */
+  /** 세션·설계·등록한 Gemini 키까지 한 번에 지움. 사용자 기록은 남기되 누구인지는 지움 */
   remove(id: number): void {
     this.db.exec('begin')
     try {
@@ -331,7 +330,7 @@ export class Accounts {
       where.push("(email like ? escape '\\' or name like ? escape '\\')")
       args.push(like, like)
     }
-    // '관리자'로 거르면 대표 관리자도 함께 보인다
+    // '관리자'로 거르면 대표 관리자도 포함
     if (opts.role === 'admin') where.push("role in ('admin', 'owner')")
     if (opts.role === 'user') where.push("role = 'user'")
     if (opts.status === 'disabled') where.push('disabled = 1')
@@ -358,7 +357,7 @@ export class Accounts {
 
   // ---- Google 로그인 중간 단계 ----
 
-  /** 로그인을 시작한다. 돌려준 state를 Google에 보내고 같은 값을 쿠키에도 둔다 */
+  /** 돌려준 state는 Google에 보내고 같은 값을 쿠키에도 둔다 */
   startFlow(flow: OAuthFlow, now = new Date()): string {
     const state = newToken()
     const at = now.toISOString()
@@ -369,7 +368,7 @@ export class Accounts {
     return state
   }
 
-  /** Google에서 돌아온 state의 값을 꺼낸다 (한 번만 쓸 수 있고, 시간이 지났으면 null) */
+  /** Google에서 돌아온 state의 값. 한 번만 쓸 수 있고, 시간이 지났으면 null */
   takeFlow(state: string, now = new Date()): OAuthFlow | null {
     if (!TOKEN_RE.test(state)) return null
     const id = hashOf(state)
@@ -381,7 +380,7 @@ export class Accounts {
     return { verifier: r.verifier, nonce: r.nonce, next: r.next }
   }
 
-  /** 처음 로그인한 사람: 동의를 받을 때까지 Google 계정을 잠시 맡아 둔다. 돌려준 토큰을 쿠키에 둔다 */
+  /** 첫 로그인: 가입 동의를 받을 때까지 Google 계정을 잠시 맡아 둔다. 돌려준 토큰은 쿠키에 */
   startPending(p: PendingSignup, now = new Date()): string {
     const token = newToken()
     this.db.prepare('delete from oauth_pending where created_at < ?').run(new Date(now.getTime() - PENDING_MINUTES * 60_000).toISOString())
@@ -391,7 +390,7 @@ export class Accounts {
     return token
   }
 
-  /** 맡아 둔 가입 정보. take면 꺼내면서 지운다 */
+  /** 맡아 둔 가입 정보. take면 꺼내면서 지움 */
   pending(token: string, { take = false } = {}, now = new Date()): PendingSignup | null {
     if (!TOKEN_RE.test(token)) return null
     const id = hashOf(token)
@@ -413,12 +412,12 @@ export class Accounts {
       .prepare('insert into sessions (id, user_id, created_at, expires_at, last_seen_at) values (?, ?, ?, ?, ?)')
       .run(hashOf(token), userId, at, expiresAt, at)
     this.db.prepare('update users set last_login_at = ? where id = ?').run(at, userId)
-    // 오래된 세션 정리
+    // 만료된 세션 정리
     this.db.prepare('delete from sessions where expires_at < ?').run(at)
     return { token, expiresAt }
   }
 
-  /** 토큰으로 사용자를 찾는다. 만료·정지된 계정이면 null */
+  /** 세션이 만료됐거나 계정이 정지됐으면 null */
   sessionUser(token: string, now = new Date()): User | null {
     if (!TOKEN_RE.test(token)) return null
     const id = hashOf(token)
@@ -441,7 +440,6 @@ export class Accounts {
     this.db.prepare('delete from sessions where id = ?').run(hashOf(token))
   }
 
-  /** 그 사용자의 모든 세션을 끊는다 */
   revokeAll(userId: number): void {
     this.db.prepare('delete from sessions where user_id = ?').run(userId)
   }
@@ -457,19 +455,16 @@ export class Accounts {
     return r ? { data: JSON.parse(r.data), updatedAt: r.updated_at } : null
   }
 
-  /** 저장해 둔 설계 원문 (바뀌었는지 견줄 때) */
+  /** 저장된 설계 원문. 바뀌었는지 견줄 때 */
   dataText(userId: number): string | null {
     const r = this.db.prepare('select data from user_data where user_id = ?').get(userId) as { data: string } | undefined
     return r?.data ?? null
   }
 
-  /**
-   * 설계를 저장하고 저장한 시각을 돌려준다. 그사이 계정이 지워졌으면 저장하지 않고 null
-   * (탈퇴와 겹쳐 늦게 끝난 저장이 주인 없는 설계를 남기지 않게)
-   */
+  /** 저장 시각을 돌려준다. 그사이 계정이 지워졌으면 저장하지 않고 null (탈퇴와 겹친 늦은 저장이 주인 없는 설계를 남기지 않게) */
   putData(userId: number, data: string): string | null {
     let at = new Date().toISOString()
-    // 같은 밀리초에 두 번 저장해도 저장 시각(설계 판)이 겹치지 않게 한다
+    // 같은 밀리초에 두 번 저장해도 저장 시각(설계 판)이 겹치지 않게
     const prev = this.db.prepare('select updated_at from user_data where user_id = ?').get(userId) as { updated_at: string } | undefined
     if (prev && prev.updated_at >= at) at = new Date(Date.parse(prev.updated_at) + 1).toISOString()
     const res = this.db
@@ -480,7 +475,7 @@ export class Accounts {
     return Number(res.changes) > 0 ? at : null
   }
 
-  /** 저장해 둔 설계의 저장 시각 (없으면 null). 화면이 마지막으로 본 판과 같은지 견줄 때 */
+  /** 저장된 설계의 저장 시각, 없으면 null. 화면이 마지막으로 본 판과 견줄 때 */
   dataVersion(userId: number): string | null {
     const r = this.db.prepare('select updated_at from user_data where user_id = ?').get(userId) as { updated_at: string } | undefined
     return r?.updated_at ?? null
@@ -498,8 +493,8 @@ export class Accounts {
   private prunedAt = 0
 
   /**
-   * 사용자가 한 일. mergeMinutes 안에 같은 사람이 같은 대상에 같은 일을 또 하면 새 줄 대신 그 줄의 내용·시각을 바꾸고 횟수를 올린다
-   * (설계는 고칠 때마다 저장하므로 줄이 넘치지 않게). ACTIVITY_DAYS가 지난 사용자 기록은 지운다
+   * 사용자가 한 일. mergeMinutes 안에 같은 사람·대상·일이 또 오면 새 줄 대신 그 줄의 내용·시각을 바꾸고 횟수를 올린다
+   * (설계는 고칠 때마다 저장되므로). ACTIVITY_DAYS가 지난 사용자 기록은 지운다
    */
   activity(user: { id: number; email: string }, action: string, target = '', detail = '', opts: { mergeMinutes?: number } = {}, now = new Date()): void {
     const at = now.toISOString()
@@ -508,7 +503,7 @@ export class Accounts {
     if (Math.abs(now.getTime() - this.prunedAt) > 3600_000) {
       this.prunedAt = now.getTime()
       this.db.prepare("delete from admin_log where kind = 'user' and created_at < ?").run(new Date(now.getTime() - ACTIVITY_DAYS * 86400_000).toISOString())
-      // 한 사람의 기록은 최근 ACTIVITY_PER_USER줄까지만 둔다 (설계를 아주 자주 바꿔도 표가 끝없이 커지지 않게)
+      // 한 사람당 최근 ACTIVITY_PER_USER줄까지만 (설계를 아주 자주 바꿔도 표가 끝없이 커지지 않게)
       this.db
         .prepare(
           "delete from admin_log where id in (select id from (select id, row_number() over (partition by admin_id order by id desc) rn from admin_log where kind = 'user' and admin_id != 0) where rn > ?)",
@@ -522,13 +517,13 @@ export class Accounts {
           "select id, detail from admin_log where kind = 'user' and admin_id = ? and action = ? and target = ? and created_at >= ? order by created_at desc limit 1",
         )
         .get(user.id, action, t, since) as { id: number; detail: string } | undefined
-      // 된 일과 실패한 일은 따로 모은다 (실패가 앞서 된 일의 기록을 덮지 않게)
+      // 성공과 실패는 따로 모은다 (실패가 앞선 성공 기록을 덮지 않게)
       if (prev && prev.detail.includes('실패:') === d.includes('실패:')) {
         this.db.prepare('update admin_log set detail = ?, created_at = ?, times = times + 1 where id = ?').run(d, at, prev.id)
         return
       }
     }
-    // 그사이 탈퇴한 계정이면 남기지 않는다 (지운 계정의 이메일이 기록에 다시 남지 않게)
+    // 그사이 탈퇴한 계정이면 남기지 않음 (지운 계정의 이메일이 다시 남지 않게)
     this.db
       .prepare(
         "insert into admin_log (admin_id, admin_name, action, target, detail, created_at, kind) select ?, ?, ?, ?, ?, ?, 'user' where exists (select 1 from users where id = ?)",
@@ -537,8 +532,8 @@ export class Accounts {
   }
 
   /**
-   * 기록 목록 (최근 것부터). kind로 관리자·사용자 기록을, actions로 행동 묶음(앞부분이 같은 행동, 예: 'design.')을 거르고,
-   * q로 이름·이메일·대상·내용을 찾는다. 이름은 지금 계정의 이름을 붙인다 (탈퇴·삭제한 계정은 없다)
+   * 기록 목록, 최근 것부터. kind: 관리자·사용자, actions: 행동 이름 ('design.'처럼 점으로 끝나면 앞부분 일치), q: 이름·이메일·대상·내용 검색.
+   * 이름은 지금 계정 이름 (탈퇴·삭제한 계정은 빈 값)
    */
   logs(opts: { offset?: number; limit?: number; kind?: LogKind | ''; q?: string; actions?: string[] } = {}): { entries: LogEntry[]; total: number } {
     const where: string[] = []

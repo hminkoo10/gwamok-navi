@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react'
 import { type DataUpdate, dataUpdates } from './api'
 
-// 목표 대학의 대입 자료가 바뀌면 알려 준다. 마지막으로 본 소식의 시각은 이 기기에 둔다.
-// 번호가 아니라 시각을 두는 까닭: 서버 DB를 새로 만들면 소식 번호가 1부터 다시 시작한다.
+// 목표 대학의 대입 자료가 바뀌면 알린다. 마지막으로 본 소식의 시각은 이 기기에 둔다.
+// 번호 대신 시각인 까닭: 서버 DB를 새로 만들면 소식 번호가 1부터 다시 시작한다.
 
 const SEEN_KEY = 'gwamok-navi:seen-update-at'
 
@@ -27,8 +27,8 @@ export const unseenOf = (entries: DataUpdate[], seen: string, univs: string[]) =
   entries.filter((e) => e.createdAt > seen && (!univs.length || univs.includes(e.key)))
 
 /**
- * 이 기기에 '마지막으로 본 때'가 없을 때(처음 쓰는 기기) 둘 값: 지금까지 나온 소식 중 가장 새것.
- * 그래서 몇 달 전 소식이 새 소식처럼 뜨지 않고, 그 뒤에 나온 소식부터 알린다. 소식이 하나도 없으면 '0' (다음 소식부터 새것)
+ * 처음 쓰는 기기의 '마지막으로 본 때': 지금까지 나온 소식 중 가장 새것 (몇 달 전 소식이 새 소식으로 뜨지 않게).
+ * 소식이 하나도 없으면 '0' (다음 소식부터 새것)
  */
 export const firstSeen = (entries: DataUpdate[]) => entries.reduce((m, e) => (e.createdAt > m ? e.createdAt : m), '0')
 

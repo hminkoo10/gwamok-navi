@@ -30,7 +30,7 @@ function finesOf(u: Unit) {
   return v
 }
 
-/** 모집단위가 드는 세부 학과 (그 모집단위의 계열 묶음 안에서 이름으로 고른다. '(… 제외)' 괄호 속 학과 이름은 보지 않는다) */
+/** 모집단위가 드는 세부 학과. 그 계열 묶음 안에서 이름으로 고르고, '(… 제외)' 괄호 속 학과는 보지 않는다 */
 export function fineOf(u: Unit): string[] {
   return finesOf(u).fine
 }

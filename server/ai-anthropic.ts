@@ -4,7 +4,7 @@ import { type AiConfig, AiError, type ChatRequest } from './ai-types'
 // Claude Messages API (공식 SDK). 관리자가 'Claude' 연결을 골랐을 때만 쓴다.
 // 편제표 옮기기처럼 답이 긴 요청이 있어 스트리밍으로 받고 마지막 메시지만 쓴다.
 
-/** 최신 Claude 모델은 생각에도 출력 토큰을 써서, 짧은 요청도 이만큼은 둔다 (쓴 만큼만 과금된다) */
+/** 최신 Claude 모델은 생각에도 출력 토큰을 쓰므로 짧은 요청도 이만큼은 둔다 (쓴 만큼만 과금) */
 const MIN_OUTPUT_TOKENS = 4096
 
 const IMAGE = /^data:(image\/(?:png|jpeg|gif|webp));base64,([A-Za-z0-9+/=]+)$/

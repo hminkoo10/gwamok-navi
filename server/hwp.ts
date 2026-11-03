@@ -3,8 +3,8 @@ import { inflateRawSync } from 'node:zlib'
 import { codePoint, type Grid } from './tables'
 import { unzip } from './zip'
 
-// 한글 문서에서 표만 꺼낸다. 학교알리미 공시 파일은 한글(HWP 5.0, HWPX)인 경우가 많다.
-// HWP 5.0: OLE 복합 파일 안의 BodyText/SectionN 스트림(raw deflate)을 레코드 단위로 읽는다.
+// 한글 문서(HWP 5.0, HWPX)에서 표·그림·글자를 꺼낸다. 학교알리미 공시 파일에 한글 파일이 많다.
+// HWP 5.0: OLE 복합 파일의 BodyText/SectionN 스트림(raw deflate)을 레코드 단위로 읽는다.
 // HWPX: zip 안 Contents/sectionN.xml의 <hp:tbl>을 읽는다.
 // 표 바로 앞 문단(예: "2026학년도 입학생")을 caption으로 함께 돌려준다.
 
@@ -51,7 +51,7 @@ class Cfb {
     this.miniCutoff = buf.readUInt32LE(56)
     if (this.sectorSize !== 512 && this.sectorSize !== 4096) throw new HwpError('한글 파일 구조가 이상해요.')
 
-    // FAT 위치: 머리의 109칸 + DIFAT 사슬
+    // FAT 섹터 목록: 헤더의 109칸 + DIFAT 사슬
     const fatSectors: number[] = []
     for (let i = 0; i < 109; i++) {
       const s = buf.readUInt32LE(76 + i * 4)
@@ -72,7 +72,7 @@ class Cfb {
       for (let i = 0; i < this.sectorSize / 4; i++) this.fat.push(buf.readUInt32LE(off + i * 4))
     }
 
-    // 디렉터리
+    // 디렉터리 항목: 128바이트씩
     const dir = this.readChain(buf.readUInt32LE(48), Number.MAX_SAFE_INTEGER, this.fat, this.sectorSize, (s) => this.offset(s), buf)
     for (let p = 0; p + 128 <= dir.length; p += 128) {
       const nameLen = dir.readUInt16LE(p + 64)
@@ -114,7 +114,7 @@ class Cfb {
     return size === Number.MAX_SAFE_INTEGER ? out : out.subarray(0, size)
   }
 
-  /** "BodyText/Section0" 같은 경로의 스트림 */
+  /** "BodyText/Section0" 꼴 경로의 스트림. 없으면 null */
   stream(path: string): Buffer | null {
     const names = path.split('/')
     let level = this.children(0)
@@ -130,7 +130,7 @@ class Cfb {
     return this.readChain(found.start, found.size, this.fat, this.sectorSize, (s) => this.offset(s), this.buf)
   }
 
-  /** 저장소 안의 항목 (형제 트리를 따라간다) */
+  /** 저장소 바로 아래 항목. 형제끼리는 left/right 트리로 이어짐 */
   children(index: number): DirEntry[] {
     const out: DirEntry[] = []
     const first = this.entries[index]?.child
@@ -180,13 +180,13 @@ function* records(buf: Buffer): Generator<Rec> {
 }
 
 // ---- 배포용 문서 ----
-// 본문이 BodyText 대신 ViewText/SectionN에 있다. 스트림마다 맨 앞 레코드(배포용 문서 데이터, 256바이트)의 앞 4바이트를
-// 씨앗으로 한 난수(MSVC rand)로 나머지 252바이트를 풀면, (씨앗 & 0xf) + 4 자리부터 16바이트가 AES-128 열쇠다.
-// 그 뒤의 바이트를 이 열쇠로 ECB 복호화하면 보통 본문 스트림과 같다 (압축 문서면 그다음 압축을 푼다). 한글 문서 파일 형식 5.0 「배포용 문서」
+// 본문이 BodyText 대신 ViewText/SectionN에 있다. 스트림 맨 앞 레코드(배포용 문서 데이터, 256바이트)의 앞 4바이트가 씨앗.
+// 씨앗으로 돌린 MSVC rand로 나머지 252바이트를 풀면 (씨앗 & 0xf) + 4 자리부터 16바이트가 AES-128 키.
+// 그 뒤를 AES-128-ECB로 풀면 보통 본문 스트림이 된다 (압축 문서면 이어서 inflate). 출처: 한글 문서 파일 형식 5.0 「배포용 문서」
 
 const TAG_DISTRIBUTE_DOC_DATA = 0x1c
 
-/** 배포용 문서 본문 스트림을 풀어 보통 본문 스트림으로 (모양이 다르면 null) */
+/** 배포용 문서 구역 스트림 → 보통 구역 스트림. 모양이 다르면 null */
 export function viewTextSection(raw: Buffer): Buffer | null {
   if (raw.length < 4 + 256) return null
   const h = raw.readUInt32LE(0)
@@ -217,7 +217,7 @@ export function viewTextSection(raw: Buffer): Buffer | null {
   return Buffer.concat([decipher.update(body.subarray(0, usable)), decipher.final()])
 }
 
-/** 본문 구역 스트림들 (보통 문서는 BodyText, 배포용 문서는 ViewText를 풀어서). 압축은 풀지 않은 채로 */
+/** 본문 구역 스트림. 보통 문서는 BodyText, 배포용 문서는 ViewText를 복호화해서. 압축은 아직 안 푼 상태 */
 function sectionStreams(cfb: Cfb, distributed: boolean): Buffer[] {
   const root = distributed ? 'ViewText' : 'BodyText'
   const sections = cfb
@@ -234,7 +234,7 @@ function sectionStreams(cfb: Cfb, distributed: boolean): Buffer[] {
   return out
 }
 
-/** 문단 글자 (UTF-16LE). 제어 문자는 1칸짜리와 8칸짜리가 있다 */
+/** 문단 글자 (UTF-16LE). 제어 문자는 1칸짜리와 8칸(16바이트)짜리 */
 export function paraText(data: Buffer): string {
   let out = ''
   for (let i = 0; i + 1 < data.length;) {
@@ -266,7 +266,7 @@ function toGrid(t: OpenTable): Grid {
   const cols = Math.min(60, Math.max(t.cols, ...t.cells.map((c) => c.col + c.cs)))
   if (rows * cols > MAX_CELLS) return []
   const grid: string[][] = Array.from({ length: rows }, () => Array.from({ length: cols }, () => ''))
-  // 칸이 아주 많은(합친 칸이 겹겹인) 문서가 격자를 몇 번씩 다시 채우지 않도록 채우는 칸 수를 막아 둔다
+  // 합친 칸이 겹겹인 문서가 격자를 여러 번 덮어쓰지 않게 쓰기 횟수 상한 (MAX_CELLS × 4)
   let writes = 0
   for (const c of t.cells) {
     if (writes > MAX_CELLS * 4) break
@@ -280,7 +280,7 @@ function toGrid(t: OpenTable): Grid {
   return grid
 }
 
-/** 문서 안 그림: 바로 앞 문단(제목)과 저장소 이름 */
+/** 문서 안 그림. caption은 바로 앞 문단, name은 BinData 안 이름 */
 export interface DocPicture {
   caption: string
   name: string
@@ -313,7 +313,7 @@ function sectionScan(buf: Buffer, tables: DocTable[], pics: { caption: string; b
     } else if (ctrl === CTRL_PICTURE) {
       pics.push({ caption: recent.slice(-3).join(' '), binId: 0 })
     } else if (rec.tag === TAG_SHAPE_PICTURE && rec.data.length >= 73) {
-      // 그림 정보: 테두리(12) + 좌표(32) + 자르기(16) + 여백(8) + 밝기·명암·효과(3) 다음이 BinItem 번호
+      // 그림 개체: 테두리(12) + 좌표(32) + 자르기(16) + 여백(8) + 밝기·명암·효과(3) = 71바이트 뒤가 BinItem 번호
       const last = pics[pics.length - 1]
       if (last && !last.binId) last.binId = rec.data.readUInt16LE(71)
     } else if (top && rec.tag === TAG_TABLE && rec.level === top.level + 1 && rec.data.length >= 8) {
@@ -364,9 +364,9 @@ export function hwp5Doc(buf: Buffer): HangulDoc {
   const storage = (name: string) => cfb.children(cfb.entries.findIndex((e) => e.name === name && e.type === 1))
   const tables: DocTable[] = []
   const pics: { caption: string; binId: number }[] = []
-  // 배포용 문서(flags 0x4)는 ViewText를 풀어서 읽는다
+  // flags 0x4 = 배포용 문서 (ViewText를 복호화해서 읽음)
   for (const raw of sectionStreams(cfb, (flags & 0x4) !== 0)) sectionScan(compressed ? inflateRawSync(raw, { maxOutputLength: 60_000_000 }) : raw, tables, pics)
-  // 그림 번호 n → BinData/BIN000n.확장자
+  // BinItem 번호 n → BinData/BIN000n.확장자 (16진 4자리)
   const bins = storage('BinData').map((e) => e.name)
   const pictures: DocPicture[] = []
   for (const p of pics) {
@@ -399,17 +399,17 @@ const xmlDecode = (s: string) =>
     .replace(/&#(\d+);/g, (_, n: string) => codePoint(Number(n)))
     .replace(/&amp;/g, '&')
 
-// HWPX 태그는 <hp:tbl>처럼 이름 앞에 'prefix:'가 붙는다. 닫히지 않은 태그가 가득한 파일에서
-// 정규식이 자리마다 되짚지 않도록, 태그 이름을 (선택적 접두사까지) 원본 자리에서 맞추며 indexOf로 앞으로만 훑는다.
+// HWPX 태그에는 <hp:tbl>처럼 'prefix:'가 붙는다.
+// 닫히지 않은 태그가 가득한 파일에서 정규식 되짚기로 느려지지 않게, 아래 함수들은 indexOf로 앞으로만 훑는다 (선형).
 
 const isWord = (c: number) => (c >= 97 && c <= 122) || (c >= 65 && c <= 90) || (c >= 48 && c <= 57) || c === 95
 
-/** s의 pos(= '<' 또는 '</' 다음)가 (선택적 'prefix:' 뒤) 소문자 name과 맞고 뒤가 단어 문자가 아니면 이름 끝 위치, 아니면 -1. name은 소문자 */
+/** pos('<'·'</' 바로 뒤)에서 [prefix:]name이 단어 경계까지 맞으면 이름 끝 위치, 아니면 -1. 대소문자 무시, name은 소문자로 */
 function matchName(s: string, pos: number, name: string): number {
   let p = pos
   let q = pos
   while (isWord(s.charCodeAt(q))) q++
-  if (q > pos && s.charCodeAt(q) === 58 /* : */) p = q + 1 // 접두사(prefix:)를 건너뛴다
+  if (q > pos && s.charCodeAt(q) === 58 /* : */) p = q + 1 // prefix: 건너뜀
   for (let j = 0; j < name.length; j++) {
     let c = s.charCodeAt(p + j)
     if (c >= 65 && c <= 90) c += 32
@@ -418,14 +418,14 @@ function matchName(s: string, pos: number, name: string): number {
   return isWord(s.charCodeAt(p + name.length)) ? -1 : p + name.length
 }
 
-/** <[prefix:]name ...>...</[prefix:]name>을 앞으로만 (게으른 *? 그대로 가장 가까운 닫는 태그까지) */
+/** <[prefix:]name ...>...</[prefix:]name> 요소들. 게으른 *?처럼 가장 가까운 닫는 태그까지 */
 function* nsElements(xml: string, name: string): Generator<{ attrs: string; inner: string }> {
   let from = 0
   for (;;) {
     let lt = xml.indexOf('<', from)
     let ne = -1
     for (; lt >= 0; lt = xml.indexOf('<', lt + 1)) {
-      if (xml.charCodeAt(lt + 1) === 47) continue // 닫는 태그는 건너뛴다
+      if (xml.charCodeAt(lt + 1) === 47) continue // '</' 닫는 태그는 건너뜀
       ne = matchName(xml, lt + 1, name)
       if (ne >= 0) break
     }
@@ -449,7 +449,7 @@ function nsClose(xml: string, name: string, from: number): number {
   return -1
 }
 
-/** <[prefix:]name ...> 여는 태그만 ({ tag, start }). /<(?:\w+:)?name\b[^>]*>/g와 같다 */
+/** <[prefix:]name ...> 여는 태그만. /<(?:\w+:)?name\b[^>]*>/g와 같은 결과 */
 function* nsOpenTags(xml: string, name: string): Generator<{ tag: string; start: number }> {
   let from = 0
   for (;;) {
@@ -468,7 +468,7 @@ function* nsOpenTags(xml: string, name: string): Generator<{ tag: string; start:
   }
 }
 
-/** /<[^>]+>/g를 ''로 바꾼다 (선형). 닫는 >가 없으면 거기서 멈춘다 */
+/** replace(/<[^>]+>/g, '')의 선형판. 닫는 >가 없으면 나머지는 그대로 */
 function stripTagsHard(s: string): string {
   let out = ''
   let i = 0
@@ -501,7 +501,7 @@ function* tblTags(xml: string): Generator<{ close: boolean; start: number; end: 
     const gt = xml.indexOf('>', ne)
     if (gt < 0) return
     yield { close, start: lt, end: gt + 1 }
-    lt = gt // 태그 안에서 다시 '<'를 찾지 않도록 건너뛴다
+    lt = gt // 태그 안은 건너뜀
   }
 }
 
@@ -520,7 +520,7 @@ function tableSpans(xml: string): { start: number; end: number; inner: string }[
   return out.sort((a, b) => a.start - b.start)
 }
 
-/** body 안에 겹쳐 든 표(<tbl>…</tbl>)를 한 번에 걷어 낸다 (바깥 표의 칸만 남긴다). 선형. */
+/** body 안의 안쪽 표(<tbl>…</tbl>)를 걷어 내 바깥 표의 칸만 남김. 선형 */
 function stripNestedTbl(body: string): string {
   let out = ''
   let depth = 0
@@ -546,7 +546,7 @@ export function hwpxDoc(buf: Buffer): HangulDoc {
   for (const name of names) {
     const xml = files.get(name)!.toString('utf8')
     for (const span of tableSpans(xml)) {
-      // 안쪽 표는 따로 꺼내므로, 바깥 표를 읽을 때는 걷어 낸다 (칸 짝이 어긋나지 않게)
+      // 안쪽 표는 따로 꺼내므로 바깥 표에서는 걷어 냄 (칸 짝이 어긋나지 않게)
       const open = span.inner.indexOf('>') + 1
       const body = stripNestedTbl(span.inner.slice(open, span.inner.lastIndexOf('<')))
       const cells: OpenTable['cells'] = []
@@ -598,13 +598,10 @@ export function hangulTables(buf: Buffer): DocTable[] {
 
 const gridLines = (grid: Grid) => grid.map((row) => `| ${row.map((c) => c.replace(/[|]/g, '/')).join(' | ')} |`)
 
-/**
- * 문서 순서대로 문단 글자와 표(| 칸 | 칸 |)를 적는다.
- * 대입 원문이 한글 파일일 때 바뀐 곳을 찾고 AI에게 보여 주는 데 쓴다.
- */
+/** 문단 글자와 표(| 칸 | 칸 |)를 문서 순서대로. 한글 파일인 대입 원문의 바뀐 곳 찾기·AI 입력용 */
 export function hangulText(buf: Buffer): string {
   if (!isHwp5(buf)) {
-    // HWPX: 문단이 끝날 때 줄을 바꾸고 태그를 걷어 낸다 (표 칸 글자도 문단으로 들어 있다)
+    // HWPX: </p>마다 줄바꿈 뒤 태그 제거. 표 칸 글자도 문단 안에 있음
     const files = unzip(buf, (n) => /^Contents\/section\d+\.xml$/i.test(n))
     return [...files.keys()]
       .sort((a, b) => Number(a.match(/\d+/)?.[0]) - Number(b.match(/\d+/)?.[0]))
@@ -631,7 +628,7 @@ export function hangulText(buf: Buffer): string {
   if (flags & 0x2) throw new HwpError('암호가 걸린 한글 문서예요.')
   const compressed = (flags & 0x1) === 1
   const out: string[] = []
-  // 배포용 문서(flags 0x4)는 ViewText를 풀어서 읽는다
+  // flags 0x4 = 배포용 문서 (ViewText를 복호화해서 읽음)
   for (const raw of sectionStreams(cfb, (flags & 0x4) !== 0)) {
     const data = compressed ? inflateRawSync(raw, { maxOutputLength: 60_000_000 }) : raw
     const stack: OpenTable[] = []

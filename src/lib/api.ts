@@ -1,6 +1,6 @@
 import type { School, Term, TermId, Track } from '../data/schema'
 
-// 서버 /api 호출. 서버가 없거나(정적 배포) 키가 없으면 AI 기능을 숨기고 키워드 검색만 쓴다.
+// 서버 /api 호출. 서버가 없거나(정적 배포) AI 키가 없으면 AI 기능을 숨기고 키워드 검색만 쓴다.
 
 export class ApiError extends Error {
   readonly status: number
@@ -14,7 +14,7 @@ export class ApiError extends Error {
   }
 }
 
-/** 로그인이 끝났다는 신호 (서버가 401로 답하면 화면이 로그인 화면으로 보낸다) */
+/** 세션이 끊겼다는 이벤트. /api/auth/ 밖의 401에서 보내고, 화면이 로그인으로 돌린다 */
 export const AUTH_LOST = 'gwamok:auth-lost'
 
 export async function call<T>(path: string, init?: RequestInit): Promise<T> {
@@ -24,7 +24,7 @@ export async function call<T>(path: string, init?: RequestInit): Promise<T> {
   } catch {
     throw new ApiError(0, '서버에 연결하지 못했어요.')
   }
-  // 로그인해야 쓰는 서비스라, 세션이 끝났으면(만료·정지·다른 기기에서 탈퇴) 다시 로그인하게 한다
+  // 로그인 필수 서비스라 세션이 끝나면(만료·정지·다른 기기에서 탈퇴) 다시 로그인하게 한다
   if (res.status === 401 && !path.startsWith('/api/auth/')) window.dispatchEvent(new Event(AUTH_LOST))
   const data = (await res.json().catch(() => null)) as (T & { error?: string }) | null
   if (!res.ok || !data) throw new ApiError(res.status, data?.error ?? '요청을 처리하지 못했어요.', data)
@@ -37,13 +37,12 @@ export const postJson = (body: unknown): RequestInit => ({
   body: JSON.stringify(body),
 })
 
-/** 서버가 알려 주는 기능 켜짐 여부와 공지 (관리자 설정에 따라 바뀐다) */
+/** 서버가 알려 주는 기능 켜짐 여부와 공지. 관리자 설정에 따라 바뀐다 */
 export interface Features {
-  /** /api 서버가 있는지 (정적 배포면 없음) */
+  /** /api 서버가 있는지 (정적 배포면 false) */
   server: boolean
-  /** AI가 연결돼 있는지 */
   ai: boolean
-  /** 지금 AI 공급자가 보낸 내용을 제품 개선에 쓰고 사람이 검토할 수 있는지 (Gemini API 무료 등급) */
+  /** 보낸 내용을 AI 공급자가 제품 개선에 쓰고 사람이 검토할 수 있는지 (Gemini API 무료 등급) */
   aiTraining: boolean
   /** 학교 편제표 자동 읽기 */
   read: boolean
@@ -51,9 +50,9 @@ export interface Features {
   import: boolean
   /** 문장으로 분야 찾기 */
   match: boolean
-  /** 편제표 자동 읽기·파일 읽기·문장으로 찾기를 각 사용자가 등록한 Gemini API 키로 하는지 (관리자 설정) */
+  /** 자동 읽기·파일 읽기·문장으로 찾기에 사용자 각자의 Gemini API 키를 쓰는지 (관리자 설정) */
   userKey: boolean
-  /** Google 로그인을 쓸 수 있는지 (서버에 Google 앱 키가 있어야 한다) */
+  /** Google 로그인 가능 여부 (서버에 Google 앱 키 필요) */
   login: boolean
   signup: boolean
   notice: string
@@ -73,8 +72,8 @@ export const NO_FEATURES: Features = {
 }
 
 /**
- * 서버 기능 확인. /api가 아예 없는 정적 배포(/api/health가 404이거나 index.html이 옴)면 NO_FEATURES.
- * 서버에 닿지 못했거나 서버 오류면 ApiError를 던진다 (그때 로그인 없이 열어 주면 안 된다)
+ * 서버 기능 확인. 정적 배포(/api/health가 404이거나 index.html이 옴)면 NO_FEATURES.
+ * 연결 실패·서버 오류는 ApiError를 던진다 (그때 로그인 없이 열어 주면 안 되므로)
  */
 export async function health(): Promise<Features> {
   let res: Response
@@ -106,11 +105,11 @@ export async function health(): Promise<Features> {
 /** owner: 대표 관리자 (관리자 지정·취소), admin: 지정된 관리자, user: 일반 */
 export type Role = 'user' | 'admin' | 'owner'
 
-/** 내 계정에 등록한 Gemini API 키 (키 값은 오지 않고 끝 4자리만) */
+/** 내 Gemini API 키 정보. 키 값은 오지 않고 끝 4자리(hint)만 */
 export interface AiKeyInfo {
   hint: string
   addedAt: string
-  /** 서버가 지금 이 키를 쓸 수 있는지 (서버 비밀값이 바뀌면 다시 등록해야 한다) */
+  /** 서버가 지금 이 키를 쓸 수 있는지. 서버 비밀값이 바뀌면 다시 등록해야 한다 */
   ok: boolean
 }
 
@@ -118,7 +117,7 @@ export interface Me {
   id: number
   /** 로그인한 Google 계정 이메일 */
   email: string
-  /** 가입할 때 적은 실명 (예전에 가입한 사람은 빈 문자열) */
+  /** 가입 때 적은 실명. 예전 가입자는 빈 문자열 */
   name: string
   role: Role
   createdAt: string
@@ -129,7 +128,7 @@ export const isAdminRole = (role: Role) => role === 'admin' || role === 'owner'
 
 export const ROLE_TEXT: Record<Role, string> = { owner: '대표 관리자', admin: '관리자', user: '일반 계정' }
 
-/** Google 로그인을 시작하는 주소 (페이지를 옮긴다). 끝나면 next로 돌아온다 */
+/** Google 로그인 시작 주소 (페이지 이동). 끝나면 next로 돌아온다 */
 export const googleLoginUrl = (next?: string | null) => `/api/auth/google${next ? `?next=${encodeURIComponent(next)}` : ''}`
 
 export const auth = {
@@ -137,36 +136,36 @@ export const auth = {
   /** Google 로그인은 했지만 아직 가입 동의를 하지 않은 계정 */
   pending: () => call<{ pending: { email: string; next: string } | null }>('/api/auth/pending'),
   complete: (b: { agreeAge: boolean; agreePrivacy: boolean; name: string }) => call<{ user: Me; next: string }>('/api/auth/complete', postJson(b)),
-  /** 내 이름(실명) 적기·바꾸기 */
+  /** 실명 적기·바꾸기 */
   setName: (name: string) => call<{ user: Me }>('/api/me/name', postJson({ name })),
   logout: () => call<{ ok: boolean }>('/api/auth/logout', postJson({})),
   deleteAccount: () => call<{ ok: boolean }>('/api/auth/delete', postJson({ confirm: true })),
 }
 
-/** 내 Gemini API 키 등록·지우기 (등록할 때 서버가 Google에 짧게 물어 맞는 키인지 확인한다) */
+/** 내 Gemini API 키 등록·삭제. 등록 때 서버가 Google에 짧게 물어 키를 확인한다 */
 export const myAiKey = {
   save: (apiKey: string) => call<{ aiKey: AiKeyInfo; note: string }>('/api/me/ai-key', postJson({ apiKey })),
   remove: () => call<{ aiKey: null }>('/api/me/ai-key/delete', postJson({})),
 }
 
-/** 계정에 저장한 설계와 그 판 (updatedAt: 저장할 때마다 커진다) */
+/** 계정 설계와 그 판. updatedAt은 저장할 때마다 커진다 */
 export interface SavedData {
   data: unknown
   updatedAt: string
 }
 
-/** 페이지를 닫는 중에도 끝까지 보내는 요청(keepalive)의 본문 상한. 브라우저는 모두 합쳐 64KB까지만 받는다 */
+/** keepalive 요청(페이지를 닫는 중에도 끝까지 보냄)의 본문 상한. 브라우저는 모두 합쳐 64KB까지만 받는다 */
 const KEEPALIVE_MAX = 60_000
 
-/** 오래 걸리는 요청은 끊고 다시 한다 (끊기지 않은 연결이 저장을 계속 붙잡지 않게) */
+/** 오래 걸리는 요청은 끊는다 (멈춘 연결이 저장을 계속 붙잡지 않게) */
 const timeout = (ms: number) => (typeof AbortSignal.timeout === 'function' ? AbortSignal.timeout(ms) : undefined)
 
-/** 계정에 저장한 설계 (고른 학교·분야·대학과 편제표) */
+/** 계정 설계 (고른 학교·분야·대학, 편제표) */
 export const myData = {
   get: () => call<{ saved: SavedData | null }>('/api/me/data', { signal: timeout(20_000) }),
   /**
-   * base: 이 탭이 마지막으로 받거나 저장한 판 (계정이 비어 있다고 알면 null). 계정 판이 다르면 서버가 409와 계정 설계를 돌려준다.
-   * keepalive: 탭을 닫는 중이면 본문이 작을 때만 keepalive로 보낸다 (크면 보통 요청으로)
+   * base: 이 탭이 마지막으로 받거나 저장한 판 (계정이 비었다고 알면 null). 계정 판과 다르면 서버가 409와 계정 설계를 돌려준다.
+   * keepalive: 탭을 닫는 중일 때. 본문이 KEEPALIVE_MAX 이하일 때만 keepalive, 크면 보통 요청
    */
   put: (data: unknown, base: string | null, opts: { keepalive?: boolean } = {}) => {
     const body = JSON.stringify({ data, base })
@@ -207,7 +206,7 @@ export function importCurriculum(input: { text?: string; images?: string[]; coho
 export interface SchoolHit {
   office: string
   code: string
-  /** 전형 자격에 쓰는 고교 유형 (일반고·자율고·특성화고·마이스터고·과학고·외고·국제고·예술고·체육고, 모르면 빈 문자열) */
+  /** 전형 자격용 고교 유형 (일반고·자율고·특성화고·마이스터고·과학고·외고·국제고·예술고·체육고). 모르면 빈 문자열 */
   schoolType?: string
   name: string
   region: string
@@ -252,8 +251,7 @@ export interface SchoolKey {
   track?: string
 }
 
-/** 특성화고·특목고면 학과 목록, 일반고면 빈 목록 */
-/** 학교의 학과·과정 (나이스 학급 정보). general: 일반 학급도 있는지 */
+/** 학교의 학과·과정 (나이스 학급 정보). tracks는 일반고면 빈 목록, general: 일반 학급도 있는지 */
 export interface TrackInfo {
   kind: string
   tracks: string[]

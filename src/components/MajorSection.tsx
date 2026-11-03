@@ -38,18 +38,18 @@ export function MajorSection({ selected, onChange, aiEnabled }: Props) {
   const trimmed = query.trim()
   const canAsk = aiEnabled && trimmed.length >= 2
 
-  // 세부 학과마다 그 이름으로 뽑는 모집단위 수 (넓은 모집단위는 빼고)
+  // 세부 학과마다 그 이름으로 뽑는 모집단위 수 (넓은 모집단위 제외)
   const counts = useMemo(() => {
     const m = new Map<string, number>()
     for (const u of UNITS) for (const id of fineOf(u)) m.set(id, (m.get(id) ?? 0) + 1)
     return m
   }, [])
 
-  /** 세부 학과를 켜고 끈다. 묶음 전체가 켜져 있었으면 그 학과만 남긴다 */
+  /** 세부 학과 켜고 끄기. 묶음 전체가 켜져 있었으면 그 학과만 남김 */
   const toggle = (id: string) => {
     const fine = FINE_BY_ID.get(id)
     if (!fine) {
-      // 묶음 전체: 켜면 그 묶음의 세부 학과 선택은 지운다
+      // 묶음 전체: 켜면 그 묶음의 세부 학과 선택은 지움
       const kids = new Set((FINE_BY_PARENT.get(id) ?? []).map((x) => x.id))
       onChange(selected.includes(id) ? selected.filter((x) => x !== id) : [...selected.filter((x) => !kids.has(x)), id])
       return

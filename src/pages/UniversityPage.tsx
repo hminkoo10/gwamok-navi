@@ -17,7 +17,7 @@ export function UniversityPage({ id }: { id: string }) {
   const univ = UNIV_BY_ID.get(id)
   const units = useMemo(() => UNITS.filter((u) => u.univ === id), [id])
   const school = store.school
-  // 고른 학교 편제표로 학과마다 권장과목을 다 들을 수 있는지 미리 계산해 둔다
+  // 고른 학교 편제표로 학과마다 권장과목을 다 들을 수 있는지 미리 계산
   const fit = useMemo(() => {
     const out = new Map<string, { ok: boolean; notOffered: string[]; noSlot: string[] }>()
     if (!school) return out

@@ -3,7 +3,7 @@ import { Link } from '../components/Link'
 import { safeNext, useApp } from '../lib/app'
 import { useLocation } from '../lib/router'
 
-/** 서버가 Google 로그인을 마치지 못하고 돌려보낼 때 붙이는 까닭 */
+/** 서버가 Google 로그인을 마치지 못하고 돌려보낼 때 붙이는 error 코드 → 안내 */
 const ERRORS: Record<string, string> = {
   unavailable: '지금은 로그인을 쓸 수 없어요. 서버에 Google 로그인이 아직 설정되지 않았어요.',
   busy: '로그인 요청이 너무 많아요. 잠시 후 다시 해 주세요.',
@@ -18,7 +18,7 @@ export function LoginPage() {
   const { user, features, store } = useApp()
   const { query } = useLocation()
   const next = safeNext(query.get('next'))
-  // 주소에서 온 값이라 객체 속성(__proto__ 등)으로 찾지 않는다
+  // 주소에서 온 값이라 hasOwn으로만 찾음 (__proto__ 같은 상속 속성 방지)
   const code = query.get('error') ?? ''
   const error = Object.hasOwn(ERRORS, code) ? ERRORS[code] : ''
 

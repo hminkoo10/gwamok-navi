@@ -6,15 +6,15 @@ import { CookieJar, parseRawResponse } from './safe-fetch'
 import { codePoint, htmlTables, xlsxGrids } from './tables'
 import { makeZip } from './testing'
 
-// 공격자가 올린 거대한(1~3MB) HTML·파일이 단일 이벤트 루프를 오래 붙잡지 못하는지 지킨다.
-// 고치기 전에는 아래 입력들이 수 초~수 분 걸렸다 (초선형 정규식). 지금은 모두 선형이라 1초 안에 끝난다.
+// 공격자가 올린 거대한(1~3MB) HTML·파일이 이벤트 루프를 오래 붙잡지 못하는지 확인한다 (ReDoS).
+// 초선형 정규식을 쓰던 때는 아래 입력들이 수 초~수 분 걸렸다. 지금은 모두 선형이라 1초 안에 끝난다.
 
 const timed = (fn: () => void): number => {
   const s = performance.now()
   fn()
   return performance.now() - s
 }
-const BUDGET = 1500 // ms. 로컬 실측 최악 ~0.3초, CI 여유를 둔다
+const BUDGET = 1500 // ms. 로컬 실측 최악 약 0.3초, 나머지는 CI 여유
 
 describe('초선형 입력 방어 (ReDoS)', () => {
   const base = 'https://school.hs.kr/main.do'

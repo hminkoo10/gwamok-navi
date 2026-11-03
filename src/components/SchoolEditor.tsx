@@ -40,7 +40,7 @@ type ImportState =
   /** 파일에 학과·과정별 표가 여러 개라 하나를 골라야 할 때 */
   | { state: 'choose'; variants: string[] }
 
-/** 학과·과정 이름: 글자·숫자·띄어쓰기와 몇 가지 기호만 */
+/** 학과·과정 이름: 글자·숫자·띄어쓰기와 몇 가지 기호만 (서버와 같은 규칙) */
 const cleanDept = (x: string) =>
   x
     .replace(/[^\p{L}\p{N} ·()-]/gu, '')
@@ -67,10 +67,10 @@ export function SchoolEditor({ initial, preset, aiEnabled, onClose, onSave }: Pr
   const [imp, setImp] = useState<ImportState>({ state: 'idle' })
   const [optionText, setOptionText] = useState<Record<string, string>>({})
   const searchSeq = useRef(0)
-  // 연 때의 내용 (닫을 때 고친 것이 있는지 견준다)
+  // 열었을 때 내용. 닫을 때 고친 게 있는지 견줌
   const editorText = () => JSON.stringify([name, region, cohort, dept, homepage, text, draft])
   const [opened] = useState(editorText)
-  /** 저장하지 않고 닫으면 고친 내용을 잃으므로 묻는다 */
+  /** 고친 내용이 있으면 저장하지 않고 닫을지 묻기 */
   const confirmDiscard = () => editorText() === opened || confirm('고친 편제표를 저장하지 않고 닫을까요?')
   const cancel = () => {
     if (confirmDiscard()) onClose()
@@ -79,7 +79,7 @@ export function SchoolEditor({ initial, preset, aiEnabled, onClose, onSave }: Pr
   const check = useMemo(() => checkSchool({ ...draft, name: name || ' ' }), [draft, name])
   const current = draft.terms.find((t) => t.id === term) ?? { id: term, fixed: [], groups: [] }
 
-  /** 지금 보고 있는 학기만 고친다 */
+  /** 지금 보고 있는 학기만 고침 */
   const patchTerm = (fn: (t: Term) => Term) =>
     setDraft((d) => ({
       ...d,
@@ -178,7 +178,7 @@ export function SchoolEditor({ initial, preset, aiEnabled, onClose, onSave }: Pr
         }))
         .filter((tr) => tr.sets.length),
     }
-    // 불러온(공유·확인된) 편제표를 고쳤으면 '확인된 편제표'·틀린 곳 알리기 표시를 뗀다. 고친 게 없으면 출처도 그대로 둔다
+    // 불러온(공유·확인된) 편제표를 고쳤으면 '확인된 편제표'·틀린 곳 알리기 표시를 뗌. 고친 게 없으면 출처도 그대로
     const { shared, ...rest } = clean
     const same = !!initial && curriculumKey(normalizeSchool(clean)) === curriculumKey(normalizeSchool(initial))
     onSave(shared && same ? { ...clean, source: url === initial.source.url ? initial.source : clean.source, checked: initial.checked } : same ? clean : rest)

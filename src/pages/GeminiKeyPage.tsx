@@ -3,7 +3,7 @@ import { Link } from '../components/Link'
 import { useApp } from '../lib/app'
 
 // Google AI Studio에서 Gemini API 키를 만들어 과목내비에 등록하는 방법.
-// 2026년 10월 Google 안내(ai.google.dev/gemini-api/docs/api-key, Gemini API 추가 약관 2026-03-23 시행)를 기준으로 썼다.
+// 2026년 10월 Google 안내(ai.google.dev/gemini-api/docs/api-key, Gemini API 추가 약관 2026-03-23 시행) 기준.
 
 const STUDIO = 'https://aistudio.google.com/apikey'
 const DOCS = 'https://ai.google.dev/gemini-api/docs/api-key?hl=ko'
@@ -43,7 +43,7 @@ const TROUBLE: [string, string][] = [
   ['사용 한도에 걸렸다고 나와요', '무료 등급은 1분과 하루에 보낼 수 있는 요청 수가 정해져 있어요. 1분쯤 뒤에 다시 해 보고, 계속 안 되면 다음 날 다시 하세요.'],
 ]
 
-/** Gemini API 키 발급 방법 (로그인하지 않아도 본다) */
+/** Gemini API 키 발급 방법 (로그인 없이도 볼 수 있음) */
 export function GeminiKeyPage() {
   const { features, user } = useApp()
   return (

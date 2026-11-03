@@ -23,7 +23,7 @@ type Who = { sub: string; email: string; verified?: boolean; name?: string }
 
 function setup(env: Record<string, string> = ENV) {
   const store = new Store(':memory:')
-  // 가짜 Google 토큰 주소: 정해 둔 내용의 ID 토큰을 준다
+  // 가짜 Google 토큰 주소: 정해 둔 claims의 ID 토큰을 준다
   const google = { claims: {} as Record<string, unknown>, status: 200, requests: [] as URLSearchParams[] }
   const fetchImpl = (async (input: string | URL | Request, init?: RequestInit) => {
     if (String(input) !== GOOGLE_TOKEN_URL) return new Response('no', { status: 404 })
@@ -114,7 +114,7 @@ describe('Google 로그인', () => {
     expect(loc.searchParams.get('scope')).toBe('openid email')
     expect(loc.searchParams.get('code_challenge_method')).toBe('S256')
     expect(start.headers.getSetCookie()[0]).toMatch(/^gwamok_oauth=[\w-]{43}; Path=\/; HttpOnly; SameSite=Lax; Max-Age=600$/)
-    // 토큰 주소에는 PKCE verifier와 같은 돌아올 주소를 보낸다
+    // 토큰 주소에는 PKCE verifier와, 시작 때와 같은 돌아올 주소를 보낸다
     const sent = t.google.requests[0]
     expect(sent.get('code')).toBe('4/0test-code-xyz')
     expect(sent.get('redirect_uri')).toBe(`${ORIGIN}/api/auth/google/callback`)
@@ -369,7 +369,7 @@ describe('관리자', () => {
     expect((await t.call('POST', '/api/admin/users/role', { cookie: teacher.cookie, body: { id: studentId, role: 'admin' } })).status).toBe(403)
     expect((await t.call('POST', '/api/admin/users/update', { cookie: teacher.cookie, body: { id: bossId, disabled: true } })).status).toBe(403)
     expect((await t.call('POST', '/api/admin/users/delete', { cookie: teacher.cookie, body: { id: bossId } })).status).toBe(403)
-    // 대표 관리자는 누구도 못 바꾼다 (OWNER_EMAIL로 정한다), 'owner'는 줄 수 없다
+    // 대표 관리자는 OWNER_EMAIL로만 정해서 'owner'는 줄 수 없다
     expect((await t.call('POST', '/api/admin/users/role', { cookie: boss.cookie, body: { id: studentId, role: 'owner' } })).status).toBe(400)
     // 지정된 관리자도 일반 사용자는 정지할 수 있다
     expect((await t.call('POST', '/api/admin/users/update', { cookie: teacher.cookie, body: { id: studentId, disabled: true } })).status).toBe(200)
@@ -516,7 +516,7 @@ describe('이용 기록 (가입·로그인·탈퇴)', () => {
 describe('지운 계정과 겹치는 일', () => {
   it('지운 계정의 번호는 다시 쓰지 않고, 주인 없는 설계·키·세션은 지운다', () => {
     const db = new DatabaseSync(':memory:')
-    // 예전 표: autoincrement 없이 만들어 가장 큰 번호를 다시 쓰던 표. 3번은 지워졌는데 늦게 들어온 저장이 설계·키를 남겼다
+    // 예전 표: autoincrement가 없어 가장 큰 번호를 다시 쓰던 표. 3번은 지워졌는데 늦게 들어온 저장이 설계·키를 남겼다
     db.exec(`
       create table users (id integer primary key, google_sub text not null unique, email text not null default '', name text not null default '',
         role text not null default 'user', disabled integer not null default 0, created_at text not null, last_login_at text);

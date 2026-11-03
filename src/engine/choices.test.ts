@@ -466,11 +466,11 @@ describe('어떤 순서로 눌러도', () => {
               ? includeChoice(school, s, subject)
               : excludeChoice(school, s, subject)
           if (r.refused) {
-            // 하지 않은 바꾸기는 상태를 그대로 둔다
+            // 거절한 바꾸기는 상태를 그대로 둔다
             expect(r.pinned, label).toBe(s.pinned)
             expect(r.excluded, label).toBe(s.excluded)
           } else if (pin) {
-            // 누른 대로 된다: 꼭 듣기·풀기는 그 과목에 그대로, 빼기·다시 넣기도 그 과목에 그대로
+            // 누른 과목은 누른 대로 바뀐다 (꼭 듣기·풀기, 빼기·다시 넣기)
             expect(r.pinned.includes(subject), label).toBe(!s.pinned.includes(subject))
           } else {
             expect(r.excluded.includes(subject), label).toBe(!s.excluded.includes(subject))

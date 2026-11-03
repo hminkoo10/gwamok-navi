@@ -30,10 +30,10 @@ export function UnivSelect() {
   const list = UNIVERSITIES.filter((u) => (!regionSet || regionSet.includes(u.region)) && (!q || norm(u.name).includes(q) || norm(u.short).includes(q)))
   const relevant = list.filter((u) => counts.get(u.id))
   const others = list.filter((u) => !counts.get(u.id) && UNIT_COUNT.get(u.id))
-  // 학과별 권장과목 자료가 아예 없는 대학 (권장과목을 밝히지 않았거나 찾지 못한 곳). 담아도 과목 추천은 바뀌지 않는다
+  // 학과별 권장과목 자료가 없는 대학 (밝히지 않았거나 못 찾음). 담아도 과목 추천은 그대로
   const silent = list.filter((u) => !UNIT_COUNT.get(u.id))
   const add = (ids: string[]) => store.setUnivs([...univs, ...ids.filter((id) => counts.get(id))])
-  // 우리 학교가 있는 권역의 대학 (지방 대학은 지역인재 전형으로 그 지역 학생을 따로 뽑는 경우가 많다)
+  // 우리 학교 권역의 대학 (지방 대학은 지역인재 전형으로 그 지역 학생을 따로 뽑는 경우가 많음)
   const home = REGIONS.find(([, list]) => list.includes(sidoOf(store.school?.region)))
   const homeIds = home ? UNIVERSITIES.filter((u) => home[1].includes(u.region) && counts.get(u.id)).map((u) => u.id) : []
 

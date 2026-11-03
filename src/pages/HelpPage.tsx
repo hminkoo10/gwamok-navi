@@ -98,7 +98,7 @@ export function HelpPage() {
     other: UNIVERSITIES.filter((u) => u.coverage !== 'official').length,
   }
 
-  // 다른 페이지의 '자료 출처' 같은 링크로 들어오면 그 칸으로 내려간다
+  // 다른 페이지의 '자료 출처' 같은 링크(#id)로 들어오면 그 칸으로 스크롤
   useEffect(() => {
     if (location.hash) document.getElementById(location.hash.slice(1))?.scrollIntoView()
   }, [])

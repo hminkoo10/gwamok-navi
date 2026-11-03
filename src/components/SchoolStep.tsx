@@ -24,7 +24,7 @@ import { KeyNeeded } from './KeyNeeded'
 const KIND_LABEL: Record<Candidate['kind'], string> = { pdf: 'PDF', xlsx: '엑셀', hwp: '한글', images: '그림', table: '본문 표' }
 const SOURCE_LABEL: Record<Candidate['source'], string> = { schoolinfo: '학교알리미 공시', homepage: '학교 홈페이지' }
 
-/** 원문 학기 합계와 읽은 학점이 얼마나 다른지 (작을수록 정확) */
+/** 원문 학기 합계와 읽은 학점의 차이 합 (작을수록 정확) */
 const gapOf = (m: Mismatch[]) => m.reduce((a, x) => a + Math.abs(x.table - x.read), 0)
 
 type Load =
@@ -42,10 +42,10 @@ interface Props {
   onLoaded: () => void
 }
 
-/** 일반 학급 (체육·예술 학급 같은 것이 따로 있는 학교에서) */
+/** 체육·예술 학급이 따로 있는 학교의 일반 학급 */
 const GENERAL = '일반학급'
 
-/** 학과·과정 이름: 글자·숫자·띄어쓰기와 몇 가지 기호만 (서버와 같게) */
+/** 학과·과정 이름: 글자·숫자·띄어쓰기와 몇 가지 기호만 (서버와 같은 규칙) */
 const cleanDept = (x: string) =>
   x
     .replace(/[^\p{L}\p{N} ·()-]/gu, '')
@@ -59,7 +59,7 @@ interface TrackOption {
   classes?: number
 }
 
-/** 고를 학과·과정. 하나뿐이면 나뉜 게 아니므로 묻지 않는다 */
+/** 고를 학과·과정. 하나뿐이면 나뉜 게 아니라 빈 목록 (묻지 않음) */
 function trackOptions(info: TrackInfo | null): TrackOption[] {
   if (!info || !info.tracks.length) return []
   const opts: TrackOption[] = info.tracks.map((t) => ({ value: t, label: t, classes: Object.hasOwn(info.classes, t) ? info.classes[t] : undefined }))
@@ -67,7 +67,7 @@ function trackOptions(info: TrackInfo | null): TrackOption[] {
   return opts.length > 1 ? opts : []
 }
 
-/** 서버가 준 편제표를 화면에서도 다시 검사한다 */
+/** 서버가 준 편제표도 화면에서 다시 검사 */
 function sanitize(raw: School, hit: SchoolHit, cohort: number, track: string): School {
   const id = `neis-${hit.office}-${hit.code}-${cohort}${track ? `-${track}` : ''}`
   const s = schoolFromLoose(raw, { id, name: hit.name, region: hit.region, cohort })
@@ -84,7 +84,7 @@ function sanitize(raw: School, hit: SchoolHit, cohort: number, track: string): S
 export function SchoolStep({ onEdit, onLoaded }: Props) {
   const { store, features, notify, user } = useApp()
   const server = features.server
-  // 자동 읽기: 관리자가 꺼 두었거나, 각자의 Gemini 키로 읽게 해 두었는데 내 키가 없으면 쓸 수 없다
+  // 자동 읽기 불가: 관리자가 껐거나, 사용자 키 모드인데 내 Gemini 키가 없을 때
   const needKey = useNeedKey()
   const ai = features.read && !needKey
   const [cohort, setCohort] = useState(store.school?.cohort ?? thisCohort())
@@ -96,13 +96,13 @@ export function SchoolStep({ onEdit, onLoaded }: Props) {
   const [info, setInfo] = useState<TrackInfo | null>(null)
   const [infoLoading, setInfoLoading] = useState(false)
   const [track, setTrack] = useState('')
-  // 목록에 없는 학과·과정을 직접 적기
+  // 목록에 없는 학과·과정 직접 적기
   const [customOpen, setCustomOpen] = useState(false)
   const [custom, setCustom] = useState('')
   const [load, setLoad] = useState<Load>({ kind: 'idle' })
   const [elapsed, setElapsed] = useState(0)
   const abort = useRef<AbortController | null>(null)
-  /** 검색 차례 번호: 입력이 바뀌면 앞서 보낸 검색의 답은 버린다 (늦게 온 답이 지금 결과를 덮지 않게) */
+  /** 검색 차례 번호. 늦게 온 앞선 검색의 답이 지금 결과를 덮지 않게 */
   const searchSeq = useRef(0)
 
   // 학교 이름 검색 (입력이 멈추면)
@@ -146,8 +146,8 @@ export function SchoolStep({ onEdit, onLoaded }: Props) {
   }
 
   /**
-   * tries: 이 파일을 못 읽거나 학점 합계가 원문과 다르면 다음 파일을 몇 번 더 읽어 볼지 (처음 자동으로 읽을 때만).
-   * best: 지금까지 읽은 것 가운데 원문 합계와 가장 가까운 결과 (끝까지 맞는 파일이 없으면 이것을 보여 준다)
+   * tries: 못 읽거나 학점 합계가 원문과 다를 때 다음 파일을 더 읽어 볼 횟수 (처음 자동으로 읽을 때만)
+   * best: 지금까지 원문 합계에 가장 가까운 결과. 끝까지 맞는 파일이 없으면 이것을 보여 줌
    */
   const read = async (
     h: SchoolHit,
@@ -178,7 +178,7 @@ export function SchoolStep({ onEdit, onLoaded }: Props) {
           mismatch: r.mismatch ?? [],
         }
         const closer = !best || gapOf(here.mismatch) < gapOf(best.mismatch) ? here : best
-        // 학점 합계가 원문과 다르면 다음 파일(같은 편제표의 다른 판·형식일 때가 많다)을 더 읽어 맞는 것을 쓴다
+        // 학점 합계가 원문과 다르면 다음 파일로 (같은 편제표의 다른 판·형식일 때가 많음)
         const next = tries > 0 ? candidates[candidates.indexOf(doc) + 1] : undefined
         if (next) return void read(h, tr, candidates, notes, next, tries - 1, '앞 파일은 학점 합계가 원문과 달랐어요.', closer)
         setLoad(closer)
@@ -186,8 +186,8 @@ export function SchoolStep({ onEdit, onLoaded }: Props) {
     } catch (e) {
       if (ctl.signal.aborted) return
       const error = e instanceof ApiError ? e.message : '편제표를 읽지 못했어요.'
-      // 이 파일만의 문제(편제표가 없거나 받을 수 없음)일 때만 다음 파일을 읽는다.
-      // 요청 한도·AI 오류·로그인처럼 다른 파일도 똑같이 막히는 오류면 바로 멈춘다 (한도를 연달아 써 버리지 않게)
+      // 이 파일만의 문제(422·400: 편제표가 없거나 받을 수 없음)일 때만 다음 파일로.
+      // 요청 한도·AI 오류·로그인처럼 다른 파일도 똑같이 막힐 오류면 바로 멈춤 (한도를 연달아 쓰지 않게)
       const fileOnly = e instanceof ApiError && (e.status === 422 || e.status === 400)
       const next = fileOnly && tries > 0 ? candidates[candidates.indexOf(doc) + 1] : undefined
       if (next) return void read(h, tr, candidates, notes, next, tries - 1, error, best)

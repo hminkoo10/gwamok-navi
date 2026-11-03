@@ -5,11 +5,11 @@ import { isIP } from 'node:net'
 import { Readable } from 'node:stream'
 import { isPublicIp } from './safe-fetch'
 
-// 원문 감시처럼 fetch 모양이 필요한 곳에서 쓰는, 공개 주소로만 잇는 fetch.
-// 관리자가 더한 원문 주소라도 서버 안쪽(내부망·클라우드 메타데이터)으로는 가지 못하게 한다:
-// - https만, 기본 포트만, 주소에 IP·계정 정보가 없을 때만
-// - 이름이 가리키는 주소를 연결할 때 다시 확인한다 (확인한 뒤 DNS를 바꿔 끼워도 소용없게)
-// - 리다이렉트는 직접 따라가며 한 번씩 다시 확인한다
+// 공개 주소로만 잇는 fetch. 원문 감시처럼 fetch 모양이 필요한 곳용.
+// 관리자가 넣은 원문 주소라도 내부망·클라우드 메타데이터로는 못 가게:
+// - https 기본 포트만, 주소에 IP·계정 정보가 있으면 거절
+// - 연결하는 순간의 DNS 결과를 다시 확인 (확인 뒤 DNS를 바꿔 끼워도 소용없게)
+// - 리다이렉트는 직접 따라가며 단계마다 다시 확인
 
 const UA = 'Mozilla/5.0 (compatible; GwamokNavi/1.0; +https://navi.milky.kr)'
 /** 연결 단계 시간 상한 */
@@ -18,15 +18,15 @@ const CONNECT_MS = 10_000
 type LookupCallback = (err: NodeJS.ErrnoException | null, address: string | { address: string; family: number }[], family?: number) => void
 
 export interface PublicFetchOptions {
-  /** 이어도 되는 주소인지 (시험에서만 바꾼다) */
+  /** 이어도 되는 IP인지. 테스트에서만 바꿈 */
   allowAddress?: (ip: string) => boolean
-  /** 쓸 수 있는 프로토콜·포트 (시험에서만 바꾼다) */
+  /** 허용 프로토콜·포트. 테스트에서만 바꿈 */
   allowUrl?: (url: URL) => boolean
 }
 
 const defaultUrl = (u: URL) => u.protocol === 'https:' && (u.port === '' || u.port === '443')
 
-/** 공개 주소로만 잇는 fetch를 만든다 (GET·HEAD만, 리다이렉트 5번까지) */
+/** GET·HEAD만, 리다이렉트 5번까지 */
 export function makePublicFetch(opts: PublicFetchOptions = {}): typeof fetch {
   const allowAddress = opts.allowAddress ?? isPublicIp
   const allowUrl = opts.allowUrl ?? defaultUrl
@@ -64,7 +64,7 @@ export function makePublicFetch(opts: PublicFetchOptions = {}): typeof fetch {
           resolve,
         )
         req.on('error', reject)
-        // 연결이 오래 이어지지 않으면 막힌 것으로 보고 끊는다 (해외 접속 차단이면 한국 중계로 다시 하게 연결 단계 오류로)
+        // 연결이 안 되면 끊고 연결 단계 오류(ECONNTIMEOUT)로 낸다. 해외 접속 차단이면 withRelay가 한국 중계로 다시 하게
         req.on('socket', (sock) => {
           if (!sock.connecting) return
           const t = setTimeout(() => {
@@ -95,5 +95,5 @@ export function makePublicFetch(opts: PublicFetchOptions = {}): typeof fetch {
   }) as typeof fetch
 }
 
-/** 운영에서 쓰는 것: 공개 주소의 https 기본 포트만 */
+/** 운영용 기본 설정 */
 export const publicFetch = makePublicFetch()

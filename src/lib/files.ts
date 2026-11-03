@@ -1,6 +1,8 @@
 // 올린 편제표 파일(PDF·이미지)을 서버로 보낼 JPEG 데이터 URL로 바꾼다. 모두 브라우저 안에서 처리한다.
 
+/** 긴 변 상한 (px) */
 const MAX_SIDE = 1800
+/** 보내는 이미지 수 상한 (PDF 쪽과 이미지 파일을 합쳐) */
 const MAX_PAGES = 4
 const QUALITY = 0.85
 

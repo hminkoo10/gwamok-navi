@@ -39,9 +39,9 @@ export function StartPage() {
   const [editor, setEditor] = useState<Editor>({ open: false })
   const { prefs, school } = store
 
-  // 조건은 고르지 않아도 된다
+  // 조건(profile)은 선택 사항
   const done: Record<StepKey, boolean> = { school: !!school, major: prefs.majors.length > 0, univ: prefs.univs.length > 0, profile: true }
-  // 앞 단계를 마쳐야 뒤 단계로 갈 수 있다 (주소로 바로 들어와도 마치지 않은 첫 단계를 보여 준다)
+  // 앞 단계를 마쳐야 뒤 단계로 (주소로 바로 들어와도 마치지 않은 첫 단계를 보여 줌)
   const reachable = (i: number) => STEPS.slice(0, i).every((s) => done[s.key])
   const asked = STEPS.findIndex((s) => s.key === query.get('step'))
   const firstOpen = STEPS.find((s) => !done[s.key])?.key ?? 'school'
@@ -60,12 +60,12 @@ export function StartPage() {
         ? '골랐음'
         : '',
   }
-  // 조건은 고르지 않아도 넘어갈 수 있지만, 고르기 전에는 끝난 단계처럼 보이지 않게 한다
+  // 조건은 안 골라도 넘어가지만, 고르기 전에는 끝난 단계처럼 보이지 않게
   const looksDone = (k: StepKey) => (k === 'profile' ? !!summary.profile : done[k])
 
   return (
     <>
-      {/* 어느 슬롯을 채우는 중인지 (슬롯이 하나뿐이면 숨긴다). 설계 화면과 같은 자리·폭에 둔다 */}
+      {/* 채우는 중인 슬롯 (슬롯이 하나면 숨김). 설계 화면과 같은 자리·폭 */}
       {store.slots.length > 1 && (
         <div className="wrap slot-top">
           <SlotBar />

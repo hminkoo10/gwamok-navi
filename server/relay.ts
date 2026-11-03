@@ -4,9 +4,9 @@ import type net from 'node:net'
 import { Readable } from 'node:stream'
 import tls from 'node:tls'
 
-// 해외(이 서버는 일본 리전) 접속을 막는 한국 사이트를 한국 서버를 거쳐 받는다.
-// KR_RELAY=http://127.0.0.1:18080 : SSH 터널 너머 한국 서버의 CONNECT 중계 (그 중계는 .kr 공개 주소만 이어 준다).
-// 직접 연결이 '연결 단계'에서 막힐 때만 중계로 다시 하고, 그런 사이트는 6시간 동안 바로 중계로 보낸다.
+// 해외 접속을 막는 한국 사이트를 한국 서버를 거쳐 받는다 (이 서버는 일본 리전).
+// KR_RELAY=http://127.0.0.1:18080: SSH 터널 너머 한국 서버의 CONNECT 중계. 중계는 .kr 공개 주소만 이어 준다
+// 직접 연결이 연결 단계에서 막힐 때만 중계로 다시 하고, 그 사이트는 6시간 동안 바로 중계로.
 
 const RELAY_HOURS = 6
 /** 중계가 필요했던 사이트 → 다시 직접 해 볼 시각 */
@@ -14,13 +14,13 @@ const viaRelay = new Map<string, number>()
 
 let relayOverride: string | null | undefined
 
-/** 시험용: 중계 주소를 바꾼다 (undefined면 환경변수) */
+/** 테스트용 중계 주소. undefined면 KR_RELAY */
 export function setRelayForTest(url: string | null | undefined): void {
   relayOverride = url
   viaRelay.clear()
 }
 
-/** 중계 주소 (없으면 null) */
+/** 중계 주소. 로컬 http(터널 입구)가 아니면 null */
 export function relayUrl(): URL | null {
   const raw = relayOverride === undefined ? process.env.KR_RELAY : relayOverride
   if (!raw) return null
@@ -32,10 +32,9 @@ export function relayUrl(): URL | null {
   }
 }
 
-/** 중계로 보낼 수 있는 주소: 한국 도메인(.kr)만 (중계도 같은 규칙으로 막는다) */
+/** 중계 대상은 .kr 도메인만 (중계 서버도 같은 규칙) */
 export const relayable = (host: string) => /\.kr$/i.test(host.replace(/\.$/, ''))
 
-/** 이 사이트는 지금 중계로 보내야 하는지 */
 export function needsRelay(host: string): boolean {
   const until = viaRelay.get(host.toLowerCase())
   if (!until) return false
@@ -50,7 +49,7 @@ export function markRelay(host: string): void {
   viaRelay.set(host.toLowerCase(), Date.now() + RELAY_HOURS * 3600_000)
 }
 
-/** 연결 단계에서 막힌 오류인지 (해외 접속 차단은 보통 연결 시간 초과·끊김·거절로 나타난다) */
+/** 연결 단계 오류인지. 해외 접속 차단은 보통 시간 초과·끊김·거절로 나타남 */
 export function isConnectFailure(e: unknown): boolean {
   const codes = new Set(['UND_ERR_CONNECT_TIMEOUT', 'ECONNTIMEOUT', 'ETIMEDOUT', 'ECONNREFUSED', 'ECONNRESET', 'EHOSTUNREACH', 'ENETUNREACH'])
   const code = (x: unknown) => (x && typeof x === 'object' && 'code' in x ? String((x as { code: unknown }).code) : '')
@@ -58,7 +57,7 @@ export function isConnectFailure(e: unknown): boolean {
   return codes.has(code(e)) || codes.has(code(cause))
 }
 
-/** 중계를 거쳐 host:port로 이어진 소켓 (https면 그 위에 TLS를 연다) */
+/** 중계 CONNECT로 host:port에 이은 소켓. https면 그 위에 TLS */
 export function tunnel(relay: URL, host: string, port: number, secure: boolean, timeoutMs: number): Promise<net.Socket> {
   return new Promise((resolve, reject) => {
     const req = http.request({
@@ -97,8 +96,8 @@ export function tunnel(relay: URL, host: string, port: number, secure: boolean, 
 }
 
 /**
- * fetch와 같은 모양으로 중계를 거쳐 받는다 (원문 감시용: GET·HEAD, 리다이렉트 따라가기, 시간 상한).
- * 본문은 흘려 받으므로 큰 파일도 앞부분만 읽을 수 있다
+ * 중계를 거치는 fetch (원문 감시용: GET·HEAD, 리다이렉트는 단계마다 .kr 다시 확인, 시간 상한).
+ * 본문은 스트림이라 큰 파일도 앞부분만 읽을 수 있음
  */
 export async function relayFetch(input: string | URL, init: RequestInit = {}): Promise<Response> {
   const relay = relayUrl()
@@ -154,8 +153,8 @@ export async function relayFetch(input: string | URL, init: RequestInit = {}): P
 }
 
 /**
- * fetch를 감싸 해외 접속을 막는 한국 사이트는 중계로 받게 한다.
- * 직접 연결이 연결 단계에서 막히면 그 사이트를 기억하고 중계로 다시 한다 (중계가 없으면 원래 오류)
+ * 해외 접속을 막는 한국 사이트는 중계로 받게 감싼 fetch.
+ * 연결 단계에서 막히면 그 사이트를 기억하고 중계로 다시 (중계가 없으면 원래 오류)
  */
 export function withRelay(fetchImpl: typeof fetch): typeof fetch {
   return (async (input: RequestInfo | URL, init?: RequestInit) => {

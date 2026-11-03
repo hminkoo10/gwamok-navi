@@ -89,7 +89,7 @@ export function UsersTab() {
             {list.data?.items.map((u) => {
               const self = u.id === me?.id
               const busy = busyId === u.id
-              // 대표 관리자와 내 계정은 바꾸지 않고, 관리자 계정은 대표 관리자만 바꾼다
+              // 대표 관리자·내 계정은 못 바꿈. 관리자 계정은 대표 관리자만 바꿈
               const manageable = !self && u.role !== 'owner' && (u.role === 'user' || owner)
               return (
                 <tr key={u.id} className={u.disabled ? 'is-dim' : ''}>

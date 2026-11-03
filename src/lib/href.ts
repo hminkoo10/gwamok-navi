@@ -1,4 +1,4 @@
-// 서버·학교 홈페이지에서 가져온 주소로 링크를 만들 때: http·https 주소만 링크로 쓴다 (javascript: 같은 주소는 링크로 만들지 않는다).
+// 서버·학교 홈페이지에서 온 주소로 링크를 만들 때 http·https만 쓴다 (javascript: 같은 주소 차단).
 
 /** 링크로 써도 되는 주소면 정리한 주소, 아니면 undefined (그때는 글자만 보인다) */
 export function safeHref(url: string | null | undefined): string | undefined {

@@ -25,7 +25,7 @@ export interface AiProvider {
   visionEffort: string
   /** 키 끝 4자리 */
   keyHint: string
-  /** 저장된 키를 지금 비밀값으로 풀 수 있는지 (비밀값이 바뀌면 키를 다시 넣어야 한다) */
+  /** 저장된 키를 지금 비밀값으로 풀 수 있는지 (비밀값이 바뀌면 키를 다시 넣어야 함) */
   keyOk: boolean
   active: boolean
   createdAt: string
@@ -42,14 +42,14 @@ export interface ProviderInput {
   jsonMode: boolean
   textEffort: string
   visionEffort: string
-  /** 새로 넣는 키 (고칠 때 비우면 그대로 둔다) */
+  /** 새 키. 고칠 때 비우면 그대로 둔다 */
   apiKey: string
 }
 
 export class ProviderError extends Error {}
 
 const CLAUDE_EFFORTS = ['low', 'medium', 'high', 'xhigh', 'max']
-/** Gemini 3 이후 모델이 받는 reasoning_effort (생각을 끄는 none은 2.5 Flash만 받아서 뺀다) */
+/** Gemini 3 이후 모델의 reasoning_effort 값 (생각을 끄는 none은 2.5 Flash만 받아서 뺌) */
 const GEMINI_EFFORTS = ['minimal', 'low', 'medium', 'high']
 
 const text = (v: unknown, max: number) =>
@@ -60,7 +60,7 @@ const text = (v: unknown, max: number) =>
         .slice(0, max)
     : ''
 
-/** 화면에서 받은 값을 검사해 정리한다. 키는 새로 만들 때만 꼭 있어야 한다 */
+/** 화면에서 받은 값 검사·정리. 키는 새로 만들 때만 필수 */
 export function cleanProvider(raw: unknown, { requireKey }: { requireKey: boolean }): ProviderInput {
   const o = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>
   if (o.kind !== 'anthropic' && o.kind !== 'openai' && o.kind !== 'google') throw new ProviderError('연결 종류를 골라 주세요.')
@@ -103,7 +103,7 @@ export function cleanProvider(raw: unknown, { requireKey }: { requireKey: boolea
   }
 }
 
-/** 키 암호화 비밀값 (32바이트) */
+/** 키 암호화 비밀값, 32바이트. AI_KEY_SECRET은 16자 이상만 받음, 데이터 폴더가 없으면(메모리 DB) 매번 무작위 */
 export function keySecret(env: Record<string, string | undefined>, dataDir?: string): Buffer {
   const fromEnv = env.AI_KEY_SECRET?.trim()
   if (fromEnv && fromEnv.length >= 16) return createHash('sha256').update(fromEnv).digest()
@@ -228,7 +228,7 @@ export class AiProviders {
   update(id: number, input: ProviderInput): AiProvider {
     const old = this.row(id)
     if (!old) throw new ProviderError('연결을 찾지 못했어요.')
-    // 저장된 키를 다른 서버로 보내게 바꾸지 못하게 한다 (관리자 세션을 뺏겨도 키는 못 빼 간다)
+    // 저장된 키를 다른 서버로 보내게 못 바꾼다 (관리자 세션을 뺏겨도 키는 못 빼 감)
     if (!input.apiKey && (input.baseUrl !== old.base_url || input.kind !== old.kind)) throw new ProviderError('주소나 종류를 바꾸면 키를 다시 넣어 주세요.')
     const at = new Date().toISOString()
     this.db
@@ -242,7 +242,7 @@ export class AiProviders {
     return Number(this.db.prepare('delete from ai_providers where id = ?').run(id).changes) > 0
   }
 
-  /** 이 연결을 쓴다 (null이면 환경변수 설정으로 돌아간다) */
+  /** 이 연결을 쓴다. null이면 환경변수 설정으로 */
   select(id: number | null): void {
     if (id !== null && !this.row(id)) throw new ProviderError('연결을 찾지 못했어요.')
     this.db.exec('update ai_providers set active = 0 where active = 1')
@@ -254,7 +254,7 @@ export class AiProviders {
     return r ? this.toProvider(r) : null
   }
 
-  /** 호출에 쓸 설정 (키를 푼다). 고른 연결이 없으면 undefined, 골랐는데 키를 풀 수 없으면 null */
+  /** 호출용 설정 (키를 푼다). 고른 연결이 없으면 undefined, 골랐는데 키를 못 풀면 null */
   config(id?: number): AiConfig | null | undefined {
     const r = id === undefined ? (this.db.prepare('select * from ai_providers where active = 1 limit 1').get() as Row | undefined) : this.row(id)
     if (!r) return id === undefined ? undefined : null
@@ -276,7 +276,7 @@ export class AiProviders {
   }
 }
 
-/** 키 끝 4자리 (짧은 키는 보이지 않게) */
+/** 키 끝 4자리 (12자 미만 키는 숨김) */
 export function keyHint(key: string): string {
   return key.length >= 12 ? `…${key.slice(-4)}` : '…'
 }
@@ -290,7 +290,7 @@ export function sealKey(secret: Buffer, plain: string): string {
   return `v1:${Buffer.concat([iv, c.getAuthTag(), body]).toString('base64')}`
 }
 
-/** 감싼 키를 푼다 (비밀값이 다르거나 망가졌으면 null) */
+/** 감싼 키를 푼다. 비밀값이 다르거나 망가졌으면 null */
 export function openKey(secret: Buffer, stored: string): string | null {
   if (!stored.startsWith('v1:')) return null
   try {

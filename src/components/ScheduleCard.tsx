@@ -11,7 +11,7 @@ export function ScheduleCard({ cohort }: { cohort?: number }) {
   const year = cohort ? admissionYearOf(cohort) : SCHEDULES[0].year
   const mine = scheduleFor(year)
   const shown = mine ?? LATEST_SCHEDULE
-  // D-day는 내 학년도 일정에만 센다 (다른 학년도 일정은 참고로만 보여 준다)
+  // D-day는 내 학년도 일정만 (다른 학년도 일정은 참고용)
   const next = mine ? nextMilestone(mine.items) : null
   const now = mine ? ongoing(mine.items) : []
 

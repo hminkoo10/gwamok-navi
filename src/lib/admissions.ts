@@ -1,8 +1,8 @@
 import { useEffect, useSyncExternalStore } from 'react'
 import type { AdmissionPlan } from '../data/schema'
 
-// 대학별 전형 자료. 서버가 주는 최신 판을 쓰고(관리자가 고치면 바로 바뀐다), 서버가 없으면 앱에 든 자료를 쓴다.
-// 판 번호를 가끔 물어 바뀌었으면 다시 받는다.
+// 대학별 전형 자료. 서버의 최신 판을 쓰고(관리자가 고치면 바로 바뀐다), 못 받으면 앱에 든 자료를 쓴다.
+// 판 번호를 가끔 물어 바뀌었으면 다시 받는다 (ETag).
 
 export interface AdmissionsState {
   plans: AdmissionPlan[]
@@ -12,7 +12,7 @@ export interface AdmissionsState {
   /** 처음 받는 중 */
   loading: boolean
   error: string
-  /** 서버에서 받지 못해 앱에 든 자료를 쓰는 중 (나중에 다시 받아 본다) */
+  /** 서버에서 못 받아 앱에 든 자료를 쓰는 중. 나중에 다시 받아 본다 */
   bundled: boolean
 }
 
@@ -43,7 +43,7 @@ async function fetchLatest(): Promise<boolean> {
   return true
 }
 
-/** 처음 한 번 받는다 (서버에서 못 받으면 앱에 든 자료를 쓰고, 잠시 뒤 다시 받아 본다) */
+/** 처음 한 번 받는다. 서버에서 못 받으면 앱에 든 자료를 쓰고 30초 뒤 다시 받아 본다 */
 export function loadAdmissions(): Promise<void> {
   started ??= fetchLatest()
     .then(() => undefined)
@@ -59,7 +59,7 @@ export function loadAdmissions(): Promise<void> {
   return started
 }
 
-/** 서버의 판이 바뀌었으면 새로 받는다 (앱에 든 자료를 쓰는 중이면 다시 받아 본다). 바뀌었으면 true */
+/** 서버 판이 바뀌었으면 새로 받는다 (앱에 든 자료를 쓰는 중이면 판을 묻지 않고 받아 본다). 바뀌었으면 true */
 export async function refreshAdmissions(): Promise<boolean> {
   if (!state.version) return false
   if (state.bundled) return fetchLatest().catch(() => false)
@@ -86,8 +86,8 @@ export function useAdmissions(): AdmissionsState {
 }
 
 /**
- * 판이 바뀌는지 지켜본다: 10분마다, 그리고 탭으로 돌아왔을 때.
- * 처음 받은 뒤에만 묻는다 (전형 화면을 열지 않은 사람에게는 요청하지 않는다).
+ * 판이 바뀌는지 본다: 10분마다, 탭·인터넷이 돌아왔을 때.
+ * 처음 받은 뒤에만 묻는다 (전형 화면을 열지 않은 사람에게는 요청하지 않는다)
  */
 export function watchAdmissions(onUpdate: () => void): () => void {
   const check = () => {

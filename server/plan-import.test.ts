@@ -111,7 +111,7 @@ function setup(
     onImported: (univ) => imported.push(univ),
     pause: 0,
     retryWait: 0,
-    // 시험에서는 어디가에 묻지 않는다
+    // 테스트에서는 어디가에 묻지 않는다
     adiga: opts.adiga ?? (async () => null),
     ...(opts.render ? { render: opts.render } : {}),
   })
@@ -131,7 +131,7 @@ describe('전형 없는 대학 가져오기', () => {
     const ex = plan.tracks.find((x) => x.name === '학생부우수자전형')!
     expect(ex).toMatchObject({ id: 'student-excellence', seats: 500, grads: '예정자', min: '국수영탐 2합 7', pages: '3' })
     expect(ex.schools.exclude).toEqual(['검정고시'])
-    // 세부를 찾지 못한 수능 전형은 원문을 보라고 적고 전형 요소는 유형으로 정한다
+    // 세부를 못 찾은 수능 전형은 '원문에서 확인' 문구, 전형 요소는 유형으로 정한다
     const js = plan.tracks.find((x) => x.id === 'jeongsi')!
     expect(js.elements).toEqual(['수능'])
     expect(js.who).toContain('원문')
@@ -177,7 +177,7 @@ describe('전형 없는 대학 가져오기', () => {
     expect(r).toMatchObject({ state: 'waiting', stop: true })
     expect(t.importer.list().find((x) => x.univ === 'gachon')).toMatchObject({ status: 'waiting', tries: 0 })
     expect(t.datasets.plan('gachon')).toBeNull()
-    // 요청이 몰림·분당 한도는 기다렸다가 두 번 더 물어본 뒤에 멈춘다
+    // 503·429는 기다렸다가 두 번 더 물어본 뒤에 멈춘다
     expect(t.calls).toHaveLength(3)
   })
 
@@ -354,7 +354,7 @@ describe('가져오기를 저절로 돌릴지', () => {
     expect(s.importer.state().enabled).toBe(false)
     s.ai.create(cleanProvider({ kind: 'google', name: 'Gemini', model: 'gemini-3.6-flash', apiKey: 'AIza-test-1234-abcd5678efgh' }, { requireKey: true }))
     expect(s.importer.state().enabled).toBe(true)
-    // 멈추면 멈추고, 다시 시작하면 (기본값과 같아도) 관리자가 고른 것으로 남는다
+    // 끄면 꺼지고, 다시 켜면 기본값과 같아도 관리자가 고른 값으로 남는다
     s.settings.save({ planImport: false }, { always: true })
     expect(s.importer.state().enabled).toBe(false)
     s.ai.remove(s.ai.list().find((p) => p.kind === 'google')!.id)

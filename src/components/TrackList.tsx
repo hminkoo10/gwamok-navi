@@ -7,12 +7,12 @@ import { useApp } from '../lib/app'
 import { safeHref } from '../lib/href'
 import { mySeatsIn, mySeatsText, myUnitsAt, recruitsMine, unitSeatText, useUnitSeats } from '../lib/selection'
 
-/** 한 대학의 전형 목록 (펼치면 자격·방법·수능 최저·과목 선택 영향). 오른쪽 버튼으로 원서 후보에 담는다 */
+/** 한 대학의 전형 목록. 펼치면 자격·방법·수능 최저·과목 선택 영향, 오른쪽 버튼으로 원서 후보에 담기 */
 export function TrackList({ rated, plan }: { rated: RatedTrack[]; plan: AdmissionPlan }) {
   const { store } = useApp()
   const { picks, majors, unitIds } = store.prefs
   const full = picks.length >= MAX_PICKS
-  // 내 학과가 이 전형으로 몇 명을 뽑는지 (모집단위별 인원표가 있는 대학만)
+  // 내 학과를 이 전형으로 몇 명 뽑는지 (모집단위별 인원표가 있는 대학만)
   const seats = useUnitSeats()?.[plan.univ]
   const mine = useMemo(() => (seats ? myUnitsAt(plan.univ, majors, unitIds).filter((u) => seats[u.id]) : []), [seats, plan.univ, majors, unitIds])
   if (!rated.length) return <p className="hint">조건에 맞는 전형이 없어요.</p>
@@ -160,7 +160,7 @@ export function TrackList({ rated, plan }: { rated: RatedTrack[]; plan: Admissio
   )
 }
 
-/** 판정 표시가 무슨 뜻인지 */
+/** 판정 표시 범례 */
 export function StatusLegend() {
   return (
     <p className="adm-legend">

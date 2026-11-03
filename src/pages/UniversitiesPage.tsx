@@ -27,7 +27,7 @@ export function UniversitiesPage() {
   const inView = (u: (typeof UNIVERSITIES)[number]) =>
     (!regionSet || regionSet.includes(u.region)) && (!q || norm(u.name).includes(q) || norm(u.short).includes(q))
   const univs = UNIVERSITIES.filter((u) => inView(u) && count.get(u.id))
-  // 학과별 권장과목 자료가 없는 대학 (권장과목을 밝히지 않았거나 공식 자료를 찾지 못한 곳): 안내와 출처만 있다
+  // 학과별 권장과목 자료가 없는 대학 (밝히지 않았거나 공식 자료를 못 찾음): 안내와 출처만
   const silent = UNIVERSITIES.filter((u) => inView(u) && !UNIT_COUNT.get(u.id))
   const withUnits = UNIVERSITIES.filter((u) => UNIT_COUNT.get(u.id)).length
   // 학과 이름으로 찾기

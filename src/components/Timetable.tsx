@@ -17,9 +17,9 @@ interface Props {
   suggestions: Map<string, Suggestion[]>
   /** 두 학기 세트 id → 진로와 가장 가까운 세트 번호 (아직 고르지 않은 세트만) */
   setHints?: Map<string, number>
-  /** 세트 고르기: 그 세트 과목 하나를 꼭 듣기로 한다 */
+  /** 세트 고르기: 그 세트 과목 하나를 꼭 듣기로 */
   onPickSet?: (subject: string) => void
-  /** 학생부교과를 목표로 하면 석차등급이 없는 과목을 표시한다 */
+  /** 학생부교과가 목표일 때 석차등급 없는 과목 표시 */
   markNoRank?: boolean
   onSubject: (subject: string) => void
   onGroup: (groupId: string) => void
@@ -35,7 +35,7 @@ function why(r: Reason | undefined): string {
   return parts.join(' ')
 }
 
-/** 꼭 듣기로 했지만 못 넣은 과목의 까닭 (세트 과목이면 무엇 때문인지 짚는다) */
+/** 꼭 듣기로 했지만 못 넣은 까닭. 세트 과목이면 무엇 때문인지까지 */
 function unplacedText(plan: Plan, s: string, locked: Map<string, string[]>): string {
   const by = locked.get(s)
   if (by?.length) return `${s}: 같은 세트의 ${by.join(', ')}을(를) 빼서 넣을 수 없어요. 그 과목을 다시 넣거나 ${s}의 꼭 듣기를 풀어 주세요.`
@@ -145,7 +145,7 @@ export function Timetable({ plan, reasons, suggestions, setHints, onPickSet, mar
               ))}
 
               {tracks.map(({ tp, items }) => {
-                // 뺀 과목이 든 세트는 고를 수 없다 (누르면 그 세트를 다시 넣고 고른다)
+                // 뺀 과목이 든 세트는 고를 수 없음 (누르면 그 세트를 다시 넣고 고름)
                 const out = tp.track.sets.map((set) => set.items.some((it) => plan.excluded.has(it.subject)))
                 const chosenWhy = (s: string) => {
                   const r = reasons.get(s)

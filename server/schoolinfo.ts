@@ -2,9 +2,9 @@ import { cohortMentions, type DocCandidate, decodeHtml, type DocKind, scoreTitle
 import { CookieJar, FetchBlocked, safeFetch } from './safe-fetch'
 
 // 학교알리미(schoolinfo.go.kr) 공시 "2-가. 학교교육과정 편성·운영 및 평가에 관한 사항"에서 편제표 파일을 찾는다.
-// 모든 학교가 매년 4월 공시해야 하는 항목이고, robots.txt가 모든 접근을 허용한다.
-// 학교알리미 학교 식별값은 나이스 학교 코드에서 계산되지 않으므로, 학교 이름으로 검색한 뒤
-// 검색 결과에 함께 나오는 나이스 학교 코드(sdSchulCode)로 같은 학교인지 확인한다.
+// 모든 학교가 매년 4월 공시하는 항목이고 robots.txt가 모든 접근을 허용한다.
+// 학교알리미 식별값은 나이스 코드로 계산할 수 없어, 학교 이름으로 검색한 뒤 결과에 함께 나오는
+// 나이스 학교 코드(sdSchulCode)로 같은 학교인지 확인한다.
 
 const ORIGIN = 'https://www.schoolinfo.go.kr'
 export const schoolInfoSite = (u: URL) => u.protocol === 'https:' && u.hostname === 'www.schoolinfo.go.kr'
@@ -92,12 +92,12 @@ async function get(url: string, ctx: InfoContext, rawForm?: string): Promise<str
   return decodeHtml(res.body, res.contentType)
 }
 
-/** 검색 결과 페이지에서 (학교알리미 식별값, 나이스 학교 코드) 짝 */
+/** 검색 결과의 (학교알리미 식별값, 나이스 학교 코드) 짝 */
 export function searchPairs(html: string): { id: string; code: string }[] {
   return [...html.matchAll(/var schulCd = "([0-9a-f-]{36})";\s*var sdSchulCode = "(\d*)"/g)].map((m) => ({ id: m[1], code: m[2] }))
 }
 
-/** 나이스 학교 → 학교알리미 식별값. 같은 이름의 학교가 많으면 몇 쪽까지 넘겨 본다 */
+/** 나이스 학교 → 학교알리미 식별값. 같은 이름의 학교가 많으면 4쪽까지 넘겨 본다 */
 export async function findSchoolInfoId(school: { name: string; office: string; code: string }, ctx: InfoContext): Promise<string | null> {
   const names = [...new Set([school.name, school.name.replace(/등학교$/, '')])]
   for (const name of names) {
@@ -135,7 +135,7 @@ export interface DisclosureFile {
   name: string
 }
 
-/** 2-가 공시 조각에서 첨부 파일과 회차 */
+/** 2-가 공시 조각의 첨부 파일과 회차 */
 export function disclosureFiles(html: string, year: number): { chasu: string; files: DisclosureFile[] } {
   const chasu =
     html.match(new RegExp(`<option[^>]*value="${year}(\\d+)"[^>]*selected`))?.[1] ?? html.match(new RegExp(`<option[^>]*value="${year}(\\d+)"`))?.[1] ?? '1'
@@ -171,7 +171,7 @@ export async function schoolInfoCandidates(
 ): Promise<SchoolInfoResult> {
   const id = await findSchoolInfoId(school, ctx)
   if (!id) return { id: null, candidates: [] }
-  // 4월 공시라 올해 것이 없으면 작년 것을 본다
+  // 4월 공시라 올해 것이 없으면 작년 것
   const thisYear = Number(new Intl.DateTimeFormat('en', { timeZone: 'Asia/Seoul', year: 'numeric' }).format(now))
   const out: DocCandidate[] = []
   for (const year of [thisYear, thisYear - 1]) {
@@ -184,10 +184,10 @@ export async function schoolInfoCandidates(
     for (const f of files) {
       const kind = kindOfName(f.name)
       if (!kind) continue
-      // 다른 해 입학생 것이라고 적힌 파일은 쓰지 않는다 (그 표를 이 해 편제표로 옮겨 공유하지 않게)
+      // 다른 해 입학생 것이라고 적힌 파일은 건너뜀 (그 표를 이 해 편제표로 옮겨 공유하지 않게)
       const named = cohortMentions(f.name)
       if (named.length && !named.includes(cohort) && !yearsIn(f.name).includes(cohort)) continue
-      // 공시 항목 전체가 교육과정 계획이라, 제목 점수가 낮은 통짜 계획서도 후보로 남긴다
+      // 공시 항목 전체가 교육과정 계획이라 제목 점수가 낮은 통짜 계획서도 후보로 남긴다
       const score = Math.max(1, scoreTitle(f.name, cohort, track) + KIND_BONUS[kind] + 2 - (year < thisYear ? 1 : 0))
       out.push({
         url: `${ORIGIN}/servlets/EiFileDownLoad.do?SHL_IDF_CD=${id}&JG_BURYU_CD=JG020&JG_HANGMOK_CD=05&JG_GUBUN=1&JG_YEAR=${year}&JG_CHASU=${chasu}&USE_YN=Y&FILE_SEQ=${f.seq}`,

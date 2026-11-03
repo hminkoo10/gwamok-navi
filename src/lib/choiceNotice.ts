@@ -11,7 +11,7 @@ const reopenedText = (o: Reopened) =>
     ? `${o.where}에서는 세트 하나를 꼭 들어야 해서 ${o.set}(${list(o.subjects)})${josa(o.set, '을', '를')} 다시 넣었어요.`
     : `${o.where}에서는 ${o.pick}과목을 골라야 해서 ${eul(list(o.subjects))} 다시 넣었어요.`
 
-/** 누른 과목에 따라 함께 바뀐 것 (없으면 null). 하지 않은 바꾸기면 그 까닭 */
+/** 함께 바뀐 것을 알리는 문장 (없으면 null). 거절된 바꾸기면 그 까닭 */
 export function choiceNotice(subject: string, r: ChoiceChange): string | null {
   if (r.refused) {
     const { reason, where } = r.refused

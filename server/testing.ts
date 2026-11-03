@@ -6,7 +6,7 @@ import { Store } from './store'
 
 type ApiHandler = (req: Request, ctx: ApiContext) => Promise<Response>
 
-/** Google 로그인을 거치지 않고 계정과 세션을 바로 만들어 요청 쿠키(이름=값)를 돌려준다 (인증이 주제가 아닌 테스트용) */
+/** Google 로그인 없이 계정·세션을 바로 만들어 요청 쿠키(이름=값)를 돌려준다 (인증이 주제가 아닌 테스트용) */
 export function sessionFor(store: Store, who: { email: string; role?: Role; sub?: string }): string {
   const accounts = new Accounts(store.db)
   const sub = who.sub ?? `sub-${who.email}`
@@ -14,7 +14,7 @@ export function sessionFor(store: Store, who: { email: string; role?: Role; sub?
   return `gwamok_sid=${accounts.createSession(user.id).token}`
 }
 
-/** 로그인한 사람으로 부르는 API (로그인이 주제가 아닌 테스트용): cookie가 없는 요청에 그 사람의 세션 쿠키를 붙인다 */
+/** 로그인한 사람으로 부르는 API: cookie가 없는 요청에 그 사람의 세션 쿠키를 붙인다 (로그인이 주제가 아닌 테스트용) */
 export function signedIn(api: ApiHandler, store: Store, who: { email: string; role?: Role } = { email: 'student@example.com' }): ApiHandler {
   const cookie = sessionFor(store, who)
   return (req, ctx) => {

@@ -18,14 +18,14 @@ export function myUnitsAt(univ: string, majors: string[], unitIds: string[] | nu
 
 /**
  * 대학 → 모집단위 id → 전형 id → 모집인원 (시행계획의 모집단위별 인원표에서 옮긴 것).
- * 전형 id가 없으면 그 전형으로 안 뽑고, null이면 뽑지만 학과별 인원이 정해지지 않았다(약간명·이월 인원·계열 단위 모집 등).
+ * 전형 id가 없으면 그 전형으로 안 뽑고, null이면 뽑지만 학과별 인원 미정 (약간명·이월 인원·계열 단위 모집 등)
  */
 export type UnitSeats = Record<string, Record<string, Record<string, number | null>>>
 
 export interface MySeats {
   rows: { unit: Unit; n: number | null | undefined }[]
   total: number
-  /** 뽑지만 인원이 정해지지 않은 학과가 있다 */
+  /** 뽑지만 인원 미정인 학과가 있는지 */
   open: boolean
 }
 

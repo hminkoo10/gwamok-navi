@@ -6,8 +6,8 @@ import { FormError } from './Form'
 import { Link } from './Link'
 
 /**
- * 이름(실명)이 없는 계정(실명을 받기 전에 가입한 사람)은 다음에 들어올 때 이름부터 받는다.
- * 예전 가입 동의에는 이름이 없었으므로 이름을 모으는 데 따로 동의를 받는다. 내 계정 화면은 막지 않아 탈퇴할 수 있다
+ * 실명을 받기 전에 가입해 이름이 없는 계정은 다음에 들어올 때 이름부터 받는다.
+ * 예전 가입 동의에 이름이 없었으므로 이름 수집 동의를 따로 받는다. 내 계정 화면은 막지 않는다 (탈퇴할 수 있게).
  */
 export function NameGate() {
   const { user, setUser, notify, signOut } = useApp()

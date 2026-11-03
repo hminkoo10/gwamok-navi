@@ -1,8 +1,8 @@
 import { createHash, randomBytes } from 'node:crypto'
 
-// Google 계정으로 로그인 (OpenID Connect 인가 코드 흐름 + PKCE).
+// Google 계정 로그인 (OpenID Connect 인가 코드 흐름 + PKCE).
 // 문서: https://developers.google.com/identity/openid-connect/openid-connect
-// ID 토큰은 우리 서버가 Google 토큰 주소와 직접 HTTPS로 주고받아 받는다. 문서대로 이때는 서명 대신 TLS로 출처를 믿고,
+// ID 토큰은 서버가 Google 토큰 주소에서 HTTPS로 직접 받으므로, 문서대로 서명 대신 TLS로 출처를 믿고
 // 내용(aud·iss·exp·nonce·이메일 확인 여부)을 검사한다.
 
 export const GOOGLE_AUTH_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
@@ -12,23 +12,23 @@ const ISSUERS = new Set(['https://accounts.google.com', 'accounts.google.com'])
 export interface GoogleConfig {
   clientId: string
   clientSecret: string
-  /** Google 클라우드 콘솔의 'OAuth 클라이언트'에 똑같이 등록해 둬야 하는 주소 */
+  /** Google 클라우드 콘솔 'OAuth 클라이언트'에 똑같이 등록해야 하는 주소 */
   redirectUri: string
 }
 
 export type Env = Record<string, string | undefined>
 
-/** GOOGLE_CLIENT_ID·GOOGLE_CLIENT_SECRET이 있어야 로그인을 켠다 */
+/** GOOGLE_CLIENT_ID·GOOGLE_CLIENT_SECRET이 둘 다 있어야 로그인을 켠다 */
 export const googleReady = (env: Env) => !!(env.GOOGLE_CLIENT_ID?.trim() && env.GOOGLE_CLIENT_SECRET?.trim())
 
-/** origin: 요청이 들어온 주소. PUBLIC_URL(예: https://example.com)을 적어 두면 그것을 쓴다 */
+/** origin: 요청이 들어온 주소. PUBLIC_URL(예: https://example.com)이 있으면 그쪽 */
 export function googleConfig(env: Env, origin: string): GoogleConfig | null {
   if (!googleReady(env)) return null
   const base = (env.PUBLIC_URL?.trim() || origin).replace(/\/+$/, '')
   return { clientId: env.GOOGLE_CLIENT_ID!.trim(), clientSecret: env.GOOGLE_CLIENT_SECRET!.trim(), redirectUri: `${base}/api/auth/google/callback` }
 }
 
-/** 대표 관리자 이메일 (OWNER_EMAIL). 이 Google 계정은 늘 대표 관리자이고, 관리자를 지정·취소할 수 있는 유일한 계정이다 */
+/** 대표 관리자 이메일 (OWNER_EMAIL, 소문자). 이 Google 계정은 늘 대표 관리자이고 관리자를 지정·취소할 수 있는 유일한 계정 */
 export const ownerEmail = (env: Env) => (env.OWNER_EMAIL ?? '').trim().toLowerCase()
 
 export const isOwnerEmail = (env: Env, email: string) => !!email && ownerEmail(env) === email.toLowerCase()
@@ -48,7 +48,7 @@ export function authUrl(cfg: GoogleConfig, p: { state: string; nonce: string; ch
     client_id: cfg.clientId,
     redirect_uri: cfg.redirectUri,
     response_type: 'code',
-    // 고유 번호(sub)와 이메일만 받는다 (이름·사진은 받지 않는다)
+    // sub와 이메일만 받는다 (이름·사진은 받지 않음)
     scope: 'openid email',
     state: p.state,
     nonce: p.nonce,
@@ -59,7 +59,7 @@ export function authUrl(cfg: GoogleConfig, p: { state: string; nonce: string; ch
   return `${GOOGLE_AUTH_URL}?${q}`
 }
 
-/** 로그인 실패 원인 (서버 기록용. 개인정보는 담지 않는다) */
+/** 로그인 실패 원인. 서버 기록용이라 개인정보는 담지 않는다 */
 export class GoogleAuthError extends Error {}
 
 export interface GoogleIdentity {
@@ -69,7 +69,7 @@ export interface GoogleIdentity {
   email: string
 }
 
-/** 인가 코드를 ID 토큰으로 바꾸고 검사한다 */
+/** 인가 코드를 ID 토큰으로 바꾸고 검사 */
 export async function exchangeCode(
   cfg: GoogleConfig,
   code: string,

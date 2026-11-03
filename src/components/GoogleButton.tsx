@@ -1,6 +1,6 @@
 import { googleLoginUrl } from '../lib/api'
 
-/** Google 로고 (Google 로그인 버튼 안내에 맞춘 네 가지 색 G) */
+/** Google 로고: Google 로그인 버튼 지침의 네 가지 색 G */
 function GoogleMark() {
   return (
     <svg className="google-mark" viewBox="0 0 48 48" aria-hidden="true">
@@ -21,7 +21,7 @@ function GoogleMark() {
   )
 }
 
-/** Google 로그인 버튼. 서버가 Google로 보냈다가 next로 돌려보낸다 (화면 이동이라 보통 링크로 둔다) */
+/** Google 로그인 버튼. 서버가 Google로 보냈다가 next로 돌려보냄 (화면 이동이라 보통 링크) */
 export function GoogleButton({ next, label = 'Google 계정으로 로그인' }: { next?: string | null; label?: string }) {
   return (
     <a href={googleLoginUrl(next)} className="btn btn-lg btn-block btn-google">

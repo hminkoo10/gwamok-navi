@@ -9,50 +9,49 @@ import { innerDoc } from './plan-files'
 import type { DocText } from './plan-update'
 import planSources from './plan-sources.json'
 
-// 전형 자료가 없는 대학의 「2028학년도 대학입학전형시행계획」을 사이트가 직접 받아 AI로 옮긴다.
-// 원문 주소: 관리자가 넣은 주소 → plan-sources.json(대교협 파일 저장소·대학 입학처) → 대교협 파일 저장소에서 대학 이름으로 찾기.
-// 파일을 받아 쪽마다 글자를 뽑고, AI가 1) 앞부분과 모집인원 표가 있는 쪽에서 전형 목록을, 2) 전형 이름이 나오는 쪽에서 자격·방법을 옮긴다.
-// 자료 검사(checkPlan)를 통과한 전형만 넣고 'AI가 옮김' 표시(ai)를 붙여 바로 보이게 한다. 관리자가 확인하면 표시를 지운다.
-// 대학마다 AI를 여러 번 불러서 관리자가 켜야 돌고, 하루에 옮기는 대학 수를 설정으로 막는다.
+// 전형 자료가 없는 대학의 2028 시행계획을 받아 AI로 옮긴다.
+// 원문: 관리자 주소 → plan-sources.json → 어디가 → 대교협 저장소(대학 이름). 그림 PDF면 AI가 먼저 글자를 옮겨 적는다.
+// 1차 전형 목록, 2차 전형별 자격·방법. checkPlan을 통과한 전형만 'AI가 옮김'(ai)으로 넣고, 관리자가 확인하면 표시를 지운다.
+// 대학마다 AI를 여러 번 불러서 관리자가 켜야 돌고, 하루에 옮길 대학 수는 설정으로 막는다.
 
 export interface PlanSource {
   name: string
   /** 원문 파일이나 게시글 주소 */
   url?: string
-  /** 한 파일에 여러 캠퍼스가 있으면 옮길 캠퍼스 */
+  /** 옮길 캠퍼스 (한 파일에 여러 캠퍼스일 때) */
   campus?: string
   /** 가져오지 않는 까닭 (2028 전형을 내지 않은 곳) */
   skip?: string
-  /** 대입정보포털 어디가의 대학 코드 (대학이 올린 시행계획 파일을 찾는다) */
+  /** 어디가 대학 코드(unvCd). 대학이 올린 시행계획 파일을 찾을 때 */
   adiga?: string
 }
 
-/** 원문 찾기 결과: 읽은 원문, 또는 못 찾은 까닭 (그림으로 된 PDF면 그 파일을 함께 돌려준다) */
+/** 원문 찾기 결과: 읽은 원문 또는 못 찾은 까닭. 그림 PDF면 그 파일도 */
 type Found = { doc: DocText; buf: Buffer; url: string } | { why: string; url: string; image?: { buf: Buffer; url: string; pages: number } }
 
 const SOURCES = planSources as Record<string, PlanSource>
 const UNIVERSITIES: { id: string; name: string }[] = adiga2028.universities.map((u) => ({ id: u.id, name: u.name }))
 
 export interface ImportDeps {
-  /** 원문 파일을 받는다 (게시글이면 첨부 파일을 따라간다. 못 받으면 null) */
+  /** 원문 받기. 게시글이면 첨부를 따라감, 못 받으면 null */
   download: (src: { univ: string; url: string }) => Promise<Buffer | null>
   read: (buf: Buffer) => Promise<DocText>
-  /** 지금 AI 설정 (관리자가 연결을 바꾸면 바로 따른다) */
+  /** 그때그때의 AI 설정 (관리자가 연결을 바꾸면 바로 따름) */
   ai: () => AiConfig | null
   chat?: (cfg: AiConfig, req: ChatRequest) => Promise<string>
-  /** 가져오기를 켰는지, 하루에 옮길 대학 수 (그때 설정) */
+  /** 가져오기를 켰는지, 하루에 옮길 대학 수 (그때그때 설정값) */
   enabled: () => boolean
   limit: () => number
-  /** 다 옮긴 뒤: 원문 감시와 바뀐 곳 찾기 기준에 더한다 */
+  /** 다 옮긴 뒤: 원문 감시와 바뀐 곳 찾기 기준에 더함 */
   onImported?: (univ: string, plan: AdmissionPlan, buf: Buffer, doc: DocText) => void
   now?: () => Date
-  /** AI를 부르는 사이 쉬는 시간 (무료 키의 분당 요청 수 때문에) */
+  /** AI 호출 사이 쉬는 시간. 무료 키 분당 한도 때문 */
   pause?: number
-  /** AI가 '요청이 몰림·한도'로 답하면 기다렸다가 다시 묻는 시간 */
+  /** 503·429 뒤 다시 묻기 전 기다리는 시간 */
   retryWait?: number
-  /** 어디가 대학 코드로 그 대학이 올린 2028 시행계획 파일 주소를 찾는다 (없으면 기본: adiga.ts) */
+  /** 어디가 코드로 2028 시행계획 파일 주소 찾기. 없으면 adiga.ts */
   adiga?: (code: string) => Promise<string | null>
-  /** PDF 쪽을 그림으로 (그림으로 된 원문을 AI가 읽게). 없으면 그림 원문은 옮기지 않는다 */
+  /** PDF 쪽을 그림으로 (그림 원문을 AI가 읽게). 없으면 그림 원문은 건너뜀 */
   render?: (buf: Buffer, pages: number[]) => Promise<string[]>
 }
 
@@ -62,9 +61,9 @@ export interface ImportRow {
   univ: string
   name: string
   status: ImportStatus
-  /** 쓸(쓴) 원문 주소. 모르면 빈 문자열 (대교협 파일 저장소에서 이름으로 찾는다) */
+  /** 원문 주소. 비어 있으면 대교협 저장소에서 대학 이름으로 찾음 */
   url: string
-  /** 관리자가 넣은 주소 */
+  /** url을 관리자가 넣었는지 */
   custom: boolean
   detail: string
   tracks: number
@@ -80,7 +79,7 @@ export interface ImportState {
   current: string | null
   /** 마지막으로 멈춘 까닭 */
   note: string
-  /** 마지막으로 답한 모델 (무료 Gemini 한도에 걸리면 다른 모델로 바뀐다) */
+  /** 마지막으로 답한 모델. 무료 Gemini 한도에 걸리면 바뀜 */
   model: string
 }
 
@@ -98,43 +97,47 @@ interface Row {
   updated_at: string | null
 }
 
-/** AI 답을 두 번 받아도 읽을 수 없었다 */
+/** AI 답 자체를 쓸 수 없음 (두 번 물어도 끊김·JSON 아님, 전형 없음 등). 연결 문제와 달리 그 대학 실패로 셈 */
 class AnswerError extends Error {}
 
 const CDN = 'https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026'
 /** 캠퍼스를 뗀 대학 이름: 강원대학교(강릉) → 강원대학교, 동국대학교 WISE캠퍼스 → 동국대학교 */
 const baseName = (name: string) => name.replace(/\s*\(.*\)$|\s+\S+캠퍼스$/, '')
 
-/** 대교협 파일 저장소의 시행계획 주소 (대학입학전형시행계획을 대학 이름 폴더에 둔다) */
+/** 대교협 저장소의 시행계획 주소: 대학 이름 폴더 안 '{이름}_2028학년도_대학입학전형계획.pdf' */
 export const cdnUrl = (name: string) => `${CDN}/${encodeURIComponent(name)}/${encodeURIComponent(`${name}_2028학년도_대학입학전형계획`)}.pdf`
 
-/** AI에게 한 번에 보여 줄 원문 글자 수 (전형 목록, 전형 세부), 쪽 하나에서 보여 줄 글자 수 */
+/** AI에 한 번에 보여 줄 원문 글자 수 (전형 목록, 전형 세부)와 쪽 하나의 상한 */
 const LIST_CHARS = 40_000
 const DETAIL_CHARS = 45_000
 const PART_MAX = 6_000
-/** 세부를 한 번에 묻는 전형 수, 대학마다 AI를 부르는 횟수 상한 */
+/** 세부를 한 번에 묻는 전형 수, 대학당 AI 호출 상한 (목록 1번 포함) */
 const BATCH = 8
 const MAX_CALLS = 8
-/** 한글 파일은 줄을 이만큼씩 묶어 '부분'으로 본다 */
+/** 한글 파일은 줄을 이 글자 수만큼 묶어 한 부분으로 */
 const PART_CHARS = 3_000
-/** 글자가 이보다 적으면 그림으로 된 파일로 본다 */
+/** 글자가 이보다 적으면 그림 파일로 봄 */
 const MIN_TEXT = 1_500
-/** 8쪽 이상인 PDF에서 쪽마다 평균 글자가 이보다 적으면 그림으로 만든 PDF로 본다 */
+/** 8쪽 이상 PDF의 쪽당 평균 글자가 이보다 적으면 그림 PDF로 봄 */
 const SPARSE_PAGE = 250
-/** AI 연결 문제로 멈춘 것 말고, 같은 대학을 다시 해 보는 횟수 */
+/** 같은 대학 재시도 횟수 (AI 연결 문제로 멈춘 것은 세지 않음) */
 const MAX_TRIES = 3
 const PAUSE = 4_000
-/** 그림으로 된 PDF를 AI가 옮겨 적는 쪽 수와 한 번에 보내는 쪽 수 */
+/** 그림 PDF에서 AI가 옮겨 적는 쪽 수, 한 번에 보내는 쪽 수 */
 const OCR_PAGES = 24
 const OCR_BATCH = 4
-/** AI 답 자체의 문제 (출력 한도에 걸려 끊김, 글 없음, 답하지 않음): 연결 문제가 아니라 그 대학을 못 함으로 센다 */
+/** AI 답 자체의 문제 (출력 한도로 끊김, 글 없음, 거절). 연결 문제가 아니라 그 대학 실패로 셈 */
 export const CONTENT_ERRORS = new Set(['max_tokens', 'no text', 'no content', 'refusal'])
-/** 요청이 몰림(503)·분당 한도(429)는 잠깐이라 이만큼 기다렸다가 두 번까지 다시 묻는다 */
+/** 503·429는 잠깐이라 이만큼 기다렸다 두 번까지 다시 물음 */
 const RETRY_WAIT = 30_000
 const RETRIES = 2
-/** 원문 받기·읽기 방법의 판. 올리면 서버가 켜질 때 원문을 못 받아 그친 대학을 다시 해 본다 (2: 게시글 첨부 찾기, 3: 다른 캠퍼스 원문 내리기, 4: 어디가 파일·배포용 한글 문서·그림 PDF, 5: 다른 캠퍼스 원문이라 내린 대학도 다시, 6: 원문 문제로 그친 대학 모두·그림 PDF·전형이 너무 적게 옮겨진 대학) */
+/**
+ * 원문 받기·읽기 방법의 판. 올리면 서버가 켜질 때 원문 문제로 그친 대학을 다시 차례에 넣는다.
+ * 2 게시글 첨부 찾기, 3 다른 캠퍼스 원문 내리기, 4 어디가 파일·배포용 한글 문서·그림 PDF,
+ * 5 다른 캠퍼스 원문이라 내린 대학도 다시, 6 원문 문제로 그친 대학 전부·그림 PDF·전형이 너무 적게 옮겨진 대학
+ */
 const CODE_VERSION = 6
-/** 법정 공표 기한 (2028학년도 시행계획은 2026년 4월 말까지 공표). 원문에서 날짜를 찾지 못했을 때 쓴다 */
+/** 법정 공표 기한 (2028학년도 시행계획은 2026년 4월 말까지). 원문 날짜를 못 찾았을 때 */
 export const LEGAL_DATE = '2026-04-30'
 
 const PERIODS = ['수시', '정시', '기타']
@@ -142,7 +145,7 @@ const QUOTAS = ['정원내', '정원외']
 const GRADS = ['예정자', '졸업자포함', '졸업자']
 const REGIONS = ['서울', '부산', '대구', '인천', '광주', '대전', '울산', '세종', '경기', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주']
 const ELEMENTS = ['교과', '서류', '면접', '논술', '실기', '수능']
-/** 세부를 찾지 못한 전형의 전형 요소: 유형 이름이 곧 주된 요소다 (기타는 알 수 없어 뺀다) */
+/** 세부가 없는 전형의 전형 요소: 유형이 곧 주된 요소. 기타는 알 수 없어 그 전형을 뺌 */
 const TYPE_ELEMENT: Record<string, string> = { 교과: '교과', 종합: '서류', 논술: '논술', 실기: '실기', 수능: '수능' }
 const PAGES_RE = /^[\d\sⅠ-Ⅻ가-힣,~·–-]{1,20}$/u
 
@@ -216,7 +219,7 @@ const norm = (t: string) => t.replace(/\s+/g, ' ').trim()
 export const compact = (t: string) => t.replace(/\s+/g, '')
 const count = (text: string, word: string) => text.split(word).length - 1
 
-/** PDF는 쪽마다, 한글 파일은 줄을 묶어 부분마다 */
+/** PDF는 쪽별, 한글 파일은 줄을 PART_CHARS씩 묶어 부분별 */
 export function partsOf(doc: DocText): Part[] {
   if (doc.kind === 'pdf') return doc.pages.map((t, i) => ({ label: `[${i + 1}쪽]`, page: String(i + 1), text: norm(t) })).filter((p) => p.text)
   const out: Part[] = []
@@ -239,7 +242,7 @@ export function partsOf(doc: DocText): Part[] {
   return out
 }
 
-/** 앞에서 정한 부분과 점수가 높은 부분을 글자 수 안에서 고르고, 원문 순서로 돌려준다 */
+/** always로 정한 부분과 점수 높은 부분을 budget 글자 안에서 골라 원문 순서로 */
 export function pick(parts: Part[], score: (p: Part) => number, budget: number, always: number[] = []): Part[] {
   const chosen = new Set<number>()
   let used = 0
@@ -284,9 +287,9 @@ export const listScore = (p: Part) =>
   Math.min((p.text.match(/\d+/g)?.length ?? 0) / 15, 10)
 
 const DETAIL_WORDS = ['지원자격', '지원 자격', '전형방법', '전형 방법', '최저학력기준', '선발', '반영비율', '단계', '면접', '제출서류', '추천']
-/** 전형 이름에서 견줄 열쇠: 괄호·띄어쓰기·끝의 '전형'을 뺀다 */
+/** 전형 이름 비교용 열쇠: 괄호·공백·끝의 '전형'을 뺌 */
 export const keyOf = (name: string) => compact(name.replace(/\(.*?\)|\[.*?\]/g, '')).replace(/전형$/, '')
-/** 묶음의 전형 이름이 나오는 쪽, 그중 자격·방법 낱말이 많은 쪽 */
+/** 묶음의 전형 이름이 나오는 쪽일수록, 그중 자격·방법 낱말이 많을수록 높은 점수 */
 export const detailScore = (keys: string[]) => (p: Part) => {
   const c = compact(p.text)
   const hits = keys.filter((k) => k.length >= 2 && c.includes(k)).length
@@ -320,7 +323,7 @@ export interface ListTrack {
   seats: number | null
 }
 
-/** 전형 목록 답에서 쓸 수 있는 전형만 (id는 형식에 맞게 고치고 겹치지 않게) */
+/** 목록 답에서 쓸 수 있는 전형만. id는 형식에 맞게 고치고 겹치지 않게 */
 export function listTracks(answer: unknown): ListTrack[] {
   const ids = new Set<string>()
   const out: ListTrack[] = []
@@ -343,7 +346,7 @@ export function listTracks(answer: unknown): ListTrack[] {
   return out
 }
 
-/** 목록의 전형에 세부를 붙인다. 세부가 없으면 원문을 보라고 적고, 전형 요소는 유형으로 정한다 (기타는 뺀다) */
+/** 목록 전형에 세부를 붙임. 세부가 없으면 '원문에서 확인' 문구, 전형 요소는 유형으로 (기타면 null) */
 export function fullTrack(base: ListTrack, d: Obj | undefined, fallbackPage: string): Obj | null {
   const x = d ?? {}
   const elements = pickList(x.elements, ELEMENTS)
@@ -381,10 +384,10 @@ export function totalsOf(v: unknown): Record<string, number> | null {
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
-/** Gemini 연결의 모델이 한도·과부하에 걸리면 같은 키로 차례로 바꿔 쓸 무료 모델 (정확한 것부터, Lite는 마지막) */
+/** Gemini 모델이 한도·과부하에 걸리면 같은 키로 차례로 바꿔 쓸 무료 모델. 정확한 것부터, Lite는 마지막 */
 const GEMINI_FALLBACK = ['gemini-3.5-flash', 'gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-3.1-flash-lite']
 
-/** 쓸 차례대로 AI 설정: Gemini면 연결에 정한 모델 다음에 다른 무료 모델, 그 밖에는 그 연결 하나 */
+/** 쓸 차례대로의 AI 설정. Gemini면 연결의 모델 다음에 GEMINI_FALLBACK, 그 밖에는 그 연결 하나 */
 export function modelsOf(ai: AiConfig): AiConfig[] {
   if (ai.kind !== 'google') return [ai]
   const first = ai.visionModel || ai.model
@@ -399,7 +402,7 @@ export class PlanImporter {
   private current: string | null = null
   private looping = false
   private note = ''
-  /** Gemini가 한도에 걸려 바꿔 쓰는 모델 차례 (GEMINI_FALLBACK) */
+  /** modelsOf 목록에서 지금 쓰는 차례. 한도에 걸리면 올라감 */
   private fallback = 0
   /** 마지막으로 답한 모델 */
   private model = ''
@@ -422,16 +425,16 @@ export class PlanImporter {
       );
       create table if not exists plan_import_meta (key text primary key, value text not null);
     `)
-    // 원문 받기·읽기 방법이 나아졌으면 그때 못 한 대학을 다시 차례에 넣는다 (AI를 부르기 전에 그친 것만이라 비용이 들지 않는다)
+    // CODE_VERSION이 올랐으면 원문 문제로 그친 대학을 다시 차례에 (AI 답 문제로 그친 대학은 그대로)
     const had = Number((db.prepare("select value from plan_import_meta where key = 'code'").get() as { value: string } | undefined)?.value ?? 0)
     if (had < CODE_VERSION) {
-      // 다른 캠퍼스 원문이라 내린 대학도 원문을 새로 찾는다 (어디가에 그 캠퍼스 파일이 있다)
+      // 다른 캠퍼스 원문이라 내린 대학도 다시 (어디가에 그 캠퍼스 파일이 있음)
       db.prepare(
         "update plan_imports set status = 'waiting', detail = '', tries = 0 where status = 'failed' and custom = 0 and (attempted_at is null or detail like '다른 캠퍼스 원문%' or detail like '원문 파일을%' or detail like '원문에서 글자를%')",
       ).run()
-      // 6: 전형이 둘 이하로 옮겨진 대학은 원문을 제대로 못 읽었을 수 있어 다시 옮긴다 (새로 옮길 때까지 지금 자료가 그대로 보인다)
+      // 6: 전형이 2개 이하로 옮겨진 대학은 원문을 잘못 읽었을 수 있어 다시 (새로 옮길 때까지 지금 자료가 보임)
       db.prepare("update plan_imports set status = 'waiting', detail = '', tries = 0 where status = 'done' and custom = 0 and tracks <= 2").run()
-      // 3: 캠퍼스를 뗀 이름으로 받은 다른 캠퍼스 원문(강원대 강릉·원주 ← 춘천)으로 옮긴 자료를 내린다
+      // 3: 캠퍼스를 뗀 이름으로 받은 다른 캠퍼스 원문(강원대 강릉·원주 ← 춘천)으로 옮긴 자료는 내림
       for (const r of db.prepare("select univ, url from plan_imports where status = 'done' and custom = 0").all() as { univ: string; url: string }[]) {
         const u = UNIVERSITIES.find((x) => x.id === r.univ)
         const src = SOURCES[r.univ]
@@ -442,10 +445,7 @@ export class PlanImporter {
     }
   }
 
-  /**
-   * 가져온 자료를 내린다 (검수 AI가 원문이 이 대학 것이 아니라고 했거나, 잘못 받은 원문). 까닭을 남기고 다시 가져오지 않는다.
-   * 가져온 자료가 아니면 아무것도 하지 않는다
-   */
+  /** 가져온 자료를 내리고 까닭을 남김, 다시 가져오지 않음 (검수 AI가 남의 원문이라 했거나 잘못 받은 원문). 가져온 자료가 아니면 false */
   reject(univ: string, reason: string): boolean {
     if (this.row(univ)?.status !== 'done') return false
     this.datasets.revert(univ, '가져오기')
@@ -461,7 +461,7 @@ export class PlanImporter {
     return this.db.prepare('select * from plan_imports where univ = ?').get(univ) as unknown as Row | undefined
   }
 
-  /** 오늘(서울) AI로 옮기기 시작한 대학 수 */
+  /** 오늘(한국 시간) AI로 옮기기 시작한 대학 수 */
   doneToday(): number {
     const day = new Date(Date.parse(this.now()) + 9 * 3600_000).toISOString().slice(0, 10)
     const from = new Date(Date.parse(`${day}T00:00:00+09:00`)).toISOString()
@@ -486,17 +486,17 @@ export class PlanImporter {
     for (const u of UNIVERSITIES) {
       const r = rows.get(u.id)
       const plan = this.datasets.plan(u.id)
-      // 가져오기 기록이 없는 자료는 앱에 들어 있던 것이라 빼고, 기록이 있으면(다시 옮길 차례 포함) 넣는다
+      // 기록 없는 자료는 앱에 원래 있던 것이라 빼고, 기록이 있으면(다시 옮길 차례 포함) 넣음
       if (plan && !r) continue
       const src = SOURCES[u.id]
       let status = (r?.status ?? (src?.skip ? 'skipped' : 'waiting')) as ImportStatus
       let detail = r?.detail ?? src?.skip ?? (src?.url || src?.adiga ? '' : '원문 주소를 몰라요. 대교협 파일 저장소에서 이름으로 찾아볼게요.')
-      // 가져온 뒤 관리자가 자료를 지웠으면 다시 가져오지 않는다 (가져오기를 누르면 다시)
+      // 가져온 뒤 관리자가 지웠으면 자동으로 다시 가져오지 않음 (가져오기를 누르면 다시)
       if (status === 'done' && !plan) {
         status = 'skipped'
         detail = '가져온 자료를 지웠어요. 다시 가져오려면 가져오기를 누르세요.'
       }
-      // 옮기는 사이 서버가 다시 켜졌으면 다시 차례를 기다린다
+      // 옮기던 중 서버가 다시 켜졌으면 다시 대기
       if (status === 'running' && this.current !== u.id) status = 'waiting'
       out.push({
         univ: u.id,
@@ -513,7 +513,7 @@ export class PlanImporter {
     return out
   }
 
-  /** 관리자가 원문 주소를 넣는다 (다음 가져오기부터 이 주소를 먼저 쓴다) */
+  /** 관리자가 넣은 원문 주소. 다음 가져오기부터 먼저 씀 */
   setUrl(univ: string, url: string): void {
     const at = this.now()
     this.db
@@ -523,12 +523,12 @@ export class PlanImporter {
       .run(univ, url, at)
   }
 
-  /** 한 대학을 지금 가져온다 (관리자가 누름: 켜져 있지 않아도, 한도를 넘어도 한다) */
+  /** 관리자가 누른 즉시 가져오기. 꺼져 있거나 하루 한도를 넘어도 함 */
   importNow(univ: string): Promise<Outcome> {
     return this.enqueue(univ, false)
   }
 
-  /** auto: 차례대로 도는 중에 고른 대학. 차례를 기다리는 사이 관리자가 먼저 가져왔거나 못 함이 됐으면 건너뛴다 */
+  /** auto: 자동 차례로 고른 대학. 기다리는 사이 관리자가 먼저 가져왔거나 실패가 됐으면 건너뜀 */
   private enqueue(univ: string, auto: boolean): Promise<Outcome> {
     const job = this.queue.then(() =>
       auto && this.list().find((r) => r.univ === univ)?.status !== 'waiting' ? { state: 'skipped' as const, detail: '이미 처리했어요.' } : this.importOne(univ),
@@ -537,11 +537,11 @@ export class PlanImporter {
     return job
   }
 
-  /** 켜져 있으면 기다리는 대학을 하루 한도 안에서 차례로 옮긴다 (이미 돌고 있으면 그대로) */
+  /** 켜져 있으면 기다리는 대학을 하루 한도 안에서 차례로 옮김. 이미 돌고 있으면 그대로 */
   kick(): void {
     if (this.looping || !this.deps.enabled()) return
     this.looping = true
-    // 한 시간마다 다시 가장 좋은 모델부터 써 본다
+    // 부를 때마다(1시간 간격) 가장 좋은 모델부터 다시
     this.fallback = 0
     void this.loop()
       .catch(() => {
@@ -552,7 +552,7 @@ export class PlanImporter {
       })
   }
 
-  /** 돌고 있는 차례가 끝날 때까지 (시험용) */
+  /** 테스트용: 돌고 있는 차례가 끝날 때까지 */
   idle(): Promise<void> {
     return (async () => {
       while (this.looping) await sleep(5)
@@ -597,7 +597,7 @@ export class PlanImporter {
     return { state, detail }
   }
 
-  /** 여기서부터 AI를 부른다: 오늘 한도에 센다 */
+  /** 여기서부터 AI 호출: attempted_at을 적어 오늘 한도에 셈 */
   private start(univ: string, url: string): number {
     const r = this.row(univ)
     const tries = (r?.tries ?? 0) + 1
@@ -622,7 +622,7 @@ export class PlanImporter {
       if (!('doc' in found) && !found.image) return this.finish(univ, 'failed', found.why, { url: found.url })
       const used = 'doc' in found ? found.url : found.image!.url
       const tries = this.start(univ, used)
-      // 그림으로 된 PDF는 AI가 쪽 그림을 보고 글자를 옮겨 적은 뒤에 옮긴다
+      // 그림 PDF는 AI가 쪽 그림의 글자를 먼저 옮겨 적음
       let doc: DocText
       let buf: Buffer
       if ('doc' in found) ({ doc, buf } = found)
@@ -644,8 +644,8 @@ export class PlanImporter {
       try {
         ;({ raw, dropped } = await this.transcribe(ai, u, parts))
       } catch (e) {
-        // AI 연결 문제(한도·요금·연결)는 이 대학 탓이 아니어서 횟수에 세지 않고 멈춘다. 다음 차례에 다시 한다
-        // (답이 끊기거나 비어 있던 것은 ask가 AnswerError로 바꿔 준다)
+        // AI 연결 문제(한도·요금·연결)는 이 대학 탓이 아니라 횟수에 세지 않고 멈춤, 다음 차례에 다시
+        // 답이 끊기거나 비어 있던 것은 ask가 AnswerError로 바꿔 줌
         if (e instanceof AiError) return { ...this.finish(univ, 'waiting', e.message, { url: used, tries: tries - 1 }), stop: true }
         if (e instanceof AnswerError) return this.finish(univ, tries >= MAX_TRIES ? 'failed' : 'waiting', e.message, { url: used, tries })
         throw e
@@ -667,9 +667,9 @@ export class PlanImporter {
   }
 
   /**
-   * 원문을 찾아 받는다: 관리자가 넣은 주소 → 정해 둔 주소 → 어디가에 대학이 올린 파일 → 대교협 파일 저장소에서 이름으로.
-   * 받은 파일을 읽지 못하거나 글자가 너무 적으면(안내문 한 쪽, 그림 PDF) 다음 후보로 넘어간다.
-   * 끝까지 글자를 못 얻었는데 그림으로 된 PDF가 있었으면 그 파일을 돌려줘서 AI가 옮겨 적게 한다
+   * 원문 찾기: 관리자 주소 → 정해 둔 주소 → 어디가 파일 → 대교협 저장소(대학 이름).
+   * 못 읽거나 글자가 너무 적으면(안내문 한 쪽, 그림 PDF) 다음 후보로.
+   * 끝까지 글자를 못 얻었는데 그림 PDF가 있었으면 그 파일을 돌려줘 AI가 옮겨 적게 함
    */
   private async findDoc(univ: string, name: string): Promise<Found> {
     const r = this.row(univ)
@@ -682,7 +682,7 @@ export class PlanImporter {
       if (!url || tried.has(url)) return null
       tried.add(url)
       let buf = await this.deps.download({ univ, url }).catch(() => null)
-      // 알고 있는 원문 주소는 대학 서버가 잠깐 거절했을 수 있어 한 번 더 받아 본다 (이름으로 짐작한 주소는 없으면 그만)
+      // 알려진 주소는 대학 서버가 잠깐 거절했을 수 있어 5초 뒤 한 번 더 (이름으로 짐작한 주소는 한 번만)
       if (!buf && retry) {
         await sleep(this.deps.retryWait === 0 ? 0 : 5_000)
         buf = await this.deps.download({ univ, url }).catch(() => null)
@@ -696,10 +696,10 @@ export class PlanImporter {
         return null
       }
       const chars = partsOf(doc).reduce((n, p) => n + p.text.length, 0)
-      // 쪽은 많은데 글자가 거의 없으면(쪽마다 몇 줄) 그림으로 만든 PDF다: 그 몇 줄로 옮기면 전형이 빠진다
+      // 쪽은 많은데 글자가 거의 없으면(쪽마다 몇 줄) 그림 PDF. 그 몇 줄로 옮기면 전형이 빠짐
       const sparse = doc.kind === 'pdf' && doc.pages.length >= 8 && chars / doc.pages.length < SPARSE_PAGE
       if (chars >= MIN_TEXT && !sparse) return { doc, buf, url }
-      // 압축 파일에 담긴 그림 PDF면 그 PDF를 그린다
+      // zip에 담긴 그림 PDF면 안의 PDF를 렌더링
       if (doc.kind === 'pdf' && doc.pages.length >= 2 && !image) image = { buf: innerDoc(buf), url, pages: doc.pages.length }
       why = '원문에서 글자를 거의 읽지 못했어요. 그림으로 된 파일일 수 있어요.'
       return null
@@ -717,16 +717,16 @@ export class PlanImporter {
         if (got) return got
       }
     }
-    // 캠퍼스가 따로 있는 대학은 캠퍼스를 뗀 이름의 파일이 다른 캠퍼스 것일 수 있어(강원대 = 춘천) 쓰지 않는다
+    // 캠퍼스를 정해 둔 대학은 캠퍼스를 뗀 이름의 파일이 다른 캠퍼스 것일 수 있어(강원대 = 춘천) 안 씀
     for (const url of [cdnUrl(name), ...(src?.campus ? [] : [cdnUrl(baseName(name))])]) {
       const got = await tryUrl(url, false)
       if (got) return got
     }
-    // 짐작한 주소는 남기지 않는다 (관리 화면에 없는 원문 링크가 보이지 않게)
+    // 짐작한 주소는 남기지 않음 (관리 화면에 없는 원문 링크가 보이지 않게)
     return { why, url: image?.url ?? firstKnown, ...(image && this.deps.render ? { image } : {}) }
   }
 
-  /** 그림으로 된 PDF: 앞쪽부터 OCR_PAGES쪽까지 몇 쪽씩 그림으로 그려 AI가 글자를 옮겨 적는다 */
+  /** 그림 PDF: 앞에서 OCR_PAGES쪽까지 OCR_BATCH쪽씩 그림으로 바꿔 AI가 글자를 옮겨 적음 */
   private async ocr(ai: AiConfig, buf: Buffer, pageCount: number): Promise<DocText> {
     const last = Math.min(pageCount, OCR_PAGES)
     const pages: string[] = Array.from({ length: last }, () => '')
@@ -745,8 +745,8 @@ export class PlanImporter {
   }
 
   /**
-   * AI에게 묻고 JSON을 꺼낸다. 읽을 수 없으면 한 번 더 묻는다.
-   * 요청이 몰림·분당 한도는 기다렸다가 다시 묻고, 그래도 안 되거나 다른 연결 오류(AiError)면 그대로 던진다
+   * AI에게 묻고 JSON을 꺼냄. 못 읽으면 한 번 더 물음.
+   * Gemini는 다음 모델로, 503·429는 기다렸다 다시. 그래도 안 되거나 다른 연결 오류(AiError)면 그대로 던짐
    */
   private async ask(ai: AiConfig, system: string, user: string, images?: string[], maxTokens = 12_000): Promise<unknown> {
     const call = this.deps.chat ?? chat
@@ -759,12 +759,12 @@ export class PlanImporter {
         text = await call(cfg, { system, user, ...(images?.length ? { images } : {}), heavy: true, maxTokens, timeoutMs: 240_000 })
         this.model = cfg.visionModel || cfg.model
       } catch (e) {
-        // 답이 끊기거나(출력 한도) 비어 있으면 연결 문제가 아니라 이 답의 문제다: 한 번 더 묻고, 그래도 안 되면 이 대학을 못 함으로 센다
+        // 답이 끊기거나(출력 한도) 비면 답의 문제: 한 번 더 묻고, 또 그러면 이 대학 실패로
         if (e instanceof AiError && CONTENT_ERRORS.has(e.detail)) {
           if (++attempt > 1) throw new AnswerError('AI가 답을 끝까지 쓰지 못했어요.')
           continue
         }
-        // 무료 Gemini는 모델마다 한도가 따로라, 한도·과부하에 걸리거나 늦거나 없는 모델이면 다음 모델로 바로 다시 묻는다
+        // 무료 Gemini는 모델마다 한도가 따로라 429·503·504·404면 다음 모델로 바로
         if (e instanceof AiError && ([429, 503, 504].includes(e.status) || /^HTTP 404/.test(e.detail)) && this.fallback < models.length - 1) {
           this.fallback++
           continue
@@ -791,7 +791,7 @@ export class PlanImporter {
     const tracks = listTracks(head)
     if (!tracks.length) throw new AnswerError('AI가 전형 목록을 찾지 못했어요.')
 
-    // 전형이 아주 많으면 한 번에 묻는 전형 수를 늘려 AI를 부르는 횟수를 막는다
+    // 전형이 아주 많으면 묶음을 키워 호출 수를 MAX_CALLS 안으로
     const size = Math.max(BATCH, Math.ceil(tracks.length / (MAX_CALLS - 1)))
     const details = new Map<string, Obj>()
     for (let i = 0; i < tracks.length; i += size) {
@@ -810,7 +810,7 @@ export class PlanImporter {
       const key = keyOf(t.name)
       const first = parts.find((p) => key.length >= 2 && compact(p.text).includes(key))
       const track = fullTrack(t, details.get(t.id), first?.page || '원문')
-      // 전형 하나씩 검사해서 틀린 전형만 뺀다 (하나 때문에 대학 전체를 버리지 않게)
+      // 전형별로 검사해 틀린 것만 뺌 (하나 때문에 대학 전체를 버리지 않게)
       try {
         if (!track) throw new PlanError('')
         checkPlan({ planTitle: '검사', date: LEGAL_DATE, totals: null, changes: [], tracks: [track] }, u.id)
@@ -822,7 +822,7 @@ export class PlanImporter {
     if (!full.length) throw new AnswerError('AI가 옮긴 전형이 모두 검사를 통과하지 못했어요.')
     const changes = (Array.isArray(head.changes) ? head.changes : []).map((c) => clip(c, 120)).filter((c): c is string => !!c)
     const date = typeof head.date === 'string' && /^20\d\d-\d\d-\d\d$/.test(head.date) ? head.date : LEGAL_DATE
-    // 모집시기별 합계가 옮긴 전형의 모집인원 합과 다르면 합계 쪽을 잘못 읽었을 수 있어 버린다
+    // 모집시기별 합계가 옮긴 전형 모집인원 합과 다르면 합계를 잘못 읽었을 수 있어 버림
     const sums = new Map<string, number>()
     for (const t of full) if (typeof t.seats === 'number') sums.set(t.period as string, (sums.get(t.period as string) ?? 0) + t.seats)
     const totals = totalsOf(head.totals)

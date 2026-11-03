@@ -12,7 +12,7 @@ export type DrawerTarget = { kind: 'subject'; subject: string } | { kind: 'group
 interface Props {
   target: DrawerTarget
   plan: Plan
-  /** 진로 관련도 (전국의 같은 분야 학과들이 권하는 정도) */
+  /** 진로 관련도 (전국 같은 분야 학과들이 권하는 정도) */
   scores: Map<string, FieldScore>
   onClose: () => void
   onOpen: (t: DrawerTarget) => void
@@ -53,7 +53,7 @@ export function Drawer({ target, plan, scores, onClose, onOpen, onTogglePin, onT
     const requiring = plan.units.flatMap((r) => r.clauses.filter((c) => resolveSubjects(c.clause.subjects).includes(s)).map((c) => ({ r, c })))
     const pinned = plan.pinned.has(s)
     const excluded = plan.excluded.has(s)
-    // 과목 이름은 공유 링크·편제표에서 온 글자라 객체 속성(__proto__ 등)으로 찾지 않는다
+    // 과목 이름은 공유 링크·편제표에서 온 글자라 hasOwn으로만 찾음 (__proto__ 같은 상속 속성 방지)
     const desc = Object.hasOwn(DESCRIPTIONS, s) ? DESCRIPTIONS[s] : ''
 
     body = (

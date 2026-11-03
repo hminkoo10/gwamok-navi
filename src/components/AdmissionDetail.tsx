@@ -5,8 +5,8 @@ import type { AdmissionPlan, RecordRule, Stage, SuneungRule } from '../data/sche
 const AREA_ORDER = ['국어', '수학', '영어', '탐구', '한국사', '직업탐구', '제2외국어/한문']
 
 /**
- * 단계별 표에 전형 방법 글에 없는 비율이 있는가.
- * 표는 실질 반영 비율이나 세부 배점(학생부 → 교과·출결)으로 옮겨서, 글의 명목 비율과 다를 때가 있다. 반올림 차이(약 67% ↔ 66.7)는 같다고 본다
+ * 단계별 표에 전형 방법 글에 없는 비율이 있는지.
+ * 표는 실질 반영 비율이나 세부 배점(학생부 → 교과·출결)으로 적혀 글의 명목 비율과 다를 수 있다. 반올림 차이(약 67% ↔ 66.7)는 같다고 본다
  */
 function stagesDiffer(stages: Stage[], method: string): boolean {
   const named = [...method.matchAll(/(\d+(?:\.\d+)?)\s*%/g)].map((m) => Number(m[1]))
@@ -53,7 +53,7 @@ export function StagesTable({ stages, method }: { stages: Stage[]; method?: stri
   )
 }
 
-/** 정시 수능 반영: 묶음마다 영역별 비율. 가장 많이 반영하는 영역을 강조한다 */
+/** 정시 수능 반영: 묶음마다 영역별 비율. 가장 많이 반영하는 영역 강조 */
 export function SuneungTable({ rules, open = false, mine }: { rules: SuneungRule[]; open?: boolean; mine?: (r: SuneungRule) => boolean }) {
   const areas = AREA_ORDER.filter((a) => rules.some((r) => r.weights[a] !== undefined))
   // 내 학과가 드는 묶음을 위로 (그런 묶음이 일부일 때만)
@@ -84,7 +84,7 @@ export function SuneungTable({ rules, open = false, mine }: { rules: SuneungRule
                     <small className="use-inline">{r.use}</small>
                   </td>
                   {!values.length ? (
-                    // 성적이 좋은 영역을 골라 반영해서 정해진 비율이 없다 (산출식에 적힌 대로)
+                    // 성적 좋은 영역을 골라 반영: 정해진 비율 없음 (산출식 참고)
                     <td colSpan={Math.max(1, areas.length)} className="pick-best">
                       정해진 비율 없이 성적이 좋은 영역을 골라 반영해요. 아래 산출식을 보세요.
                     </td>
@@ -123,7 +123,7 @@ const NOTE_KEYS: [keyof SuneungRule, string][] = [
   ['formula', '산출식'],
 ]
 
-/** 항목마다 같은 문장은 한 번만 쓰고, 묶음마다 다르면 묶음 이름을 앞에 붙인다 */
+/** 항목마다 같은 문장은 한 번만, 묶음마다 다르면 묶음 이름을 앞에 붙임 */
 function RuleNotes({ rules }: { rules: SuneungRule[] }) {
   const text = (r: SuneungRule, k: keyof SuneungRule) =>
     k === 'formula' && r.formula ? `${r.formula}${r.total ? ` (${r.total.toLocaleString('ko-KR')}점 만점)` : ''}` : (r[k] as string | null)

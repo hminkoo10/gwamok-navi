@@ -13,8 +13,8 @@ import { Link } from './Link'
 const PERIODS = ['수시', '정시', '기타'] as const
 
 /**
- * 원서 후보: 담아 둔 전형을 모집 시기별로 보고, 지원 횟수와 준비할 것을 확인한다.
- * aside: 넓은 화면 오른쪽에 붙어 있는 판 (목록을 늘 펼친다). inline: 목록 위에 놓는 판 (길면 접어 둔다).
+ * 원서 후보: 담아 둔 전형을 모집 시기별로 보고 지원 횟수·준비할 것을 확인한다.
+ * aside: 넓은 화면 오른쪽 판 (목록을 늘 펼침). inline: 목록 위 판 (길면 접어 둠).
  */
 export function PicksPanel({ variant = 'inline' }: { variant?: 'aside' | 'inline' }) {
   const { store, notify } = useApp()
@@ -27,7 +27,7 @@ export function PicksPanel({ variant = 'inline' }: { variant?: 'aside' | 'inline
   /** 이 전형으로 내 학과를 몇 명 뽑는지 (학과별 인원표가 있는 대학만) */
   const mySeats = (univ: string, track: string): MySeats | null => mySeatsIn(seats?.[univ], myUnitsAt(univ, prefs.majors, prefs.unitIds), track)
   const [open, setOpen] = useState(() => prefs.picks.length <= 4)
-  /** 자동 복사가 막혀 직접 복사하게 보여 줄 글 */
+  /** 자동 복사가 막혔을 때 직접 복사하도록 띄울 글 */
   const [manualCopy, setManualCopy] = useState<string | null>(null)
   const showList = variant === 'aside' || open
   const cls = `panel-card picks is-${variant}`
@@ -42,7 +42,7 @@ export function PicksPanel({ variant = 'inline' }: { variant?: 'aside' | 'inline
       </section>
     )
 
-  // 여러 줄이라 prompt()로는 줄바꿈이 사라진다: 막히면 직접 복사하는 창을 띄운다
+  // 여러 줄이라 prompt()로는 줄바꿈이 사라짐. 복사가 막히면 직접 복사 창
   const copy = async () => {
     const text = picksText(s)
     if (await copyText(text)) notify('원서 후보 목록을 복사했어요.')

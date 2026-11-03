@@ -15,7 +15,7 @@ export const REGIONS: [string, string[]][] = [
   ['제주', ['제주']],
 ]
 
-/** 끝 글자 받침에 맞춘 조사: josa('과목', '을', '를') → '을'. 숫자는 읽는 소리로 (1·3·6·7·8·0은 받침, 로마 숫자도 같다: 미적분Ⅱ를) */
+/** 끝 글자 받침에 맞춘 조사: josa('과목', '을', '를') → '을'. 숫자·로마 숫자는 읽는 소리로 (1·3·6·7·8·0은 받침, 미적분Ⅱ를) */
 export function josa(word: string, withBatchim: string, without: string): string {
   const last = word.trim().slice(-1)
   if (/\d/.test(last)) return '013678'.includes(last) ? withBatchim : without
@@ -30,7 +30,7 @@ export const thisCohort = () => {
   return now.getMonth() >= 2 ? now.getFullYear() : now.getFullYear() - 1
 }
 
-/** 편제표가 어디서 왔는지 한 줄로. 불러온 편제표를 고치면 shared 표시가 떨어져 '고친 편제표'가 된다 */
+/** 편제표 출처 한 줄. 불러온 편제표를 고치면 shared가 빠져 '고친 편제표'가 된다 */
 export function schoolOrigin(s: School): string {
   if (SCHOOL_BY_ID.has(s.id)) return '예시 편제표 · 학교 홈페이지 원문을 옮김'
   if (s.id.startsWith('neis-'))
@@ -39,7 +39,7 @@ export function schoolOrigin(s: School): string {
   return '직접 넣은 편제표'
 }
 
-/** 권장과목 말고 세트를 고른 까닭: 꼭 듣기 과목이 든 세트, 다른 세트를 모두 빼서 남은 세트 */
+/** 권장과목 말고 세트를 고른 까닭: 꼭 듣기 과목이 든 세트, 다른 세트를 모두 빼서 남은 세트. 그 밖엔 빈 문자열 */
 export function setWhyText(plan: Plan, tp: TrackPlan): string {
   if (tp.setIndex === null) return ''
   if (tp.track.sets[tp.setIndex].items.some((it) => plan.pinned.has(it.subject))) return '꼭 듣기로 고른 세트'
@@ -69,7 +69,7 @@ const TOKEN_LABEL: Record<string, (x: string) => string> = {
   family: (x) => `${x} 계열`,
 }
 
-/** 과목·묶음 표기를 읽기 좋은 말로 */
+/** 묶음 표기(area:·career:·general:·family:)를 읽기 좋은 말로. 과목 이름은 그대로 */
 export function subjectLabel(s: string): string {
   const m = s.match(/^(area|career|general|family):(.+)$/)
   return m ? TOKEN_LABEL[m[1]](m[2]) : s

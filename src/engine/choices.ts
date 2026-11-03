@@ -1,14 +1,11 @@
 import type { School } from '../data/schema'
 
-// 꼭 듣기·빼기 규칙. 어느 학기 칸에서 어떤 순서로 눌러도 다음이 늘 지켜진다.
-//  1) 두 학기 세트 묶음에는 고를 수 있는 세트가 하나 이상 남는다 (세트 하나는 꼭 들어야 한다)
-//  2) 선택 칸을 모두 함께 채울 수 있다: 칸마다 고르는 수만큼, 한 과목은 한 칸에만 (두 칸에 함께 있는 과목은 한 번만 센다),
-//     모두 듣는 과목은 선택 칸에서 다시 고를 수 없다
-//  3) 꼭 듣기 과목은 모두 들어갈 자리가 있다 (한 묶음에서는 한 세트만, 선택 칸은 고르는 수까지)
-// 세트는 통째로 들으므로 세트 과목 하나를 빼거나 넣으면 같은 세트 과목도 함께 바뀐다.
-// 규칙과 부딪치면 마지막에 누른 쪽을 따른다: 남은 세트까지 빼면 앞서 뺀 세트를 다시 넣고,
-// 선택 칸을 채울 과목이 모자라면 오래전에 뺀 과목부터 다시 넣고, 자리가 모자라면 먼저 고른 꼭 듣기를 푼다.
-// 무엇을 함께 바꿨는지는 돌려줘서 화면이 알린다.
+// 꼭 듣기·빼기 규칙. 어느 칸에서 어떤 순서로 눌러도 늘 지킨다.
+//  1) 세트 묶음마다 고를 세트가 하나 이상 남는다 (세트 하나는 꼭 들어야 함)
+//  2) 선택 칸을 모두 함께 채울 수 있다. 한 과목은 한 칸에만, 모두 듣는 과목은 선택 칸에서 못 고름
+//  3) 꼭 듣기 과목은 모두 들어갈 자리가 있다 (묶음마다 한 세트, 선택 칸은 고르는 수까지)
+// 세트는 통째로 들어서 세트 과목 하나를 빼거나 넣으면 같은 세트 과목도 함께 바뀐다.
+// 부딪치면 마지막에 누른 쪽을 따른다: 앞서 뺀 세트·오래전에 뺀 과목을 다시 넣고, 자리가 모자라면 먼저 고른 꼭 듣기를 푼다.
 
 export interface ChoiceState {
   pinned: string[]
@@ -30,17 +27,16 @@ export interface Reopened {
 export interface ChoiceChange extends ChoiceState {
   /** 함께 뺀 과목 (같은 세트라 이제 들을 수 없는 과목) */
   alsoExcluded: string[]
-  /** 함께 다시 넣은 과목 (꼭 듣기·다시 넣기한 과목과 같은 세트라 같이 들어야 하는 과목) */
+  /** 함께 다시 넣은 과목 (꼭 듣기·다시 넣기한 과목과 같은 세트) */
   alsoIncluded: string[]
   /** 함께 바뀐 세트 이름 */
   set?: string
-  /** 세트 묶음이나 선택 칸이 비지 않게 다시 넣은 것 */
   reopened: Reopened[]
   /** 같은 묶음의 다른 세트를 골라 꼭 듣기를 푼 과목 */
   unpinned: string[]
   /** 자리가 모자라 꼭 듣기를 푼 과목 */
   bumped: string[]
-  /** 하지 않은 바꾸기 (모든 세트에 든 과목·선택 칸에서 다 들어야 하는 과목은 뺄 수 없고, 들어갈 칸이 없는 과목은 꼭 듣기로 할 수 없다) */
+  /** 거절한 바꾸기. every-set = 모든 세트에 든 과목이라 못 뺌, whole-group = 선택 칸을 채우려면 다 들어야 해서 못 뺌, no-room = 들어갈 칸이 없어 꼭 듣기 불가 */
   refused?: { reason: 'every-set' | 'whole-group' | 'no-room'; where?: string }
 }
 
@@ -111,7 +107,7 @@ function lockedIn(m: Model, ex: Set<string>): Map<string, string[]> {
   return out
 }
 
-/** 들을 수 없게 된 세트 과목을 빼기에 더한다 (keep에 있는 과목은 이미 막혀 있던 것이라 그대로 둔다) */
+/** 들을 수 없게 된 세트 과목을 빼기에 더한다. keep = 이미 막혀 있던 과목이라 그대로 둠 */
 function addLocks(m: Model, ex: Set<string>, keep: Map<string, string[]>, out: string[]) {
   for (let changed = true; changed;) {
     changed = false
@@ -133,8 +129,8 @@ function emptyTracks(m: Model, ex: Set<string>): number[] {
 }
 
 /**
- * 선택 칸을 모두 함께 채울 때 모자라는 자리 수 (한 과목은 한 칸에만 넣고, 뺀 과목·모두 듣는 과목은 쓸 수 없다. 이분 매칭).
- * short: 그때 다 채우지 못한 칸, at: 과목이 들어간 칸
+ * 선택 칸을 모두 함께 채울 때 모자라는 자리 수 (이분 매칭, 한 과목은 한 칸에만, 뺀 과목·모두 듣는 과목 제외).
+ * short: 다 채우지 못한 칸, at: 과목이 들어간 칸
  */
 function seatGap(m: Model, ex: Set<string>): { gap: number; short: GroupInfo[]; at: Map<string, GroupInfo> } {
   const members = m.groups.map((): string[] => [])
@@ -165,8 +161,8 @@ function seatGap(m: Model, ex: Set<string>): { gap: number; short: GroupInfo[]; 
 }
 
 /**
- * 선택 칸을 채울 과목이 모자라면(빈자리가 floor보다 많으면) 뺀 과목을 order 순서(오래전에 뺀 것부터)로 다시 넣는다.
- * 빈자리를 줄이는 과목만 넣는다. 다시 넣은 과목을 들어간 칸별로 돌려주고, 끝내 모자라면 null
+ * 빈자리가 floor보다 많으면 뺀 과목을 order 순(오래전에 뺀 것부터)으로 다시 넣는다. 빈자리를 줄이는 과목만.
+ * 다시 넣은 과목을 칸별로 돌려주고, 끝내 모자라면 null
  */
 function refill(m: Model, ex: Set<string>, order: string[], floor: number): Reopened[] | null {
   let now = seatGap(m, ex)
@@ -193,7 +189,7 @@ function refill(m: Model, ex: Set<string>, order: string[], floor: number): Reop
   })
 }
 
-/** 선택 칸 짝짓기 (칸마다 고르는 수만큼): 모두 넣을 수 있는지 */
+/** subjects를 선택 칸에 모두 넣을 수 있는지 (칸마다 고르는 수까지, 이분 매칭) */
 function fitGroups(m: Model, subjects: string[], ex: Set<string>): boolean {
   const seats = m.groups.flatMap((g) => Array.from({ length: g.pick }, () => g))
   const owner = new Array<string | null>(seats.length).fill(null)
@@ -212,7 +208,7 @@ function fitGroups(m: Model, subjects: string[], ex: Set<string>): boolean {
   return subjects.every((s) => place(s, new Set()))
 }
 
-/** 꼭 듣기를 넣을 수 있는지 볼 때 세트 조합은 이만큼까지만 본다 (세트 묶음이 아주 많은 편제표나 공유 링크에서 멈추지 않게) */
+/** placeable이 볼 세트 조합 상한. 세트 묶음이 아주 많은 편제표·공유 링크에서 멈추지 않게 */
 const MAX_VISITS = 2000
 
 /**
@@ -237,7 +233,7 @@ function placeable(m: Model, pins: string[], ex: Set<string>): boolean {
     if (++visits > MAX_VISITS) return false
     const left = need.filter((p) => !covered.has(p))
     if (q === perTrack.length) return fitGroups(m, left, ex)
-    // 남은 묶음에서 세트로 덮을 수 있는 만큼을 빼도 선택 칸 자리가 모자라거나, 남은 묶음 어디에도 없는 과목이 칸에 못 들어가면 그만
+    // 가지치기: 남은 묶음이 세트로 덮을 수 있는 만큼 빼도 선택 칸 자리가 모자라거나, 남은 묶음에 없는 과목이 칸에 못 들어갈 때
     const later = perTrack.slice(q)
     const covers = (s: SetInfo) => s.subjects.filter((x) => left.includes(x)).length
     if (left.length - later.reduce((a, list) => a + Math.max(...list.map(covers)), 0) > seats) return false
@@ -265,7 +261,6 @@ const blank = (state: ChoiceState): ChoiceChange => ({
   bumped: [],
 })
 
-/** 꼭 듣기 풀기 */
 export function unpinChoice(state: ChoiceState, subject: string): ChoiceChange {
   return { ...blank(state), pinned: state.pinned.filter((s) => s !== subject) }
 }
@@ -293,7 +288,7 @@ export function pinChoice(school: School | null | undefined, state: ChoiceState,
   }
   if (!placeable(m, [subject], ex)) return { ...blank(state), refused: { reason: 'no-room' } }
   const pinned = keepPins(m, order, ex)
-  // 고른 세트와 같은 묶음의 다른 세트 과목이면 '세트는 하나만', 아니면 '자리가 모자라' 푼 것
+  // 고른 세트와 같은 묶음의 다른 세트 과목이면 unpinned(세트는 하나만), 아니면 bumped(자리 부족)
   const rivals = chosen ? m.sets.filter((s) => s.track === chosen.track && s !== chosen).flatMap((s) => s.subjects) : []
   for (const p of order) {
     if (pinned.includes(p)) continue
@@ -323,7 +318,7 @@ export function excludeChoice(school: School | null | undefined, state: ChoiceSt
     change.reopened.push({ where: m.tracks[t], set: back.label, subjects: back.subjects })
   }
 
-  // 선택 칸을 모두 채울 수 없게 되면 (이번에 새로) 오래전에 뺀 과목부터 다시 넣는다. 다시 넣어도 모자라면 뺄 수 없다
+  // 이번 빼기로 선택 칸을 다 채울 수 없게 되면 오래전에 뺀 과목부터 다시 넣는다. 그래도 모자라면 거절
   const before = seatGap(m, old)
   const after = seatGap(m, ex)
   if (after.gap > before.gap) {
@@ -371,9 +366,8 @@ export function includeChoice(school: School | null | undefined, state: ChoiceSt
 }
 
 /**
- * 세트를 고르려고 꼭 듣기로 할 과목: 그 세트에만 있고 세트로만 들을 수 있는 과목 (꼭 듣기로 하면 그 세트가 정해진다).
- * 다른 묶음의 세트에도 없는 과목을 먼저 고른다. 그런 과목이 없으면 null
- * (세트 과목이 모두 다른 세트나 선택 칸에도 있어 과목 하나로는 그 세트를 정할 수 없다)
+ * 세트를 고르려고 꼭 듣기로 할 과목: 같은 묶음의 다른 세트·선택 칸·모두 듣는 과목에 없는 과목. 다른 묶음 세트에도 없는 과목 먼저.
+ * 없으면 null (과목 하나로는 그 세트를 정할 수 없음)
  */
 export function setPickSubject(school: School | null | undefined, trackId: string, setIndex: number): string | null {
   if (!school) return null
@@ -388,21 +382,21 @@ export function setPickSubject(school: School | null | undefined, trackId: strin
 }
 
 /**
- * 예전에 저장된 선택을 규칙에 맞게 고친다: 학교에 없는 과목의 꼭 듣기·빼기는 버리고, 꼭 듣기와 빼기가 겹치면 꼭 듣기를 따르고,
- * 세트가 모두 막힌 묶음과 채울 과목이 모자란 선택 칸은 오래전에 뺀 것부터 다시 넣고, 자리가 없는 꼭 듣기는 푼다. 고칠 것이 없으면 null
+ * 예전에 저장된 선택을 규칙에 맞게 고친다. 고칠 것이 없으면 null
+ * - 학교에 없는 과목의 꼭 듣기·빼기는 버리고, 둘이 겹치면 꼭 듣기를 따른다
+ * - 세트가 모두 막힌 묶음, 채울 과목이 모자란 선택 칸은 오래전에 뺀 것부터 다시 넣고, 자리가 없는 꼭 듣기는 푼다
  */
 export function repairChoices(school: School | null | undefined, state: ChoiceState): ChoiceChange | null {
   if (!school) return null
   const m = modelOf(school)
   const change = blank(state)
   const pins = [...new Set(state.pinned)]
-  // 학교에 없는 과목은 자리를 찾아볼 것도 없이 푼다 (공유 링크에 엉뚱한 과목이 잔뜩 들어 있어도 금방 끝나게)
+  // 학교에 없는 과목은 바로 푼다 (공유 링크에 엉뚱한 과목이 잔뜩 있어도 금방 끝나게)
   const live = pins.filter((p) => m.offered.has(p))
   const order = [...new Set(state.excluded)].filter((s) => !pins.includes(s) && m.offered.has(s))
   const ex = new Set(order)
 
-  // 꼭 듣기는 빼기보다 앞선다: 세트로만 들을 수 있는 꼭 듣기 과목은 그 세트를 다시 넣을 수 있다고 보고 남길 꼭 듣기를 고른 뒤,
-  // 남긴 과목의 세트만 다시 넣는다
+  // 꼭 듣기가 빼기보다 앞선다. 세트 전용 꼭 듣기는 그 세트를 다시 넣을 수 있다고 보고 남길 꼭 듣기를 고른 뒤, 남긴 과목의 세트만 다시 넣는다
   const setOnly = (p: string) => !elsewhere(m, p) && m.sets.some((s) => s.subjects.includes(p))
   const open = new Set(ex)
   for (const s of m.sets) if (s.subjects.some((x) => live.includes(x) && setOnly(x))) for (const b of blockedIn(s, ex)) open.delete(b)

@@ -1,10 +1,8 @@
 import type { Subject } from './schema'
 
 // 2022 개정 교육과정 과목 (2025 고1부터 적용).
-// 수학·과학·정보는 대학 권장과목 판정에 쓰이므로 구분(kind)과 위계(after)를 정확히 둔다.
-// 나머지 교과는 반송고 편제표에 나오는 과목을 화면에 보여주기 위한 목록이다.
-// 편제표에만 있고 2022 개정 보통교과 목록에서 확인하지 못한 과목(통합수학Ⅰ, 전문 수학,
-// 예술 전문교과 등)은 kind를 '기타'로 둔다.
+// 수학·과학·정보는 권장과목 판정에 쓰여 구분(kind)과 위계(after)를 정확히 둔다. 나머지 교과는 반송고 편제표 과목을 보여 주는 용도.
+// 편제표에만 있고 2022 개정 보통교과 목록에서 확인하지 못한 과목(통합수학Ⅰ, 전문 수학, 예술 전문교과 등)은 kind '기타'.
 
 const s = (name: string, area: Subject['area'], kind: Subject['kind'], after?: string[]): Subject =>
   after ? { name, area, kind, after } : { name, area, kind }

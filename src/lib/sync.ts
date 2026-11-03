@@ -1,10 +1,10 @@
 import { ApiError, auth, myData, type SavedData } from './api'
 
-// 계정 저장: 고친 설계를 잠깐 모았다가 계정에 올리고, 못 올리면 간격을 늘려 가며 다시 올린다.
-// 계정 것이 이 기기가 마지막으로 맞춘 판(rev)과 다르면 서버가 409로 거절하므로, 그때 받은 계정 것과 합친 뒤 다시 올린다.
-// 화면 상태의 모양은 모른다: 합치기와 기준 만들기는 store가 넘겨준다.
+// 계정 저장: 고친 설계를 잠깐 모았다가 올리고, 실패하면 간격을 늘려 가며 다시 올린다.
+// 계정 판이 마지막으로 맞춘 판(rev)과 다르면 서버가 409와 계정 설계를 돌려주고, 그것과 합쳐 다시 올린다.
+// 화면 상태의 모양은 모른다. 합치기·기준 만들기는 store가 넘겨준다.
 
-/** 계정 저장 상태. load-error: 계정 설계를 아직 못 받음, error: 못 올려서 다시 하는 중, rejected: 서버가 이 내용을 받지 않음 */
+/** load-error: 계정 설계를 아직 못 받음, error: 못 올려 다시 시도 중, rejected: 서버가 이 내용을 거절 (400·413) */
 export type SyncState = 'off' | 'loading' | 'load-error' | 'saving' | 'saved' | 'error' | 'rejected'
 
 export interface SyncInfo {
@@ -14,11 +14,11 @@ export interface SyncInfo {
   savedAt: string | null
   /** 서버가 저장을 거절한 까닭 */
   message: string
-  /** 잇달아 실패한 횟수 */
+  /** 연속 실패 횟수 */
   failures: number
 }
 
-/** 마지막으로 계정과 맞춘 때의 기준. rev: 그때의 계정 판(updatedAt, 아무것도 없었으면 null), hash: 그때 계정에 있던 내용 */
+/** 마지막으로 계정과 맞춘 기준. rev: 그때 계정 판(updatedAt, 비어 있었으면 null), hash: 그때 계정 내용의 해시 */
 export interface BaseSnap {
   owner: number
   rev: string | null
@@ -31,26 +31,27 @@ export interface SyncHost<S, B extends BaseSnap> {
   read(): S
   /** 계정 것과 합친 결과로 바꾼다 */
   apply(next: S): void
-  /** 계정에 올릴 내용 (모양이 같으면 JSON도 같게 만든다) */
+  /** 계정에 올릴 내용. 내용이 같으면 JSON도 같아야 한다 (해시로 견줌) */
   payload(s: S): unknown
-  /** 계정에 rev 판으로 s가 저장돼 있을 때의 기준 (s가 null이면 계정이 비어 있음) */
+  /** 계정에 rev 판으로 s가 있을 때의 기준. s가 null이면 빈 계정 */
   snapshot(s: S | null, rev: string | null, hash: string): B
   /** 계정 것(raw, 없으면 null)과 이 기기 것을 base에 견줘 합친다. remote: 계정 것만 되살린 상태 */
   merge(raw: unknown, local: S, base: B | null): { state: S; remote: S | null; dropped: string[] }
   loadBase(): B | null
   saveBase(b: B): void
   report(info: SyncInfo): void
-  /** 슬롯·편제표가 상한을 넘어 합치지 못한 것들 */
+  /** 상한을 넘어 합치지 못한 슬롯·편제표 이름 */
   dropped(names: string[]): void
-  /** 다른 탭에서 로그아웃했거나 다른 계정으로 로그인했다 (저장을 멈췄다) */
+  /** 다른 탭에서 로그아웃·계정 전환. 저장을 멈춘 뒤에 부른다 */
   accountChanged(): void
 }
 
 const SAVE_DELAY = 700
-/** 다른 탭에서 바뀐 설계는 그 탭이 먼저 올릴 틈을 준다 */
+/** 다른 탭에서 받은 변경은 그 탭이 먼저 올리게 기다린다 (ms) */
 const ADOPT_DELAY = 3000
+/** 실패 횟수별 다시 시도 간격 (ms). 429면 30초 이상 */
 const BACKOFF = [2000, 5000, 15_000, 30_000, 60_000]
-/** 잇단 409에서 바로 다시 올리는 횟수 (그 뒤로는 간격을 둔다) */
+/** 409가 이어질 때 바로 다시 올리는 횟수. 그 뒤로는 BACKOFF 간격 */
 const MAX_CONFLICTS = 3
 
 /** 같은 내용인지 견줄 때만 쓰는 짧은 해시 (53비트 + 길이) */
@@ -80,7 +81,7 @@ export class AccountSync<S, B extends BaseSnap> {
   private again = false
   private failures = 0
   private conflicts = 0
-  /** 서버가 거절한 내용 (같은 내용이면 다시 보내지 않는다) */
+  /** 서버가 거절한 내용의 해시. 같은 내용은 다시 보내지 않는다 */
   private refused: string | null = null
   private info: SyncInfo
 
@@ -111,28 +112,28 @@ export class AccountSync<S, B extends BaseSnap> {
     document.removeEventListener('visibilitychange', this.onVisible)
   }
 
-  /** 화면 상태가 바뀌었다. fromOtherTab: 다른 탭이 저장소에 쓴 것을 받아 왔다 */
+  /** 화면 상태가 바뀌었을 때. fromOtherTab: 다른 탭이 저장소에 쓴 것을 받아 온 경우 */
   changed(fromOtherTab = false): void {
     if (this.stopped || !this.loaded) return
-    // 실패해서 다시 할 차례를 기다리는 중이면 그때 지금 설계를 올린다 (고칠 때마다 서버를 두드리지 않게)
+    // 실패 뒤 다시 시도를 기다리는 중이면 그때 최신 설계를 올린다 (고칠 때마다 서버를 두드리지 않게)
     if (this.failures > 0) return
     this.schedule(fromOtherTab ? ADOPT_DELAY : SAVE_DELAY)
   }
 
-  /** 지금 바로 다시 해 본다 (인터넷이 돌아왔을 때, 탭으로 돌아왔을 때, 다시 시도를 눌렀을 때) */
+  /** 바로 다시 시도 (온라인 복귀, 탭 복귀, 다시 시도 버튼) */
   kick(): void {
     if (this.stopped) return
     if (!this.loaded) void this.load()
     else void this.save()
   }
 
-  /** 탭을 떠날 때: 아직 못 올린 것을 올린다 (작으면 페이지가 닫혀도 끝까지 가게) */
+  /** 탭을 떠날 때 못 올린 것을 올린다. 작으면 keepalive라 페이지가 닫혀도 끝까지 간다 */
   private flush(): void {
     if (this.stopped || !this.loaded || this.saving) return
     void this.save(true)
   }
 
-  /** 다른 탭이 계정에 저장하고 남긴 기준 (더 새 판일 때만 받는다) */
+  /** 다른 탭이 저장하고 남긴 기준을 받는다 (더 새 판일 때만) */
   adoptBase(b: B | null): void {
     if (this.stopped || !b || b.owner !== this.host.owner || b.rev === null) return
     if (this.base?.rev && this.base.rev >= b.rev) return
@@ -148,9 +149,9 @@ export class AccountSync<S, B extends BaseSnap> {
     return !!this.base && this.hashOf(this.host.read()) === this.base.hash
   }
 
-  /** 기다리던 저장을 지금 끝낸다 (로그아웃 전에). 계정과 같아졌으면 true */
+  /** 밀린 저장을 지금 끝낸다 (로그아웃 전). 계정과 같아졌으면 true */
   async finish(): Promise<boolean> {
-    // 올리는 사이 또 바뀌었거나 409로 합쳤으면 몇 번 더 올린다
+    // 올리는 사이 또 바뀌었거나 409로 합쳤으면 더 올린다 (최대 3번)
     for (let i = 0; i < 3 && !this.stopped && this.loaded && !this.isClean(); i++) {
       while (this.saving) await this.saving
       clearTimeout(this.timer)
@@ -266,7 +267,7 @@ export class AccountSync<S, B extends BaseSnap> {
     const status = statusOf(e)
     if (status === 401) return this.stop()
     if (status === 409) {
-      // 다른 기기·탭이 먼저 저장했다: 그 계정 것과 합친 뒤 다시 올린다
+      // 다른 기기·탭이 먼저 저장했으면 계정 것과 합쳐 다시 올린다
       if (!(await this.sameAccount()) || this.stopped) return
       const body = e instanceof ApiError ? (e.body as { saved?: SavedData | null } | null) : null
       if (body && typeof body === 'object' && 'saved' in body) this.accept(body.saved ?? null)
@@ -290,7 +291,7 @@ export class AccountSync<S, B extends BaseSnap> {
     this.retryLater(() => void this.save(), e)
   }
 
-  /** 409를 받았을 때: 다른 탭에서 다른 계정으로 로그인해 쿠키가 바뀌었으면 그 계정에 합쳐 올리지 않는다 */
+  /** 409 때 확인: 다른 탭의 계정 전환으로 쿠키가 바뀌었으면 그 계정에 합쳐 올리지 않는다 */
   private async sameAccount(): Promise<boolean> {
     let id: number | null
     try {

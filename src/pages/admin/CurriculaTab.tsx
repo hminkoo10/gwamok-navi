@@ -128,7 +128,7 @@ export function CurriculumDialog({ id, onClose, onChanged }: { id: number | null
               >
                 {data.hidden ? '다시 보이기' : '숨기기'}
               </button>
-              {/* 사람이 직접 넣은 편제표는 처음부터 확인된 것이다 */}
+              {/* 직접 넣은 편제표는 처음부터 확인된 것으로 봄 */}
               {data.method !== 'manual' && (
                 <button
                   type="button"

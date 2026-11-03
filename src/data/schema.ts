@@ -1,5 +1,5 @@
-// 데이터 구조. 대학 권장과목과 학교 편제표는 모두 원문을 보고 손으로 옮긴 것이므로
-// 출처(source)와 확인일(checked)을 항상 함께 둔다.
+// 데이터 구조. 대학 권장과목·학교 편제표는 원문을 손으로 옮긴 자료라
+// 출처(source)와 확인일(checked)을 늘 함께 둔다.
 
 export type Area = '국어' | '수학' | '영어' | '사회' | '과학' | '정보' | '기술·가정' | '제2외국어' | '한문' | '체육' | '예술' | '교양' | '기타'
 
@@ -40,7 +40,7 @@ export type Level = 'core' | 'recommended'
 export interface Clause {
   /** 'all' = 전부, 숫자 = 이 중 n과목 이상 */
   pick: 'all' | number
-  /** 과목명. 'area:제2외국어'처럼 쓰면 그 교과(군)의 모든 과목 */
+  /** 과목명, 또는 묶음 표기 area:·career:·general:·family: (engine/plan의 resolveSubjects) */
   subjects: string[]
   level?: Level
   /** 원문 표기 */
@@ -120,7 +120,7 @@ export interface School {
   terms: Term[]
   tracks: Track[]
   notes: string[]
-  /** 서버 공유 저장소에서 받은 편제표면 그 번호와 읽은 날 (틀린 곳 알리기에 쓴다) */
+  /** 서버 공유 저장소에서 받은 편제표의 번호와 읽은 날 (틀린 곳 알리기용) */
   shared?: { id: number; at: string; verified?: boolean }
   /** 학과·계열 (특성화고·특목고는 학과마다 편제표가 다르다) */
   track?: string
@@ -260,15 +260,15 @@ export interface AdmissionPlan {
   planTitle: string
   /** 원문 파일 주소 */
   url: string
-  /** 원문을 올린 안내 게시글 (파일을 바로 열 수 없을 때: 한글 파일, 일회용 링크, 다른 사이트에서 막힌 다운로드) */
+  /** 원문 안내 게시글. 파일을 바로 열 수 없을 때 (한글 파일, 일회용 링크, 다른 사이트에서 막힌 다운로드) */
   page?: string
   /** 바뀌었는지 살필 주소 (없으면 url) */
   watch?: string
   /** 이 자료를 옮긴 원문 파일의 지문 (sha256 앞 16자리). 서버가 원문을 처음 받을 때 같은 파일인지 본다 */
   fileSha?: string
-  /** AI가 원문에서 옮기고 사람이 아직 확인하지 않은 자료면 옮긴 날 (YYYY-MM-DD). 화면이 원문을 꼭 확인하라고 알린다 */
+  /** AI가 옮기고 사람이 아직 확인하지 않았으면 옮긴 날 (YYYY-MM-DD). 화면에 원문 확인 안내가 뜬다 */
   ai?: string
-  /** AI가 옮긴 자료를 더 정확한 AI가 원문과 대조해 고치고 확인한 날 (YYYY-MM-DD). 사람이 확인하면 ai와 함께 지운다 */
+  /** 더 정확한 AI가 원문과 대조해 고치고 확인한 날 (YYYY-MM-DD). 사람이 확인하면 ai와 함께 지운다 */
   aiCheck?: string
   date: string
   totals: Record<string, number> | null

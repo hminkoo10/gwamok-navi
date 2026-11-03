@@ -1,6 +1,6 @@
 import { Link } from './Link'
 
-/** 관리자가 '사용자 키로 AI 쓰기'를 켰는데 내 Gemini API 키가 없을 때: AI 기능 자리에 등록·발급 안내를 보인다 */
+/** '사용자 키로 AI 쓰기'가 켜졌는데 내 Gemini API 키가 없을 때 AI 기능 자리에 띄우는 등록·발급 안내 */
 export function KeyNeeded({ what, other }: { what: string; other?: string }) {
   return (
     <div className="callout key-needed">

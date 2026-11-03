@@ -57,7 +57,7 @@ export function FocusPanel({ focus, onChange, univs, byUniv, school, loading, ro
   )
 }
 
-/** 학과마다 목표 전형이 권장과목(과목 이수)을 보는지: 서류로 보면 넣고, 성적·수능만 보면 뺀다 */
+/** 학과마다 목표 전형이 권장과목(과목 이수)을 보는지: 서류로 보면 넣고, 성적·수능만 보면 뺌 */
 function RouteSummary({ focus, routes, keepAll, onKeepAll }: { focus: Focus; routes: UnitRoute[]; keepAll: boolean; onKeepAll: (v: boolean) => void }) {
   if (!routes.length) return null
   const names = (kind: UnitRoute['kind']) => [...new Set(routes.filter((r) => r.kind === kind).map((r) => `${short(r.unit.univ)} ${r.unit.name}`))]
@@ -155,7 +155,7 @@ function EssayInfo({ plans }: { plans: AdmissionPlan[] }) {
   )
 }
 
-/** 넓은 화면에서만 첫 대학 표를 펼쳐 둔다. 휴대폰에서 펼쳐 두면 시간표가 한참 아래로 밀린다 */
+/** 넓은 화면(900px 이상)에서만 첫 대학 표를 펼쳐 둠. 휴대폰에서 펼치면 시간표가 한참 아래로 밀림 */
 const isWide = () => typeof window !== 'undefined' && !!window.matchMedia?.('(min-width: 900px)').matches
 
 function SuneungInfo({ plans, routes }: { plans: AdmissionPlan[]; routes: UnitRoute[] }) {

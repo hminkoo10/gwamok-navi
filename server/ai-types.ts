@@ -22,7 +22,7 @@ export interface AiConfig {
 
 export class AiError extends Error {
   readonly status: number
-  /** 관리자 연결 시험에만 보여 주는 짧은 원인 (HTTP 상태·오류 종류. 키나 계정 정보는 넣지 않는다) */
+  /** 관리자 연결 시험에만 보여 주는 짧은 원인: HTTP 상태·오류 종류 (키·계정 정보는 넣지 않음) */
   readonly detail: string
 
   constructor(status: number, message: string, detail = '') {
@@ -37,7 +37,7 @@ export interface ChatRequest {
   user: string
   /** data: URL 이미지 */
   images?: string[]
-  /** 그림이 없어도 표 옮기기처럼 어려운 일은 비전 모델(더 강한 모델)로 보낸다 */
+  /** 그림이 없어도 표 옮기기처럼 어려운 일은 비전 모델(더 강한 모델)로 */
   heavy?: boolean
   maxTokens: number
   timeoutMs: number

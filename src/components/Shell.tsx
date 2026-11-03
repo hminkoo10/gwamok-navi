@@ -25,7 +25,7 @@ function AccountMenu() {
   const box = useRef<HTMLDivElement>(null)
   const { path } = useLocation()
 
-  // 다른 곳을 누르거나 Esc를 누르면 닫는다
+  // 다른 곳을 누르거나 Esc면 닫음
   useEffect(() => {
     if (!open) return
     const onDown = (e: PointerEvent) => {
@@ -42,7 +42,7 @@ function AccountMenu() {
     }
   }, [open])
 
-  // 페이지를 옮기면 닫는다
+  // 페이지를 옮기면 닫음
   const [lastPath, setLastPath] = useState(path)
   if (lastPath !== path) {
     setLastPath(path)
@@ -93,7 +93,7 @@ export function Header({ section }: { section: Section }) {
     setLastPath(path)
     setOpen(false)
   }
-  // 로그인한 사람이 확인되기 전에는 이 기기에 남은 설계(다른 사람 것일 수 있다)를 보이지 않는다
+  // 로그인한 사람이 확인되기 전에는 이 기기에 남은 설계를 숨김 (다른 사람 것일 수 있음)
   const mine = authReady && (!!user || !features.server)
   const school = mine ? store.school : null
   const planTo = school && store.prefs.majors.length && store.prefs.univs.length ? '/plan' : '/start'
@@ -104,7 +104,7 @@ export function Header({ section }: { section: Section }) {
     ['/help', '도움말', 'help'],
   ]
   const accounts = authReady && features.server
-  // 로그인해야 쓰는 서비스라, 로그인하지 않은 사람에게는 '시작하기' 대신 로그인을 보인다
+  // 로그인해야 쓰는 서비스라 로그인 전에는 '시작하기' 대신 로그인
   const guest = accounts && !user
   const onAuthPage = path === '/login' || path === '/signup'
   const loginTo = `/login?next=${encodeURIComponent(path)}`
@@ -200,7 +200,7 @@ export function NoticeBar() {
   const [dismissed, setDismissed] = useState(readDismissed)
   const notice = features.notice
   const showNotice = !!notice && dismissed !== notice
-  // 목표 대학을 고른 사람에게만, 그 대학 자료가 바뀌었을 때 (로그인한 뒤에만: 이 기기에 남은 설계는 다른 사람 것일 수 있다)
+  // 목표 대학 자료가 바뀌었을 때만, 로그인한 뒤에만 (이 기기에 남은 설계는 다른 사람 것일 수 있음)
   const targets = store.prefs.univs
   const { unseen, markSeen } = useUnseenUpdates(targets, features.server && !!user && targets.length > 0)
   const changed = path === '/updates' ? [] : unseen
@@ -239,7 +239,7 @@ export function NoticeBar() {
                 try {
                   sessionStorage.setItem('gwamok-navi:notice', notice)
                 } catch {
-                  // 저장 못 해도 닫는다
+                  // 저장 못 해도 닫음
                 }
               }}
             >

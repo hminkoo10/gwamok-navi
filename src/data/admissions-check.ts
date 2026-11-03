@@ -1,8 +1,8 @@
 import type { AdmissionPlan, AdmissionTrack } from './schema'
 import { ADMISSION_TYPES, SCHOOL_TYPES, SPECIALS } from './schema'
 
-// 전형 자료 한 대학 몫을 검사하고 정리한다. 관리자가 화면에서 고친 자료와 AI가 원문에서 찾은 고칠 곳도 이 검사를 거친다.
-// (scripts/build-admissions.mjs와 같은 규칙)
+// 전형 자료 한 대학 몫을 검사·정리한다. 관리자가 화면에서 고친 자료, AI가 원문에서 찾은 고칠 곳도 여기를 거친다.
+// 규칙은 scripts/build-admissions.mjs와 같다.
 
 const PERIODS = ['수시', '정시', '기타']
 const QUOTAS = ['정원내', '정원외']
@@ -140,7 +140,7 @@ export function checkPlan(raw: unknown, univ: string, source: Pick<AdmissionPlan
   const link = (x: unknown, fallback: string | undefined) => (typeof x === 'string' && /^https:\/\//.test(x) ? x.slice(0, 500) : fallback)
   const page = link(r.page, source.page)
   const watch = link(r.watch, source.watch)
-  // AI가 옮긴 날: 관리자가 확인하고 지우면(빼고 저장하면) 표시가 사라진다
+  // ai: 관리자가 확인하고 빼고 저장하면 표시가 사라진다. aiCheck는 ai가 있을 때만 남긴다
   const ai = typeof r.ai === 'string' && /^20\d\d-\d\d-\d\d$/.test(r.ai) ? r.ai : null
   const aiCheck = ai && typeof r.aiCheck === 'string' && /^20\d\d-\d\d-\d\d$/.test(r.aiCheck) ? r.aiCheck : null
   return {

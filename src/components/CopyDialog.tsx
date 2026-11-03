@@ -1,6 +1,6 @@
 import { Dialog } from './Dialog'
 
-/** 브라우저가 클립보드 복사를 막았을 때: 줄바꿈을 그대로 둔 채 직접 골라 복사하게 보여 준다 */
+/** 클립보드 복사가 막혔을 때 직접 골라 복사하는 창 (줄바꿈 유지) */
 export function CopyDialog({ text, onClose }: { text: string; onClose: () => void }) {
   return (
     <Dialog

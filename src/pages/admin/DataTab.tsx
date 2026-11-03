@@ -11,7 +11,7 @@ import { useLoad } from '../../lib/hooks'
 
 const STATUS_CLASS: Record<string, string> = { 바뀜: 'is-warn', 없어짐: 'is-warn', '연결 실패': '', 그대로: 'is-ok', 확인함: 'is-ok' }
 const name = (univ: string) => (univ ? (UNIV_BY_ID.get(univ)?.short ?? univ) : '공통')
-/** 서버·원문에서 온 주소는 http(s)일 때만 링크로 건다 */
+/** 서버·원문에서 온 주소는 http(s)일 때만 링크로 (javascript: 등 차단) */
 const safeHref = (url: string) => {
   try {
     const u = new URL(url)
@@ -21,14 +21,14 @@ const safeHref = (url: string) => {
   }
 }
 
-/** 한 대학 전형 자료 고치기 (JSON, 서버가 검사한다). 대학마다 key를 달리 줘서 앞서 연 대학의 고치던 글이 남지 않게 한다 */
+/** 한 대학 전형 자료 JSON 편집 (서버가 검사). 대학마다 key를 달리 줘야 앞서 연 대학의 고치던 글이 남지 않음 */
 function PlanEditor({ univ, onClose, onSaved }: { univ: string | null; onClose: () => void; onSaved: () => void }) {
   const { notify } = useApp()
   const loaded = useLoad(
     () => (univ ? dataAdmin.plan(univ).then((r) => ({ univ, text: JSON.stringify(r.plan, null, 2), tag: r.tag })) : Promise.resolve(null)),
     univ ?? '',
   )
-  // 받은 자료가 지금 연 대학 것일 때만 쓴다 (다른 대학 자료를 이 대학 것으로 저장하지 않게)
+  // 받은 자료가 지금 연 대학 것일 때만 씀 (다른 대학 자료를 이 대학 것으로 저장하지 않게)
   const loadedText = loaded.data && loaded.data.univ === univ ? loaded.data.text : null
   const [text, setText] = useState<string | null>(null)
   const [summary, setSummary] = useState('')
@@ -48,7 +48,7 @@ function PlanEditor({ univ, onClose, onSaved }: { univ: string | null; onClose: 
     setBusy(true)
     setError('')
     try {
-      // 불러온 판을 함께 보내, 편집기를 연 뒤 바뀐 자료(다른 관리자·AI 제안 반영)를 덮어쓰지 않게 한다
+      // 불러온 판(tag)을 함께 보내, 편집기를 연 뒤 바뀐 자료(다른 관리자·AI 제안 반영)를 덮어쓰지 않게
       await dataAdmin.savePlan(univ, parsed, summary, loaded.data?.univ === univ ? loaded.data.tag : undefined)
       notify('저장했어요. 모든 화면에 바로 반영돼요.')
       await refreshAdmissions()
@@ -256,11 +256,11 @@ function CheckBadge({ check }: { check: CheckRow | undefined }) {
   )
 }
 
-/** 전형 자료가 없는 대학의 시행계획을 서버가 받아 AI로 옮긴다. 켜 두면 하루 한도 안에서 한 시간마다 이어서 한다 */
+/** 전형 자료가 없는 대학의 시행계획을 서버가 받아 AI로 옮김. 켜 두면 하루 한도 안에서 한 시간마다 이어서 */
 function ImportCard({ onChanged }: { onChanged: () => void }) {
   const { notify } = useApp()
   const data = useLoad(() => dataAdmin.imports(), 'imports')
-  // 고르기 전에는 못 한 대학이 있으면 그것을, 없으면 기다리는 대학을 보여 준다
+  // 필터를 고르기 전 기본값: 못 한 대학이 있으면 그것, 없으면 기다리는 대학
   const [chosen, setFilter] = useState<ImportRow['status'] | 'all' | null>(null)
   const [urlFor, setUrlFor] = useState<string | null>(null)
   const [url, setUrl] = useState('')
@@ -270,7 +270,7 @@ function ImportCard({ onChanged }: { onChanged: () => void }) {
   const current = data.data?.state.current ?? null
   const checking = data.data?.verify.current ?? null
 
-  // 옮기거나 검수하는 동안에는 몇 초마다 새로 받는다
+  // 옮기거나 검수하는 동안 몇 초마다 새로 받음
   useEffect(() => {
     if (!enabled && !current && !checking) return
     const t = setInterval(reload, 8000)
@@ -457,7 +457,7 @@ export function DataTab() {
   const busy = data.data?.checking.length ?? 0
   const { reload } = data
 
-  // AI가 확인하는 동안에는 몇 초마다 새로 받아 결과를 보여 준다
+  // AI가 확인하는 동안 몇 초마다 새로 받아 결과 표시
   useEffect(() => {
     if (!busy) return
     const t = setInterval(reload, 5000)
@@ -504,7 +504,7 @@ export function DataTab() {
       await refreshAdmissions()
     } catch (e) {
       notify(e instanceof ApiError ? e.message : '처리하지 못했어요.')
-      // 반영하지 못했어도 제안이 직접 확인으로 돌아갔을 수 있어 새로 받는다
+      // 반영하지 못했어도 제안이 직접 확인으로 돌아갔을 수 있어 새로 받음
       data.reload()
     }
   }

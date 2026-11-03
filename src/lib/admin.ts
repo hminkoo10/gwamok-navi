@@ -25,14 +25,14 @@ export interface LogEntry {
   id: number
   /** admin: 관리자가 바꾼 것, user: 사용자가 한 일 */
   kind: 'admin' | 'user'
-  /** 한 사람 (이메일, 탈퇴·삭제한 계정이면 그 사실만) */
+  /** 한 사람의 이메일. 탈퇴·삭제한 계정이면 그 사실만 */
   who: string
   /** 그 사람의 지금 이름 (없으면 빈 문자열) */
   name: string
   action: string
   target: string
   detail: string
-  /** 잠깐 사이 같은 일을 여러 번 했으면 그 횟수 (한 줄로 모았다) */
+  /** 짧은 사이 같은 일을 되풀이한 횟수 (한 줄로 묶음) */
   times: number
   createdAt: string
 }
@@ -44,7 +44,7 @@ export interface Overview {
   usage: { read: number; import: number; match: number }
   limits: { read: number; import: number; match: number }
   ai: boolean
-  /** 내 Gemini API 키를 등록한 사람 수 */
+  /** 자기 Gemini API 키를 등록한 사람 수 */
   userKeys: number
   settings: SettingValues
   log: LogEntry[]
@@ -111,9 +111,9 @@ const qs = (params: Record<string, string | number | undefined>) => {
   return s ? `?${s}` : ''
 }
 
-/** 관리자가 넣은 AI 연결 (키는 끝 4자리만 온다) */
 export type AiKind = 'openai' | 'anthropic' | 'google'
 
+/** 관리자가 넣은 AI 연결. 키는 끝 4자리(keyHint)만 온다 */
 export interface AiProvider {
   id: number
   name: string
@@ -137,7 +137,7 @@ export interface AiState {
   /** 환경변수(.env)에 적힌 연결 요약 (없으면 null) */
   env: { host: string; model: string; visionModel: string } | null
   active: number | null
-  /** 지금 쓰는 연결 (없으면 AI가 꺼져 있다) */
+  /** 지금 쓰는 연결. null이면 AI 꺼짐 */
   using: { name: string; kind: AiKind; model: string } | null
   /** 고른 연결의 키를 풀 수 없어 AI가 꺼진 상태 */
   broken: boolean
@@ -322,12 +322,12 @@ export interface DataOverview {
   ai: boolean
 }
 
-/** 전형 없는 대학 가져오기: 대학 하나 */
+/** 전형 자료가 없는 대학 가져오기: 대학별 진행 상태 */
 export interface ImportRow {
   univ: string
   name: string
   status: 'waiting' | 'running' | 'done' | 'failed' | 'skipped'
-  /** 쓸(쓴) 원문 주소. 빈 문자열이면 대교협 파일 저장소에서 이름으로 찾는다 */
+  /** 원문 주소. 비어 있으면 대교협 저장소에서 대학 이름으로 찾는다 */
   url: string
   custom: boolean
   detail: string
@@ -350,7 +350,7 @@ export interface CheckRow {
 
 export interface DataImports {
   checks: CheckRow[]
-  /** 검수: 켜짐·한도·오늘 한 수·지금 검수하는 대학·멈춘 까닭, 검수 AI */
+  /** 검수 상태. current: 지금 검수하는 대학, note: 멈춘 까닭, ai: 검수 AI */
   verify: { enabled: boolean; limit: number; doneToday: number; current: string | null; note: string; ai: { name: string; model: string } | null }
   rows: ImportRow[]
   /** model: 마지막으로 답한 모델 (무료 Gemini 한도에 걸리면 다른 무료 모델로 바뀐다) */
@@ -368,7 +368,7 @@ export const dataAdmin = {
   verifyPlan: (univ: string) => call<{ version: string }>('/api/admin/data/imports/verify', postJson({ univ })),
   /** 더 좋은 AI로 지금 검수 */
   reviewPlan: (univ: string) => call<{ started: boolean }>('/api/admin/data/verify/run', postJson({ univ })),
-  /** tag: 불러온 판 (저장할 때 base로 돌려주면 그사이 바뀐 자료를 덮어쓰지 않는다) */
+  /** tag: 불러온 판. 저장할 때 base로 돌려주면 그사이 바뀐 자료를 덮어쓰지 않는다 */
   plan: (univ: string) => call<{ plan: unknown; tag?: string }>(`/api/admin/data/plan?univ=${encodeURIComponent(univ)}`),
   savePlan: (univ: string, plan: unknown, summary: string, base?: string) =>
     call<{ version: string }>('/api/admin/data/plan', postJson({ univ, plan, summary, base })),

@@ -1,12 +1,12 @@
 import { MAJOR_BY_ID } from '../src/data/majors'
 import { UNIV_BY_ID } from '../src/data/universities'
 
-// 계정에 올린 설계가 바뀐 곳을 사람이 읽는 줄로 바꾼다 (관리자 화면 '사용자 로그'에 남긴다).
-// 화면이 보낸 값이라 모양을 믿지 않고, 아는 값만 이름으로 바꾼다. 같은 내용을 다시 올린 것은 줄을 만들지 않는다.
+// 계정에 올린 설계가 바뀐 곳을 사람이 읽는 줄로 바꾼다 (관리 화면 '사용자 로그'에 남김).
+// 화면이 보낸 값이라 모양을 믿지 않고 아는 값만 이름으로 바꾼다. 같은 내용을 다시 올린 것은 줄을 만들지 않는다.
 
 export interface DesignChange {
   action: string
-  /** 어느 설계에서 한 일인지 (슬롯 이름, 원서 후보, 내 조건, 학교) */
+  /** 어느 설계에서 한 일인지: 슬롯 이름, 원서 후보, 내 조건, 학교 */
   target: string
   detail: string
 }
@@ -40,13 +40,13 @@ function delta(before: string[], after: string[], name: (s: string) => string): 
 const num = (x: unknown) => (typeof x === 'number' ? x : Number(x) || 0)
 /**
  * 편제표 내용: 학기별 과목·학점, 선택 칸(이름·고르는 수·학점·과목), 두 학기 세트만 견준다.
- * 칸 id·필드 순서·출처 같은 꼬리표는 화면이 편제표를 정리하면서 바뀔 수 있어, 그것만 바뀐 것은 고친 것으로 보지 않는다
+ * 칸 id·필드 순서·출처 같은 꼬리표는 화면이 편제표를 정리하며 바뀔 수 있어, 그것만 바뀐 건 고친 것으로 보지 않는다
  */
 const content = (s: Obj) =>
   JSON.stringify([
     list(s.terms)
       .map(obj)
-      // 과목이 없는 빈 학기는 화면이 채워 넣기도 해서 견주지 않는다
+      // 과목 없는 빈 학기는 화면이 채워 넣기도 해서 견주지 않는다
       .filter((t) => list(t.fixed).length > 0 || list(t.groups).length > 0)
       .map((t) => [
         text(t.id, 8),
@@ -82,7 +82,7 @@ const content = (s: Obj) =>
       ]),
   ])
 
-/** 앞서 저장한 설계와 새 설계를 견줘 사용자가 한 일을 줄로 만든다 */
+/** 이전 설계와 새 설계를 견줘 사용자가 한 일을 줄로 */
 export function designChanges(before: unknown, after: unknown): DesignChange[] {
   const B = obj(before)
   const A = obj(after)
@@ -110,7 +110,7 @@ export function designChanges(before: unknown, after: unknown): DesignChange[] {
   const switched = bp.slot !== ap.slot
   if (switched && bSlots.some((x) => x.id === ap.slot)) add('design.slot', `슬롯 열기 '${target}'`)
 
-  // 지금 슬롯의 설계 (다른 슬롯을 열었으면 그 슬롯의 설계로 바뀐 것이라 남기지 않는다)
+  // 지금 슬롯의 설계 (다른 슬롯을 열었으면 그 슬롯 설계로 바뀐 것이라 남기지 않음)
   if (!switched) {
     if (bp.schoolId !== ap.schoolId)
       add('design.school', ap.schoolId ? `${bp.schoolId ? `${schoolName(bp.schoolId)} → ` : ''}${schoolName(ap.schoolId)}` : '학교 비움')
@@ -137,7 +137,7 @@ export function designChanges(before: unknown, after: unknown): DesignChange[] {
   }
 
   // 모든 슬롯이 같이 쓰는 것: 원서 후보, 내 조건.
-  // 원서 후보는 개수와 대학만 남기고 전형 이름은 남기지 않는다 (기회균형·농어촌처럼 지원 자격이 드러나는 전형이 있어서)
+  // 원서 후보는 개수와 대학만, 전형 이름은 남기지 않는다 (기회균형·농어촌처럼 지원 자격이 드러나는 전형이 있어서)
   const bPicks = [...new Set(strs(bp.picks))]
   const aPicks = [...new Set(strs(ap.picks))]
   const same = (x: string[], y: string[]) => x.length === y.length && x.every((k) => y.includes(k))
@@ -156,7 +156,7 @@ export function designChanges(before: unknown, after: unknown): DesignChange[] {
   ].filter(Boolean)
   add('design.profile', profile.join(' · '), '내 조건')
 
-  // 학교 편제표: 직접 넣거나 고친 것, 지운 것 (학교를 고르며 함께 저장한 것은 학교 고르기 줄로 충분하다)
+  // 학교 편제표: 직접 넣거나 고친 것, 지운 것 (학교를 고르며 함께 저장한 건 학교 고르기 줄로 충분)
   for (const s of aSchools) {
     const old = bSchools.find((x) => x.id === s.id)
     const name = text(s.name) || '이름 없는 학교'

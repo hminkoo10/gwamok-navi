@@ -8,7 +8,7 @@ import { useLoad } from '../../lib/hooks'
 
 const KIND_LABEL: Record<AiKind, string> = { anthropic: 'Claude', google: 'Gemini', openai: 'OpenAI 호환' }
 
-/** 종류마다: 고르는 이름, 공식 주소(비우면 이 주소), 처음 모델, 추론 강도 값, 키 모양 */
+/** 종류별 표시 이름, 공식 주소(주소 칸을 비우면 이것), 기본 모델, 기본 추론 강도·고를 수 있는 값, 키 모양 */
 const KINDS: Record<AiKind, { label: string; url: string; model: string; textEffort: string; efforts: string[] | null; keyHint: string }> = {
   anthropic: {
     label: 'Claude (Anthropic API)',
@@ -21,7 +21,7 @@ const KINDS: Record<AiKind, { label: string; url: string; model: string; textEff
   google: {
     label: 'Gemini (Google AI Studio)',
     url: 'https://generativelanguage.googleapis.com/v1beta/openai',
-    // 가장 새 모델(gemini-3.8-flash)은 무료 등급에서 '요청 몰림'(503)이 잦아 한 단계 앞 모델을 처음 값으로 둔다 (2026-10-22 확인)
+    // 최신 gemini-3.8-flash는 무료 등급에서 503(요청 몰림)이 잦아 한 단계 앞 모델이 기본값 (2026-10-22 확인)
     model: 'gemini-3.6-flash',
     textEffort: 'low',
     efforts: ['minimal', 'low', 'medium', 'high'],
@@ -30,7 +30,7 @@ const KINDS: Record<AiKind, { label: string; url: string; model: string; textEff
   openai: { label: 'OpenAI 호환 주소', url: '', model: '', textEffort: '', efforts: null, keyHint: '' },
 }
 
-/** 고를 수 있게 보여 주는 모델 (Gemini는 2026-10 기준 무료 등급이 있는 모델) */
+/** 고르기 목록에 보이는 모델. Gemini는 2026-10 기준 무료 등급이 있는 것만 */
 const MODELS: Partial<Record<AiKind, string[]>> = {
   anthropic: ['claude-opus-5-5', 'claude-sonnet-5-5', 'claude-haiku-5-5', 'claude-fable-5-1'],
   google: ['gemini-3.6-flash', 'gemini-3.8-flash', 'gemini-3.5-flash-lite', 'gemini-3.1-flash-lite'],
@@ -49,7 +49,7 @@ const EMPTY: AiProviderDraft = {
   visionEffort: '',
 }
 
-/** 서버가 저장할 주소 (비우면 공식 주소. Claude는 끝의 /v1을, 나머지는 /chat/completions를 뗀다) */
+/** 서버에 저장할 주소. 비우면 공식 주소, Claude는 끝의 /v1을, 나머지는 /chat/completions를 뗌 */
 const savedUrl = (kind: AiKind, url: string) => {
   const u = url.trim().replace(/\/+$/, '')
   return (kind === 'anthropic' ? u.replace(/\/v1$/, '') : u.replace(/\/chat\/completions$/, '')) || KINDS[kind].url
@@ -106,7 +106,7 @@ function ProviderForm({
   const set = (patch: Partial<AiProviderDraft>) => setD({ ...d, ...patch })
   const kind = KINDS[d.kind]
   const models = MODELS[d.kind]
-  // 저장된 키는 원래 주소로만 보낸다. 주소·종류를 바꾸면 키를 다시 받는다
+  // 저장된 키는 원래 주소로만 보냄. 주소·종류를 바꾸면 키를 다시 받음 (키가 다른 곳으로 새지 않게)
   const moved = !!editing && (d.kind !== editing.kind || savedUrl(d.kind, d.baseUrl) !== editing.baseUrl)
 
   const submit = async (e: FormEvent) => {
@@ -245,7 +245,7 @@ function ProviderForm({
   )
 }
 
-/** 시험 실패 원인(HTTP 상태)으로 고칠 곳을 짚는다. Gemini는 키가 틀려도 400을 준다 */
+/** 시험 실패의 HTTP 상태로 고칠 곳 짚기. Gemini는 키가 틀려도 400 */
 function fixHint(kind: AiKind, detail = ''): string {
   const status = Number(/^HTTP (\d{3})\b/.exec(detail)?.[1])
   if ([400, 401, 403, 404].includes(status)) return '키, 모델 이름, 주소를 확인해 주세요.'

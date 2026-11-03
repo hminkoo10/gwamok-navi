@@ -95,8 +95,8 @@ export class Datasets {
   }
 
   /**
-   * 관리자가 고친 대학 자료를 검사해 저장하고 소식을 남긴다 (받은 자료 전체로 덮는다).
-   * AI 제안은 PlanUpdater.apply가 제안이 바꾸는 곳만 지금 자료에 옮겨 넘기고, 고친 뒤에는 updater.revalidate로 기다리는 제안을 다시 본다
+   * 관리자가 고친 대학 자료를 검사해 저장하고 소식을 남긴다 (받은 자료 전체로 덮음).
+   * AI 제안은 PlanUpdater.apply가 바꿀 곳만 지금 자료에 옮겨 넘기고, 고친 뒤에는 updater.revalidate로 기다리는 제안을 다시 본다
    */
   setPlan(univ: string, raw: unknown, by: string, summary: string): AdmissionPlan {
     const before = this.plan(univ)
@@ -111,7 +111,7 @@ export class Datasets {
     return plan
   }
 
-  /** 고친 것을 지우고 배포한 자료로 되돌린다 (관리 화면은 원문 기준과 기다리던 제안까지 정리하는 PlanUpdater.revert를 쓴다) */
+  /** 고친 것을 지우고 배포한 자료로 되돌린다 (관리 화면은 원문 기준·기다리던 제안까지 정리하는 PlanUpdater.revert를 씀) */
   revert(univ: string, by: string): boolean {
     const n = this.db.prepare("delete from data_overrides where dataset = 'admissions' and key = ?").run(univ).changes
     if (n) this.addUpdate('admissions', univ, '배포한 자료로 되돌렸어요', by)

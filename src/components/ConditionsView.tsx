@@ -26,7 +26,7 @@ export function ConditionsView({ plan, allUnits, selectedIds, skipped = [], focu
   const shown = onlyMissing ? plan.units.filter((r) => !r.ok) : plan.units
   const removed = allUnits.filter((u) => !selectedIds.has(u.id))
 
-  // 대학별로 묶는다 (목표 대학 순서)
+  // 대학별로 묶기 (목표 대학 순서)
   const byUniv = new Map<string, UnitResult[]>()
   for (const r of shown) byUniv.set(r.unit.univ, [...(byUniv.get(r.unit.univ) ?? []), r])
 
@@ -37,7 +37,7 @@ export function ConditionsView({ plan, allUnits, selectedIds, skipped = [], focu
       .map((slot) => (slot.kind === 'group' ? groupLabel.get(slot.groupId) : slot.kind === 'track' ? `${TERM_LABEL[slot.term]} 세트` : null))
       .filter(Boolean)
       .join(', ')
-    // 칸을 차지한 까닭을 알면 그대로 알려 준다 (꼭 듣기로 한 과목, 대신 고른 세트)
+    // 칸을 차지한 까닭(꼭 듣기 과목, 대신 고른 세트)을 알면 그대로 알려 줌
     if (m.cause === 'pinned' && m.by?.length) return `꼭 듣기로 한 ${m.by.join('·')}이(가) ${where} 칸을 차지했어요.`
     if (m.cause === 'other-set' && m.by?.length) return `${m.by.join('·')} 세트를 골라 들을 수 없어요.`
     return `${where} 칸을 다른 권장과목이 먼저 차지했어요.`

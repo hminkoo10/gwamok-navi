@@ -24,16 +24,15 @@ import planSources from './plan-sources.json'
 import { changeLines, type DocText, linesSummary, unsureOf } from './plan-update'
 
 // AI가 옮긴 전형 자료(ai 표시)를 더 정확한 AI로 원문과 대조해 고치고 'AI 검수' 표시(aiCheck)를 붙인다.
-// 무료 AI가 옮긴 자료를 사람이 하나하나 볼 수 없어서, 유료 연결(Claude 등)이 원문 쪽과 옮긴 자료를 함께 보고
-// 틀린 값을 고치고, 빠진 전형을 더하고, 원문에 없는 전형을 뺀다. 고친 전형도 하나씩 검사(checkPlan)를 통과해야 남는다.
-// 원문이 그 대학 2028 시행계획이 아니라고 보면(판단 불가) 고치지 않고 관리자에게 남긴다.
+// 무료 AI가 옮긴 자료를 사람이 다 볼 수 없어, 유료 연결(Claude 등)이 원문 쪽과 함께 보고 틀린 값·빠진 전형·원문에 없는 전형을 고친다.
+// 고친 전형도 하나씩 checkPlan을 통과해야 남는다. 원문이 그 대학 2028 시행계획이 아니면(판단 불가) 고치지 않고 실패로 남기며, 가져온 자료면 내린다.
 
 export interface VerifyDeps {
-  /** 기준으로 받아 둔 원문 글자 (없으면 download·read로 받는다) */
+  /** 기준 원문 글자. 없으면 download·read로 */
   snapshot: (univ: string) => DocText | null
   download: (plan: Pick<AdmissionPlan, 'univ' | 'url' | 'page' | 'watch'>) => Promise<Buffer | null>
   read: (buf: Buffer) => Promise<DocText>
-  /** 검수에 쓸 AI (가져오기보다 좋은 연결). 없으면 검수하지 않는다 */
+  /** 검수 AI (가져오기보다 좋은 연결). 없으면 검수 안 함 */
   ai: () => AiConfig | null
   chat?: (cfg: AiConfig, req: ChatRequest) => Promise<string>
   enabled: () => boolean
@@ -42,7 +41,7 @@ export interface VerifyDeps {
   now?: () => Date
   pause?: number
   retryWait?: number
-  /** 검수 AI가 원문이 이 대학 2028 시행계획이 아니라고 했을 때 (가져온 자료면 내린다) */
+  /** 검수 AI가 원문이 이 대학 2028 시행계획이 아니라고 했을 때. 가져온 자료면 내림 */
   onReject?: (univ: string, reason: string) => void
 }
 
@@ -80,7 +79,7 @@ interface Row {
   updated_at: string | null
 }
 
-/** 원문 글자를 다시 읽어도 답을 못 받으면 그만두는 횟수 */
+/** 같은 대학 시도 상한. AI 답을 못 받으면 이만큼 해 보고 그만둠 */
 const MAX_TRIES = 2
 /** 한 번에 대조하는 전형 수와 원문 글자 수 */
 const BATCH = 30
@@ -118,14 +117,14 @@ const VERIFY_SYSTEM = `너는 대학 입학전형 자료 검수자다.
  "totals":null,
  "unsure":["확실하지 않은 점"]}`
 
-/** 첫 묶음에만: 전형 목록 전체를 원문 모집인원 표와 견준다 */
+/** 첫 묶음에만: 전형 목록 전체를 원문 모집인원 표와 대조 */
 const LIST_RULES = `이번 묶음에서 할 일
 - 원문 전형별 모집인원 표에 있는데 옮긴 자료에 없는 전형은 add로 더한다. 원문에 없거나 다른 캠퍼스의 전형은 remove로 뺀다.
 - 모집시기별 합계(totals)가 원문과 다르면 {"수시":n,"정시":n}(정원내+정원외)으로 고치고, 맞거나 원문에 없으면 null.`
 const BATCH_RULES = `이번 묶음에서 할 일
 - 받은 전형만 대조해 update로 고친다. 전형 더하기·빼기와 합계는 다른 묶음에서 하므로 하지 않는다 (totals는 null).`
 
-/** 고친 전형이 검사를 통과하는지 (한 전형씩) */
+/** 전형 하나가 checkPlan을 통과하는지 */
 function valid(univ: string, track: Obj): boolean {
   try {
     checkPlan({ planTitle: '검사', date: LEGAL_DATE, totals: null, changes: [], tracks: [track] }, univ)
@@ -139,8 +138,8 @@ const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 class AnswerError extends Error {}
 
 /**
- * 검수 답을 자료에 옮긴다. 고친 값은 가져오기와 같은 방식으로 정리하고(길이·정해진 값), 검사를 통과하지 못한 고침은 버린다.
- * 돌려주는 skipped: 적용하지 못한 고침 수
+ * 검수 답을 자료에 옮김. 고친 값은 가져오기와 같은 방식으로 정리(길이·정해진 값)하고, 검사를 통과 못 한 고침은 버림.
+ * skipped: 적용하지 못한 고침 수
  */
 export function applyReview(univ: string, tracks: Obj[], answer: Obj, opts: { ids: Set<string>; list: boolean }): { tracks: Obj[]; skipped: number } {
   let out = tracks.map((t) => ({ ...t }))
@@ -216,7 +215,7 @@ export class PlanVerifier {
     return this.db.prepare('select * from plan_verifies where univ = ?').get(univ) as unknown as Row | undefined
   }
 
-  /** 오늘(서울) 검수를 시작한 대학 수 */
+  /** 오늘(한국 시간) 검수를 시작한 대학 수 */
   doneToday(): number {
     const from = new Date(Date.parse(`${this.today()}T00:00:00+09:00`)).toISOString()
     return (this.db.prepare('select count(*) n from plan_verifies where attempted_at >= ?').get(from) as { n: number }).n
@@ -226,7 +225,7 @@ export class PlanVerifier {
     return { enabled: this.deps.enabled(), limit: this.deps.limit(), doneToday: this.doneToday(), current: this.current, note: this.note }
   }
 
-  /** AI가 옮긴 대학마다 검수 상태 (검수한 대학, 기다리는 대학) */
+  /** AI가 옮긴 대학별 검수 상태 */
   list(): VerifyRow[] {
     const rows = new Map((this.db.prepare('select * from plan_verifies').all() as unknown as Row[]).map((r) => [r.univ, r]))
     return this.datasets
@@ -234,7 +233,7 @@ export class PlanVerifier {
       .plans.filter((p) => p.ai)
       .map((p) => {
         const r = rows.get(p.univ)
-        // 다시 가져와 검수 표시가 없어졌으면 다시 차례를 기다린다
+        // 다시 가져와 검수 표시가 없어졌으면 다시 대기
         const status: VerifyStatus = p.aiCheck
           ? 'done'
           : r?.status === 'failed'
@@ -254,12 +253,12 @@ export class PlanVerifier {
       })
   }
 
-  /** 가져오기로 자료를 새로 넣었으면 검수 기록을 지워 다시 차례를 기다리게 한다 */
+  /** 가져오기로 자료를 새로 넣었을 때 검수 기록을 지워 다시 대기로 */
   reset(univ: string): void {
     this.db.prepare('delete from plan_verifies where univ = ?').run(univ)
   }
 
-  /** 한 대학을 지금 검수한다 (관리자가 누름: 켜져 있지 않아도, 한도를 넘어도 한다) */
+  /** 관리자가 누른 즉시 검수. 꺼져 있거나 하루 한도를 넘어도 함 */
   verifyNow(univ: string): Promise<Outcome> {
     return this.enqueue(univ, false)
   }
@@ -272,7 +271,7 @@ export class PlanVerifier {
     return job
   }
 
-  /** 켜져 있으면 검수를 기다리는 대학을 하루 한도 안에서 차례로 검수한다 */
+  /** 켜져 있으면 기다리는 대학을 하루 한도 안에서 차례로 검수. 이미 돌고 있으면 그대로 */
   kick(): void {
     if (this.looping || !this.deps.enabled()) return
     this.looping = true
@@ -285,7 +284,7 @@ export class PlanVerifier {
       })
   }
 
-  /** 돌고 있는 차례가 끝날 때까지 (시험용) */
+  /** 테스트용: 돌고 있는 차례가 끝날 때까지 */
   idle(): Promise<void> {
     return (async () => {
       while (this.looping) await sleep(5)
@@ -349,7 +348,7 @@ export class PlanVerifier {
       const parts = partsOf(doc)
       if (!parts.length) return this.finish(univ, 'failed', '원문에서 글자를 읽지 못했어요.')
 
-      // 여기서부터 AI를 부른다: 오늘 한도에 센다
+      // 여기서부터 AI 호출: attempted_at을 적어 오늘 한도에 셈
       const tries = (this.row(univ)?.tries ?? 0) + 1
       const at = this.now()
       this.db
@@ -383,7 +382,7 @@ export class PlanVerifier {
             const why = unsureOf(answer.unsure).slice(0, 3).join(' / ')
             const reason = `검수 AI가 원문과 대조할 수 없다고 했어요${why ? `: ${why}` : '.'}`
             const out = this.finish(univ, 'failed', reason, { tries, model: ai.visionModel || ai.model })
-            // 다른 대학·캠퍼스·학년도 원문으로 옮긴 자료일 수 있어 보이지 않게 내린다 (가져온 자료일 때)
+            // 다른 대학·캠퍼스·학년도 원문으로 옮긴 자료일 수 있어 내림 (가져온 자료일 때)
             this.deps.onReject?.(univ, reason)
             return out
           }
@@ -394,15 +393,15 @@ export class PlanVerifier {
           unsure.push(...unsureOf(answer.unsure))
         }
       } catch (e) {
-        // AI 연결 문제(한도·요금·연결)는 이 대학 탓이 아니어서 횟수에 세지 않고 멈춘다
+        // AI 연결 문제(한도·요금·연결)는 이 대학 탓이 아니라 횟수에 세지 않고 멈춤
         if (e instanceof AiError) return { ...this.finish(univ, 'waiting', e.message, { tries: tries - 1 }), stop: true }
         if (e instanceof AnswerError) return this.finish(univ, tries >= MAX_TRIES ? 'failed' : 'waiting', e.message, { tries })
         throw e
       }
-      // 검수하는 사이 자료가 바뀌었으면(다시 가져옴·관리자가 고침) 이번 답은 버린다
+      // 검수하는 사이 자료가 바뀌었으면(다시 가져옴·관리자가 고침) 이번 답은 버림
       if (JSON.stringify(this.datasets.plan(univ)) !== before) return this.finish(univ, 'waiting', '검수하는 사이 자료가 바뀌었어요.', { tries: tries - 1 })
       if (!tracks.length) return this.finish(univ, 'failed', '검수 뒤 남은 전형이 없어요.', { tries })
-      // 모집시기별 합계는 전형별 모집인원 합과 맞을 때만 둔다
+      // 모집시기별 합계는 전형별 모집인원 합과 맞을 때만
       const sums = new Map<string, number>()
       for (const t of tracks) if (typeof t.seats === 'number') sums.set(t.period as string, (sums.get(t.period as string) ?? 0) + t.seats)
       const keep = totals && Object.entries(totals).every(([k, n]) => sums.get(k) === n) ? totals : null
@@ -424,7 +423,7 @@ export class PlanVerifier {
     }
   }
 
-  /** AI에게 묻고 JSON을 꺼낸다. 읽을 수 없으면 한 번 더 묻고, 요청이 몰림·분당 한도는 기다렸다가 다시 묻는다 */
+  /** AI에게 묻고 JSON을 꺼냄. 못 읽으면 한 번 더, 503·429는 기다렸다 다시 */
   private async ask(ai: AiConfig, user: string): Promise<unknown> {
     const call = this.deps.chat ?? chat
     let busy = 0
@@ -433,8 +432,8 @@ export class PlanVerifier {
       try {
         text = await call(ai, { system: VERIFY_SYSTEM, user, heavy: true, maxTokens: 32_000, timeoutMs: 300_000 })
       } catch (e) {
-        // 답이 끊기거나(출력 한도) 비어 있으면 연결 문제가 아니라 이 대학의 문제다: 한 번 더 묻고, 그래도 안 되면 못 함으로 센다
-        // (연결 문제로 보고 멈추면 한 시간마다 같은 대학에서 다시 멈춘다)
+        // 답이 끊기거나(출력 한도) 비면 연결 문제가 아니라 이 대학의 문제: 한 번 더 묻고, 또 그러면 실패로
+        // 연결 문제로 보고 멈추면 1시간마다 같은 대학에서 다시 멈추기 때문
         if (e instanceof AiError && CONTENT_ERRORS.has(e.detail)) {
           if (++attempt > 1) throw new AnswerError('검수 AI가 답을 끝까지 쓰지 못했어요.')
           continue

@@ -5,7 +5,8 @@ import { HttpError, readJson } from './limits'
 import { ProposalConflict } from './plan-update'
 import { type Call, currentAi, importAi, requireAdmin, type Route, verifyAi } from './services'
 
-// 대입 자료 API: 누구나 받는 최신 판·판 번호·업데이트 소식, 관리자가 고치기·원문 감시.
+// 대입 자료 API: 누구나 받는 최신 판·판 번호·업데이트 소식,
+// 관리자의 직접 고치기·AI 제안·전형 없는 대학 가져오기·검수·원문 감시.
 
 const UNIV_RE = /^[a-z0-9-]{2,40}$/
 
@@ -75,13 +76,13 @@ export function dataRoutes(): Record<string, Route> {
       return json({ plan, tag: planTag(plan) })
     },
 
-    /** 한 대학 전형 자료를 고친다 (검사를 통과해야 저장, 판이 올라가 모두에게 바로 보인다) */
+    /** 한 대학 전형 자료 고치기. 검사를 통과해야 저장, 판이 올라가 모두에게 바로 보임 */
     'POST /api/admin/data/plan': async (call: Call) => {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 400_000)) as { univ?: unknown; plan?: unknown; summary?: unknown; base?: unknown }
       const univ = typeof body.univ === 'string' && UNIV_RE.test(body.univ) ? body.univ : ''
       if (!univ) throw new HttpError(400, '대학 id가 맞지 않아요.')
-      // 편집기를 연 뒤 다른 관리자가 고쳤거나 AI 제안이 반영됐으면 덮어쓰지 않는다 (base: 불러올 때 받은 판)
+      // 편집기를 연 뒤 다른 관리자가 고쳤거나 AI 제안이 반영됐으면 덮어쓰지 않음 (base: 불러올 때 받은 판)
       if (typeof body.base === 'string' && body.base !== planTag(call.services.datasets.plan(univ)))
         throw new HttpError(409, '편집기를 연 뒤 이 대학 자료가 바뀌었어요. 다시 불러와서 고쳐 주세요.')
       const summary = typeof body.summary === 'string' ? body.summary.replace(/\s+/g, ' ').trim().slice(0, 160) : ''
@@ -101,13 +102,13 @@ export function dataRoutes(): Record<string, Route> {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 1_000)) as { univ?: unknown }
       const univ = typeof body.univ === 'string' && UNIV_RE.test(body.univ) ? body.univ : ''
-      // 원문 기준과 기다리던 제안도 함께 정리한다 (다음 확인 때 배포한 자료와 지금 원문을 다시 견준다)
+      // 원문 기준과 기다리던 제안도 함께 정리 (다음 확인 때 배포한 자료와 지금 원문을 다시 견줌)
       if (!univ || !call.services.updater.revert(univ, admin.email)) throw new HttpError(404, '고친 자료가 없어요.')
       call.services.accounts.log(admin, 'data.revert', univ)
       return json({ ok: true, version: call.services.datasets.version() })
     },
 
-    /** 대학 원문을 지금 받아 AI로 바뀐 곳을 찾는다 (오래 걸려서 시작만 하고 바로 답한다) */
+    /** 대학 원문을 지금 받아 AI로 바뀐 곳 찾기. 오래 걸려 시작만 하고 바로 답함 */
     'POST /api/admin/data/proposals/check': async (call) => {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 1_000)) as { univ?: unknown }
@@ -115,7 +116,7 @@ export function dataRoutes(): Record<string, Route> {
       if (!univ || !call.services.datasets.plan(univ)) throw new HttpError(404, '대학 자료가 없어요.')
       if (!currentAi(call)) throw new HttpError(503, 'AI가 설정되지 않았어요.')
       const s = call.services.settings.get()
-      // 여기서는 바로 알리려고 먼저 보고, 실제로 세는 것은 AI를 부르기 바로 앞이다 (updater.run)
+      // 바로 알리려고 먼저 볼 뿐, 실제로 세는 건 AI를 부르기 바로 앞 (updater.run)
       if (call.services.updater.usedToday() >= s.dailyDataLimit) throw new HttpError(429, '오늘 AI 확인 한도를 다 썼어요. 설정에서 한도를 늘릴 수 있어요.')
       call.services.accounts.log(admin, 'data.check', univ)
       void call.services.updater.check(univ, { autoApply: s.autoApplyData, by: admin.email }).catch(() => undefined)
@@ -132,7 +133,7 @@ export function dataRoutes(): Record<string, Route> {
         call.services.accounts.log(admin, 'data.apply', p.univ, p.summary)
         return json({ proposal: p, version: call.services.datasets.version() })
       } catch (e) {
-        // 그 사이 같은 곳을 고쳐 반영하지 않았다 (제안은 직접 확인으로 돌아갔다)
+        // 그사이 같은 곳이 고쳐져 반영하지 않음 (제안은 직접 확인으로 돌아감)
         if (e instanceof ProposalConflict) throw new HttpError(409, e.message)
         if (e instanceof PlanError) throw new HttpError(400, e.message)
         throw e
@@ -165,7 +166,7 @@ export function dataRoutes(): Record<string, Route> {
       })
     },
 
-    /** 한 대학을 지금 검수한다 (오래 걸려서 시작만 하고 바로 답한다) */
+    /** 한 대학을 지금 검수. 오래 걸려 시작만 하고 바로 답함 */
     'POST /api/admin/data/verify/run': async (call) => {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 1_000)) as { univ?: unknown }
@@ -177,20 +178,20 @@ export function dataRoutes(): Record<string, Route> {
       return json({ started: true })
     },
 
-    /** 켜면 바로 시작해서 하루 한도 안에서 한 시간마다 이어서 한다 */
+    /** 켜면 바로 시작해 하루 한도 안에서 한 시간마다 이어 간다 */
     'POST /api/admin/data/imports/toggle': async (call) => {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 1_000)) as { on?: unknown }
       if (typeof body.on !== 'boolean') throw new HttpError(400, '켜기·끄기 값이 맞지 않아요.')
       if (body.on && !importAi(call.services.ai, call.ctx.env)) throw new HttpError(503, 'AI가 설정되지 않았어요. AI 연결 탭에서 먼저 연결해 주세요.')
-      // 관리자가 누른 것은 기본값과 같아도 적어 둔다 (그래야 무료 연결이 없을 때도 돈다)
+      // 관리자가 누른 값은 기본값과 같아도 적어 둔다 (그래야 무료 연결이 없을 때도 돈다)
       call.services.settings.save({ planImport: body.on }, { always: true })
       call.services.accounts.log(admin, 'data.import', '', body.on ? '가져오기 켬' : '가져오기 끔')
       if (body.on) call.services.importer.kick()
       return json({ state: call.services.importer.state() })
     },
 
-    /** 한 대학을 지금 가져온다. 원문 주소를 주면 그 주소를 먼저 쓴다 (오래 걸려서 시작만 하고 바로 답한다) */
+    /** 한 대학을 지금 가져오기. 원문 주소를 주면 그 주소를 먼저 씀 (오래 걸려 시작만 하고 바로 답함) */
     'POST /api/admin/data/imports/run': async (call) => {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 2_000)) as { univ?: unknown; url?: unknown }
@@ -213,7 +214,7 @@ export function dataRoutes(): Record<string, Route> {
       return json({ started: true })
     },
 
-    /** AI가 옮긴 자료를 원문과 견줘 확인했다: 'AI가 옮김' 표시를 지운다 */
+    /** 관리자가 원문과 견줘 확인함: 'AI가 옮김'·검수 표시를 지운다 */
     'POST /api/admin/data/imports/verify': async (call) => {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 1_000)) as { univ?: unknown }

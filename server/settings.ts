@@ -3,20 +3,20 @@ import type { DatabaseSync } from 'node:sqlite'
 // 관리자가 화면에서 바꾸는 운영 설정. 값은 저장소에 두고, 없으면 기본값(일부는 환경변수)을 쓴다.
 
 export interface Settings {
-  /** 모든 화면 위에 띄우는 공지 (빈 문자열이면 없음) */
+  /** 모든 화면 위 공지. 빈 문자열이면 없음 */
   notice: string
   signupOpen: boolean
-  /** 학교 편제표 자동 읽기 (학교알리미·홈페이지 파일을 AI로 읽기) */
+  /** 학교 편제표 자동 읽기 (학교알리미·홈페이지 파일을 AI로) */
   aiRead: boolean
-  /** 학교 홈페이지에서 편제표 찾기 (끄면 학교알리미 공시만 본다) */
+  /** 학교 홈페이지에서도 편제표 찾기 (끄면 학교알리미 공시만) */
   homepageSearch: boolean
-  /** 학교 홈페이지의 robots.txt를 지킨다 (끄면 공개된 교육과정 자료를 막힌 곳까지 찾는다) */
+  /** 학교 홈페이지 robots.txt 지키기 (끄면 막힌 곳의 공개 교육과정 자료까지 찾음) */
   obeyRobots: boolean
   /** 사용자가 올린 파일·글을 AI로 읽기 */
   aiImport: boolean
   /** 진로 문장으로 분야 찾기 */
   aiMatch: boolean
-  /** 편제표 자동 읽기·파일 읽기·문장으로 찾기에 서버 AI 대신 각 사용자가 등록한 Gemini API 키를 쓴다 */
+  /** 편제표 자동 읽기·파일 읽기·문장으로 찾기에 서버 AI 대신 각 사용자가 등록한 Gemini 키를 씀 */
   userAiKey: boolean
   /** 사용자 키로 부를 Gemini 모델 */
   userAiModel: string
@@ -28,7 +28,7 @@ export interface Settings {
   /** AI 제안이 자료 검사를 통과하면 관리자 확인 없이 반영 */
   autoApplyData: boolean
   dailyDataLimit: number
-  /** 전형 자료가 없는 대학의 시행계획을 받아 AI로 옮겨 넣기 (관리자가 켜면 하루 한도 안에서 차례로 돈다) */
+  /** 전형 자료가 없는 대학의 시행계획을 받아 AI로 옮겨 넣기 (하루 한도 안에서 차례로) */
   planImport: boolean
   dailyPlanImports: number
   /** AI가 옮긴 전형을 더 좋은 AI(유료 연결)로 원문과 대조해 고치고 확인 표시 */
@@ -217,7 +217,7 @@ export function defaultSettings(env: Record<string, string | undefined> = {}): S
   }
 }
 
-/** 한 값을 검사해 정리한다. 맞지 않으면 null */
+/** 한 값을 검사해 정리. 맞지 않으면 null */
 export function cleanSetting(field: SettingField, value: unknown): string | number | boolean | null {
   if (field.type === 'bool') return typeof value === 'boolean' ? value : null
   if (field.type === 'int') {
@@ -266,13 +266,13 @@ export class SettingsStore {
     return out
   }
 
-  /** 관리자가 한 번이라도 저장한 설정인지 (아니면 기본값을 쓰고 있다) */
+  /** 관리자가 한 번이라도 저장한 설정인지 (아니면 기본값) */
   isSet(key: SettingKey): boolean {
     return !!this.db.prepare('select 1 from settings where key = ?').get(key)
   }
 
   /**
-   * 바뀐 값만 저장하고, 바뀐 항목 이름을 돌려준다. 맞지 않는 값이 하나라도 있으면 아무것도 저장하지 않는다.
+   * 바뀐 값만 저장하고 바뀐 항목 이름을 돌려준다. 맞지 않는 값이 하나라도 있으면 아무것도 저장하지 않음.
    * always: 기본값과 같아도 관리자가 고른 값으로 적어 둔다 (isSet으로 구별할 때)
    */
   save(input: Record<string, unknown>, opts: { always?: boolean } = {}): SettingKey[] {

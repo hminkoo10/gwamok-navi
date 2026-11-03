@@ -35,7 +35,7 @@ export function useLoad<T>(load: () => Promise<T>, key: string) {
   }
 }
 
-/** 입력이 멈춘 뒤의 값 */
+/** 입력이 ms(기본 250) 동안 멈춘 뒤의 값 */
 export function useDebounced<T>(value: T, ms = 250): T {
   const [v, setV] = useState(value)
   useEffect(() => {

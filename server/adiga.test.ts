@@ -40,7 +40,7 @@ describe('압축 파일로 올린 원문', () => {
 describe('배포용 한글 문서', () => {
   it('맨 앞 레코드에서 열쇠를 꺼내 본문을 푼다', () => {
     const seed = 0x1234_5679
-    // 풀었을 때의 앞 레코드: (씨앗 & 0xf) + 4 자리에 열쇠
+    // 풀었을 때의 앞 레코드: 4 + (seed & 0xf) 위치에 열쇠
     const plain = Buffer.alloc(256, 0x41)
     plain.writeUInt32LE(seed, 0)
     const key = Buffer.from('0123456789abcdef')

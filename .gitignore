@@ -23,13 +23,13 @@ dist-ssr
 *.sln
 *.sw?
 
-# 서버 비밀값과 빌드 결과
+# 비밀값, 서버 빌드 결과
 .env
 .env.*
 !.env.example
 dist-server
 
-# 공유 편제표 저장소
+# 서버 데이터(SQLite)
 /data
 
 # 점검 출력

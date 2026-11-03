@@ -4,7 +4,7 @@ import { afterEach, describe, expect, it } from 'vitest'
 import { isConnectFailure, markRelay, needsRelay, relayable, relayFetch, relayUrl, setRelayForTest, withRelay } from './relay'
 import { safeFetch } from './safe-fetch'
 
-// 해외 접속을 막는 한국 사이트를 한국 서버 중계로 받는 길. 시험에서는 이 컴퓨터에 가짜 중계(CONNECT)와 가짜 학교 서버를 띄운다
+// 해외 접속을 막는 한국 사이트를 한국 서버 중계로 받는 경로. 이 컴퓨터에 가짜 중계(CONNECT)와 가짜 학교 서버를 띄운다
 
 /** 가짜 학교 서버: 받은 경로를 그대로 돌려준다 */
 async function school(): Promise<{ port: number; close: () => void; hits: string[] }> {

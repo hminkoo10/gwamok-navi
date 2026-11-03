@@ -38,7 +38,7 @@ function Gate({ title, body, to, action }: { title: string; body: string; to: st
   const { store } = useApp()
   return (
     <div className="wrap gate-wrap">
-      {/* 빈 슬롯을 열었을 때 다른 슬롯으로 돌아갈 수 있게 (슬롯이 하나뿐이면 숨긴다) */}
+      {/* 빈 슬롯에서도 다른 슬롯으로 돌아갈 수 있게. 슬롯이 하나면 숨김 */}
       {store.slots.length > 1 && <SlotBar />}
       <SyncNotice />
       <div className="gate">
@@ -58,9 +58,9 @@ export function PlanPage() {
   const [tab, setTab] = useState<Tab>('plan')
   const [resetOpen, setResetOpen] = useState(false)
   const [drawer, setDrawer] = useState<DrawerTarget>(null)
-  /** 자동 복사가 막혀 직접 복사하게 보여 줄 글 */
+  /** 자동 복사가 막혔을 때 직접 복사하도록 띄울 글 */
   const [manualCopy, setManualCopy] = useState<string | null>(null)
-  // 인쇄할 때 머리에 찍는 날짜
+  // 인쇄 머리글 날짜
   const [today] = useState(() => new Date().toLocaleDateString('ko-KR'))
 
   // 고른 분야 × 목표 대학의 학과 (대학 순서 → 분야 순서, 중복 제거)
@@ -69,23 +69,23 @@ export function PlanPage() {
   const selectedUnits = useMemo(() => majorUnits.filter((u) => selectedIds.has(u.id)), [majorUnits, selectedIds])
   // 목표 전형에 따라 더 채울 조건 (정시: 수능 출제 과목, 논술: 대학 출제 범위)
   const admissions = useAdmissions()
-  // 논술 범위는 고른 학과의 계열에 맞는 부분만 (논술만 보는 학과도 논술은 치르므로 고른 학과 전체로)
+  // 논술 범위는 고른 학과 계열에 맞는 부분만. 권장과목 조건에서 빠진 학과도 논술은 치르므로 selectedUnits 전체 기준
   const extra = useMemo(
     () => focusUnits(prefs.focus, prefs.univs, admissions.byUniv, selectedUnits),
     [prefs.focus, prefs.univs, admissions.byUniv, selectedUnits],
   )
-  // 목표 전형이 학생부를 정성평가하지 않는 학과(수능만, 교과 성적만 보는 곳)는 권장과목을 조건에서 뺀다
+  // 목표 전형이 학생부를 정성평가하지 않는 학과(수능·교과 성적만 봄)는 권장과목 조건에서 뺌
   const seats = useUnitSeats()
   const routes = useMemo(() => unitRoutes(prefs.focus, selectedUnits, admissions.byUniv, seats), [prefs.focus, selectedUnits, admissions.byUniv, seats])
   const activeUnits = useMemo(() => (prefs.keepAll ? selectedUnits : routes.filter((r) => r.keep).map((r) => r.unit)), [prefs.keepAll, selectedUnits, routes])
-  // 진로 관련도: 같은 분야 학과들이 전국에서 권하는 과목 (빈칸 추천, 같은 조건을 채우는 과목 사이의 선택에 쓴다)
+  // 진로 관련도: 전국 같은 분야 학과들이 권하는 과목. 빈칸 추천과, 같은 조건을 채우는 과목끼리 고를 때 씀
   const schoolSubjects = useMemo(() => (school ? [...offerIndex(school).keys()] : []), [school])
   const scores = useMemo(
     () => fieldScores(UNITS, prefs.majors, new Set(selectedUnits.map((u) => u.id)), schoolSubjects),
     [prefs.majors, selectedUnits, schoolSubjects],
   )
   const relevance = useMemo(() => relevanceOf(scores), [scores])
-  // 고른 대학 자료에 이 분야 학과가 없어도 진로 관련 과목으로 추천한다
+  // 고른 대학 자료에 이 분야 학과가 없어도 진로 관련 과목으로 추천
   const noUnits = majorUnits.length === 0
   const plan = useMemo(
     () =>
@@ -100,7 +100,7 @@ export function PlanPage() {
   const skipped = prefs.keepAll ? [] : routes.filter((r) => !r.keep)
   const focusLabel = FOCUSES.find((f) => f.id === prefs.focus)?.label ?? ''
 
-  // 공유 링크는 미리 만들어 둔다 (누른 순간 바로 복사·공유해야 브라우저가 막지 않는다. 만드는 데 압축을 기다려야 한다)
+  // 공유 링크는 미리 만들어 둠. 만들 때 압축을 기다려야 하는데, 누른 순간 바로 복사·공유하지 않으면 브라우저가 막음
   const { shareUrl } = store
   const unitKey = selectedUnits.map((u) => u.id).join(',')
   const [link, setLink] = useState<{ for: typeof shareUrl; units: string; url: string } | null>(null)
@@ -115,7 +115,7 @@ export function PlanPage() {
   }, [shareUrl, unitKey])
   const readyLink = link && link.for === shareUrl && link.units === unitKey ? link.url : null
 
-  // 예전에 저장했거나 공유받은 선택이 규칙에 어긋나면(세트를 모두 뺐거나 자리 없는 꼭 듣기) 고치고 알린다
+  // 저장·공유받은 선택이 규칙에 어긋나면 고치고 알림 (세트를 모두 뺐거나 자리 없는 꼭 듣기)
   const { replaceChoices } = store
   useEffect(() => {
     const from = { pinned: prefs.pinned, excluded: prefs.excluded }
@@ -139,15 +139,15 @@ export function PlanPage() {
     store.setUnits(majorUnits.every((u) => next.has(u.id)) ? null : majorUnits.filter((u) => next.has(u.id)).map((u) => u.id))
   }
 
-  /** 꼭 듣기·빼기: 세트 과목은 같은 세트 과목도 함께 바뀌고, 세트나 칸이 비지 않게 다른 것도 바뀔 수 있어 무엇이 바뀌었는지 알린다 */
+  /** 꼭 듣기·빼기 결과 알림. 같은 세트 과목이나, 세트·칸이 비지 않게 다른 과목도 함께 바뀔 수 있음 */
   const tell = (text: string | null) => {
     if (text) notify(text)
   }
-  // 바뀐 시간표로 스르륵 넘어간다
+  // 바뀐 시간표로 부드럽게 전환
   const pin = (subject: string) => smoothly(() => tell(choiceNotice(subject, store.togglePin(subject))))
   const exclude = (subject: string) => smoothly(() => tell(choiceNotice(subject, store.toggleExclude(subject))))
 
-  // 링크를 미리 만들어 두었으면 기다리지 않고 바로 복사한다 (방금 바꿔서 아직 없으면 지금 만든다)
+  // 미리 만든 링크가 있으면 바로 복사, 방금 바꿔서 없으면 지금 만듦
   /** 수강 신청용 목록 복사 */
   const copyList = async () => {
     if (!plan) return
@@ -164,7 +164,7 @@ export function PlanPage() {
         await navigator.share({ title: '과목내비', url })
         return
       } catch (e) {
-        // 공유 창을 닫았으면 그대로 둔다. 공유를 못 쓰면 복사한다
+        // 공유 창을 닫았으면 그대로, 공유를 못 쓰면 복사로
         if (isAbort(e)) return
       }
     }
@@ -173,7 +173,7 @@ export function PlanPage() {
   }
 
   const majorNames = prefs.majors.map((m) => MAJOR_BY_ID.get(m)?.name).filter(Boolean) as string[]
-  // 목표 전형 조건(수능·논술)은 학과 수에 넣지 않는다. 대학이 권장과목을 정하지 않은 학과(계열 전체 모집 등)도 따로 센다
+  // 목표 전형 조건(수능·논술)은 학과 수에서 뺌. 대학이 권장과목을 정하지 않은 학과(계열 전체 모집 등)는 따로 셈
   const realUnits = plan ? plan.units.filter((r) => !isExamUnit(r.unit.id)) : []
   const withRec = realUnits.filter((r) => r.need > 0)
   const ok = withRec.filter((r) => r.ok).length

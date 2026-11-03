@@ -15,13 +15,13 @@ const PAGE = 50
 export interface AdminDeps {
   /** 오늘 쓴 AI 호출 수 */
   usage: (services: Services) => { read: number; import: number; match: number }
-  /** AI 연결 시험에 쓰는 fetch (테스트에서 바꿔 끼운다) */
+  /** AI 연결 시험용 fetch (테스트에서 바꿔 끼움) */
   fetch: typeof fetch
 }
 
 const idOf = (x: unknown) => (typeof x === 'number' && Number.isInteger(x) && x > 0 ? x : null)
 
-/** 사용자 로그를 거르는 행동 묶음 (점으로 끝나면 그 앞부분이 같은 행동 모두) */
+/** 사용자 기록을 거르는 행동 묶음 (점으로 끝나면 앞부분 일치) */
 const LOG_GROUPS: Record<string, string[]> = {
   account: ['auth.', 'account.'],
   design: ['design.', 'plan.save'],
@@ -59,15 +59,15 @@ function aiState(call: Call) {
     env: env ? { host, model: env.model, visionModel: env.visionModel } : null,
     active: active?.id ?? null,
     using: using ? { name: using.name, kind: using.kind, model: using.model } : null,
-    /** 고른 연결의 키를 풀 수 없어 AI가 꺼진 상태 */
+    /** 고른 연결의 키를 못 풀어 AI가 꺼진 상태 */
     broken: !!active && !using,
   }
 }
 
 export function adminRoutes(deps: AdminDeps): Record<string, Route> {
   /**
-   * 다른 사용자를 바꾸기 전 확인. 내 계정은 여기서 못 바꾸고, 대표 관리자는 누구도 못 바꾼다(OWNER_EMAIL로 정한다).
-   * 관리자 계정을 정지·삭제하는 것은 대표 관리자만 한다
+   * 다른 사용자를 바꾸기 전 확인. 내 계정은 여기서 못 바꾸고, 대표 관리자는 누구도 못 바꾼다 (OWNER_EMAIL로 정함).
+   * 관리자 계정의 정지·삭제는 대표 관리자만
    */
   const targetUser = (call: Call, admin: User, id: unknown, what: string): User => {
     const uid = idOf(id)
@@ -90,7 +90,7 @@ export function adminRoutes(deps: AdminDeps): Record<string, Route> {
         usage: deps.usage(call.services),
         limits: { read: settings.get().dailyReadLimit, import: settings.get().dailyImportLimit, match: settings.get().dailyMatchLimit },
         ai: currentAi(call) !== null,
-        // 내 Gemini API 키를 등록한 사람 수 ('사용자 키로 AI 쓰기'를 켰을 때 본다)
+        // 자기 Gemini 키를 등록한 사람 수 ('사용자 키로 AI 쓰기'를 켰을 때 봄)
         userKeys: call.services.userKeys.count(),
         settings: settings.get(),
         log: accounts.logs({ limit: 8, kind: 'admin' }).entries,
@@ -111,7 +111,7 @@ export function adminRoutes(deps: AdminDeps): Record<string, Route> {
       return json({ users: users.map((u) => ({ ...publicUser(u), disabled: u.disabled, lastLoginAt: u.lastLoginAt, saved: u.saved })), total, page: PAGE })
     },
 
-    /** 관리자 지정·취소: 대표 관리자만 한다 (지정된 관리자는 다른 사람을 관리자로 만들 수 없다) */
+    /** 관리자 지정·취소: 대표 관리자만 */
     'POST /api/admin/users/role': async (call) => {
       const owner = requireOwner(call)
       const body = (await readJson(call.req, 1_000)) as { id?: unknown; role?: unknown }
@@ -145,7 +145,7 @@ export function adminRoutes(deps: AdminDeps): Record<string, Route> {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 1_000)) as { id?: unknown }
       const user = targetUser(call, admin, body.id, '지울')
-      // 세션·설계·등록한 Gemini 키까지 함께 지운다
+      // 세션·설계·등록한 Gemini 키까지 함께 지움
       call.services.accounts.remove(user.id)
       call.services.accounts.log(admin, 'user.delete', user.email)
       return json({ ok: true })
@@ -192,7 +192,7 @@ export function adminRoutes(deps: AdminDeps): Record<string, Route> {
       return json(aiState(call), 201)
     },
 
-    /** 고친다. 키를 비워 보내면 저장된 키를 그대로 둔다 */
+    /** 키를 비워 보내면 저장된 키를 그대로 둔다 */
     'POST /api/admin/ai/update': async (call) => {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 4_000)) as { id?: unknown }
@@ -215,7 +215,7 @@ export function adminRoutes(deps: AdminDeps): Record<string, Route> {
       return json(aiState(call))
     },
 
-    /** 쓸 연결을 고른다 (id가 null이면 환경변수 설정) */
+    /** 쓸 연결 고르기. id가 null이면 환경변수 설정 */
     'POST /api/admin/ai/select': async (call) => {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 1_000)) as { id?: unknown }
@@ -229,7 +229,7 @@ export function adminRoutes(deps: AdminDeps): Record<string, Route> {
       return json(aiState(call))
     },
 
-    /** 짧은 질문 하나로 연결을 시험한다 (id가 null이면 환경변수 설정). 실패 원인은 HTTP 상태·오류 종류만 보여 준다 */
+    /** 짧은 질문 하나로 연결 시험 (id가 null이면 환경변수 설정). 실패 원인은 HTTP 상태·오류 종류만 보여 줌 */
     'POST /api/admin/ai/test': async (call) => {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 1_000)) as { id?: unknown }
@@ -292,7 +292,7 @@ export function adminRoutes(deps: AdminDeps): Record<string, Route> {
       return json({ item: store.byId(item.id) })
     },
 
-    /** 관리자가 고친 편제표: 새 판으로 저장하고(확인됨), 고치기 전 판은 숨긴다 */
+    /** 관리자가 고친 편제표: 새 판으로 저장(확인됨)하고 고치기 전 판은 숨긴다 */
     'POST /api/admin/curricula/edit': async (call) => {
       const admin = requireAdmin(call)
       const body = (await readJson(call.req, 400_000)) as { id?: unknown; data?: unknown }
@@ -353,7 +353,7 @@ export function adminRoutes(deps: AdminDeps): Record<string, Route> {
 
     // ---- 기록 ----
 
-    /** 관리 기록: 관리자가 바꾼 것과 사용자가 한 일. kind=admin|user로 거르고 q로 이메일·대상을 찾는다 */
+    /** 관리 기록: 관리자가 바꾼 것과 사용자가 한 일. kind=admin|user, group=행동 묶음, q=이름·이메일·대상·내용 검색 */
     'GET /api/admin/log': (call) => {
       requireAdmin(call)
       const kind = call.url.searchParams.get('kind')

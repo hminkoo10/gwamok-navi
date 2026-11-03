@@ -6,12 +6,12 @@ import { UNIT_BY_ID } from '../data/units'
 import { UNIV_BY_ID } from '../data/universities'
 import { schoolFromLoose } from '../engine/school'
 
-// 공유 링크: 고른 상태를 압축해 주소의 # 뒤에 넣는다. 서버에 아무것도 저장하지 않는다.
+// 공유 링크: 고른 상태를 압축(deflate-raw)해 주소 # 뒤에 넣는다. 서버에는 아무것도 저장하지 않는다.
 // 링크는 누구나 만들 수 있으므로 열 때 모든 값을 다시 검사한다.
 
 export interface ShareState {
   majors: string[]
-  /** 목표 대학 (v1 링크에는 없어서 모집단위에서 거꾸로 구한다) */
+  /** 목표 대학. v1 링크에는 없어 모집단위에서 거꾸로 구한다 */
   univs: string[]
   units: string[]
   school: School
@@ -19,6 +19,7 @@ export interface ShareState {
   excluded: string[]
 }
 
+/** 푼 뒤 바이트 상한 (압축 폭탄 대비) */
 const MAX_DECODED = 60_000
 
 function toBase64Url(bytes: Uint8Array): string {
@@ -70,7 +71,7 @@ export async function decodeShare(code: string): Promise<ShareState | null> {
         ...(track ? { track } : {}),
       }
     } else {
-      // 예전 링크는 반송고 예시 편제표를 썼다. 실제 반송고 나이스 id를 쓰면 그 학교를 불러온 사람의 편제표와 섞이므로 따로 둔다
+      // 학교가 없는 예전 링크는 반송고 예시 편제표. 실제 반송고 나이스 id로 두면 그 학교를 불러온 사람의 편제표와 섞여 따로 둔다
       school = { ...BANSONG_2026, id: `shared-${BANSONG_2026.name}-${BANSONG_2026.cohort}` }
     }
     const anySubject = (s: string) => s.length <= 40 && (SUBJECT_BY_NAME.has(s) || /^[\p{L}\p{N} ·()Ⅰ-Ⅳ-]+$/u.test(s))

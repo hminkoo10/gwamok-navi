@@ -1,5 +1,4 @@
-/* 과목내비 — 토스처럼 맑은 흰 바탕과 회색 면, 파란 계열 하나로 (버튼·선택·추천 표시 모두 파랑) */
-/* 토스풍 개편 v1 */
+/* 과목내비. 흰 바탕과 회색 면, 강조색은 파랑 하나 (버튼·선택·추천 표시) */
 
 :root {
   --bg: #ffffff;
@@ -10,7 +9,7 @@
   --ink: #191f28;
   --ink-2: #4e5968;
   --ink-3: #636d7a;
-  /* 버튼·선택은 파랑 (흰 글씨가 또렷하게 읽히는 진하기) */
+  /* 버튼·선택 파랑. 흰 글씨가 또렷하게 읽히는 진하기 */
   --primary: #256ef0;
   --primary-hover: #1b64da;
   --primary-press: #1957c2;
@@ -51,9 +50,9 @@
   --ease: cubic-bezier(0.2, 0, 0, 1);
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-spring: cubic-bezier(0.34, 1.32, 0.64, 1);
-  /* 겹쳐 바꾸기: 누르자마자 바뀌기 시작해 끝에서 천천히 가라앉는다 (두 화면이 같은 곡선으로 옅어지고 짙어진다) */
+  /* 겹쳐 바꾸기: 바로 시작해 끝에서 천천히 멈춘다 (두 화면이 같은 곡선으로 옅어지고 짙어진다) */
   --ease-fade: cubic-bezier(0.25, 0.1, 0.25, 1);
-  /* 화면 전환 시간: 다른 화면으로 이동, 같은 화면 안에서 내용만 바뀜 */
+  /* 화면 전환 시간: page(다른 화면으로), swap(같은 화면 안 내용만) */
   --vt-page: 360ms;
   --vt-swap: 240ms;
   --dur-1: 120ms;
@@ -61,7 +60,7 @@
   --dur-3: 320ms;
   --dur-4: 480ms;
 
-  /* 예전 이름 (편집기·서랍 규칙이 쓴다) */
+  /* 예전 변수 이름. 편집기·서랍 규칙이 아직 쓴다 */
   --paper: var(--bg);
   --surface: var(--bg);
   --sunken: var(--bg-soft);
@@ -127,7 +126,7 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-padding-top: 80px;
-  /* 짧은 화면(빈 슬롯 등)으로 바뀌어 스크롤바가 사라져도 화면이 옆으로 밀리지 않게 자리를 남긴다 */
+  /* 짧은 화면(빈 슬롯 등)으로 바뀌어 스크롤바가 사라져도 옆으로 밀리지 않게 */
   scrollbar-gutter: stable;
   scroll-behavior: smooth;
 }
@@ -2024,7 +2023,7 @@ li:first-child > .pick-row {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
-/* 대학 묶음을 두 줄로 흘려 놓는다 (학과가 하나뿐인 대학이 많아도 빈칸이 생기지 않게) */
+/* 대학 묶음을 두 단으로 흘린다 (학과가 하나뿐인 대학이 많아도 빈칸이 생기지 않게) */
 .cond-blocks {
   columns: 2 380px;
   column-gap: 16px;
@@ -2480,7 +2479,7 @@ li:first-child > .pick-row {
   max-width: 760px;
   margin-top: 40px;
 }
-/* 내 Gemini API 키가 있어야 하는 기능 자리의 안내 */
+/* 내 Gemini API 키가 필요한 기능 자리의 안내 */
 .key-needed {
   display: grid;
   gap: 10px;
@@ -3564,7 +3563,7 @@ button.mobile-link {
 .auth-card > .form-error {
   margin: 0 0 16px;
 }
-/* Google 로그인 버튼: 흰 바탕에 Google 로고 (어두운 화면에서도 Google 안내대로 밝은 버튼) */
+/* Google 로그인 버튼: 흰 바탕에 Google 로고. 어두운 화면에서도 Google 안내대로 밝은 버튼 */
 .btn-google {
   gap: 12px;
   border-color: #dadce0;
@@ -4950,7 +4949,7 @@ button.stat:hover {
   flex: 1;
   min-width: 0;
 }
-/* 슬롯 줄은 설계·빈 슬롯·시작하기 어디서나 같은 자리(위 32px, 넓은 폭)에 둔다. 바꿀 때 흔들리지 않게 */
+/* 슬롯 줄은 설계·빈 슬롯·시작하기 어디서나 같은 자리(위 32px, 넓은 폭). 화면을 바꿀 때 흔들리지 않게 */
 .gate-wrap,
 .slot-top {
   padding-top: 32px;
@@ -5833,7 +5832,7 @@ button.stat:hover {
   .table-scroll {
     overflow: visible;
   }
-  /* 펼치지 않은 대학·산출식은 종이에 제목만 남아 빼고, 펼친 것만 찍는다 */
+  /* 펼치지 않은 대학·산출식은 종이에 제목만 남으니 빼고, 펼친 것만 찍는다 */
   .focus details:not([open]) {
     display: none;
   }
@@ -6250,7 +6249,7 @@ button.log-who:hover .log-name {
 
 /* ================================================================
    움직임: 화면이 바뀔 때 살짝 떠오르고, 누르면 작게 눌리고, 창·서랍·메뉴는 부드럽게 열고 닫는다.
-   움직임을 줄이도록 설정한 기기에서는 자리를 옮기는 움직임만 빼고 옅게 나타나는 것은 남긴다 (맨 아래)
+   움직임 줄이기 설정이면 자리를 옮기는 움직임만 빼고 옅게 나타나는 것은 남긴다 (맨 아래)
    ================================================================ */
 
 @keyframes rise-in {
@@ -6682,7 +6681,7 @@ details[open] > :not(summary) {
 }
 
 /* ---- 화면 전환 (View Transitions: 지원하는 브라우저에서만, 아니면 위의 떠오르기만) ---- */
-/* 머리글은 따로 이름을 줘서 화면이 바뀌어도 제자리에 그대로 둔다 */
+/* 머리글은 따로 이름을 줘 화면이 바뀌어도 제자리에 둔다 */
 .site-head {
   view-transition-name: site-head;
 }
@@ -6690,9 +6689,9 @@ details[open] > :not(summary) {
 ::view-transition-new(site-head) {
   animation: none;
 }
-/* 예전 화면과 새 화면을 같은 시간·같은 곡선으로 겹쳐 바꾼다. 두 화면의 투명도 합이 늘 1이라 바뀌는 사이 화면이 옅어지는 틈이 없다.
-   다른 화면으로 갈 때(page)는 새 화면이 아래에서 살짝 떠오르고 예전 화면은 살짝 올라간다 (움직임은 투명도와 따로 돌려 합을 흐트러뜨리지 않는다).
-   같은 화면 안에서 내용만 바뀔 때(swap: 탭, 슬롯, 꼭 듣기)는 더 짧게 겹치기만 한다 */
+/* 예전·새 화면을 같은 시간·같은 곡선으로 겹쳐 바꾼다. 투명도 합이 늘 1이라 바뀌는 사이 화면이 옅어지는 틈이 없다.
+   page: 새 화면은 아래에서 살짝 떠오르고 예전 화면은 살짝 올라간다 (위치 움직임은 투명도와 따로 돌려 합을 지킨다).
+   swap(탭, 슬롯, 꼭 듣기): 더 짧게 겹치기만 한다 */
 :root[data-vt] {
   --vt-dur: var(--vt-swap);
 }
@@ -6743,7 +6742,7 @@ details[open] > :not(summary) {
   }
 }
 
-/* 불러오는 중 문구는 조금 늦게 옅게 나타난다: 금방 불러오면 아예 보이지 않아 깜빡이지 않는다 */
+/* 불러오는 중 문구는 160ms 늦게 옅게 나타난다 (금방 끝나면 아예 안 보여 깜빡이지 않게) */
 .progress-line {
   animation: fade-in var(--dur-2) var(--ease) 160ms both;
 }
@@ -6774,9 +6773,9 @@ details[open] > :not(summary) {
   transition: transform var(--dur-3) var(--ease-out);
 }
 
-/* 움직임을 줄이도록 설정한 기기 (Windows의 '애니메이션 효과' 끔, iPhone의 '동작 줄이기' 등).
+/* 움직임 줄이기 설정 (Windows '애니메이션 효과' 끔, iPhone '동작 줄이기' 등).
    떠오르기·밀려 나오기·커지기·눌리기처럼 자리나 크기가 바뀌는 움직임은 빼고, 옅어졌다 나타나는 것만 남긴다.
-   다 끄면 화면이 뚝뚝 끊겨 보여서, 어지럼을 일으키지 않는 겹쳐 바뀌기는 그대로 둔다 */
+   다 끄면 화면이 뚝뚝 끊겨 보여서, 어지럼을 일으키지 않는 겹쳐 바꾸기는 둔다 */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -181,7 +181,7 @@ export function checkSchool(school: School): SchoolCheck {
 
 const isTerm = (x: unknown): x is TermId => typeof x === 'string' && (TERMS as string[]).includes(x)
 const str = (x: unknown, max = 40) => (typeof x === 'string' ? x.trim().slice(0, max) : '')
-/** 1~39 사이 정수로 (0.4처럼 반올림하면 0이 되는 값도 맞지 않는 값이다). 맞지 않으면 fallback */
+/** 반올림해 1~39 정수. 아니면 fallback (0.4처럼 반올림해 0이 되는 값도) */
 const num = <T>(x: unknown, fallback: T): number | T => {
   const n = typeof x === 'number' ? x : typeof x === 'string' ? Number.parseFloat(x) : Number.NaN
   const r = Math.round(n)

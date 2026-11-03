@@ -1,6 +1,6 @@
 import { inflateRawSync } from 'node:zlib'
 
-// 엑셀(xlsx)·한글(hwpx) 파일을 열기 위한 작은 zip 읽기. 압축 폭탄을 막으려고 풀 크기에 상한을 둔다.
+// 엑셀(xlsx)·한글(hwpx)용 작은 zip 읽기. 압축 폭탄 대비로 푼 크기·항목 수에 상한을 둔다.
 
 export interface ZipLimits {
   maxEntryBytes: number
@@ -18,7 +18,7 @@ export function isZip(buf: Buffer): boolean {
 
 /** 이름 → 내용. want로 고른 항목만 푼다 */
 export function unzip(buf: Buffer, want: (name: string) => boolean, limits: ZipLimits = DEFAULT_LIMITS): Map<string, Buffer> {
-  // 끝에서 중앙 디렉터리 끝 표시(EOCD)를 찾는다
+  // EOCD(중앙 디렉터리 끝)를 뒤에서부터 찾는다. zip 주석(최대 0xffff바이트)만큼 앞까지
   let eocd = -1
   for (let i = buf.length - 22; i >= Math.max(0, buf.length - 22 - 0xffff); i--) {
     if (buf.readUInt32LE(i) === 0x06054b50) {

@@ -53,7 +53,7 @@ const AI: AiConfig = {
   jsonMode: false,
 }
 
-/** 원문 파일 = 쪽 글자를 이어 붙인 것 (가짜) */
+/** 가짜 원문 파일: 쪽 글자를 \f로 이어 붙인 것 */
 const file = (pages: string[]) => Buffer.from(pages.join('\f'))
 const read = async (buf: Buffer): Promise<DocText> => ({ kind: 'pdf', pages: buf.toString().split('\f') })
 
@@ -120,14 +120,14 @@ describe('대입 자료 자동 갱신', () => {
   })
 
   it('설정에서 바로 반영을 켜면 확인 없이 반영한다 (확실하지 않은 점이 있으면 기다린다)', async () => {
-    // 바로 반영은 모집인원이 ±20% 안에서 바뀌고, 그 시기 합계도 모집인원 합과 맞게 바뀐 답만 (이 자료는 수시 합계 672 = 학교추천 672)
+    // 바로 반영은 모집인원이 ±20% 안이고 그 시기 합계도 모집인원 합과 맞을 때만 (이 자료는 수시 합계 672 = 학교추천 672)
     const ok = setup({ pages: PAGES, answer: '{"changes":[{"op":"update","id":"school-rec","set":{"seats":700}}],"totals":{"수시":700}}' })
     await ok.updater.check('korea', { autoApply: true })
     ok.setFile([PAGES[0], PAGES[1], '학교추천전형 700명'])
     expect((await ok.updater.check('korea', { autoApply: true })).state).toBe('applied')
     expect(ok.datasets.plan('korea')).toMatchObject({ totals: { 수시: 700 }, tracks: [{ seats: 700 }] })
 
-    // 합계를 그대로 두면 합계 672와 모집인원 700이 어긋나므로 (표를 잘못 읽었을 수 있다) 관리자를 기다린다
+    // 합계를 그대로 두면 합계 672와 모집인원 700이 어긋나서(표를 잘못 읽었을 수 있다) 관리자를 기다린다
     const stale = setup({ pages: PAGES, answer: '{"changes":[{"op":"update","id":"school-rec","set":{"seats":700}}]}' })
     await stale.updater.check('korea', { autoApply: true })
     stale.setFile([PAGES[0], PAGES[1], '학교추천전형 700명'])
@@ -286,7 +286,7 @@ const wide = (univ = 'korea'): AdmissionPlan => ({
   ],
 })
 
-/** 여러 대학을 함께 돌린다. answer는 AI를 부를 때마다 몇 번째인지 받아 답한다 (Error면 AI가 답하지 못한 것) */
+/** 여러 대학을 함께 돌린다. answer(n)은 n번째 AI 호출의 답 (Error면 AI가 답하지 못한 것) */
 function rig(plans: AdmissionPlan[], answer: (n: number, req: ChatRequest) => unknown, limit?: number) {
   const db = new DatabaseSync(':memory:')
   const datasets = new Datasets(db, { year: 2028, plans })

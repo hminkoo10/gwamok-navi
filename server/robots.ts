@@ -1,11 +1,10 @@
 import { LruCache } from './limits'
 import { FetchBlocked, safeFetch } from './safe-fetch'
 
-// 학교 홈페이지의 robots.txt를 지킨다 (관리 설정 'robots.txt 지키기'를 켰을 때만. 기본은 끔).
-// 편제표는 학교가 학생·학부모에게 알리려고 올린 공개 자료라, 끄면 막힌 곳까지 찾되 한 학교에 한꺼번에 3개까지만 요청한다.
-// - 우리 이름(GwamokNavi) 또는 *에 걸린 Allow/Disallow를 가장 긴 규칙 기준으로 따른다 (구글 방식).
-// - AI 봇(ClaudeBot, GPTBot 등)을 통째로 막은 사이트는 "AI로 처리하지 말라"는 뜻으로 보고 아예 읽지 않는다.
-//   우리 서버도 받은 파일을 AI에 넘기기 때문이다.
+// 학교 홈페이지 robots.txt 지키기 (관리 설정 'robots.txt 지키기'를 켰을 때만, 기본 끔).
+// 편제표는 학생·학부모에게 알리려 올린 공개 자료라, 끄면 막힌 곳도 찾되 한 학교에 동시 3개까지만 요청한다.
+// - GwamokNavi 또는 * 그룹의 Allow/Disallow 중 가장 긴 규칙을 따른다 (구글 방식)
+// - AI 봇(ClaudeBot, GPTBot 등)을 통째로 막은 사이트는 아예 읽지 않는다. 받은 파일을 AI에 넘기기 때문
 
 export const OUR_AGENT = 'gwamoknavi'
 const AI_AGENTS = new Set([
@@ -57,9 +56,9 @@ export function parseRobots(text: string): RobotsGroup[] {
 }
 
 /**
- * robots 규칙 하나가 경로에 맞는지 (* 와 끝의 $ 지원).
- * 정규식(* → .*)으로 바꾸면 '*'가 많을 때 되돌아가며 터지므로(12개에 4초) 글자를 앞으로만 맞춰 본다.
- * $ 없으면 규칙이 경로의 앞부분과 맞으면 되고, $ 있으면 끝까지 맞아야 한다.
+ * robots 규칙 하나가 경로에 맞는지 (*, 끝의 $ 지원).
+ * 정규식(* → .*)은 '*'가 많으면 역추적이 폭발해(12개에 4초) 글자를 앞으로만 맞춰 본다.
+ * $ 없으면 경로 앞부분만 맞으면 되고, $ 있으면 끝까지
  */
 function matches(rule: string, path: string): boolean {
   const anchored = rule.endsWith('$')
@@ -81,7 +80,7 @@ function matches(rule: string, path: string): boolean {
       p = star + 1
       i = ++mark
     } else return false
-    if (!anchored && p === m) return true // 규칙을 끝까지 맞췄으면 경로 앞부분과 맞은 것
+    if (!anchored && p === m) return true // 규칙을 다 맞췄으면 앞부분 일치
   }
   while (p < m && pat[p] === '*') p++
   return p === m
@@ -115,7 +114,7 @@ async function rulesFor(origin: string): Promise<RobotsGroup[]> {
       timeoutMs: 6_000,
       accept: 'text/plain,*/*',
     })
-    // 서버 오류면 잠시 전부 막힌 것으로 본다 (구글 방식). 없으면(4xx) 제한 없음.
+    // 5xx면 전부 막힘, 4xx나 HTML 응답이면 제한 없음 (구글 방식). 결과는 6시간 캐시
     if (res.status >= 500) groups = [{ agents: ['*'], allow: [], disallow: ['/'] }]
     else if (res.status < 400 && !/<html/i.test(res.body.subarray(0, 512).toString('latin1'))) groups = parseRobots(res.body.toString('utf8'))
   } catch {
@@ -125,7 +124,7 @@ async function rulesFor(origin: string): Promise<RobotsGroup[]> {
   return groups
 }
 
-/** 이 주소를 읽어도 되는지. 막혀 있으면 이유와 함께 FetchBlocked */
+/** 막혀 있으면 이유와 함께 FetchBlocked */
 export async function checkRobots(url: string): Promise<void> {
   const u = new URL(url)
   const v = verdict(await rulesFor(u.origin), u.pathname + u.search)

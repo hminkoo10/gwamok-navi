@@ -1,22 +1,22 @@
 import { createRequire } from 'node:module'
 import { pathToFileURL } from 'node:url'
 
-// 서버에서 PDF의 필요한 쪽을 JPEG 데이터 URL로 그린다 (pdf.js + @napi-rs/canvas, 둘 다 미리 빌드된 패키지).
-// 학교 홈페이지에서 받은 파일을 서버가 직접 그려야, 사용자가 다른 그림을 끼워 넣어 공유 데이터를 오염시킬 수 없다.
+// PDF의 필요한 쪽을 서버에서 JPEG 데이터 URL로 그린다 (pdf.js + @napi-rs/canvas, 둘 다 미리 빌드된 패키지).
+// 학교 홈페이지에서 받은 파일을 서버가 직접 그려야 사용자가 다른 그림을 끼워 넣어 공유 데이터를 오염시킬 수 없다.
 
 const require = createRequire(import.meta.url)
 const MAX_SIDE = 1800
 /** 디코딩해 받아들일 최대 픽셀 수 (가로×세로) */
 const MAX_PIXELS = 60_000_000
-/** pdf.js에 넘기는 상한: 한 이미지의 픽셀 수와 캔버스 넓이(바이트). 기본은 무제한이라 악성 PDF가 메모리를 터뜨릴 수 있다 */
+/** pdf.js 상한: 이미지 하나의 픽셀 수, 캔버스 넓이(바이트). 기본값은 무제한이라 악성 PDF가 메모리를 터뜨릴 수 있음 */
 const PDF_MAX_IMAGE_PIXELS = 25_000_000
 const PDF_CANVAS_MAX_BYTES = 128 * 1024 * 1024
-/** 글자만 꺼내는 반복문의 시간 상한 (쪽이 많고 무거운 PDF가 이벤트 루프를 오래 잡지 않게) */
+/** 글자 꺼내기 반복의 시간 상한. 쪽 많은 무거운 PDF가 이벤트 루프를 오래 잡지 않게 */
 const TEXT_BUDGET_MS = 45_000
-/** 동시에 도는 이미지 디코딩 수 (여러 요청이 한꺼번에 큰 그림을 풀어 메모리를 몰아 쓰지 않게) */
+/** 동시 이미지 디코딩 수. 여러 요청이 한꺼번에 큰 그림을 풀어 메모리가 몰리지 않게 */
 const MAX_DECODES = 2
 
-/** PNG·JPEG·GIF·WEBP 머리글에서 가로·세로를 싸게 읽는다 (디코딩 전에 큰 그림을 거른다). 모르면 null */
+/** PNG·JPEG·GIF·WEBP 머리글의 가로·세로. 디코딩 전에 큰 그림을 거르는 용도, 모르면 null */
 export function imageSize(buf: Buffer): { w: number; h: number } | null {
   if (buf.length >= 24 && buf.readUInt32BE(0) === 0x89504e47) return { w: buf.readUInt32BE(16), h: buf.readUInt32BE(20) } // PNG
   if (buf.length >= 10 && buf.toString('latin1', 0, 3) === 'GIF') return { w: buf.readUInt16LE(6), h: buf.readUInt16LE(8) } // GIF
@@ -35,7 +35,7 @@ export function imageSize(buf: Buffer): { w: number; h: number } | null {
     return null
   }
   if (buf.length >= 4 && buf[0] === 0xff && buf[1] === 0xd8) {
-    // JPEG: SOF 마커(크기 정보)까지 세그먼트를 건너뛰며 찾는다
+    // JPEG: SOF 마커(크기 정보)가 나올 때까지 세그먼트를 건너뜀
     let p = 2
     while (p + 9 < buf.length) {
       if (buf[p] !== 0xff) {
@@ -59,7 +59,7 @@ export function imageSize(buf: Buffer): { w: number; h: number } | null {
   return null
 }
 
-// 동시에 도는 디코딩 수를 막는 작은 차례표
+// 동시 디코딩을 MAX_DECODES개로 막는 대기열
 let decoding = 0
 const waiting: (() => void)[] = []
 async function withDecodeSlot<T>(fn: () => Promise<T>): Promise<T> {
@@ -77,12 +77,12 @@ type PdfJs = typeof import('pdfjs-dist')
 let pdfjsPromise: Promise<PdfJs> | null = null
 const loadPdfJs = () =>
   (pdfjsPromise ??= (import(/* @vite-ignore */ pathToFileURL(require.resolve('pdfjs-dist/legacy/build/pdf.mjs')).href) as Promise<PdfJs>).then((pdfjs) => {
-    // Node에서는 가짜 워커로 같은 스레드에서 돈다. 워커 파일 경로를 file:// 주소로 줘야 Windows에서도 열린다.
+    // Node에서는 가짜 워커(같은 스레드). 워커 경로를 file:// 주소로 줘야 Windows에서도 열림
     pdfjs.GlobalWorkerOptions.workerSrc = pathToFileURL(require.resolve('pdfjs-dist/legacy/build/pdf.worker.mjs')).href
     return pdfjs
   }))
 
-/** getDocument에 넘기는 공통 옵션 (이미지·캔버스 크기 상한 포함). pdf.js 6은 글꼴 처리에 eval을 쓰지 않는다 */
+/** getDocument 공통 옵션 (이미지·캔버스 크기 상한 포함). pdf.js 6은 글꼴 처리에 eval을 쓰지 않음 */
 const docOpts = (data: Buffer) => ({
   data: new Uint8Array(data),
   useWasm: false,
@@ -105,9 +105,9 @@ export function looksLikeImage(buf: Buffer): boolean {
   )
 }
 
-/** 받은 그림을 크기를 맞춘 JPEG 데이터 URL로 바꾼다 (원본을 그대로 AI에 넘기지 않는다) */
+/** 받은 그림 → 크기를 맞춘 JPEG 데이터 URL. 원본을 그대로 AI에 넘기지 않음 */
 export async function normalizeImage(buf: Buffer): Promise<string> {
-  // 디코딩하기 전에 머리글 크기로 먼저 거른다 (큰 그림은 풀지 않는다)
+  // 디코딩 전에 머리글 크기로 먼저 거름
   const dim = imageSize(buf)
   if (dim && (dim.w <= 0 || dim.h <= 0 || dim.w * dim.h > MAX_PIXELS)) throw new Error('image size')
   return withDecodeSlot(async () => {
@@ -125,7 +125,7 @@ export async function normalizeImage(buf: Buffer): Promise<string> {
   })
 }
 
-/** 쪽 글자로 해당 입학년도 편제표가 있는 쪽을 고른다. 글자 층이 없으면 앞쪽부터. */
+/** 쪽 글자로 해당 입학년도 편제표가 있는 쪽 고르기 (1부터). 글자 층이 없으면 앞쪽부터 */
 export function pickPages(texts: string[], cohort: number, max: number): number[] {
   const scored = texts.map((t, i) => {
     const s = t.replace(/\s+/g, '')
@@ -142,7 +142,7 @@ export function pickPages(texts: string[], cohort: number, max: number): number[
   return pages.sort((a, b) => a - b)
 }
 
-/** 쪽마다 글자 (대입 원문이 바뀐 쪽을 찾을 때) */
+/** 쪽마다 글자. 대입 원문이 바뀐 쪽 찾기용 */
 export async function pdfPageTexts(data: Buffer, maxPages = 200): Promise<string[]> {
   const pdfjs = await loadPdfJs()
   const task = pdfjs.getDocument(docOpts(data))
@@ -163,7 +163,7 @@ export async function pdfPageTexts(data: Buffer, maxPages = 200): Promise<string
   }
 }
 
-/** 고른 쪽(1부터)만 JPEG 데이터 URL로 그린다 */
+/** 고른 쪽(1부터)만 JPEG 데이터 URL로 */
 export async function renderPdfPages(data: Buffer, pages: number[]): Promise<string[]> {
   const pdfjs = await loadPdfJs()
   const { createCanvas } = require('@napi-rs/canvas') as typeof import('@napi-rs/canvas')
@@ -196,7 +196,7 @@ export async function renderPdf(data: Buffer, cohort: number, maxPages = 4): Pro
   const task = pdfjs.getDocument(docOpts(data))
   const doc = await task.promise
   try {
-    // 학교교육계획서는 200쪽이 넘기도 해서 넉넉히 본다 (글자만 꺼내므로 가볍다). 시간 상한도 둔다
+    // 학교교육계획서는 200쪽이 넘기도 해 300쪽까지 본다 (글자만 꺼내 가벼움). 시간 상한도 둠
     const count = Math.min(doc.numPages, 300)
     const texts: string[] = []
     const until = Date.now() + TEXT_BUDGET_MS

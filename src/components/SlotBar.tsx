@@ -34,7 +34,7 @@ export function SlotBar() {
   const [manage, setManage] = useState(false)
   const menu = useRef<HTMLDetailsElement>(null)
 
-  // 새 슬롯 메뉴는 밖을 누르거나 Esc를 누르면 닫는다
+  // 새 슬롯 메뉴: 밖을 누르거나 Esc면 닫음
   useEffect(() => {
     const close = (e: Event) => {
       const el = menu.current
@@ -51,7 +51,7 @@ export function SlotBar() {
 
   const open = (s: Slot) => {
     if (s.id === prefs.slot) return
-    // 다른 슬롯의 설계로 스르륵 넘어간다
+    // 다른 슬롯 설계로 부드럽게 전환
     smoothly(() => {
       store.switchSlot(s.id)
       notify(`${eul(s.name)} 열었어요.`)
@@ -166,7 +166,7 @@ function SlotsDialog({ onClose }: { onClose: () => void }) {
                       </strong>
                       <span className="muted small">
                         {summary(s, schools)}
-                        {/* 지금 슬롯은 고칠 때마다 바뀌므로 날짜를 적지 않는다 */}
+                        {/* 지금 슬롯은 고칠 때마다 바뀌어 날짜 생략 */}
                         {!on && s.at ? ` · ${dateTime(s.at, false)}` : ''}
                       </span>
                     </div>

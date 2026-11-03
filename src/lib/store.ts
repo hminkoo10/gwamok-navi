@@ -16,32 +16,31 @@ import { AccountSync, type BaseSnap, hashText, type SyncInfo, type SyncState } f
 
 export type { SyncState } from './sync'
 
-// 화면 상태. 이 기기의 localStorage에 저장하고, 로그인하면 계정에도 저장한다. 공유는 주소의 # 뒤에 담는다.
-// 기본 학교는 없다: 처음 들어온 사람은 학교부터 고른다.
-// 설계는 슬롯에 담긴다: 지금 보는 슬롯의 내용이 prefs이고, 고치면 그 슬롯에 바로 저장된다.
+// 화면 상태. localStorage에 저장하고, 로그인하면 계정에도 올린다. 공유 링크는 주소 # 뒤에 담는다.
+// 설계는 슬롯 단위로, 지금 슬롯의 내용이 prefs다. 기본 학교는 없어 처음엔 학교부터 고른다.
 // 계정과는 마지막으로 맞춘 기준(SYNC_KEY)에 견줘 합친다: 다른 기기에서 지운 것은 지우고, 이 기기에서 새로 만든 것은 남긴다.
 
 const PREFS_KEY = 'gwamok-navi:v4'
 const OLD_PREFS_KEYS = ['gwamok-navi:v3', 'gwamok-navi:v2']
 const SCHOOLS_KEY = 'gwamok-navi:schools'
-/** 슬롯 (예전 '설계안'과 같은 칸을 쓴다: 저장해 둔 설계안은 그대로 슬롯이 된다) */
+/** 슬롯 목록. 예전 '설계안' 키를 그대로 써서 저장된 설계안이 곧 슬롯이 된다 */
 const SLOTS_KEY = 'gwamok-navi:plans'
-/** 이 기기의 설계가 어느 계정 것인지 (로그인 없이 만든 설계면 없음) */
+/** 이 기기 설계의 주인 계정. 로그인 없이 만들었으면 없음 */
 const OWNER_KEY = 'gwamok-navi:owner'
-/** 이 기기가 마지막으로 계정과 맞춘 때의 기준 (계정 판, 그때 있던 슬롯·편제표) */
+/** 마지막으로 계정과 맞춘 기준: 계정 판(rev), 그때의 슬롯·편제표 해시 */
 const SYNC_KEY = 'gwamok-navi:sync'
-/** 다른 탭이 바꾸면 다시 읽는 칸 */
+/** 다른 탭이 바꾸면 다시 읽는 키 */
 const STORE_KEYS = new Set([PREFS_KEY, SCHOOLS_KEY, SLOTS_KEY, OWNER_KEY, SYNC_KEY])
 const SLOT_ID = /^[a-z0-9-]{1,40}$/
 
-/** 목록 길이 상한 (서버가 받는 길이 안에서. 넘으면 서버가 저장을 거절한다) */
+/** 목록 길이 상한. 서버 한도 안쪽 (넘으면 서버가 저장을 거절) */
 const MAX_MAJORS = 100
 const MAX_UNIVS = 60
 const MAX_CHOICES = 500
 const MAX_UNITS = 5000
 export const MAX_SCHOOLS = 20
 
-/** 대학 고르기에서 한 번에 더할 수 있는 묶음 */
+/** 대학 고르기에서 한 번에 더하는 묶음 (서울 주요 대학, 지역 거점 국립대) */
 export const SEOUL_MAJOR = ['snu', 'yonsei', 'korea', 'skku', 'sogang', 'hanyang', 'cau']
 export const FLAGSHIP = ['pnu', 'knu', 'cnu', 'jnu', 'cbnu', 'jbnu', 'kangwon']
 
@@ -55,17 +54,17 @@ export interface Prefs {
   schoolId: string
   pinned: string[]
   excluded: string[]
-  /** 전형 지원 자격을 볼 때 쓰는 내 조건 (특별 자격은 이 기기에만 저장) */
+  /** 지원 자격 판정에 쓰는 내 조건. 특별 자격은 이 기기에만 저장 */
   profile: Profile
-  /** 원서 후보로 담은 전형 ('대학 id:전형 id') */
+  /** 원서 후보 전형 ('대학 id:전형 id') */
   picks: string[]
-  /** 목표 전형: 과목 추천을 이 전형에 맞춘다 */
+  /** 목표 전형. 과목 추천의 기준 */
   focus: Focus
-  /** 목표 전형이 권장과목을 보지 않는 대학도 권장과목을 함께 채운다 (수시·정시를 같이 준비할 때) */
+  /** 목표 전형이 권장과목을 안 보는 대학도 권장과목을 채운다 (수시·정시를 함께 준비할 때) */
   keepAll: boolean
   /** 지금 보는 슬롯 id */
   slot: string
-  /** 지금 슬롯의 설계를 마지막으로 고친 때 (계정·다른 기기 것과 합칠 때 새로 고친 쪽이 이긴다) */
+  /** 지금 슬롯을 마지막으로 고친 때. 합칠 때 나중에 고친 쪽이 이긴다 */
   at?: string
 }
 
@@ -84,7 +83,7 @@ const EMPTY: Prefs = {
   at: '',
 }
 
-/** 슬롯마다 따로 저장하는 설계. 내 조건(profile)과 원서 후보(picks)는 모든 슬롯이 같이 쓴다 */
+/** 슬롯마다 따로 두는 설계. profile·picks는 모든 슬롯 공통 */
 export type Design = Pick<Prefs, 'schoolId' | 'majors' | 'univs' | 'unitIds' | 'pinned' | 'excluded' | 'focus' | 'keepAll'>
 
 export const designOf = (p: Design): Design => ({
@@ -100,7 +99,7 @@ export const designOf = (p: Design): Design => ({
 
 export const sameDesign = (a: Design, b: Design) => JSON.stringify(designOf(a)) === JSON.stringify(designOf(b))
 
-/** 비운 설계 (학교는 부르는 쪽에서 정한다) */
+/** 빈 설계. 학교는 부르는 쪽이 채운다 */
 const EMPTY_DESIGN: Design = designOf(EMPTY)
 
 const now = () => new Date().toISOString()
@@ -172,7 +171,7 @@ function restoreSchool(raw: unknown): School | null {
   }
 }
 
-/** 저장해 둔 편제표 목록 (같은 id는 앞의 것만) */
+/** 저장된 편제표 목록. id가 겹치면 앞의 것만 */
 function restoreSchools(raw: unknown): School[] {
   if (!Array.isArray(raw)) return []
   const out: School[] = []
@@ -183,12 +182,12 @@ function restoreSchools(raw: unknown): School[] {
   return out.slice(0, MAX_SCHOOLS)
 }
 
-/** 저장해 두는 모양으로 편제표를 다시 정리한다 (계정·다른 기기에서 받은 것과 모양이 같아야 바뀌었는지 견줄 수 있다) */
+/** 저장하는 모양으로 다시 정리한다. 계정에서 받은 것과 모양이 같아야 해시로 변경을 견줄 수 있다 */
 export function normalizeSchool(s: School): School {
   return restoreSchool(JSON.parse(JSON.stringify(s))) ?? s
 }
 
-/** 편제표 내용: 입학년도·학과와 학기별 과목·학점·선택 묶음·세트 (학교 이름·출처·확인 표시는 뺀다) */
+/** 편제표 내용 비교 키: 입학년도·학과, 학기별 과목·학점·선택 묶음·세트. 학교 이름·출처·확인 표시는 뺀다 */
 export function curriculumKey(s: School): string {
   return JSON.stringify([
     s.cohort,
@@ -201,7 +200,7 @@ export function curriculumKey(s: School): string {
   ])
 }
 
-/** 편제표를 목록 맨 앞에 둔다 (같은 id는 바꾼다). 20개를 넘으면 어느 슬롯도 쓰지 않는 것부터 뺀다 */
+/** 맨 앞에 넣는다 (같은 id는 교체). 20개를 넘으면 어느 슬롯도 안 쓰는 것을 뒤에서부터 뺀다 */
 export function withSchool(list: School[], s: School, inUse: Set<string>): School[] {
   const next = [s, ...list.filter((x) => x.id !== s.id)]
   while (next.length > MAX_SCHOOLS) {
@@ -212,8 +211,8 @@ export function withSchool(list: School[], s: School, inUse: Set<string>): Schoo
 }
 
 /**
- * 공유받은 편제표를 둘 자리. 같은 id의 내 편제표가 내용까지 같으면 내 것을 그대로 쓴다 (확인 표시가 남게).
- * 내용이 다르면 내 편제표를 덮어쓰지 않고 새 id로 따로 둔다 (공유받은 설계를 연 새 슬롯만 그것을 쓴다)
+ * 공유받은 편제표를 둘 자리. 같은 id의 내 편제표가 내용까지 같으면 내 것을 그대로 쓴다 (확인 표시 유지).
+ * 내용이 다르면 내 것을 덮어쓰지 않고 새 id로 따로 둔다
  */
 export function placeShared(shared: School, schools: School[], inUse: Set<string>): { school: School; schools: School[] } {
   const s = normalizeSchool(shared)
@@ -227,7 +226,7 @@ function restorePrefs(raw: unknown, schoolIds: Set<string>): Prefs {
   if (!raw || typeof raw !== 'object') return EMPTY
   const r = raw as Record<string, unknown>
   const unitIds = r.unitIds === null ? null : strings(r.unitIds, (s) => UNIT_BY_ID.has(s))
-  // 예전 판(v2)은 대학을 '숨기기'로 저장했다
+  // v2는 대학을 '숨기기'(hiddenUnivs)로 저장했다
   const univs = Array.isArray(r.univs)
     ? strings(r.univs, (s) => UNIV_BY_ID.has(s)).slice(0, MAX_UNIVS)
     : Array.isArray(r.hiddenUnivs)
@@ -249,7 +248,7 @@ function restorePrefs(raw: unknown, schoolIds: Set<string>): Prefs {
   }
 }
 
-/** 슬롯: 설계를 따로 저장해 두고 오가는 칸 (다른 진로·대학을 비교할 때) */
+/** 따로 저장해 두고 오가는 설계 (다른 진로·대학 비교용) */
 export interface Slot extends Design {
   id: string
   name: string
@@ -272,7 +271,7 @@ export function unusedSlotName(slots: { name: string }[], base = '슬롯'): stri
   for (let n = base === '슬롯' ? 1 : 2; ; n++) if (!used.has(`${stem} ${n}`)) return `${stem} ${n}`
 }
 
-/** 저장된 슬롯을 검사해 되살린다 (예전 '설계안'은 목표 전형 없이 그대로 슬롯이 된다) */
+/** 저장된 슬롯을 검사해 되살린다. 목표 전형이 없는 예전 '설계안'은 '종합'으로 */
 export function restoreSlots(raw: unknown, schoolIds: Set<string>): Slot[] {
   if (!Array.isArray(raw)) return []
   const out: Slot[] = []
@@ -287,7 +286,7 @@ export function restoreSlots(raw: unknown, schoolIds: Set<string>): Slot[] {
       name,
       at: typeof r.at === 'string' ? r.at.slice(0, 30) : '',
       ...designOf(restorePrefs(r, schoolIds)),
-      // 학교를 지웠어도 id는 남긴다 (열 때 지금 학교로 바꾼다)
+      // 지워진 학교 id도 남긴다. 열 때 지금 학교로 바꾼다 (openSlot)
       schoolId: typeof r.schoolId === 'string' ? r.schoolId.slice(0, 80) : '',
     })
     if (out.length === MAX_SLOTS) break
@@ -299,14 +298,13 @@ const hasChoices = (p: Design) => !!(p.schoolId || p.majors.length || p.univs.le
 
 const profileSet = (p: Profile) => p.status === '졸업생' || !!p.schoolType || !!p.region || p.special.length > 0 || p.types.length > 0
 
-/** 지울 것이 없는 상태 (아무것도 고르지 않음) */
+/** 아무것도 고르지 않은 상태 */
 const isBlank = (s: LocalState) =>
   !s.schools.length && !s.prefs.picks.length && !hasChoices(s.prefs) && !profileSet(s.prefs.profile) && s.slots.every((x) => !hasChoices(x))
 
 /**
- * 지금 설계(prefs)를 슬롯에 맞춘다. prefs.slot이 가리키는 슬롯이 없으면 같은 설계의 슬롯(예전 설계안)을 쓰고,
- * 그것도 없으면 새 슬롯을 앞에 만든다. 지금 슬롯의 내용은 prefs로 맞춘다.
- * 슬롯이 가득 찼으면 고른 게 없는 슬롯을, 없으면 가장 오래 고치지 않은 슬롯을 비킨다 (dropped: 알릴 이름)
+ * prefs를 슬롯에 맞춘다. 슬롯은 prefs.slot → 같은 설계의 슬롯(예전 설계안) → 맨 앞에 새로 만든 슬롯 순으로 정하고, 내용은 prefs로 맞춘다.
+ * 가득 찼으면 빈 슬롯을, 없으면 가장 오래 안 고친 슬롯을 뺀다. dropped: 빼서 알릴 슬롯 이름
  */
 export function withSlots(prefs: Prefs, slots: Slot[]): { prefs: Prefs; slots: Slot[]; dropped: string[] } {
   let list = slots
@@ -326,14 +324,14 @@ export function withSlots(prefs: Prefs, slots: Slot[]): { prefs: Prefs; slots: S
   return { prefs: { ...prefs, slot: id, at: next.find((s) => s.id === id)?.at ?? '' }, slots: next, dropped }
 }
 
-/** 지금 슬롯(p.slot)의 내용을 지금 설계로 바꾼 목록 (보여 주고 저장할 때) */
+/** 지금 슬롯 내용을 prefs로 바꾼 목록 (화면·저장용) */
 const withDesign = (list: Slot[], p: Prefs): Slot[] => list.map((s) => (s.id === p.slot ? { ...s, ...designOf(p), at: laterOf(p.at, s.at) } : s))
 
-/** 지금 슬롯을 떠나기 전에: 지금 설계를 써 넣고, 바뀌었으면 바뀐 때도 적는다 */
+/** 슬롯을 떠나기 전: 지금 설계를 써 넣고, 바뀌었으면 at도 적는다 */
 const synced = (list: Slot[], p: Prefs): Slot[] =>
   list.map((s) => (s.id === p.slot && !sameDesign(s, p) ? { ...s, ...designOf(p), at: laterOf(p.at, s.at) || now() } : s))
 
-/** 슬롯을 연 설계. 그 슬롯의 학교를 지웠으면 지금 학교로 연다 (꼭 듣기·빼기는 학교마다 달라 비운다) */
+/** 슬롯을 연 설계. 그 학교가 지워졌으면 지금 학교로 열고, 꼭 듣기·빼기는 학교마다 달라 비운다 */
 function openSlot(p: Prefs, s: Slot, schools: School[]): Prefs {
   const known = schools.some((x) => x.id === s.schoolId)
   return { ...p, ...designOf(s), ...(known ? {} : { schoolId: p.schoolId, pinned: [], excluded: [] }), slot: s.id, at: s.at }
@@ -341,19 +339,19 @@ function openSlot(p: Prefs, s: Slot, schools: School[]): Prefs {
 
 // ---- 계정과 합치기 ----
 
-/** 화면 상태 전체: 지금 설계(prefs), 편제표, 슬롯(지금 슬롯도 지금 설계로 채운 것) */
+/** 화면 상태 전체. slots의 지금 슬롯은 prefs로 채운 것 */
 export interface LocalState {
   prefs: Prefs
   schools: School[]
   slots: Slot[]
 }
 
-/** 계정에 저장된 설계를 되살린 것. empty: 고른 것이 하나도 없는 계정 (열 슬롯도, 학교·분야·대학도 없음) */
+/** 계정 설계를 되살린 것. empty: 열 슬롯도, 고른 학교·분야·대학도 없음 */
 export interface Remote extends LocalState {
   empty: boolean
 }
 
-/** 마지막으로 계정과 맞춘 때 있던 것: 슬롯·편제표마다 내용 해시, 원서 후보·내 조건 해시, 열려 있던 슬롯 */
+/** 마지막으로 계정과 맞춘 기준: 슬롯·편제표별 내용 해시, picks·profile 해시, 열려 있던 슬롯 */
 export interface Snap extends BaseSnap {
   slots: [string, string][]
   schools: [string, string][]
@@ -377,8 +375,8 @@ const slotRecord = (s: Slot) => ({
 })
 
 /**
- * 계정에 올리는 설계. 특별 자격(민감할 수 있는 정보)은 빼고, 서버가 받는 길이로 자른다.
- * 키 순서를 정해 두어 내용이 같으면 글자도 같다 (바뀌었는지 해시로 견준다)
+ * 계정에 올리는 설계. 특별 자격은 민감할 수 있어 빼고, 서버 한도로 자른다.
+ * 키 순서를 고정해 내용이 같으면 해시도 같다
  */
 export function payloadOf(s: LocalState) {
   const p = s.prefs
@@ -397,16 +395,16 @@ export function payloadOf(s: LocalState) {
       slot: p.slot,
     },
     schools: s.schools.slice(0, MAX_SCHOOLS),
-    // 서버에는 예전 이름(plans)으로 저장한다
+    // 서버 필드 이름은 예전 그대로 plans
     plans: s.slots.slice(0, MAX_SLOTS).map(slotRecord),
   }
 }
 
-/** 슬롯 내용 (id와 바뀐 때는 빼고) */
+/** 슬롯 내용 해시. id·at은 뺀다 */
 const slotHash = (s: Slot) => hashText(JSON.stringify([s.name, s.schoolId, s.majors, s.univs, s.unitIds, s.pinned, s.excluded, s.focus, s.keepAll]))
 const schoolHash = (s: School) => hashText(JSON.stringify(s))
 const picksHash = (picks: string[]) => hashText(JSON.stringify(picks))
-/** 내 조건 (특별 자격은 계정에 올리지 않으므로 뺀다) */
+/** 특별 자격은 계정에 올리지 않으므로 뺀다 */
 const profileHash = (p: Profile) => hashText(JSON.stringify([p.status, p.schoolType, p.region, p.types]))
 
 export function snapshotOf(s: LocalState | null, owner: number, rev: string | null, hash: string): Snap {
@@ -445,20 +443,20 @@ function readSnap(): Snap | null {
   }
 }
 
-/** 계정에 저장한 설계를 되살린다 (모양이 맞지 않으면 null) */
+/** 계정 설계를 되살린다. 모양이 틀리면 null */
 export function restoreSaved(raw: unknown): Remote | null {
   if (!raw || typeof raw !== 'object' || Array.isArray(raw)) return null
   const r = raw as { prefs?: unknown; schools?: unknown; plans?: unknown }
   const schools = restoreSchools(r.schools)
   const ids = new Set(schools.map((s) => s.id))
-  // 학교 id는 슬롯처럼 그대로 둔다 (합친 편제표에 그 학교가 있는지는 합친 뒤에 본다)
+  // 학교 id는 슬롯처럼 그대로 둔다. 그 학교가 있는지는 합친 뒤에 본다
   const p = r.prefs && typeof r.prefs === 'object' ? (r.prefs as Record<string, unknown>) : {}
   const prefs = { ...restorePrefs(r.prefs, ids), schoolId: typeof p.schoolId === 'string' ? p.schoolId.slice(0, 80) : '' }
   const slots = restoreSlots(r.plans, ids)
   return { prefs, schools, slots, empty: !(slots.some((s) => s.id === prefs.slot) || hasChoices(prefs)) }
 }
 
-/** 세 갈래 고르기: 같으면 계정 것, 한쪽만 기준(b)에서 바뀌었으면 바뀐 쪽, 둘 다 바뀌었거나 기준이 없으면 both */
+/** 세 갈래 고르기: 같으면 계정 것(r), 한쪽만 기준 b에서 바뀌었으면 그쪽, 둘 다 바뀌었거나 b가 없으면 both */
 function pick3<T>(r: T, l: T, b: string | undefined, hash: (x: T) => string, both: (r: T, l: T) => T): T {
   const rh = hash(r)
   const lh = hash(l)
@@ -471,13 +469,13 @@ function pick3<T>(r: T, l: T, b: string | undefined, hash: (x: T) => string, bot
 }
 
 /**
- * 계정에 저장한 설계(remote)와 이 기기 것(local)을 합친다. base: 이 기기가 마지막으로 계정과 맞춘 때의 기준.
- * - 양쪽에 다 있는 슬롯은 한쪽만 바뀌었으면 바뀐 쪽, 둘 다 바뀌었으면 나중에 고친 쪽(at).
- * - 한쪽에만 있는 슬롯·편제표: 기준에 있었고 그 뒤로 그대로면 다른 쪽에서 지운 것이라 뺀다. 기준에 없으면 새로 만든 것이라 남긴다.
- * - 기준이 없으면(이 기기에서 처음 합칠 때) 예전처럼: 같은 학교는 계정 것, 이 기기에만 있던 슬롯은 분야나 대학을 고른 것만 덧붙인다.
- * - 슬롯 10개·편제표 20개를 넘으면 이 기기에서 덧붙인 것부터 빼고 그 이름을 dropped로 돌려준다 (말없이 버리지 않게).
- * - 기준은 이 기기 설계가 그 기준에서 이어진 것일 때만 쓴다: 이 기기 설계가 비었거나 기준과 겹치는 슬롯이 하나도 없으면
- *   (다른 탭·다른 계정이 남긴 기준) 기준 없이 합친다. 그러지 않으면 계정의 슬롯이 모두 '이 기기에서 지운 것'으로 보여 계정이 비워진다
+ * 계정 설계(remote)와 이 기기 것(local)을 합친다. base: 이 기기가 마지막으로 계정과 맞춘 기준.
+ * - 양쪽에 있는 슬롯: 한쪽만 바뀌었으면 그쪽, 둘 다 바뀌었으면 나중에 고친 쪽(at).
+ * - 한쪽에만 있는 슬롯·편제표: 기준에 있고 그 뒤로 그대로면 다른 쪽에서 지운 것이라 뺀다. 기준에 없으면 새로 만든 것이라 남긴다.
+ * - 기준이 없으면(이 기기에서 처음 합칠 때): 같은 학교는 계정 것, 이 기기에만 있는 슬롯은 분야나 대학을 고른 것만 덧붙인다.
+ * - 슬롯 10개·편제표 20개를 넘으면 이 기기에서 덧붙인 것부터 빼고 그 이름을 dropped로 돌려준다.
+ * - 기준은 이 기기 설계가 거기서 이어졌을 때만 쓴다. 이 기기 설계가 비었거나 기준과 겹치는 슬롯이 없으면(다른 탭·다른 계정이 남긴 기준)
+ *   기준 없이 합친다. 안 그러면 계정 슬롯이 모두 '이 기기에서 지운 것'으로 보여 계정이 비워진다
  */
 export function mergeStates(remote: Remote, local: LocalState, base: Snap | null): { state: LocalState; dropped: string[] } {
   const related = !!base && !isBlank(local) && local.slots.some((s) => base.slots.some(([id]) => id === s.id))
@@ -541,7 +539,7 @@ export function mergeStates(remote: Remote, local: LocalState, base: Snap | null
           : [...new Set([...rp.picks, ...lp.picks])].slice(0, MAX_PICKS)
     profile = profileHash(lp.profile) === known.profile ? rp.profile : lp.profile
   } else {
-    // 원서 후보는 계정에 없을 때만 이 기기 것을 쓴다 (로그인 전에 담은 것)
+    // 원서 후보는 계정에 없을 때만 이 기기 것 (로그인 전에 담은 것)
     picks = rp.picks.length ? rp.picks : lp.picks
     profile = remote.empty ? lp.profile : rp.profile
   }
@@ -579,7 +577,7 @@ export function mergeStates(remote: Remote, local: LocalState, base: Snap | null
   return { state: { prefs: w.prefs, schools, slots: outSlots }, dropped }
 }
 
-/** 계정 설계(raw)와 이 기기 것을 합친다 (raw가 설계 모양이 아니면 null) */
+/** 계정 설계(raw)와 이 기기 것을 합친다. raw 모양이 틀리면 null */
 export function mergeSaved(raw: unknown, local: LocalState, base: Snap | null = null): (LocalState & { dropped: string[] }) | null {
   const remote = restoreSaved(raw)
   if (!remote) return null
@@ -587,7 +585,7 @@ export function mergeSaved(raw: unknown, local: LocalState, base: Snap | null = 
   return { ...state, dropped }
 }
 
-/** 계정 저장(AccountSync)이 쓰는 합치기. 계정이 비어 있으면 이 기기 것을 그대로 올린다 */
+/** AccountSync용 합치기. 계정 설계가 없거나 모양이 틀리면 이 기기 것 그대로 */
 function mergeForSync(raw: unknown, local: LocalState, base: Snap | null): { state: LocalState; remote: LocalState | null; dropped: string[] } {
   const remote = restoreSaved(raw)
   if (!remote) return { state: local, remote: null, dropped: [] }
@@ -595,7 +593,7 @@ function mergeForSync(raw: unknown, local: LocalState, base: Snap | null): { sta
   return { state, remote, dropped }
 }
 
-/** 다른 탭과 견줄 때 쓰는 내용 (키 순서와 상관없이) */
+/** 다른 탭 상태와 견주는 키 (특별 자격 포함) */
 const stateKey = (s: LocalState) => JSON.stringify([payloadOf(s), s.prefs.profile.special])
 
 function blankState(): LocalState {
@@ -603,7 +601,7 @@ function blankState(): LocalState {
   return { prefs, schools: [], slots }
 }
 
-/** 이 기기 저장소에서 되살린다: 학교 → 설계 → 슬롯 순서로, 지금 설계가 들어갈 슬롯을 맞춘다 */
+/** localStorage에서 되살린다: 편제표 → 설계(예전 판 키도 봄) → 슬롯 순 */
 function readLocal(): LocalState & { owner: number | null; dropped: string[] } {
   const schools = restoreSchools(read(SCHOOLS_KEY))
   const ids = new Set(schools.map((s) => s.id))
@@ -621,10 +619,10 @@ const droppedText = (names: string[]) =>
 // ---- 공유 링크 ----
 
 const SHARE_KEY = 'gwamok-navi:share'
-/** 이 페이지에서 맡아 둔 공유 링크 코드 (탭 저장소를 못 쓸 때) */
+/** 공유 코드의 메모리 사본 (sessionStorage를 못 쓸 때 대비) */
 let heldShare: string | null = null
 
-/** 주소의 공유 링크 코드를 맡겨 두고 주소에서는 지운다 (로그인하러 Google에 다녀와도 이 탭에 남게). 맡았으면 true */
+/** 주소의 공유 코드를 sessionStorage에 맡기고 주소에서 지운다 (Google 로그인을 다녀와도 이 탭에 남게). 맡았으면 true */
 function holdShare(): boolean {
   const m = location.hash.match(/^#s=([A-Za-z0-9_-]+)$/)
   if (!m) return false
@@ -632,13 +630,13 @@ function holdShare(): boolean {
   try {
     sessionStorage.setItem(SHARE_KEY, m[1])
   } catch {
-    // 탭 저장소를 못 쓰면 이 페이지에서만 기억한다
+    // sessionStorage를 못 쓰면 heldShare만
   }
   history.replaceState(null, '', location.pathname + location.search)
   return true
 }
 
-/** 맡겨 둔 공유 링크 코드를 꺼낸다 (한 번만) */
+/** 맡긴 공유 코드를 꺼낸다. 꺼내면 지운다 */
 function takeShare(): string | null {
   let code = heldShare
   heldShare = null
@@ -646,19 +644,19 @@ function takeShare(): string | null {
     code ??= sessionStorage.getItem(SHARE_KEY)
     sessionStorage.removeItem(SHARE_KEY)
   } catch {
-    // 탭 저장소를 못 쓰면 이 페이지에서 기억한 것만
+    // sessionStorage를 못 쓰면 heldShare만
   }
   return code && /^[A-Za-z0-9_-]+$/.test(code) ? code : null
 }
 
 export interface StoreOptions {
-  /** 공유 링크로 받은 설계를 연 뒤 (설계 화면으로 옮긴다) */
+  /** 공유받은 설계를 연 뒤 (설계 화면으로 옮긴다) */
   onShared?: () => void
-  /** 알림 띄우기 (되돌리기 같은 버튼을 붙일 수 있다) */
+  /** 알림. action으로 되돌리기 같은 버튼을 붙인다 */
   onNotice?: (text: string, action?: ToastAction) => void
   /** 로그인한 계정 (없으면 이 기기에만 저장) */
   userId?: number | null
-  /** 로그인했는지 확인을 마쳤는지. 공유 링크는 그 뒤에(로그인했으면 계정 설계를 합친 뒤에) 연다 */
+  /** 로그인 확인을 마쳤는지. 공유 링크는 그 뒤에 연다 (로그인했으면 계정 설계를 합친 뒤) */
   ready?: boolean
 }
 
@@ -677,16 +675,16 @@ export function useAppState(options: StoreOptions = {}) {
   })
   const [schools, setSchools] = useState<School[]>(initial.schools)
   const [prefs, setPrefsRaw] = useState<Prefs>(initial.prefs)
-  // 저장해 둔 슬롯. 지금 슬롯의 내용은 바꿀 때마다 쓰지 않고 prefs에서 바로 읽는다 (다른 슬롯으로 바꿀 때 써 넣는다)
+  // 저장된 슬롯. 지금 슬롯 내용은 매번 쓰지 않고 prefs에서 읽으며, 다른 슬롯으로 바꿀 때 써 넣는다
   const [stored, setSlots] = useState<Slot[]>(initial.slots)
-  /** 지금 들고 있는 설계가 어느 계정 것인지 (로그인하지 않고 만든 설계면 null) */
+  /** 지금 설계의 주인 계정. 로그인 없이 만들었으면 null */
   const [owner, setOwner] = useState<number | null>(initial.owner)
   const [syncInfo, setSyncInfo] = useState<SyncInfo | null>(null)
-  /** 앞서 그릴 때의 로그인 계정 (로그인을 확인한 순간을 알려고) */
+  /** 직전 렌더의 로그인 계정. 로그인이 확인된 순간을 잡으려고 */
   const [lastUser, setLastUser] = useState<number | null>(null)
 
-  // 로그인을 확인한 순간, 화면에 그리기 전에: 저장소를 다시 읽는다 (로그인하지 않은 동안 다른 탭이 저장소를 바꿨을 수 있다).
-  // 저장소의 설계가 이 계정 것이 아니면(다른 계정이 남기고 간 것, 로그인하지 않고 만든 것) 보이지 않게 지운다
+  // 로그인이 확인되면 그리기 전에 저장소를 다시 읽는다 (그사이 다른 탭이 바꿨을 수 있다).
+  // 이 계정 설계가 아니면(다른 계정이 남긴 것, 로그인 없이 만든 것) 보이기 전에 비운다
   if (userId !== lastUser) {
     setLastUser(userId)
     if (userId !== null) {
@@ -699,7 +697,7 @@ export function useAppState(options: StoreOptions = {}) {
     }
   }
 
-  /** 설계를 고치면 지금 슬롯의 '바뀐 때'도 적는다 (다른 슬롯을 열 때는 그 슬롯의 때를 그대로 쓴다) */
+  /** 설계가 바뀌면 at도 새로 적는다. 다른 슬롯을 열 때는 그 슬롯의 at 그대로 */
   const setPrefs = useCallback(
     (next: Prefs | ((p: Prefs) => Prefs)) =>
       setPrefsRaw((p) => {
@@ -711,7 +709,7 @@ export function useAppState(options: StoreOptions = {}) {
 
   const slots = useMemo(() => (stored.some((s) => s.id === prefs.slot && !sameDesign(s, prefs)) ? withDesign(stored, prefs) : stored), [stored, prefs])
   const latest = useRef<LocalState>({ prefs, schools, slots })
-  /** 계정·다른 탭에서 받아 넣었지만 아직 화면에 그리기 전인 상태 (그사이 저장하면 이것을 올린다) */
+  /** 계정·다른 탭에서 받아 넣고 아직 그리기 전인 상태. 그사이 저장하면 이것을 올린다 */
   const pending = useRef<LocalState | null>(null)
   useEffect(() => {
     latest.current = { prefs, schools, slots }
@@ -738,13 +736,13 @@ export function useAppState(options: StoreOptions = {}) {
       // 저장소를 못 써도 화면은 동작한다
     }
   }, [])
-  // 주인을 먼저 적는다 (다른 탭이 설계보다 주인이 바뀐 것을 먼저 보게)
+  // 주인을 먼저 적는다: 다른 탭이 설계보다 주인 변경을 먼저 보게
   useEffect(() => persist(OWNER_KEY, owner), [owner, persist])
   useEffect(() => persist(PREFS_KEY, prefs), [prefs, persist])
   useEffect(() => persist(SCHOOLS_KEY, schools), [schools, persist])
   useEffect(() => persist(SLOTS_KEY, slots), [slots, persist])
   useEffect(() => {
-    // 예전 판 저장소는 새 판으로 옮겨 적었으면 지운다
+    // 새 키에 옮겨 적었으면 예전 판 키는 지운다
     try {
       if (localStorage.getItem(PREFS_KEY) !== null) for (const k of OLD_PREFS_KEYS) localStorage.removeItem(k)
     } catch {
@@ -769,7 +767,7 @@ export function useAppState(options: StoreOptions = {}) {
       saveBase: (b) => persist(SYNC_KEY, b),
       report: setSyncInfo,
       dropped: (names) => notice(droppedText(names)),
-      // 다른 탭에서 계정이 바뀌었다: 이 탭은 새로 연다 (지금 계정을 다시 확인한다)
+      // 다른 탭에서 계정이 바뀌면 새로 고쳐 지금 계정을 다시 확인한다
       accountChanged: () => location.reload(),
     })
     syncer.current = s
@@ -801,9 +799,9 @@ export function useAppState(options: StoreOptions = {}) {
       const storedOwner = readOwner()
       if (me !== null) {
         if (storedOwner !== me) {
-          // 이 탭이 아직 주인을 적기 전이면 곧 적는다
+          // 이 탭이 아직 주인을 적기 전: 곧 적으니 넘어간다
           if (written.current.get(OWNER_KEY) !== JSON.stringify(me)) return
-          // 다른 탭에서 로그아웃했거나 다른 계정으로 로그인했다: 이 탭의 설계를 그 계정에 올리지 않게 새로 연다
+          // 다른 탭에서 로그아웃·계정 전환: 이 탭 설계가 다른 계정에 올라가지 않게 새로 고친다
           syncer.current?.stop()
           location.reload()
           return
@@ -817,7 +815,7 @@ export function useAppState(options: StoreOptions = {}) {
     }
     const onStorage = (e: StorageEvent) => {
       if (e.key !== null && !STORE_KEYS.has(e.key)) return
-      // 한 번 고칠 때 여러 칸을 쓰므로 다 쓰고 나서 읽는다
+      // 한 번 고칠 때 여러 키를 쓰므로 다 쓴 뒤에 읽는다
       clearTimeout(timer)
       timer = setTimeout(adopt, 50)
     }
@@ -844,10 +842,10 @@ export function useAppState(options: StoreOptions = {}) {
 
   const setUnits = useCallback((unitIds: string[] | null) => setPrefs((p) => ({ ...p, unitIds: unitIds ? unitIds.slice(0, MAX_UNITS) : null })), [setPrefs])
 
-  /** 분야(계열 묶음·세부 학과)를 한꺼번에 바꾼다. 모집단위 선택은 다시 '전체'로 */
+  /** 분야(계열 묶음·세부 학과)를 통째로 바꾼다. 모집단위 선택은 다시 '전체'로 */
   const setMajors = useCallback((ids: string[]) => setPrefs((p) => ({ ...p, majors: upgradeMajors(ids).slice(0, MAX_MAJORS), unitIds: null })), [setPrefs])
 
-  /** 목표 대학을 바꾸면 모집단위 선택은 다시 '전체'로 */
+  /** 모집단위 선택은 다시 '전체'로 */
   const setUnivs = useCallback((univs: string[]) => setPrefs((p) => ({ ...p, univs: [...new Set(univs)].slice(0, MAX_UNIVS), unitIds: null })), [setPrefs])
 
   const toggleUniv = useCallback(
@@ -862,7 +860,7 @@ export function useAppState(options: StoreOptions = {}) {
 
   const setSchool = useCallback((schoolId: string) => setPrefs((p) => (p.schoolId === schoolId ? p : { ...p, schoolId, pinned: [], excluded: [] })), [setPrefs])
 
-  /** 꼭 듣기·풀기. 두 학기 세트 과목이면 같은 세트 과목도 함께 바꾸고, 무엇이 함께 바뀌었는지 돌려준다 (알림용) */
+  /** 꼭 듣기·풀기. 두 학기 세트 과목은 세트째 바꾸고, 함께 바뀐 것을 돌려준다 (알림용) */
   const togglePin = useCallback(
     (subject: string): ChoiceChange => {
       const { prefs: p, schools: list } = current()
@@ -875,7 +873,7 @@ export function useAppState(options: StoreOptions = {}) {
     [current, setPrefs],
   )
 
-  /** 빼기·다시 넣기. 세트 과목이면 같은 세트 과목도 함께 빼거나 다시 넣고, 남은 세트까지 빼면 앞서 뺀 세트를 다시 넣는다 */
+  /** 빼기·다시 넣기. 세트 과목은 세트째. 남은 세트까지 빼면 앞서 뺀 세트를 다시 넣는다 */
   const toggleExclude = useCallback(
     (subject: string): ChoiceChange => {
       const { prefs: p, schools: list } = current()
@@ -888,7 +886,7 @@ export function useAppState(options: StoreOptions = {}) {
     [current, setPrefs],
   )
 
-  /** 꼭 듣기·빼기를 통째로 바꾼다 (저장된 선택을 고칠 때). 그 사이 다른 슬롯을 열었거나 선택이 바뀌었으면 하지 않는다 */
+  /** 꼭 듣기·빼기를 통째로 바꾼다 (저장된 선택 고치기). 그사이 슬롯을 바꿨거나 선택이 바뀌었으면 그대로 둔다 */
   const replaceChoices = useCallback(
     (from: ChoiceState, to: ChoiceState) =>
       setPrefs((p) => (p.pinned === from.pinned && p.excluded === from.excluded ? { ...p, pinned: to.pinned, excluded: to.excluded } : p)),
@@ -898,7 +896,7 @@ export function useAppState(options: StoreOptions = {}) {
   /** 학교 편제표를 저장하고 그 학교로 바꾼다 */
   const saveSchool = useCallback(
     (raw: School) => {
-      // 계정에서 다시 받은 것과 모양이 같게 정리해 둔다 (그래야 다른 기기에서 고친 것과 가릴 수 있다)
+      // 계정에서 받은 것과 같은 모양으로 정리한다 (해시로 다른 기기의 변경을 가리려고)
       const s = normalizeSchool(raw)
       const { prefs: p, slots: list } = current()
       const inUse = new Set([p.schoolId, ...list.map((x) => x.schoolId)])
@@ -918,7 +916,7 @@ export function useAppState(options: StoreOptions = {}) {
 
   const setProfile = useCallback((patch: Partial<Profile>) => setPrefs((p) => ({ ...p, profile: { ...p.profile, ...patch } })), [setPrefs])
 
-  /** 원서 후보에 담거나 뺀다 (가득 차면 더 담지 않는다) */
+  /** 원서 후보 담기·빼기. MAX_PICKS면 더 담지 않는다 */
   const togglePick = useCallback(
     (key: string) =>
       setPrefs((p) =>
@@ -932,7 +930,7 @@ export function useAppState(options: StoreOptions = {}) {
 
   const removePicks = useCallback((keys: string[]) => setPrefs((p) => ({ ...p, picks: p.picks.filter((k) => !keys.includes(k)) })), [setPrefs])
 
-  /** 로그아웃·탈퇴할 때: 이 기기에서 설계를 모두 지운다 (같이 쓰는 컴퓨터에 남지 않게, 계정에는 남아 있다) */
+  /** 로그아웃·탈퇴 때 이 기기 설계를 모두 지운다 (공용 컴퓨터 대비, 계정에는 남는다) */
   const clearLocal = useCallback(() => {
     syncer.current?.stop()
     syncer.current = null
@@ -944,8 +942,8 @@ export function useAppState(options: StoreOptions = {}) {
   }, [apply, persist])
 
   /**
-   * 쓰는 중에 세션이 끝났을 때(만료·정지·다른 기기에서 탈퇴). 계정에 다 올라가 있으면 이 기기 설계를 모두 지운다.
-   * 아직 못 올린 설계가 있으면 같은 계정으로 다시 로그인할 때 올리도록 남기되(다른 계정이 로그인하면 그 전에 지운다), 특별 자격은 지운다
+   * 쓰는 중 세션이 끝났을 때 (만료·정지·다른 기기에서 탈퇴). 계정에 다 올라갔으면 이 기기 설계를 모두 지운다.
+   * 못 올린 변경이 있으면 같은 계정으로 다시 로그인할 때 올리게 남기고 특별 자격만 지운다. 다른 계정이 로그인하면 그 전에 비운다
    */
   const sessionLost = useCallback(() => {
     const s = syncer.current
@@ -959,17 +957,17 @@ export function useAppState(options: StoreOptions = {}) {
     setPrefsRaw((p) => ({ ...p, profile: { ...p.profile, special: [] } }))
   }, [clearLocal, current, owner])
 
-  /** 계정 저장을 지금 다시 해 본다 */
+  /** 계정 저장 바로 다시 시도 */
   const retrySync = useCallback(() => syncer.current?.kick(), [])
 
-  /** 기다리던 계정 저장을 끝낸다 (로그아웃 전에). 이 기기에만 있는 변경이 남았으면 false */
+  /** 로그아웃 전에 밀린 계정 저장을 끝낸다. 못 올린 변경이 남으면 false */
   const flushSync = useCallback(async () => {
     const s = syncer.current
     if (!s) return true
     return (await s.finish()) || isBlank(current())
   }, [current])
 
-  /** 다른 슬롯으로 바꾼다 (지금 슬롯은 고칠 때마다 저장되지만, 바로 앞 변경까지 한 번 더 넣고 바꾼다) */
+  /** 다른 슬롯으로 바꾼다. 떠나는 슬롯에 지금 설계를 먼저 써 넣는다 */
   const switchSlot = useCallback(
     (id: string) => {
       const { prefs: p, slots: list, schools: known } = current()
@@ -981,14 +979,14 @@ export function useAppState(options: StoreOptions = {}) {
     [current, setPrefs],
   )
 
-  /** 새 슬롯을 만들어 연다. from이 있으면 그 슬롯을 복사하고, 없으면 학교만 두고 비운다. 가득 찼으면 null */
+  /** 새 슬롯을 만들어 연다. from이 있으면 그 슬롯 복사, 없으면 학교만 둔 빈 슬롯. 가득 찼으면 null */
   const addSlot = useCallback(
     (from?: string): Slot | null => {
       const { prefs: p, slots: list, schools: known } = current()
       if (list.length >= MAX_SLOTS) return null
       const source = from ? list.find((s) => s.id === from) : undefined
       if (from && !source) return null
-      // 지금 슬롯을 복사하면 아직 슬롯에 안 들어간 마지막 변경까지 담는다
+      // 지금 슬롯은 prefs에서 복사한다 (슬롯에 아직 안 들어간 변경까지)
       const design = source ? designOf(source.id === p.slot ? p : source) : { ...EMPTY_DESIGN, schoolId: p.schoolId }
       const slot: Slot = {
         id: newSlotId(),
@@ -1014,7 +1012,7 @@ export function useAppState(options: StoreOptions = {}) {
     if (clean) setSlots((list) => list.map((s) => (s.id === id ? { ...s, name: clean, at: now() } : s)))
   }, [])
 
-  /** 슬롯을 지운다. 하나 남은 슬롯은 지우지 않는다 (비우려면 초기화). 지금 슬롯을 지우면 옆 슬롯을 연다 */
+  /** 마지막 하나는 지우지 않는다 (비우려면 초기화). 지금 슬롯을 지우면 옆 슬롯을 연다 */
   const deleteSlot = useCallback(
     (id: string) => {
       const { prefs: p, slots: list, schools: known } = current()
@@ -1027,10 +1025,7 @@ export function useAppState(options: StoreOptions = {}) {
     [current, setPrefs],
   )
 
-  /**
-   * 지금 슬롯 초기화. subjects: 꼭 듣기·빼기만 지워 추천대로 되돌린다. all: 학교만 남기고 분야·대학·학과·목표 전형까지 비운다.
-   * 되돌릴 때 쓰라고 원래 설계를 돌려준다.
-   */
+  /** 지금 슬롯 초기화. subjects는 꼭 듣기·빼기만, all은 학교만 남기고 모두 비운다. 되돌리기용으로 원래 설계를 돌려준다 */
   const resetDesign = useCallback(
     (what: 'subjects' | 'all'): { slot: string; design: Design } => {
       const p = current().prefs
@@ -1040,7 +1035,7 @@ export function useAppState(options: StoreOptions = {}) {
     [current, setPrefs],
   )
 
-  /** 초기화를 되돌린다 (그 사이 다른 슬롯을 열었으면 원래 슬롯에 돌려놓는다) */
+  /** 초기화 되돌리기. 그사이 다른 슬롯을 열었으면 원래 슬롯에 넣는다 */
   const restoreDesign = useCallback(
     ({ slot, design }: { slot: string; design: Design }) => {
       const p = current().prefs
@@ -1050,7 +1045,7 @@ export function useAppState(options: StoreOptions = {}) {
     [current, setPrefs],
   )
 
-  // ---- 공유 링크로 들어온 경우: 로그인했는지 확인하고, 로그인했으면 계정 설계를 받아 합친 뒤에 새 슬롯으로 연다 ----
+  // ---- 공유 링크: 로그인 확인(로그인했으면 계정 설계 합치기)을 마친 뒤 새 슬롯으로 연다 ----
   const openShared = useCallback(
     (state: ShareState | null) => {
       if (!state) return notice('공유 링크를 열지 못했어요.')
@@ -1073,7 +1068,7 @@ export function useAppState(options: StoreOptions = {}) {
         setPrefsRaw({ ...p, ...design, slot: slot.id, at: slot.at })
         notice('공유받은 설계를 새 슬롯에 열었어요.')
       } else {
-        // 슬롯이 가득 차면 지금 슬롯을 덮어쓸지 묻고, 덮어쓰면 되돌릴 수 있게 한다
+        // 가득 찼으면 지금 슬롯을 덮어쓸지 묻는다 (되돌리기 가능)
         const name = list.find((s) => s.id === p.slot)?.name ?? '지금 슬롯'
         if (!confirm(`슬롯이 ${MAX_SLOTS}개라 새 슬롯을 만들 수 없어요. ${name}${josa(name, '을', '를')} 공유받은 설계로 바꿀까요?`)) {
           notice('공유받은 설계를 열지 않았어요. 슬롯을 하나 지우고 링크를 다시 열어 주세요.')
@@ -1089,7 +1084,7 @@ export function useAppState(options: StoreOptions = {}) {
     [current, notice, setPrefs, restoreDesign],
   )
 
-  // 이미 열린 탭에 공유 링크를 붙여 넣으면 주소의 # 뒤만 바뀐다
+  // 열린 탭에 공유 링크를 붙여 넣으면 # 뒤만 바뀌어 hashchange만 온다
   const [shareTick, setShareTick] = useState(0)
   useEffect(() => {
     const onHash = () => {
@@ -1104,7 +1099,7 @@ export function useAppState(options: StoreOptions = {}) {
     if (!shareReady) return
     const code = takeShare()
     if (!code) return
-    // 코드는 한 번만 꺼내므로, 효과가 다시 돌아도(개발 모드) 받은 설계는 끝까지 연다
+    // 코드는 한 번만 꺼내므로 effect가 다시 돌아도(StrictMode) 받은 설계는 끝까지 연다
     void decodeShare(code).then(openShared)
   }, [shareReady, shareTick, openShared])
 
@@ -1124,7 +1119,7 @@ export function useAppState(options: StoreOptions = {}) {
     [prefs, school],
   )
 
-  // 계정 저장 상태. 이 기기에서 처음 이 계정 설계를 받는 중이면 화면을 잠깐 막는다 (받기 전에 고친 것이 섞이지 않게)
+  // 이 기기에서 이 계정 설계를 처음 받는 중이면 화면을 잠깐 막는다 (받기 전에 고친 것이 섞이지 않게)
   const known = useMemo(() => userId !== null && readSnap()?.owner === userId, [userId])
   const sync: SyncState = userId === null ? 'off' : (info?.state ?? 'loading')
 
@@ -1149,7 +1144,7 @@ export function useAppState(options: StoreOptions = {}) {
     savedAt: info?.savedAt ?? null,
     /** 서버가 저장을 거절한 까닭 (sync가 rejected일 때) */
     syncMessage: info?.message ?? '',
-    /** 잇달아 실패한 횟수 */
+    /** 연속 실패 횟수 */
     syncFailures: info?.failures ?? 0,
     holding: userId !== null && sync === 'loading' && !known,
     retrySync,
