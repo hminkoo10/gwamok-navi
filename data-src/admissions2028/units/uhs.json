@@ -1,0 +1,27 @@
+{
+  "univ": "uhs",
+  "seats": {
+    "uhs:신학과": { "subject-excellent": 10, "wesley": 25 },
+    "uhs:문예창작학과": { "subject-excellent": 3, "future-creative": 3, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 4, "fusion-2": 6, "rural-extra": 1, "basic-support-extra": 1, "csat-general": 4, "rural-csat": null, "basic-support-csat": null },
+    "uhs:사회복지학과": { "subject-excellent": 14, "future-creative": 5, "equal-opportunity": 3, "social-consideration": 3, "fusion-1": 6, "fusion-2": 9, "rural-extra": 1, "basic-support-extra": 2, "csat-general": 6, "rural-csat": null, "basic-support-csat": null },
+    "uhs:아동보육학과": { "subject-excellent": 4, "future-creative": 5, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 4, "fusion-2": 6, "basic-support-extra": 1, "csat-general": 4, "basic-support-csat": null },
+    "uhs:중국어문화학과": { "subject-excellent": 7, "future-creative": 3, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 1, "fusion-2": 2, "rural-extra": 1, "csat-general": 4, "rural-csat": null },
+    "uhs:도시행정학과": { "subject-excellent": 4, "future-creative": 5, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 4, "fusion-2": 6, "rural-extra": 1, "basic-support-extra": 1, "csat-general": 5, "rural-csat": null, "basic-support-csat": null },
+    "uhs:미디어영상광고학과": { "subject-excellent": 9, "future-creative": 5, "equal-opportunity": 3, "social-consideration": 3, "fusion-1": 6, "fusion-2": 9, "rural-extra": 1, "vocational-extra": 1, "basic-support-extra": 2, "csat-general": 8, "rural-csat": null, "vocational-csat": null, "basic-support-csat": null },
+    "uhs:경영학과": { "subject-excellent": 10, "future-creative": 5, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 5, "fusion-2": 6, "rural-extra": 1, "vocational-extra": 1, "basic-support-extra": 1, "csat-general": 6, "rural-csat": null, "vocational-csat": null, "basic-support-csat": null },
+    "uhs:금융보험학과": { "subject-excellent": 5, "future-creative": 3, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 4, "fusion-2": 6, "vocational-extra": 1, "basic-support-extra": 1, "csat-general": 4, "vocational-csat": null, "basic-support-csat": null },
+    "uhs:세무회계학과": { "subject-excellent": 8, "future-creative": 3, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 4, "fusion-2": 6, "rural-extra": 1, "vocational-extra": 1, "basic-support-extra": 1, "csat-general": 4, "rural-csat": null, "vocational-csat": null, "basic-support-csat": null },
+    "uhs:호텔관광경영학과": { "subject-excellent": 6, "future-creative": 3, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 3, "fusion-2": 5, "rural-extra": 1, "vocational-extra": 1, "basic-support-extra": 1, "csat-general": 4, "rural-csat": null, "vocational-csat": null, "basic-support-csat": null },
+    "uhs:유통경영학과": { "subject-excellent": 8, "future-creative": 3, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 3, "fusion-2": 5, "rural-extra": 1, "vocational-extra": 1, "basic-support-extra": 1, "csat-general": 4, "rural-csat": null, "vocational-csat": null, "basic-support-csat": null },
+    "uhs:글로벌통상·문화학과": { "subject-excellent": 7, "future-creative": 3, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 3, "fusion-2": 5, "vocational-extra": 1, "basic-support-extra": 1, "csat-general": 4, "vocational-csat": null, "basic-support-csat": null },
+    "uhs:컴퓨터공학과": { "subject-excellent": 9, "future-creative": 4, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 4, "fusion-2": 5, "rural-extra": 2, "vocational-extra": 1, "basic-support-extra": 2, "csat-general": 4, "rural-csat": null, "vocational-csat": null, "basic-support-csat": null },
+    "uhs:소프트웨어공학과": { "subject-excellent": 11, "future-creative": 4, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 4, "fusion-2": 6, "rural-extra": 2, "vocational-extra": 1, "basic-support-extra": 2, "csat-general": 5, "rural-csat": null, "vocational-csat": null, "basic-support-csat": null },
+    "uhs:건축공학과": { "subject-excellent": 8, "future-creative": 4, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 3, "fusion-2": 5, "rural-extra": 1, "vocational-extra": 1, "basic-support-extra": 1, "csat-general": 5, "rural-csat": null, "vocational-csat": null, "basic-support-csat": null },
+    "uhs:도시공학과": { "subject-excellent": 5, "future-creative": 4, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 3, "fusion-2": 5, "csat-general": 5 },
+    "uhs:보건관리학과": { "subject-excellent": 11, "future-creative": 5, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 3, "fusion-2": 5, "rural-extra": 1, "vocational-extra": 1, "basic-support-extra": 1, "csat-general": 5, "rural-csat": null, "vocational-csat": null, "basic-support-csat": null },
+    "uhs:의생명화학과": { "subject-excellent": 10, "future-creative": 4, "equal-opportunity": 2, "social-consideration": 2, "fusion-1": 4, "fusion-2": 5, "rural-extra": 1, "basic-support-extra": 1, "csat-general": 5, "rural-csat": null, "basic-support-csat": null },
+    "uhs:자율전공학부": { "subject-excellent": 30, "fusion-1": 20, "csat-general": 50 }
+  },
+  "pages": "6, 17, 20",
+  "notes": "수시는 6쪽, 정시는 17쪽 표. 자율전공학부는 자율전공학부(1유형) 행으로 맞춤(2유형은 계열별 자율전공학부로 따로 모집). null: rural-csat·vocational-csat·basic-support-csat는 수시 미충원 이월 인원만 정시에서 뽑아(17·20쪽) 수시 그 전형 인원이 있는 학과에만 적음."
+}

@@ -1,0 +1,24 @@
+{
+  "univ": "sungkyul",
+  "seats": {
+    "sungkyul:자율전공학부": {"grade-excellent": 25, "sku-creative": 30, "youngam-doc": 15, "general-jeongsi": 33},
+    "sungkyul:인문사회계열자율전공학부": {"grade-excellent": 25, "sku-creative": 30, "youngam-doc": 15, "general-jeongsi": 30},
+    "sungkyul:공학계열자율전공학부": {"grade-excellent": 13, "sku-creative": 13, "youngam-doc": 9, "general-jeongsi": 17},
+    "sungkyul:국어국문학과": {"grade-excellent": 7, "equal-1": 3, "youngam-doc": 8, "youngam-interview": 3, "equal-2-susi": 2, "general-jeongsi": 9, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:영어영문학과": {"grade-excellent": 13, "equal-1": 4, "youngam-doc": 11, "youngam-interview": 6, "equal-2-susi": 2, "general-jeongsi": 16, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:중어중문학과": {"grade-excellent": 13, "equal-1": 3, "youngam-doc": 7, "equal-2-susi": 2, "general-jeongsi": 10, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:국제개발협력학과": {"grade-excellent": 13, "equal-1": 3, "youngam-doc": 7, "equal-2-susi": 2, "general-jeongsi": 10, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:행정학부": {"grade-excellent": 13, "equal-1": 4, "youngam-doc": 12, "youngam-interview": 6, "rural-susi-gyogwa": 2, "equal-2-susi": 2, "general-jeongsi": 15, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:사회복지학과": {"grade-excellent": 17, "equal-1": 6, "youngam-doc": 14, "youngam-interview": 6, "rural-susi-gyogwa": 3, "equal-2-susi": 2, "general-jeongsi": 22, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:관광학과": {"grade-excellent": 9, "equal-1": 3, "youngam-doc": 8, "youngam-interview": 3, "equal-2-susi": 2, "general-jeongsi": 10, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:경영학과": {"grade-excellent": 13, "equal-1": 4, "youngam-doc": 13, "youngam-interview": 6, "vocational-susi": 2, "rural-susi-gyogwa": 2, "equal-2-susi": 2, "general-jeongsi": 16, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:글로벌물류학과": {"grade-excellent": 17, "equal-1": 5, "youngam-doc": 14, "youngam-interview": 6, "vocational-susi": 2, "rural-susi-gyogwa": 2, "equal-2-susi": 2, "general-jeongsi": 20, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:산업경영공학과": {"grade-excellent": 18, "equal-1": 3, "youngam-doc": 13, "vocational-susi": 2, "equal-2-susi": 2, "general-jeongsi": 16, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:컴퓨터공학과": {"grade-excellent": 21, "equal-1": 5, "youngam-doc": 14, "vocational-susi": 4, "equal-2-susi": 2, "general-jeongsi": 17, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:정보통신공학과": {"grade-excellent": 21, "equal-1": 5, "youngam-doc": 14, "vocational-susi": 3, "equal-2-susi": 2, "general-jeongsi": 18, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:미디어소프트웨어학과": {"grade-excellent": 21, "equal-1": 5, "youngam-doc": 14, "vocational-susi": 3, "equal-2-susi": 2, "general-jeongsi": 18, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null},
+    "sungkyul:도시디자인정보공학과": {"grade-excellent": 12, "equal-1": 2, "youngam-doc": 7, "equal-2-susi": 2, "general-jeongsi": 9, "vocational-jeongsi": null, "rural-jeongsi-suneung": null, "equal-2-jeongsi": null}
+  },
+  "pages": "2-3",
+  "notes": "2쪽 수시·3쪽 정시 「모집단위 및 전형별 모집인원」 표. 수시 농어촌학생 칸(교과·실기 합 23)의 목록 학과 인원은 교과(농어촌학생) 15명 쪽. 자율전공학부 3개는 목록에 있어 소속 학과에 계열 인원을 넣지 않음. null: 정시 특성화고교졸업자·농어촌학생·고른기회Ⅱ — 3쪽 표에서 신학과~영화영상학과를 묶은 칸에 ★(수시 미충원 시 선발)만 있고 인원이 없음(뷰티디자인학과·미래인재융합대학 4개 모집단위는 칸이 비어 있어 뺌)."
+}

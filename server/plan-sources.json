@@ -1,0 +1,753 @@
+{
+ "acts": {
+  "name": "아신대학교",
+  "adiga": "0000145"
+ },
+ "anyang": {
+  "name": "안양대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%95%88%EC%96%91%EB%8C%80%ED%95%99%EA%B5%90/%EC%95%88%EC%96%91%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000147"
+ },
+ "baekseok": {
+  "name": "백석대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EB%B0%B1%EC%84%9D%EB%8C%80%ED%95%99%EA%B5%90/%EB%B0%B1%EC%84%9D%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000178"
+ },
+ "bpu": {
+  "name": "부산장신대학교",
+  "adiga": "0000222"
+ },
+ "bufs": {
+  "name": "부산외국어대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000253184&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000115&searchSyr=2028",
+  "adiga": "0000115"
+ },
+ "busan-catholic": {
+  "name": "부산가톨릭대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252742&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000114&searchSyr=2028",
+  "adiga": "0000114"
+ },
+ "calvin": {
+  "name": "칼빈대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000253282&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000184&searchSyr=2028",
+  "adiga": "0000184"
+ },
+ "cha": {
+  "name": "차의과학대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%B0%A8%EC%9D%98%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90/%EC%B0%A8%EC%9D%98%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000187"
+ },
+ "changshin": {
+  "name": "창신대학교",
+  "adiga": "0000249"
+ },
+ "changwon": {
+  "name": "국립창원대학교",
+  "url": "https://www.changwon.ac.kr/ipsi/na/ntt/selectNttInfo.do?mi=4306&bbsId=1641&nttSn=1407005",
+  "adiga": "0000028"
+ },
+ "chodang": {
+  "name": "초당대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000253645&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000246&searchSyr=2028",
+  "adiga": "0000246"
+ },
+ "chongshin": {
+  "name": "총신대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%B4%9D%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90/%EC%B4%9D%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000180"
+ },
+ "chugye": {
+  "name": "추계예술대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252717&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000181&searchSyr=2028",
+  "adiga": "0000181"
+ },
+ "chungwoon": {
+  "name": "청운대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%B2%AD%EC%9A%B4%EB%8C%80%ED%95%99%EA%B5%90/%EC%B2%AD%EC%9A%B4%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000284"
+ },
+ "cjnue": {
+  "name": "청주교육대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252452&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000261&searchSyr=2028",
+  "adiga": "0000261"
+ },
+ "cju": {
+  "name": "청주대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%B2%AD%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90/%EC%B2%AD%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000179"
+ },
+ "cku": {
+  "name": "가톨릭관동대학교",
+  "url": "https://ipsi.cku.ac.kr/bbs/iphak/1005/364704/artclView.do",
+  "adiga": "0000072"
+ },
+ "daegu": {
+  "name": "대구대학교",
+  "url": "https://ipsi.daegu.ac.kr/kor/article/ATCL21/19871",
+  "adiga": "0000084"
+ },
+ "daegu-catholic": {
+  "name": "대구가톨릭대학교",
+  "url": "https://ibsi.cu.ac.kr/kor/BBSMSTR_000000000090/16171/view.do",
+  "adiga": "0000088"
+ },
+ "daejin": {
+  "name": "대진대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EB%8C%80%EC%A7%84%EB%8C%80%ED%95%99%EA%B5%90/%EB%8C%80%EC%A7%84%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000097"
+ },
+ "daeshin": {
+  "name": "대신대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000255059&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000093&searchSyr=2028",
+  "adiga": "0000093"
+ },
+ "deu": {
+  "name": "동의대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000254443&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000107&searchSyr=2028",
+  "adiga": "0000107"
+ },
+ "dgau": {
+  "name": "대구예술대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000253128&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000087&searchSyr=2028",
+  "adiga": "0000087"
+ },
+ "dgist": {
+  "name": "대구경북과학기술원",
+  "url": "https://www.dgist.ac.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000162410Lg8&fileSn=0"
+ },
+ "dhu": {
+  "name": "대구한의대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000255035&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000061&searchSyr=2028",
+  "adiga": "0000061"
+ },
+ "dju": {
+  "name": "대전대학교",
+  "url": "https://ipsi.dju.ac.kr/enter/html/counsel/noticeView.asp?p_board_id=BBS0004&p_site_type=MAM0001&p_board_idx=17877&p_mode=modify&page=1",
+  "adiga": "0000095"
+ },
+ "dnue": {
+  "name": "대구교육대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000255019&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000253&searchSyr=2028",
+  "adiga": "0000253"
+ },
+ "dongduk": {
+  "name": "동덕여자대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EB%8F%99%EB%8D%95%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90/%EB%8F%99%EB%8D%95%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000102"
+ },
+ "dongguk-wise": {
+  "name": "동국대학교 WISE캠퍼스",
+  "campus": "WISE",
+  "url": "https://ipsi.dongguk.ac.kr/article/notice/detail/111129",
+  "adiga": "0000101"
+ },
+ "dongseo": {
+  "name": "동서대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000254287&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000103&searchSyr=2028",
+  "adiga": "0000103"
+ },
+ "dsu": {
+  "name": "동신대학교",
+  "url": "https://ipsi.dsu.ac.kr/ipsi/index.php?pCode=notice&mode=view&idx=11216",
+  "adiga": "0000104"
+ },
+ "dyu": {
+  "name": "동양대학교",
+  "adiga": "0000106"
+ },
+ "eulji": {
+  "name": "을지대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%9D%84%EC%A7%80%EB%8C%80%ED%95%99%EA%B5%90/%EC%9D%84%EC%A7%80%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000161"
+ },
+ "ewha": {
+  "name": "이화여자대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%9D%B4%ED%99%94%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90/%EC%9D%B4%ED%99%94%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000163"
+ },
+ "gachon": {
+  "name": "가천대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EA%B0%80%EC%B2%9C%EB%8C%80%ED%95%99%EA%B5%90/%EA%B0%80%EC%B2%9C%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000063"
+ },
+ "ggu": {
+  "name": "금강대학교",
+  "url": "https://www.ggu.ac.kr/matriculation/sub0401/view/id/56355",
+  "adiga": "0000224"
+ },
+ "gimcheon": {
+  "name": "김천대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000255023&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000241&searchSyr=2028",
+  "adiga": "0000241"
+ },
+ "ginue": {
+  "name": "경인교육대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000253149&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000256&searchSyr=2028",
+  "adiga": "0000256"
+ },
+ "gist": {
+  "name": "광주과학기술원",
+  "url": "https://www.gist.ac.kr/uadm/html/sub03/0301.html?mode=V&no=221389"
+ },
+ "gjue": {
+  "name": "공주교육대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000255047&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000251&searchSyr=2028",
+  "adiga": "0000251"
+ },
+ "gknu": {
+  "name": "국립경국대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000253632&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000021&searchSyr=2028",
+  "adiga": "0000021"
+ },
+ "gnu": {
+  "name": "경상국립대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EA%B2%BD%EC%83%81%EA%B5%AD%EB%A6%BD%EB%8C%80%ED%95%99%EA%B5%90/%EA%B2%BD%EC%83%81%EA%B5%AD%EB%A6%BD%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000007"
+ },
+ "gwangju": {
+  "name": "광주대학교",
+  "adiga": "0000231"
+ },
+ "gwangju-catholic": {
+  "name": "광주가톨릭대학교",
+  "url": "https://admission.gjc.ac.kr/sub/?mode=notice&act=vew&id=36",
+  "adiga": "0000075"
+ },
+ "handong": {
+  "name": "한동대학교",
+  "url": "https://admissions.handong.edu/inform/notice/?mode=view&id=51744",
+  "adiga": "0000196"
+ },
+ "hanil": {
+  "name": "한일장신대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252261&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000206&searchSyr=2028",
+  "adiga": "0000206"
+ },
+ "hannam": {
+  "name": "한남대학교",
+  "url": "https://ibsi.hannam.ac.kr/adms5/intoschool/5_1_view.asp?p_board_idx=21924",
+  "adiga": "0000195"
+ },
+ "hansei": {
+  "name": "한세대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%95%9C%EC%84%B8%EB%8C%80%ED%95%99%EA%B5%90/%ED%95%9C%EC%84%B8%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000201"
+ },
+ "hanseo": {
+  "name": "한서대학교",
+  "url": "https://helper.hanseo.ac.kr/_prog/_board/?mode=V&no=34312&code=notice&site_dvs_cd=kr&menu_dvs_cd=0602",
+  "adiga": "0000199"
+ },
+ "hanshin": {
+  "name": "한신대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%95%9C%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90/%ED%95%9C%EC%8B%A0%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000202"
+ },
+ "hansung": {
+  "name": "한성대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%95%9C%EC%84%B1%EB%8C%80%ED%95%99%EA%B5%90/%ED%95%9C%EC%84%B1%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000200"
+ },
+ "hknu": {
+  "name": "한경국립대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%95%9C%EA%B2%BD%EA%B5%AD%EB%A6%BD%EB%8C%80%ED%95%99%EA%B5%90/%ED%95%9C%EA%B2%BD%EA%B5%AD%EB%A6%BD%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000037"
+ },
+ "honam": {
+  "name": "호남대학교",
+  "adiga": "0000208"
+ },
+ "hongik": {
+  "name": "홍익대학교",
+  "campus": "서울",
+  "url": "https://www.hongik.ac.kr/kr/admission/notice-admission.do?mode=view&articleNo=151353",
+  "adiga": "0000212"
+ },
+ "hongik-sejong": {
+  "name": "홍익대학교(세종)",
+  "campus": "세종",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%99%8D%EC%9D%B5%EB%8C%80%ED%95%99%EA%B5%90(%EC%84%B8%EC%A2%85)/%ED%99%8D%EC%9D%B5%EB%8C%80%ED%95%99%EA%B5%90(%EC%84%B8%EC%A2%85)_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0002949"
+ },
+ "hoseo": {
+  "name": "호서대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%98%B8%EC%84%9C%EB%8C%80%ED%95%99%EA%B5%90/%ED%98%B8%EC%84%9C%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000211"
+ },
+ "howon": {
+  "name": "호원대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000253307&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000282&searchSyr=2028",
+  "adiga": "0000282"
+ },
+ "hsu": {
+  "name": "화성의과학대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%99%94%EC%84%B1%EC%9D%98%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90/%ED%99%94%EC%84%B1%EC%9D%98%EA%B3%BC%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000233"
+ },
+ "htus": {
+  "name": "호남신학대학교",
+  "url": "https://ipsi.htus.ac.kr/board/board.php?b_id=ip_001&w_id=336",
+  "adiga": "0000209"
+ },
+ "hufs": {
+  "name": "한국외국어대학교",
+  "campus": "서울",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%95%9C%EA%B5%AD%EC%99%B8%EA%B5%AD%EC%96%B4%EB%8C%80%ED%95%99%EA%B5%90/%ED%95%9C%EA%B5%AD%EC%99%B8%EA%B5%AD%EC%96%B4%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000192"
+ },
+ "hufs-global": {
+  "name": "한국외국어대학교(글로벌)",
+  "campus": "글로벌",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%95%9C%EA%B5%AD%EC%99%B8%EA%B5%AD%EC%96%B4%EB%8C%80%ED%95%99%EA%B5%90/%ED%95%9C%EA%B5%AD%EC%99%B8%EA%B5%AD%EC%96%B4%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000192"
+ },
+ "iccu": {
+  "name": "인천가톨릭대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%9D%B8%EC%B2%9C%EA%B0%80%ED%86%A8%EB%A6%AD%EB%8C%80%ED%95%99%EA%B5%90/%EC%9D%B8%EC%B2%9C%EA%B0%80%ED%86%A8%EB%A6%AD%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000168"
+ },
+ "inje": {
+  "name": "인제대학교",
+  "url": "https://iphak.inje.ac.kr/board/view.asp?m=6&m2=1&part=1&idx=2767",
+  "adiga": "0000164"
+ },
+ "inu": {
+  "name": "인천대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%9D%B8%EC%B2%9C%EB%8C%80%ED%95%99%EA%B5%90/%EC%9D%B8%EC%B2%9C%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0002660"
+ },
+ "jeju-intl": {
+  "name": "제주국제대학교",
+  "adiga": "0000248"
+ },
+ "jejunu": {
+  "name": "제주대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%A0%9C%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90/%EC%A0%9C%EC%A3%BC%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000027"
+ },
+ "jesus": {
+  "name": "예수대학교",
+  "url": "https://www.jesus.ac.kr/enter/?menu=190&mode=view&no=690",
+  "adiga": "0000228"
+ },
+ "jnue": {
+  "name": "전주교육대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000254743&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000258&searchSyr=2028",
+  "adiga": "0000258"
+ },
+ "joongbu": {
+  "name": "중부대학교",
+  "url": "https://www.joongbu.ac.kr/board.es?mid=a60501000000&bid=0232&act=view&list_no=333882",
+  "adiga": "0000173"
+ },
+ "jwu": {
+  "name": "중원대학교",
+  "url": "https://ipsi.jwu.ac.kr/boards/admission-plan/40",
+  "adiga": "0000239"
+ },
+ "kafa": {
+  "name": "공군사관학교",
+  "skip": "2028학년도 입학전형을 아직 발표하지 않았어요."
+ },
+ "kafna": {
+  "name": "국군간호사관학교",
+  "skip": "2028학년도 입학전형을 아직 발표하지 않았어요."
+ },
+ "kaist": {
+  "name": "한국과학기술원",
+  "url": "https://admission.kaist.ac.kr/wz/api/board/52/2224/download/1"
+ },
+ "kangnam": {
+  "name": "강남대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EA%B0%95%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90/%EA%B0%95%EB%82%A8%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000051"
+ },
+ "kangseo": {
+  "name": "강서대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EA%B0%95%EC%84%9C%EB%8C%80%ED%95%99%EA%B5%90/%EA%B0%95%EC%84%9C%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000079"
+ },
+ "kangwon-gangneung": {
+  "name": "강원대학교(강릉)",
+  "campus": "강릉",
+  "adiga": "0003363"
+ },
+ "kangwon-wonju": {
+  "name": "강원대학교(원주)",
+  "campus": "원주",
+  "adiga": "0003364"
+ },
+ "karts": {
+  "name": "한국예술종합학교"
+ },
+ "kaya": {
+  "name": "가야대학교",
+  "adiga": "0002748"
+ },
+ "kbtus": {
+  "name": "한국침례신학대학교",
+  "url": "https://ipsi.kbtus.ac.kr/ipsi/CMS/Board/Board.do?mCode=MN027&mode=view&mgr_seq=273&board_seq=37066",
+  "adiga": "0000182"
+ },
+ "kdu": {
+  "name": "극동대학교",
+  "url": "https://ipsi.kdu.ac.kr/ipsi/sub.do?mncd=1358&mode=view&no=526284723",
+  "adiga": "0000080"
+ },
+ "kduniv": {
+  "name": "경동대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000254586&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000060&searchSyr=2028",
+  "adiga": "0000060"
+ },
+ "kiu": {
+  "name": "경일대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000253223&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000064&searchSyr=2028",
+  "adiga": "0000064"
+ },
+ "kkot": {
+  "name": "가톨릭꽃동네대학교",
+  "url": "https://www.kkot.ac.kr/ipsi/board/read?boardManagementNo=1143&boardNo=26108&menuLevel=2&menuNo=120",
+  "adiga": "0000215"
+ },
+ "kma": {
+  "name": "육군사관학교",
+  "skip": "2028학년도 입학전형을 아직 발표하지 않았어요."
+ },
+ "kmou": {
+  "name": "국립한국해양대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252649&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000033&searchSyr=2028",
+  "adiga": "0000033"
+ },
+ "kmu": {
+  "name": "계명대학교",
+  "url": "https://www.gokmu.ac.kr/service/board.htm?bbsid=notice&mode=view&bltn_seq=85028",
+  "adiga": "0000068"
+ },
+ "kna": {
+  "name": "해군사관학교",
+  "skip": "2028학년도 입학전형을 아직 발표하지 않았어요."
+ },
+ "knpu": {
+  "name": "경찰대학",
+  "skip": "2028학년도 입학전형을 아직 발표하지 않았어요."
+ },
+ "knue": {
+  "name": "한국교원대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%95%9C%EA%B5%AD%EA%B5%90%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90/%ED%95%9C%EA%B5%AD%EA%B5%90%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000031"
+ },
+ "knuh": {
+  "name": "한국전통문화대학교",
+  "url": "https://www.knuh.ac.kr/cmm/FileDownload.do?atchFileId=0000034111&atchSer=3"
+ },
+ "knut": {
+  "name": "국립한국교통대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EA%B5%AD%EB%A6%BD%ED%95%9C%EA%B5%AD%EA%B5%90%ED%86%B5%EB%8C%80%ED%95%99%EA%B5%90/%EA%B5%AD%EB%A6%BD%ED%95%9C%EA%B5%AD%EA%B5%90%ED%86%B5%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000034"
+ },
+ "konyang": {
+  "name": "건양대학교",
+  "adiga": "0000054"
+ },
+ "korea-sejong": {
+  "name": "고려대학교(세종)",
+  "campus": "세종",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EA%B3%A0%EB%A0%A4%EB%8C%80%ED%95%99%EA%B5%90(%EC%84%B8%EC%A2%85)/%EA%B3%A0%EB%A0%A4%EB%8C%80%ED%95%99%EA%B5%90(%EC%84%B8%EC%A2%85)_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000070"
+ },
+ "kornu": {
+  "name": "나사렛대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EB%82%98%EC%82%AC%EB%A0%9B%EB%8C%80%ED%95%99%EA%B5%90/%EB%82%98%EC%82%AC%EB%A0%9B%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000081"
+ },
+ "kosin": {
+  "name": "고신대학교",
+  "url": "https://www.kosin.ac.kr/dream/index.php?pCode=MN7000055&mode=view&idx=2731",
+  "adiga": "0000071"
+ },
+ "kumoh": {
+  "name": "국립금오공과대학교",
+  "url": "https://iphak.kumoh.ac.kr/ipsi/sub0601.do?mode=view&articleNo=561692",
+  "adiga": "0000010"
+ },
+ "kunsan": {
+  "name": "국립군산대학교",
+  "url": "https://www.kunsan.ac.kr/iphak/board/view.kunsan?boardId=BBS_0000041&menuCd=DOM_000001212001000000&dataSid=1378957",
+  "adiga": "0000009"
+ },
+ "kwangshin": {
+  "name": "광신대학교",
+  "adiga": "0000073"
+ },
+ "kwu": {
+  "name": "광주여자대학교",
+  "url": "https://ipsi.kwu.ac.kr/mod/board/view.do?MID=IPSI_B06010101&DOC_NO=177745288742539",
+  "adiga": "0000076"
+ },
+ "kyungnam": {
+  "name": "경남대학교",
+  "url": "https://ipsi.kyungnam.ac.kr/bbs/ipsi/1213/25534/artclView.do",
+  "adiga": "0000059"
+ },
+ "kyungwoon": {
+  "name": "경운대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252975&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000244&searchSyr=2028",
+  "adiga": "0000244"
+ },
+ "ltu": {
+  "name": "루터대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252472&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000108&searchSyr=2028",
+  "adiga": "0000108"
+ },
+ "mju": {
+  "name": "명지대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EB%AA%85%EC%A7%80%EB%8C%80%ED%95%99%EA%B5%90/%EB%AA%85%EC%A7%80%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000109"
+ },
+ "mmu": {
+  "name": "국립목포해양대학교",
+  "url": "https://www.mmu.ac.kr/admission/board/245/1/read/87949",
+  "adiga": "0000012"
+ },
+ "mokpo": {
+  "name": "국립목포대학교",
+  "url": "https://www.mokpo.ac.kr/bbs/ipsi/235/171345/artclView.do?layout=unknown",
+  "adiga": "0000011"
+ },
+ "mokwon": {
+  "name": "목원대학교",
+  "url": "https://enter.mokwon.ac.kr/enter/html/sub06/0601.html?mode=V&no=d199536ae1d8764eb58274324277673b",
+  "adiga": "0000112"
+ },
+ "mtu": {
+  "name": "감리교신학대학교",
+  "adiga": "0000050"
+ },
+ "nambu": {
+  "name": "남부대학교",
+  "url": "https://ipsi.nambu.ac.kr/board/IPSI_BOARD_007/boardView.do?menuCd=ipsi005001&bdId=BD_00000000000109492",
+  "adiga": "0000216"
+ },
+ "nsu": {
+  "name": "남서울대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EB%82%A8%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90/%EB%82%A8%EC%84%9C%EC%9A%B8%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000245"
+ },
+ "pcu": {
+  "name": "배재대학교",
+  "url": "https://enter.pcu.ac.kr/enter/article/ATCL13b663a5b/1293881951",
+  "adiga": "0000113"
+ },
+ "pknu": {
+  "name": "국립부경대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000253019&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000013&searchSyr=2028",
+  "adiga": "0000013"
+ },
+ "pnu-yeonje": {
+  "name": "부산대학교(연제)",
+  "campus": "연제",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EB%B6%80%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90/%EB%B6%80%EC%82%B0%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000014"
+ },
+ "ptu": {
+  "name": "평택대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%8F%89%ED%83%9D%EB%8C%80%ED%95%99%EA%B5%90/%ED%8F%89%ED%83%9D%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000186"
+ },
+ "puts": {
+  "name": "장로회신학대학교",
+  "url": "https://www.puts.ac.kr/www/board/view.general.asp?seq=244&skin=type2&design=ipsi_db&m1=4&m2=1&m3=1&bd_name=boarddb_board05",
+  "adiga": "0000170"
+ },
+ "sahmyook": {
+  "name": "삼육대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%82%BC%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90/%EC%82%BC%EC%9C%A1%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000116"
+ },
+ "sangha": {
+  "name": "중앙승가대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252780&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000177&searchSyr=2028",
+  "adiga": "0000177"
+ },
+ "sangji": {
+  "name": "상지대학교",
+  "adiga": "0000119"
+ },
+ "sch": {
+  "name": "순천향대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%88%9C%EC%B2%9C%ED%96%A5%EB%8C%80%ED%95%99%EA%B5%90/%EC%88%9C%EC%B2%9C%ED%96%A5%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000142"
+ },
+ "scnu": {
+  "name": "국립순천대학교",
+  "adiga": "0000020"
+ },
+ "scu": {
+  "name": "서울기독대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000253262&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000098&searchSyr=2028",
+  "adiga": "0000098"
+ },
+ "sehan": {
+  "name": "세한대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252231&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000092&searchSyr=2028",
+  "adiga": "0000092"
+ },
+ "sejong": {
+  "name": "세종대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%84%B8%EC%A2%85%EB%8C%80%ED%95%99%EA%B5%90/%EC%84%B8%EC%A2%85%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000138"
+ },
+ "semyung": {
+  "name": "세명대학교",
+  "url": "https://ipsi.semyung.ac.kr/cop/bbs/BBSMSTR_000000000350/selectBoardArticle.do?nttId=474381",
+  "adiga": "0000137"
+ },
+ "seoularts": {
+  "name": "서울예술대학교",
+  "url": "https://www.seoularts.ac.kr/cmm/fms/FileDown.do?atchFileId=FILE_000000000040894&fileSn=0"
+ },
+ "seowon": {
+  "name": "서원대학교",
+  "url": "https://www.seowon.ac.kr/bbs/iphak/597/92625/artclView.do",
+  "adiga": "0000128"
+ },
+ "shinhan": {
+  "name": "신한대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%8B%A0%ED%95%9C%EB%8C%80%ED%95%99%EA%B5%90/%EC%8B%A0%ED%95%9C%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0002712"
+ },
+ "shyu": {
+  "name": "서울한영대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%84%9C%EC%9A%B8%ED%95%9C%EC%98%81%EB%8C%80%ED%95%99%EA%B5%90/%EC%84%9C%EC%9A%B8%ED%95%9C%EC%98%81%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000205"
+ },
+ "silla": {
+  "name": "신라대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252265&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000144&searchSyr=2028",
+  "adiga": "0000144"
+ },
+ "skhu": {
+  "name": "성공회대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%84%B1%EA%B3%B5%ED%9A%8C%EB%8C%80%ED%95%99%EA%B5%90/%EC%84%B1%EA%B3%B5%ED%9A%8C%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000132"
+ },
+ "skuniv": {
+  "name": "서경대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%84%9C%EA%B2%BD%EB%8C%80%ED%95%99%EA%B5%90/%EC%84%9C%EA%B2%BD%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000121"
+ },
+ "smu": {
+  "name": "상명대학교",
+  "campus": "서울",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%83%81%EB%AA%85%EB%8C%80%ED%95%99%EA%B5%90/%EC%83%81%EB%AA%85%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000117"
+ },
+ "smu-cheonan": {
+  "name": "상명대학교(천안)",
+  "campus": "천안",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%83%81%EB%AA%85%EB%8C%80%ED%95%99%EA%B5%90(%EC%B2%9C%EC%95%88)/%EC%83%81%EB%AA%85%EB%8C%80%ED%95%99%EA%B5%90(%EC%B2%9C%EC%95%88)_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0002959"
+ },
+ "snue": {
+  "name": "서울교육대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252300&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000255&searchSyr=2028",
+  "adiga": "0000255"
+ },
+ "songwon": {
+  "name": "송원대학교",
+  "adiga": "0000243"
+ },
+ "sookmyung": {
+  "name": "숙명여자대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%88%99%EB%AA%85%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90/%EC%88%99%EB%AA%85%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000141"
+ },
+ "stu": {
+  "name": "서울신학대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252476&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000125&searchSyr=2028",
+  "adiga": "0000125"
+ },
+ "sungshin": {
+  "name": "성신여자대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%84%B1%EC%8B%A0%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90/%EC%84%B1%EC%8B%A0%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000136"
+ },
+ "sunmoon": {
+  "name": "선문대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%84%A0%EB%AC%B8%EB%8C%80%ED%95%99%EA%B5%90/%EC%84%A0%EB%AC%B8%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000129"
+ },
+ "suwon": {
+  "name": "수원대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%88%98%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90/%EC%88%98%EC%9B%90%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000140"
+ },
+ "suwoncatholic": {
+  "name": "수원가톨릭대학교",
+  "url": "https://www.suwoncatholic.ac.kr/bbs/board.php?bo_table=enter_data&wr_id=8",
+  "adiga": "0000139"
+ },
+ "swu": {
+  "name": "서울여자대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%84%9C%EC%9A%B8%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90/%EC%84%9C%EC%9A%B8%EC%97%AC%EC%9E%90%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000126"
+ },
+ "tu": {
+  "name": "동명대학교",
+  "adiga": "0000235"
+ },
+ "tukorea": {
+  "name": "한국공학대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%ED%95%9C%EA%B5%AD%EA%B3%B5%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90/%ED%95%9C%EA%B5%AD%EA%B3%B5%ED%95%99%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000247"
+ },
+ "u1": {
+  "name": "유원대학교",
+  "url": "https://ipsi.u1.ac.kr/ipsi/data/plan.do?mode=view&articleNo=76455",
+  "adiga": "0000154"
+ },
+ "uiduk": {
+  "name": "위덕대학교",
+  "adiga": "0000160"
+ },
+ "ulsan": {
+  "name": "울산대학교",
+  "url": "https://www.adiga.kr/cmm/com/file/fileDown.do?fileId=00000000000000252962&fileSn=1&menuId=PCUVTINF2000&downLogYn=Y&unvCd=0000158&searchSyr=2028",
+  "adiga": "0000158"
+ },
+ "unist": {
+  "name": "울산과학기술원",
+  "url": "https://adm-u.unist.ac.kr/admission/community/entire.do?mode=download&articleNo=280136&attachNo=575151"
+ },
+ "woosuk": {
+  "name": "우석대학교",
+  "url": "https://enter.woosuk.ac.kr/main/?menu=42&mode=view&no=362224",
+  "adiga": "0000157"
+ },
+ "wsu": {
+  "name": "우송대학교",
+  "url": "https://ent.wsu.ac.kr/board/read.jsp?id=266587&code=einfo0101",
+  "adiga": "0000240"
+ },
+ "yongin": {
+  "name": "용인대학교",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%9A%A9%EC%9D%B8%EB%8C%80%ED%95%99%EA%B5%90/%EC%9A%A9%EC%9D%B8%EB%8C%80%ED%95%99%EA%B5%90_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000156"
+ },
+ "yonsei-mirae": {
+  "name": "연세대학교(미래)",
+  "campus": "미래",
+  "url": "https://cdn013.negagea.net/dgsmidc/omr/seoul/web/univ_info2026/%EC%97%B0%EC%84%B8%EB%8C%80%ED%95%99%EA%B5%90(%EB%AF%B8%EB%9E%98)/%EC%97%B0%EC%84%B8%EB%8C%80%ED%95%99%EA%B5%90(%EB%AF%B8%EB%9E%98)_2028%ED%95%99%EB%85%84%EB%8F%84_%EB%8C%80%ED%95%99%EC%9E%85%ED%95%99%EC%A0%84%ED%98%95%EA%B3%84%ED%9A%8D.pdf",
+  "adiga": "0000150"
+ },
+ "ysu": {
+  "name": "영산대학교",
+  "url": "https://www.ysu.ac.kr/ipsi/CMS/Board/Board.do?mCode=MN021&mode=view&mgr_seq=395&board_seq=640945",
+  "adiga": "0003193"
+ },
+ "ytus": {
+  "name": "영남신학대학교",
+  "url": "https://entra.ytus.ac.kr/board/view/admissions_notice/278",
+  "adiga": "0000153"
+ }
+}

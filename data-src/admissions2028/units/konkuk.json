@@ -1,0 +1,18 @@
+{
+  "univ": "konkuk",
+  "seats": {
+    "konkuk:문과대학": {"ku-regional": 70, "ku-self": 143, "equity": 10, "special-ed": 8, "ku-essay": 43, "overseas": 6, "ku-general": 20, "basic-livelihood": 13, "rural": 13, "ku-general-carryover": null},
+    "konkuk:사범대학": {"ku-regional": 15, "ku-self": 50, "ku-essay": 5, "sports": 13, "ku-general": 22, "practical": 45, "ku-general-carryover": null},
+    "konkuk:사회과학대학": {"ku-regional": 24, "ku-self": 73, "equity": 10, "special-ed": 8, "ku-essay": 34, "overseas": 11, "ku-general": 188, "basic-livelihood": 7, "rural": 9, "voc-grad": 5},
+    "konkuk:경영대학": {"ku-regional": 18, "ku-self": 57, "equity": 6, "special-ed": 4, "ku-essay": 19, "overseas": null, "ku-general": 80, "basic-livelihood": 3, "rural": 7, "voc-grad": 2},
+    "konkuk:부동산과학원": {"ku-regional": 4, "ku-self": 10, "equity": 2, "ku-essay": 5, "overseas": null, "ku-general": 17, "basic-livelihood": 1, "rural": 1, "voc-grad": 1},
+    "konkuk:이과대학": {"ku-regional": 16, "ku-self": 28, "equity": 3, "ku-essay": 26, "overseas": 3, "ku-general": 42, "basic-livelihood": 4, "rural": 4},
+    "konkuk:건축대학": {"ku-regional": 8, "ku-self": 20, "equity": 3, "ku-essay": 6, "overseas": 3, "ku-general": 39, "basic-livelihood": 2, "rural": 2, "voc-grad": 1},
+    "konkuk:생명과학대학": {"ku-regional": 27, "ku-self": 118, "equity": 15, "ku-essay": 39, "overseas": 10, "ku-general": 186, "basic-livelihood": 16, "rural": 17, "voc-grad": 4},
+    "konkuk:수의과대학": {"ku-regional": 5, "ku-self": 24, "equity": 3, "ku-essay": 6, "overseas": 3, "ku-general": 31, "basic-livelihood": 1, "rural": 6},
+    "konkuk:공과대학": {"ku-regional": 161, "ku-self": 194, "equity": 28, "ku-essay": 79, "voc-worker": 165, "overseas": 10, "ku-general": 358, "basic-livelihood": 17, "rural": 20, "voc-grad": 9},
+    "konkuk:KU자유전공학부": {"ku-self": 183, "ku-essay": 65, "ku-general": 60}
+  },
+  "pages": "14-16, 33, 45",
+  "notes": "pp.14-15 표. 목록이 단과대학 단위라 그 대학 모집단위 행을 모두 더함(단과대학 자유전공학부 포함; 공과대학에는 특성화고졸재직자로만 뽑는 산업경영융합학부 165 포함). 특수교육대상자·재외국민은 표에서 단과대학별 합친 칸이라 그 수를 그대로 씀(재외국민 수는 유형1(3년) 인원, 유형2·3은 제한없음, p.33). 이름 대응: 부동산대학=부동산과학원(부동산학과), 생명과학대학=융합생명과학대학(8개 모집단위 합). null: 재외국민 7명은 경영대학·부동산과학원을 합친 칸이라 두 곳 모두 null; KU일반-수시 미충원(p.45)은 수시에서 전원 뽑는 문과대 8개 학과(나군)·일어교육과(가군)만 이월 인원으로 뽑아 문과대학·사범대학에 null."
+}

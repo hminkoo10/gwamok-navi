@@ -1,0 +1,13 @@
+{
+  "univ": "wku",
+  "seats": {
+    "wku:의예과": { "comprehensive": 10, "regional-comprehensive": 45, "regional-equity": 3, "regional-doctor": 21, "equity-comprehensive": 2, "rural-comprehensive": 2, "regional-subject": 27, "csat-general": 8, "csat-regional-doctor": null, "csat-equity": null, "csat-rural": null },
+    "wku:치의예과(자연)": { "comprehensive": 6, "regional-comprehensive": 26, "regional-equity": 2, "equity-comprehensive": 2, "rural-comprehensive": 2, "regional-subject": 36, "csat-general": 10, "csat-equity": null, "csat-rural": null },
+    "wku:한의예과(자연)": { "comprehensive": 12, "regional-comprehensive": 51, "regional-equity": 2, "equity-comprehensive": 2, "rural-comprehensive": 3, "regional-subject": 19, "csat-general": 6, "csat-equity": null, "csat-rural": null },
+    "wku:약학과": { "comprehensive": 5, "regional-comprehensive": 33, "regional-equity": 1, "equity-comprehensive": 3, "rural-comprehensive": 2, "csat-general": 3, "csat-equity": null, "csat-rural": null },
+    "wku:한약학과": { "comprehensive": 12, "regional-comprehensive": 23, "regional-equity": 1, "equity-comprehensive": 2, "rural-comprehensive": 2, "csat-general": 4, "csat-equity": null, "csat-rural": null },
+    "wku:간호학과": { "comprehensive": 42, "regional-comprehensive": 72, "regional-equity": 5, "equity-comprehensive": 3, "rural-comprehensive": 5, "subject-general": 60, "regional-subject": 122, "vocational-subject": 10, "csat-general": 30, "csat-equity": null, "csat-rural": null, "csat-vocational": null }
+  },
+  "pages": "2, 21-25, 32",
+  "notes": "32쪽 「2028학년도 모집인원(안)」 표. 지역인재종합·지역인재교과는 전북권+호남권 합. null: 정시 기회균형·농어촌학생(6개 학과), 특성화고교졸업자(간호학과), 지역의사선발(의예과) — 표에서 그 학과의 정시 칸으로 칠해져 있으나 인원 0, 수시 미충원 인원 발생 시에만 선발(21·23~25쪽). 치의예과·한의예과는 2028에 인문 모집단위를 폐지하고 통합선발(2쪽)이라 표의 치의예과·한의예과 행을 (자연) 항목에 넣음."
+}

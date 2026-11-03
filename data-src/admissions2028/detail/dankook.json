@@ -1,0 +1,274 @@
+{
+  "univ": "dankook",
+  "suneung": [
+    {
+      "group": "퇴계혁신칼리지·경영경제",
+      "units": "퇴계혁신칼리지, 경영경제대학, 국제경영학과",
+      "tracks": ["csat-general", "csat-edu-opportunity", "csat-rural", "csat-special-edu"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 25, "수학": 35, "영어": 20, "탐구": 20 },
+      "inquiry": "통합사회 10 + 통합과학 10 (두 과목 모두 반영)",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    },
+    {
+      "group": "인문",
+      "units": "인문계열광역, 사회계열광역, 문과대학, 법과대학, 사회과학대학, 한문교육과, 특수교육과",
+      "tracks": ["csat-general", "csat-edu-opportunity", "csat-rural", "csat-special-edu"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 35, "수학": 25, "영어": 20, "탐구": 20 },
+      "inquiry": "통합사회 15 + 통합과학 5 (두 과목 모두 반영)",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    },
+    {
+      "group": "자연",
+      "units": "공학계열광역, SW융합계열광역, 공과대학(건축학전공 제외), 모바일시스템공학과, AI융합대학, 수학교육과, 과학교육과",
+      "tracks": ["csat-general", "csat-edu-opportunity", "csat-rural", "csat-special-edu"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 25, "수학": 35, "영어": 20, "탐구": 20 },
+      "inquiry": "통합사회 5 + 통합과학 15 (두 과목 모두 반영)",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    },
+    {
+      "group": "자연(건축학전공 5년제)",
+      "units": "건축학부 건축학전공(5년제)",
+      "tracks": ["csat-general", "csat-edu-opportunity"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 35, "수학": 25, "영어": 20, "탐구": 20 },
+      "inquiry": "통합사회 10 + 통합과학 10 (두 과목 모두 반영)",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    },
+    {
+      "group": "예능(영화·연극·뮤지컬·도예·디자인)",
+      "units": "영화전공(이론·연출·스탭), 연극전공(연기), 뮤지컬전공(연기), 도예과, 디자인학부",
+      "tracks": ["csat-general", "csat-practical"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 50, "영어": 30, "탐구": 20 },
+      "inquiry": "통합사회 10 + 통합과학 10 (두 과목 모두 반영). 수학 미반영",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    },
+    {
+      "group": "예능(무용과·음악학부)",
+      "units": "무용과, 음악학부",
+      "tracks": ["csat-practical"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 50, "영어": 50 },
+      "inquiry": "미반영 (수학·탐구 미반영)",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    },
+    {
+      "group": "체육",
+      "units": "체육교육과",
+      "tracks": ["csat-general"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 40, "수학": 10, "영어": 20, "탐구": 30 },
+      "inquiry": "통합사회 15 + 통합과학 15 (두 과목 모두 반영)",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["regional-balance", "essay", "practical", "worker"],
+      "subjects": "국어·영어·수학·사회·과학 (예능·체육계열은 국어·영어·사회, 체육교육과는 국어·영어·수학·사회·과학). 반영교과 안에서 이수한 전 과목, 한국사는 사회에 포함",
+      "terms": "재학생 3학년 1학기까지, 졸업생 3학년 2학기까지. 학년별·교과별 가중치 없음",
+      "grades": "5등급제: 1등급 100, 2등급 98, 3등급 93, 4등급 60, 5등급 0 / 9등급제: 1등급 100, 2등급 99, 3등급 98, 4등급 96, 5등급 93, 6등급 85, 7등급 60, 8등급 10, 9등급 0. 9등급제 중 등급 없는 자(평어만 있는 자 등)는 석차백분율 구간(4·11·23·40·60·77·89·96%)으로 같은 점수 환산",
+      "achievement": "보통교과만 반영하고, 석차등급이 함께 있으면 석차등급만 반영. 5등급제 A 100, B 98, C 93, D 60, E 10 / 9등급제 A 100, B 93, C 10. 사회·과학 융합선택과목은 상위 3과목만",
+      "formula": null,
+      "extra": "출결(정량): 미인정 출결 일수에 따른 차등 배점, 학년 구분 없이 전 학년(재학생 3-1, 졸업생 3-2까지). 반영교과가 하나라도 없거나 교과성적 산출이 불가하면 학생부교과전형 선발 제외. 검정고시·외국고교 등은 논술우수자는 논술 점수, 실기우수자는 실기 점수로 학생부 성적 환산(도예과·디자인학부는 해당 없음, 교과 산출 불가 시 지원 불가)",
+      "pages": "33-34"
+    }
+  ],
+  "tracks": {
+    "dku-talent-doc": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (학업역량·진로역량·공동체역량 등 종합평가, 광역 모집단위는 자기주도역량·공동체역량). 검정고시는 검정고시 성적증명서, 외국고교는 성적증명서(학교소개서)로 대신하고 학생부 대체서식·학력 서류는 선택",
+      "units": null
+    },
+    "dku-talent-interview": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": "학교생활기록부를 통해 진로역량·발전가능성·공동체역량 등을 종합평가",
+      "essay": null,
+      "docs": "학교생활기록부. 검정고시는 검정고시 성적증명서, 외국고교는 성적증명서(학교소개서)로 대신하고 학생부 대체서식·학력 서류는 선택",
+      "units": null
+    },
+    "sw-talent": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": "학교생활기록부를 통해 진로역량·발전가능성·공동체역량 등을 종합평가",
+      "essay": null,
+      "docs": "학교생활기록부. 검정고시는 검정고시 성적증명서, 외국고교는 성적증명서(학교소개서)로 대신하고 학생부 대체서식·학력 서류는 선택",
+      "units": null
+    },
+    "equal-opportunity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (학업역량·진로역량·공동체역량 등 종합평가). 국가보훈 대상자는 대학입학특별전형대상자 증명서. 검정고시·외국고교 출신은 성적증명서로 대신",
+      "units": null
+    },
+    "social-consideration": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (학업역량·진로역량·공동체역량 등 종합평가). 검정고시·외국고교 출신은 성적증명서로 대신",
+      "units": null
+    },
+    "edu-opportunity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (학업역량·진로역량·공동체역량 등 종합평가). 검정고시·외국고교 출신은 성적증명서로 대신",
+      "units": null
+    },
+    "rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (학업역량·진로역량·공동체역량 등 종합평가)",
+      "units": null
+    },
+    "special-edu": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (학업역량·진로역량·공동체역량 등 종합평가). 검정고시·외국고교 출신은 성적증명서로 대신",
+      "units": null
+    },
+    "regional-balance": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "교과": 95, "출결": 5 } },
+        { "step": "일괄(체육교육과)", "pick": null, "parts": { "교과": 65, "출결": 5, "실기": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "essay": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "논술": 90, "교과": 10 } }],
+      "interview": null,
+      "essay": "인문: 인문·사회 통합교과형(고교 국어과·사회과·도덕과 교육과정 범위·수준) / 자연: 수학 통합교과형(고교 수학과 교육과정 범위·수준). 공통교육과정 포함. 퇴계혁신칼리지는 인문·자연 계열별로 같은 유형 적용",
+      "docs": null,
+      "units": null
+    },
+    "practical": {
+      "stages": [
+        { "step": "일괄(연극·뮤지컬연출·무용·음악)", "pick": null, "parts": { "실기": 80, "교과": 15, "출결": 5 } },
+        { "step": "1단계(뮤지컬연기)", "pick": "5배수", "parts": { "실기": 100 } },
+        { "step": "2단계(뮤지컬연기)", "pick": null, "parts": { "실기": 80, "교과": 15, "출결": 5 } },
+        { "step": "1단계(영화)", "pick": "3배수", "parts": { "실기": 80, "교과": 15, "출결": 5 } },
+        { "step": "2단계(영화)", "pick": null, "parts": { "1단계": 70, "면접": 30 } },
+        { "step": "1단계(도예·디자인)", "pick": "15배수", "parts": { "교과": 95, "출결": 5 } },
+        { "step": "2단계(도예·디자인)", "pick": null, "parts": { "1단계": 20, "실기": 80 } }
+      ],
+      "interview": "영화전공(이론·연출·스탭) 2단계 면접(30%)은 질의응답 (1단계 실기는 이야기구성)",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-nationals": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "공통(필수): 지원자격 서류 / 선택: 학력인정서류, 활동증빙서류 등",
+      "units": null
+    },
+    "overseas-full-nk": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "공통(필수): 지원자격 서류 / 선택: 학력인정서류, 활동증빙서류 등",
+      "units": null
+    },
+    "csat-general": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 90, "서류": 10 } },
+        { "step": "일괄(체육교육과)", "pick": null, "parts": { "수능": 65, "출결": 5, "실기": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (진로적합성·학교생활 성실성 등 정성평가). 검정고시·외국고교 출신 등 학생부 정성평가가 불가하면 수능 점수로 환산",
+      "units": null
+    },
+    "csat-practical": {
+      "stages": [
+        { "step": "일괄(무용·음악)", "pick": null, "parts": { "실기": 80, "수능": 15, "출결": 5 } },
+        { "step": "일괄(연극·뮤지컬 연기)", "pick": null, "parts": { "실기": 70, "수능": 25, "출결": 5 } },
+        { "step": "일괄(도예·디자인)", "pick": null, "parts": { "실기": 60, "수능": 35, "출결": 5 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-edu-opportunity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 90, "서류": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (진로적합성·학교생활 성실성 등 정성평가). 검정고시·외국고교 출신 등은 수능 점수로 환산",
+      "units": null
+    },
+    "csat-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 90, "서류": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (진로적합성·학교생활 성실성 등 정성평가)",
+      "units": null
+    },
+    "csat-special-edu": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 90, "서류": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (진로적합성·학교생활 성실성 등 정성평가). 검정고시·외국고교 출신 등은 수능 점수로 환산",
+      "units": null
+    },
+    "worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

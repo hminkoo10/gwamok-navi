@@ -1,0 +1,21 @@
+{
+  "univ": "koreatech",
+  "seats": {
+    "koreatech:기계공학부": { "creative-doc": 20, "creative-interview": 18, "social-integration": 3, "vocational-hs": 2, "rural-student": 5, "subject-general": 24, "subject-regional": 12, "essay-general": 19, "overseas-nationals": 1, "csat-general": null },
+    "koreatech:메카트로닉스공학부": { "creative-doc": 17, "creative-interview": 17, "social-integration": 4, "vocational-hs": 2, "rural-student": 5, "subject-general": 21, "subject-regional": 12, "essay-general": 17, "overseas-nationals": 1, "csat-general": null },
+    "koreatech:디자인공학과": { "creative-doc": 6, "creative-interview": 8, "social-integration": 2, "vocational-hs": 1, "rural-student": 2, "subject-general": 9, "subject-regional": 5, "essay-general": 9, "overseas-nationals": 1, "csat-general": null },
+    "koreatech:건축공학과": { "creative-doc": 6, "creative-interview": 8, "social-integration": 2, "vocational-hs": 1, "rural-student": 2, "subject-general": 9, "subject-regional": 5, "essay-general": 9, "overseas-nationals": 1, "csat-general": null },
+    "koreatech:에너지신소재공학전공": { "creative-doc": 8, "creative-interview": 5, "social-integration": 1, "vocational-hs": 1, "rural-student": 2, "subject-general": 7, "subject-regional": 5, "essay-general": 5, "overseas-nationals": 1, "csat-general": null },
+    "koreatech:화학생명공학전공": { "creative-doc": 8, "creative-interview": 5, "social-integration": 1, "vocational-hs": 1, "rural-student": 2, "subject-general": 8, "subject-regional": 5, "essay-general": 5, "overseas-nationals": 1, "csat-general": null },
+    "koreatech:전기공학전공": { "creative-doc": 5, "creative-interview": 4, "ai-sw": null, "social-integration": 1, "vocational-hs": 1, "rural-student": 2, "subject-general": 8, "subject-regional": 4, "essay-general": 4, "csat-general": null, "csat-ai-sw-master": null },
+    "koreatech:전자공학전공": { "creative-doc": 4, "creative-interview": 5, "ai-sw": null, "social-integration": 1, "vocational-hs": 1, "rural-student": 1, "subject-general": 6, "subject-regional": 4, "essay-general": 5, "overseas-nationals": 1, "csat-general": null, "csat-ai-sw-master": null },
+    "koreatech:AI정보통신공학전공": { "creative-doc": 8, "creative-interview": 5, "ai-sw": null, "social-integration": 1, "rural-student": 2, "special-education": 1, "subject-general": 9, "subject-regional": 4, "essay-general": 6, "csat-general": null, "csat-ai-sw-master": null },
+    "koreatech:컴퓨터공학전공": { "creative-doc": 5, "creative-interview": 5, "ai-sw": null, "social-integration": 2, "vocational-hs": 1, "rural-student": 2, "subject-general": 8, "subject-regional": 4, "essay-general": 7, "overseas-nationals": 1, "csat-general": null, "csat-ai-sw-master": null },
+    "koreatech:AI·소프트웨어전공": { "creative-doc": 11, "creative-interview": 13, "ai-sw": null, "social-integration": 3, "rural-student": 3, "special-education": 1, "subject-general": 17, "subject-regional": 8, "essay-general": 16, "overseas-nationals": 1, "csat-general": null, "csat-ai-sw-master": null },
+    "koreatech:융합경영전공": { "creative-doc": 7, "creative-interview": 6, "social-integration": 2, "rural-student": 2, "special-education": 2, "subject-general": 10, "subject-regional": 6, "essay-general": 9, "overseas-nationals": 1, "csat-general": null },
+    "koreatech:데이터경영전공": { "creative-doc": 7, "creative-interview": 6, "social-integration": 2, "vocational-hs": 1, "rural-student": 3, "special-education": 1, "subject-general": 10, "subject-regional": 6, "essay-general": 8, "csat-general": null },
+    "koreatech:고용서비스정책학과": { "creative-doc": 6, "creative-interview": 5, "subject-general": 6, "subject-regional": 5, "essay-general": 4, "csat-general": null }
+  },
+  "pages": "7, 14",
+  "notes": "7쪽 표. null: csat-general은 정시를 공학융합·ICT융합·사회융합계열(과 자율전공) 단위로 뽑아(7쪽 병합 칸, 14쪽) 모든 학과에, csat-ai-sw-master(14쪽 ICT융합계열 6명)와 ai-sw(7쪽 ICT융합자율전공 6명, 주 ** '해당계열 내 전공 선택')는 ICT융합계열 다섯 전공에 적음."
+}

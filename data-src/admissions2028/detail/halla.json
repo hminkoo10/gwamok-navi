@@ -1,0 +1,155 @@
+{
+  "univ": "halla",
+  "suneung": [
+    {
+      "group": "전 모집단위",
+      "units": "철도시스템학부(1명)와 수시 미충원 인원을 이월한 학과 (미래라이프융합대학 4개 학과는 정시 일반학생 모집 없음)",
+      "tracks": ["csat"],
+      "use": "백분위(영어는 등급별 백분위 변환점수), 국·수·영·탐 중 우수 2개 영역만 반영",
+      "weights": { "국어": 50, "수학": 50, "영어": 50, "탐구": 50 },
+      "inquiry": "탐구는 우수 1과목만 반영",
+      "english": "등급별 백분위 변환점수: 1등급 95, 2등급 90, 3등급 80, 4등급 70, 5등급 60, 6등급 50, 7등급 40, 8등급 30, 9등급 20",
+      "history": "등급별 가산점(수능 총점에 더함): 1~5등급 5점, 6등급 4점, 7등급 3점, 8등급 2점, 9등급 1점. 가산점을 더한 점수가 총점을 넘을 수 있음",
+      "bonus": null,
+      "formula": null,
+      "total": 200,
+      "pages": "Ⅴ-3"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["general-subject", "regional", "general-interview", "adult-learner", "rural", "vocational", "equity", "general-subject-jeongsi", "adult-learner-jeongsi", "rural-jeongsi", "vocational-jeongsi", "equity-jeongsi", "late-learner"],
+      "subjects": "국어·영어·수학·사회(역사/도덕 포함, 한국사는 사회로 반영)·과학 교과 중 우수 15과목 (학년·학기 구분 없음). 진로선택·융합선택 포함하되 융합선택은 상대평가 석차등급이 있는 과목만, 진로선택+융합선택은 최대 5과목",
+      "terms": "수시 졸업예정자는 3학년 1학기까지, 수시 졸업자·정시·전형기간 자율화(만학도) 졸업자는 전 학년. 학년별·학기별 가중치 없음",
+      "grades": "산출지표: 석차등급, 이수단위",
+      "achievement": "진로선택 성취도 변환등급(2008년 2월~2027년 2월 졸업자): A 1등급, B 3등급, C 5등급",
+      "formula": null,
+      "extra": "학생부 400점 = 교과 360점(90%) + 출석 40점(10%). 면접 전형(일반학생(면접중심)·성인학습자·만학도 9월)은 여기에 면접 100점을 더해 500점",
+      "pages": "Ⅴ-1, Ⅴ-2"
+    }
+  ],
+  "tracks": {
+    "general-subject": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "general-interview": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 80, "면접": 20 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "adult-learner": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 80, "면접": 20 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "ungok": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "athlete": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 10, "면접": 30, "실적": 60 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "리그실적증명서(출전시간·포지션 명시) 발급이 가능해야 함",
+      "units": null
+    },
+    "rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "general-subject-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "adult-learner-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "equity-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "late-learner": {
+      "stages": [
+        { "step": "9월(수시 시기) 일괄", "pick": null, "parts": { "학생부": 80, "면접": 20 } },
+        { "step": "1월(정시 시기) 일괄", "pick": null, "parts": { "학생부": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "foreigner": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "면접": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

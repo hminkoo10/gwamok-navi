@@ -1,0 +1,302 @@
+{
+  "univ": "cbnu",
+  "suneung": [
+    {
+      "group": "인문",
+      "units": "인문계열 전 모집단위",
+      "tracks": ["reg-csat-ga", "reg-csat-na", "reg-csat-da", "reg-econ-ga", "reg-vocational", "reg-rural"],
+      "use": "표준점수(국어·수학·탐구), 영어 절대평가 등급",
+      "weights": { "국어": 30, "수학": 20, "영어": 20, "탐구": 30 },
+      "inquiry": "사회·과학탐구 점수를 분리해 사회 20% + 과학 10% 반영",
+      "english": "등급점수: 1등급 10, 2등급 9.5, 3등급 9, 4등급 8, 5등급 7, 6등급 6, 7등급 4.5, 8등급 2.5, 9등급 0. 영어 점수 = 영역별 기본점수 + (등급점수 × 영역별 실질반영점수) ÷ 10",
+      "history": "필수 응시 영역이지만 수능 성적 계산에는 미포함",
+      "bonus": null,
+      "formula": "국어·수학·탐구 = 영역별 기본점수 + (개인 표준점수 ÷ 영역별 최고 표준점수) × 영역별 실질반영점수(사회·과학탐구는 각각 산출해 합산). 영역별 기본점수 = 기본점수 총점 800 × 반영비율, 영역별 실질반영점수 = 실질반영점수 총점 200 × 반영비율. 반영점수 1,000점(소수점 셋째 자리 반올림)",
+      "total": 1000,
+      "pages": "18-20"
+    },
+    {
+      "group": "자연",
+      "units": "자연계열 전 모집단위 (의예·약학·수의예·간호 포함)",
+      "tracks": ["reg-csat-ga", "reg-csat-na", "reg-csat-da", "reg-local-ga", "reg-local-na", "reg-doctor-cheongju", "reg-doctor-chungju", "reg-doctor-jecheon", "reg-doctor-wide", "reg-local-econ", "reg-econ-ga", "reg-vocational", "reg-rural"],
+      "use": "표준점수(국어·수학·탐구), 영어 절대평가 등급",
+      "weights": { "국어": 20, "수학": 30, "영어": 20, "탐구": 30 },
+      "inquiry": "사회·과학탐구 점수를 분리해 사회 10% + 과학 20% 반영. 직업탐구 미반영(특성화고출신자전형 제외)",
+      "english": "등급점수: 1등급 10, 2등급 9.5, 3등급 9, 4등급 8, 5등급 7, 6등급 6, 7등급 4.5, 8등급 2.5, 9등급 0. 영어 점수 = 영역별 기본점수 + (등급점수 × 영역별 실질반영점수) ÷ 10",
+      "history": "필수 응시 영역이지만 수능 성적 계산에는 미포함",
+      "bonus": null,
+      "formula": "국어·수학·탐구 = 영역별 기본점수 + (개인 표준점수 ÷ 영역별 최고 표준점수) × 영역별 실질반영점수(사회·과학탐구는 각각 산출해 합산). 영역별 기본점수 = 기본점수 총점 800 × 반영비율, 영역별 실질반영점수 = 실질반영점수 총점 200 × 반영비율. 반영점수 1,000점(소수점 셋째 자리 반올림)",
+      "total": 1000,
+      "pages": "18-20"
+    },
+    {
+      "group": "예체능(미술·디자인)",
+      "units": "미술학과(수시 미충원 시)·디자인학과: 수능 500점(44.4%) + 실기 500점(55.6%)",
+      "tracks": ["reg-practical-na"],
+      "use": "표준점수(국어·탐구), 영어 절대평가 등급",
+      "weights": { "국어": 40, "영어": 20, "탐구": 40 },
+      "inquiry": "사회·과학탐구 점수를 분리해 사회 20% + 과학 20% 반영",
+      "english": "등급점수: 1등급 10, 2등급 9.5, 3등급 9, 4등급 8, 5등급 7, 6등급 6, 7등급 4.5, 8등급 2.5, 9등급 0. 영어 점수 = 영역별 기본점수 + (등급점수 × 영역별 실질반영점수) ÷ 10",
+      "history": "필수 응시 영역이지만 수능 성적 계산에는 미포함",
+      "bonus": null,
+      "formula": "국어·탐구 = 영역별 기본점수 + (개인 표준점수 ÷ 영역별 최고 표준점수) × 영역별 실질반영점수(사회·과학탐구는 각각 산출해 합산). 영역별 기본점수 = 기본점수 총점 300 × 반영비율, 영역별 실질반영점수 = 실질반영점수 총점 200 × 반영비율. 반영점수 500점",
+      "total": 500,
+      "pages": "18-20"
+    },
+    {
+      "group": "예체능(체육교육과)",
+      "units": "체육교육과 (수능 일반전형): 수능 650점(72.4%) + 실기 350점(27.6%)",
+      "tracks": ["reg-csat-ga"],
+      "use": "표준점수(국어·탐구), 영어 절대평가 등급",
+      "weights": { "국어": 40, "영어": 20, "탐구": 40 },
+      "inquiry": "사회·과학탐구 점수를 분리해 사회 20% + 과학 20% 반영",
+      "english": "등급점수: 1등급 10, 2등급 9.5, 3등급 9, 4등급 8, 5등급 7, 6등급 6, 7등급 4.5, 8등급 2.5, 9등급 0. 영어 점수 = 영역별 기본점수 + (등급점수 × 영역별 실질반영점수) ÷ 10",
+      "history": "필수 응시 영역이지만 수능 성적 계산에는 미포함",
+      "bonus": null,
+      "formula": "국어·탐구 = 영역별 기본점수 + (개인 표준점수 ÷ 영역별 최고 표준점수) × 영역별 실질반영점수(사회·과학탐구는 각각 산출해 합산). 영역별 기본점수 = 기본점수 총점 430 × 반영비율, 영역별 실질반영점수 = 실질반영점수 총점 220 × 반영비율. 반영점수 650점",
+      "total": 650,
+      "pages": "17-20"
+    }
+  ],
+  "record": [
+    {
+      "tracks": [],
+      "subjects": "국어, 영어, 수학, 사회(역사/도덕 포함), 과학 교과의 해당교과 전 과목 (1·2·3학년, 전 계열 같음)",
+      "terms": "2028년 2월 졸업예정자는 3학년 1학기까지. 학년별 반영비율 없음(1·2·3학년 100%). 과목별 점수는 1·2학기 산술평균, 이수학점은 1·2학기 합산",
+      "grades": "과목 점수 = 석차등급 점수(1등급 5, 2등급 4, 3등급 3, 4등급 1, 5등급 0) + 성취도 점수(A 5, B 4.5, C 3.5, D 1.5, E 0). 예: 1등급·B는 9.5",
+      "achievement": "석차등급이 없는 과목: 석차 점수는 A면 1등급 점수, B~E면 그 성취도 이하 누적비율로 부여(100~90.1% 5, 90.0~66.1% 4, 66.0~34.1% 3, 34.0~10.1% 1, 10.0~0% 0)하고 성취도 점수를 더함. 성취도별 분포비율이 없으면 미반영",
+      "formula": "[Σ(등급별 환산점수 × 이수학점) ÷ Σ이수학점] × 4.0 + 40 (최고 80점). 실기우수자전형은 × 1.0 + 10 (최고 20점), 체육특기자전형은 × 1.6 + 2 (최고 18점)",
+      "extra": "체육특기자전형 출결(2점): 사고(무단·미인정) 결석 2일 이하 2, 3~6일 1.5, 7~15일 1, 16~30일 0.5, 31일 이상 0. 2027학년도 이전 졸업자는 1~9등급 10·9.5·9·8·7·6·4.5·2.5·0. 검정고시는 과목 점수 100점 8, 95~99 7, 90~94 6, 80~89 4.5, 70~79 2.5, 70 미만 0(가중치 국·영·수 3, 사·과 2, 한국사 1)",
+      "pages": "23-28"
+    }
+  ],
+  "tracks": {
+    "jong1": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jong2": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-general": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-local": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-local-econ": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-doctor-cheongju": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-doctor-chungju": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-doctor-jecheon": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-doctor-wide": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-veteran": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "보훈(지)청장이 발급하는 대학입학특별전형 대상자증명서 (발급받지 못하면 지원 불가)",
+      "units": null
+    },
+    "gyo-econ": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "prac-athlete": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 27.6, "출결": 3.4, "특기실적": 69 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "prac-art": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 20, "실기": 80 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jong-rural": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-vocational": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-special-ed": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-csat-ga": {
+      "stages": [
+        { "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } },
+        { "step": "일괄(체육교육과)", "pick": "1배수", "parts": { "수능": 72.4, "실기": 27.6 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-csat-na": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-csat-da": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-local-ga": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-local-na": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-doctor-cheongju": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-doctor-chungju": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-doctor-jecheon": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-doctor-wide": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-local-econ": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-practical-na": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 44.4, "실기": 55.6 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-econ-ga": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-vocational": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "reg-rural": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "free-worker": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "free-adult": {
+      "stages": [{ "step": "일괄", "pick": "1배수", "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

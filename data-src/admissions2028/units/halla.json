@@ -1,0 +1,30 @@
+{
+  "univ": "halla",
+  "seats": {
+    "halla:기계자동차공학과": {"general-subject": 43, "regional": 8, "ungok": 9, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:미래모빌리티공학과": {"general-subject": 28, "regional": 6, "ungok": 6, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:도시인프라공학과": {"general-subject": 20, "regional": 5, "ungok": 5, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:컴퓨터공학과": {"general-subject": 28, "regional": 6, "ungok": 6, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:IT소프트웨어학과": {"general-subject": 28, "regional": 6, "ungok": 6, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:전기전자공학과": {"general-subject": 31, "regional": 7, "ungok": 7, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:AI정보보안학과": {"general-subject": 20, "regional": 5, "ungok": 5, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:철도운전시스템학과": {"general-subject": 40, "regional": 6, "ungok": 3, "rural": null, "vocational": null, "equity": null, "csat": 1, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:미디어광고콘텐츠학과": {"general-subject": 23, "regional": 6, "general-interview": 6, "ungok": 5, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:영상제작학과": {"general-subject": 15, "regional": 5, "general-interview": 10, "ungok": 5, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:건축학과": {"general-subject": 36, "regional": 7, "ungok": 7, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:소방안전학과": {"general-subject": 31, "regional": 7, "ungok": 7, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:사회복지학과": {"general-subject": 33, "regional": 6, "general-interview": 5, "ungok": 6, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:경찰행정학과": {"general-subject": 40, "regional": 8, "ungok": 7, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:경영학과": {"general-subject": 28, "regional": 6, "ungok": 6, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:호텔항공외식경영학과": {"general-subject": 22, "regional": 4, "ungok": 4, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:문화관광경영학과": {"general-subject": 20, "regional": 5, "ungok": 5, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:뷰티디자인학과": {"general-subject": 7, "regional": 4, "general-interview": 14, "ungok": 2, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:스포츠학과": {"general-subject": 13, "regional": 3, "general-interview": 17, "ungok": 2, "athlete": 15, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null, "foreigner": null},
+    "halla:미래경영학과": {"adult-learner": 10, "adult-learner-jeongsi": null, "late-learner": 4},
+    "halla:문화예술학과": {"adult-learner": 15, "adult-learner-jeongsi": null, "late-learner": 4},
+    "halla:골프산업학과": {"adult-learner": 20, "adult-learner-jeongsi": null, "late-learner": 4},
+    "halla:자유전공학부": {"general-subject": 20, "regional": 5, "ungok": 5, "rural": null, "vocational": null, "equity": null, "csat": null, "general-subject-jeongsi": null, "rural-jeongsi": null, "vocational-jeongsi": null, "equity-jeongsi": null}
+  },
+  "pages": "Ⅲ-2-1, Ⅲ-2-2 (HWP)",
+  "notes": "철도운전시스템학과 = 정원내 표의 '철도시스템학부' 행 (정원외 표는 같은 자리를 '철도운전시스템학과'로 적음). null: 미래라이프 3개 학과를 뺀 20개 모집단위의 수시 농어촌·특성화고·기회균형(통합모집, 학과별 'N명 이내'), 정시 교과·수능('이월', 철도 수능 1명은 숫자), 정시 농어촌·특성화고·기회균형(수시 미충원 이월); 외국인('제한없음', 자유전공학부·미래라이프 학과 제외); 미래경영·문화예술·골프산업의 정시 성인학습자('이월')."
+}

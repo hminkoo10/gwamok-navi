@@ -1,0 +1,395 @@
+{
+  "univ": "skku",
+  "suneung": [
+    {
+      "group": "자유전공·사회과학·경영·공학 등",
+      "units": "일반형 가군 자유전공계열·사회과학계열·글로벌AI융합학부, 나군 경영학과·영상학과·공학계열 / 정원외 특별전형(농어촌·이웃사랑·장애인등) 나군 인문과학계열·경영학과·공학계열·컴퓨터공학과·전자전기정보공학부·바이오신약·규제과학과",
+      "tracks": ["general-type", "rural-jeongsi", "neighbor-jeongsi", "disabled-jeongsi"],
+      "use": "영역별 변환점수(국·수·탐 백분위·표준점수 활용, 영어 등급 활용)",
+      "weights": {},
+      "inquiry": "탐구 15%: 2개 과목 반영, 변환점수가 높은 과목 순으로 70%, 30%",
+      "english": "반영비율 10%, 등급을 활용한 대학 자체 변환점수",
+      "history": "4등급 이내 감점 없음, 5등급 1, 6등급 2, 7등급 5, 8등급 10, 9등급 20점 감점",
+      "bonus": null,
+      "formula": "국어·수학 중 우수한 영역 순으로 45%, 30% + 탐구 15% + 영어 10% (영역별 변환점수), 한국사 등급별 감점",
+      "total": null,
+      "pages": "35-36, 41"
+    },
+    {
+      "group": "의상·자연과학·반도체시스템·약학 등",
+      "units": "일반형 가군 의상학과·자연과학계열·반도체시스템공학과·약학과 / 정원외 특별전형(농어촌·이웃사랑·장애인등) 가군 사회과학계열·자연과학계열·약학과",
+      "tracks": ["general-type", "rural-jeongsi", "neighbor-jeongsi", "disabled-jeongsi"],
+      "use": "영역별 변환점수(국·수·탐 백분위·표준점수 활용, 영어 등급 활용)",
+      "weights": {},
+      "inquiry": "수학과 함께 우수한 영역 순 40%/30%에 포함. 2개 과목 반영, 변환점수가 높은 과목 순으로 70%, 30%",
+      "english": "반영비율 15%, 등급을 활용한 대학 자체 변환점수",
+      "history": "4등급 이내 감점 없음, 5등급 1, 6등급 2, 7등급 5, 8등급 10, 9등급 20점 감점",
+      "bonus": null,
+      "formula": "국어 15% + 수학·탐구 중 우수한 영역 순으로 40%, 30% + 영어 15% (영역별 변환점수), 한국사 등급별 감점",
+      "total": null,
+      "pages": "35, 41"
+    },
+    {
+      "group": "의예과",
+      "units": "일반형 가군 의예과",
+      "tracks": ["general-type"],
+      "use": "영역별 변환점수(국·수·탐 백분위·표준점수 활용, 영어 등급 활용)",
+      "weights": { "국어": 30, "수학": 35, "탐구": 20, "영어": 15 },
+      "inquiry": "2개 과목을 동일 비율로 반영",
+      "english": "반영비율 15%, 등급을 활용한 대학 자체 변환점수",
+      "history": "4등급 이내 감점 없음, 5등급 1, 6등급 2, 7등급 5, 8등급 10, 9등급 20점 감점",
+      "bonus": null,
+      "formula": "국어 30% + 수학 35% + 탐구 20% + 영어 15% (영역별 변환점수), 한국사 등급별 감점",
+      "total": null,
+      "pages": "34-35"
+    },
+    {
+      "group": "미술학과·디자인학과",
+      "units": "일반형 가군 미술학과(동양화·서양화), 디자인학과 (수능 60 + 실기 40, 수학 응시 필수 아님)",
+      "tracks": ["general-type"],
+      "use": "영역별 변환점수(국·탐 백분위·표준점수 활용, 영어 등급 활용)",
+      "weights": { "국어": 45, "탐구": 45, "영어": 10 },
+      "inquiry": "2개 과목 반영, 변환점수가 높은 과목 순으로 70%, 30%",
+      "english": "반영비율 10%, 등급을 활용한 대학 자체 변환점수",
+      "history": "4등급 이내 감점 없음, 5등급 1, 6등급 2, 7등급 5, 8등급 10, 9등급 20점 감점",
+      "bonus": null,
+      "formula": "국어 45% + 탐구 45% + 영어 10% (수학 미반영, 영역별 변환점수), 한국사 등급별 감점",
+      "total": null,
+      "pages": "34-35"
+    },
+    {
+      "group": "스포츠과학과",
+      "units": "일반형 가군 스포츠과학과 (수능 70 + 실기 30)",
+      "tracks": ["general-type"],
+      "use": "영역별 변환점수(국·수·탐 백분위·표준점수 활용, 영어 등급 활용)",
+      "weights": { "국어": 35, "수학": 25, "탐구": 30, "영어": 10 },
+      "inquiry": "변환점수가 높은 상위 1개 과목만 반영",
+      "english": "반영비율 10%, 등급을 활용한 대학 자체 변환점수",
+      "history": "4등급 이내 감점 없음, 5등급 1, 6등급 2, 7등급 5, 8등급 10, 9등급 20점 감점",
+      "bonus": null,
+      "formula": "국어 35% + 수학 25% + 탐구 30% + 영어 10% (영역별 변환점수), 한국사 등급별 감점",
+      "total": null,
+      "pages": "34-35"
+    },
+    {
+      "group": "인문과학·전자전기정보 등",
+      "units": "일반형 나군 인문과학계열·글로벌리더학부·전자전기정보공학부·바이오신약·규제과학과·컴퓨터공학과·지능형소프트웨어학과",
+      "tracks": ["general-type"],
+      "use": "영역별 변환점수(국·수·탐 백분위·표준점수 활용, 영어 등급 활용)",
+      "weights": {},
+      "inquiry": "국어와 함께 우수한 영역 순 35%/30%에 포함. 2개 과목 반영, 변환점수가 높은 과목 순으로 70%, 30%",
+      "english": "반영비율 10%, 등급을 활용한 대학 자체 변환점수",
+      "history": "4등급 이내 감점 없음, 5등급 1, 6등급 2, 7등급 5, 8등급 10, 9등급 20점 감점",
+      "bonus": null,
+      "formula": "수학 25% + 국어·탐구 중 우수한 영역 순으로 35%, 30% + 영어 10% (영역별 변환점수), 한국사 등급별 감점",
+      "total": null,
+      "pages": "36"
+    },
+    {
+      "group": "글로벌경제·건설환경·반도체융합",
+      "units": "일반형 다군 글로벌경제학과·건설환경공학부·반도체융합공학과",
+      "tracks": ["general-type"],
+      "use": "영역별 변환점수(국·수·탐 백분위·표준점수 활용, 영어 등급 활용)",
+      "weights": {},
+      "inquiry": "탐구 10%: 변환점수가 높은 상위 1개 과목만 반영",
+      "english": "반영비율 10%, 등급을 활용한 대학 자체 변환점수",
+      "history": "4등급 이내 감점 없음, 5등급 1, 6등급 2, 7등급 5, 8등급 10, 9등급 20점 감점",
+      "bonus": null,
+      "formula": "국어·수학 중 우수한 영역 순으로 45%, 35% + 탐구 10% + 영어 10% (영역별 변환점수), 한국사 등급별 감점",
+      "total": null,
+      "pages": "37"
+    },
+    {
+      "group": "글로벌경영·배터리·에너지 등",
+      "units": "일반형 다군 글로벌경영학과·배터리학과·글로벌바이오메디컬공학과·에너지학과·양자정보공학과 / 정원외 다군 농어촌·이웃사랑(반도체융합공학과·에너지학과·양자정보공학과), 장애인등(교육학과·한문교육과·수학교육과·컴퓨터교육과)",
+      "tracks": ["general-type", "rural-jeongsi", "neighbor-jeongsi", "disabled-jeongsi"],
+      "use": "영역별 변환점수(국·수·탐 백분위·표준점수 활용, 영어 등급 활용)",
+      "weights": {},
+      "inquiry": "탐구 25%: 변환점수가 높은 상위 1개 과목만 반영",
+      "english": "반영비율 10%, 등급을 활용한 대학 자체 변환점수",
+      "history": "4등급 이내 감점 없음, 5등급 1, 6등급 2, 7등급 5, 8등급 10, 9등급 20점 감점",
+      "bonus": null,
+      "formula": "국어·수학 중 우수한 영역 순으로 35%, 30% + 탐구 25% + 영어 10% (영역별 변환점수), 한국사 등급별 감점",
+      "total": null,
+      "pages": "37, 41"
+    },
+    {
+      "group": "특화형 인문·사회",
+      "units": "특화형 가군 사회과학계열, 나군 인문과학계열",
+      "tracks": ["specialized-type"],
+      "use": "국어·탐구 백분위·표준점수 활용, 수학·영어 등급 활용 변환점수",
+      "weights": { "국어": 40, "수학": 10, "탐구": 40, "영어": 10 },
+      "inquiry": "2개 과목 반영, 변환점수가 높은 과목 순으로 70%, 30%",
+      "english": "반영비율 10%, 등급을 활용한 대학 자체 변환점수",
+      "history": "4등급 이내 감점 없음, 5등급 1, 6등급 2, 7등급 5, 8등급 10, 9등급 20점 감점",
+      "bonus": null,
+      "formula": "국어 40% + 수학 10% + 탐구 40% + 영어 10% (영역별 변환점수), 한국사 등급별 감점",
+      "total": null,
+      "pages": "38-39"
+    },
+    {
+      "group": "특화형 자연·공학",
+      "units": "특화형 가군 자연과학계열, 나군 공학계열",
+      "tracks": ["specialized-type"],
+      "use": "수학·탐구 백분위·표준점수 활용, 국어·영어 등급 활용 변환점수",
+      "weights": { "국어": 10, "수학": 40, "탐구": 40, "영어": 10 },
+      "inquiry": "2개 과목 반영, 변환점수가 높은 과목 순으로 70%, 30%",
+      "english": "반영비율 10%, 등급을 활용한 대학 자체 변환점수",
+      "history": "4등급 이내 감점 없음, 5등급 1, 6등급 2, 7등급 5, 8등급 10, 9등급 20점 감점",
+      "bonus": null,
+      "formula": "국어 10% + 수학 40% + 탐구 40% + 영어 10% (영역별 변환점수), 한국사 등급별 감점",
+      "total": null,
+      "pages": "38-39"
+    },
+    {
+      "group": "특성화고교졸업자",
+      "units": "정원외 특성화고교졸업자 가군·나군 모집단위",
+      "tracks": ["vocational-grad-jeongsi"],
+      "use": "영역별 변환점수(국·수 백분위·표준점수 활용, 영어 등급 활용)",
+      "weights": { "국어": 45, "수학": 45, "영어": 10 },
+      "inquiry": "탐구 영역은 반영하지 않음(필수 응시영역 탐구는 사회·과학 또는 직업)",
+      "english": "반영비율 10%, 등급을 활용한 대학 자체 변환점수",
+      "history": "4등급 이내 감점 없음, 5등급 1, 6등급 2, 7등급 5, 8등급 10, 9등급 20점 감점",
+      "bonus": null,
+      "formula": "국어 45% + 수학 45% + 영어 10% (영역별 변환점수), 한국사 등급별 감점",
+      "total": null,
+      "pages": "40-41"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["recommended"],
+      "subjects": "정량평가: 공통과목(전 교과)·선택과목(전 교과) 중 원점수·평균·석차등급이 모두 기재된 과목(석차등급으로 산출되지 않은 과목 미반영). 정성평가: 교과학습발달상황(전체 과목)·출결상황",
+      "terms": "학년별 반영비율 없음, 3학년 2학기 교과성적 미반영(5등급제 교과 성적 5학기 이상 필요)",
+      "grades": "공통과목: 1등급 1,000, 2등급 950, 3등급 880, 4등급 750, 5등급 600 / 선택과목: 1등급 1,000, 2등급 970, 3등급 900, 4등급 800, 5등급 650",
+      "achievement": "정량평가는 석차등급이 없는 과목 미반영. 정성평가에서 원점수, 과목평균, 성취도별 분포 등을 종합적으로 고려",
+      "formula": "공통과목·선택과목 각각 1차 점수 = Σ(과목별 석차등급 반영점수 × 과목별 이수학점) ÷ Σ이수학점, 최종 점수 = 1차 점수 × 0.35. 학생부 = 정량 70(공통과목 35 + 선택과목 35) + 정성 30",
+      "extra": "정성평가 30: 교과학습발달상황은 학업수월성·학업충실성, 출결상황은 학업충실성으로 종합정성평가. 공동교육과정·온라인학교 이수는 교육여건과 이수 맥락 고려",
+      "pages": "23-24"
+    }
+  ],
+  "tracks": {
+    "fusion-susi": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "학생부": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학생부(별도 제출 서류 없음)",
+      "units": null
+    },
+    "inquiry-susi": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "학생부": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학생부(별도 제출 서류 없음)",
+      "units": null
+    },
+    "skku-talent": {
+      "stages": [
+        { "step": "1단계", "pick": "사범대·스포츠과학 3, 연출 5, 의예 6, 그 외 7배수", "parts": { "학생부": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "인·적성 면접",
+      "essay": null,
+      "docs": "학생부(별도 제출 서류 없음)",
+      "units": null
+    },
+    "skku-talent-regional": {
+      "stages": [
+        { "step": "1단계", "pick": "6배수", "parts": { "학생부": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "인·적성 면접",
+      "essay": null,
+      "docs": "학생부, 지원자격별 입증서류",
+      "units": null
+    },
+    "science-talent": {
+      "stages": [
+        { "step": "1단계", "pick": "7배수", "parts": { "학생부": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "제시문 기반 수학/과학 교과형 면접",
+      "essay": null,
+      "docs": "학생부(별도 제출 서류 없음)",
+      "units": null
+    },
+    "equity-susi": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "학생부": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학생부, 지원자격별 입증서류",
+      "units": null
+    },
+    "recommended": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "정량(공통과목)": 35, "정량(선택과목)": 35, "정성(교과·출결)": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학생부, 추천대상자 명단(별도 안내)",
+      "units": null
+    },
+    "essay-language": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "논술": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "제출 서류 없음",
+      "units": null
+    },
+    "essay-math": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "논술": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "제출 서류 없음",
+      "units": null
+    },
+    "athlete-special": {
+      "stages": [
+        { "step": "1단계", "pick": "스포츠과학과 5배수, 영상학과 3배수", "parts": { "서류": 100 } },
+        { "step": "2단계(스포츠과학과)", "pick": null, "parts": { "1단계": 70, "면접": 30 } },
+        { "step": "2단계(영상학과)", "pick": null, "parts": { "1단계": 40, "면접": 60 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "스포츠과학과: 학생부, 종목별 협회(연맹) 또는 산하단체 발급 경기실적증명서(필수), 활동 증빙자료(선택: 수상실적, 경기출전기록표 등) / 영상학과: 학생부, 활동 증빙자료(필수: 수상실적 등)",
+      "units": null
+    },
+    "artist-practical": {
+      "stages": [
+        { "step": "1단계(스포츠과학과)", "pick": "3배수(개인종목은 세부 종목별 최대 선발인원 기준)", "parts": { "서류": 100 } },
+        { "step": "2단계(스포츠과학과)", "pick": null, "parts": { "1단계": 20, "면접": 40, "실기": 40 } },
+        { "step": "1단계(연기)", "pick": "6배수", "parts": { "실기": 100 } },
+        { "step": "2단계(연기)", "pick": null, "parts": { "학생부": 40, "실기": 60 } },
+        { "step": "일괄(무용학과)", "pick": null, "parts": { "학생부": 40, "실기": 60 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "스포츠과학과: 학생부, 실기능력 증빙자료(선택, 고교내 활동 한정) / 연기예술학과·무용학과: 학생부",
+      "units": null
+    },
+    "vocational-worker-susi": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학생부, 지원자격별 입증서류(지원자격 확인자료 등)",
+      "units": null
+    },
+    "general-type": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } },
+        { "step": "일괄(미술학과·디자인학과)", "pick": null, "parts": { "수능": 60, "실기": 40 } },
+        { "step": "일괄(스포츠과학과)", "pick": null, "parts": { "수능": 70, "실기": 30 } }
+      ],
+      "interview": "의예과 인·적성 면접(결격 여부 판단에 활용)",
+      "essay": null,
+      "docs": "제출 서류 없음",
+      "units": null
+    },
+    "specialized-type": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "제출 서류 없음",
+      "units": null
+    },
+    "rural-jeongsi": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "지원자격별 입증서류",
+      "units": null
+    },
+    "neighbor-jeongsi": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "지원자격별 입증서류",
+      "units": null
+    },
+    "vocational-grad-jeongsi": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "지원자격별 입증서류",
+      "units": null
+    },
+    "disabled-jeongsi": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "지원자격별 입증서류",
+      "units": null
+    },
+    "fusion-jeongsi": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "학생부": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학생부(별도 제출 서류 없음)",
+      "units": null
+    },
+    "vocational-worker-jeongsi": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학생부, 지원자격별 입증서류(지원자격 확인자료 등)",
+      "units": null
+    },
+    "overseas-3y": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } },
+        { "step": "1단계(의예과)", "pick": null, "parts": { "서류": 100 } },
+        { "step": "2단계(의예과)", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "의예과 지원자 대상 일대다 면접을 통한 인·적성 평가",
+      "essay": null,
+      "docs": "서류평가: 학생부(성적증명서), 수상실적, 어학능력 및 활동증빙자료 등",
+      "units": null
+    },
+    "overseas-12y": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } },
+        { "step": "1단계(의예과·스포츠과학과)", "pick": null, "parts": { "서류": 100 } },
+        { "step": "2단계(의예과·스포츠과학과)", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "의예과·스포츠과학과 지원자 대상 일대다 면접을 통한 인·적성 평가",
+      "essay": null,
+      "docs": "서류평가: 학생부(성적증명서), 수상실적, 어학능력 및 활동증빙자료 등",
+      "units": null
+    },
+    "nk-defector": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "서류평가: 학생부(성적증명서), 수상실적, 어학능력 및 활동증빙자료 등",
+      "units": null
+    }
+  }
+}

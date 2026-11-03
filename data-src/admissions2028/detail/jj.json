@@ -1,0 +1,253 @@
+{
+  "univ": "jj",
+  "suneung": [
+    {
+      "group": "국어·수학 반영",
+      "units": "전 모집단위: 국어·수학·영어 중 상위 2개 영역 각 40% + 탐구 20%. 이 묶음은 국어·수학이 상위 2개일 때 (수학교육과·과학교육과는 수학 필수 + 국어·영어 중 상위 1개)",
+      "tracks": ["csat-general"],
+      "use": "백분위 (영어는 등급별 백분위 환산)",
+      "weights": { "국어": 40, "수학": 40, "탐구": 20 },
+      "inquiry": "통합사회/통합과학/직업탐구 중 상위 1과목 (20%)",
+      "english": "등급별 백분위 환산(급간 3점): 1등급 100, 2등급 97, 3등급 94, 4등급 91, 5등급 88, 6등급 85, 7등급 82, 8등급 79, 9등급 76",
+      "history": "가산점(전형총점에 가산): 1~5등급 10점, 6등급 9점, 7등급 8점, 8등급 7점, 9등급 6점. 한국사 필수 응시",
+      "bonus": null,
+      "formula": "기본점수 700 + [{(①영역 × 0.4) + (②영역 × 0.4) + (통합사회/통합과학/직업탐구 상위 1과목 × 0.2)} × 수능반영비율 × 3] + 한국사 가산점. 예: 700 + [(36.4 + 32 + 16) × 1 × 3] + 10 = 963.2",
+      "total": 1000,
+      "pages": "16-17"
+    },
+    {
+      "group": "국어·영어 반영",
+      "units": "전 모집단위(수학교육과·과학교육과 제외): 국어·수학·영어 중 상위 2개 영역 각 40% + 탐구 20%. 이 묶음은 국어·영어가 상위 2개일 때",
+      "tracks": ["csat-general"],
+      "use": "백분위 (영어는 등급별 백분위 환산)",
+      "weights": { "국어": 40, "영어": 40, "탐구": 20 },
+      "inquiry": "통합사회/통합과학/직업탐구 중 상위 1과목 (20%)",
+      "english": "등급별 백분위 환산(급간 3점): 1등급 100, 2등급 97, 3등급 94, 4등급 91, 5등급 88, 6등급 85, 7등급 82, 8등급 79, 9등급 76",
+      "history": "가산점(전형총점에 가산): 1~5등급 10점, 6등급 9점, 7등급 8점, 8등급 7점, 9등급 6점. 한국사 필수 응시",
+      "bonus": null,
+      "formula": "기본점수 700 + [{(①영역 × 0.4) + (②영역 × 0.4) + (통합사회/통합과학/직업탐구 상위 1과목 × 0.2)} × 수능반영비율 × 3] + 한국사 가산점. 예: 700 + [(36.4 + 32 + 16) × 1 × 3] + 10 = 963.2",
+      "total": 1000,
+      "pages": "16-17"
+    },
+    {
+      "group": "수학·영어 반영",
+      "units": "전 모집단위: 국어·수학·영어 중 상위 2개 영역 각 40% + 탐구 20%. 이 묶음은 수학·영어가 상위 2개일 때 (수학교육과·과학교육과는 수학 필수 + 국어·영어 중 상위 1개)",
+      "tracks": ["csat-general"],
+      "use": "백분위 (영어는 등급별 백분위 환산)",
+      "weights": { "수학": 40, "영어": 40, "탐구": 20 },
+      "inquiry": "통합사회/통합과학/직업탐구 중 상위 1과목 (20%)",
+      "english": "등급별 백분위 환산(급간 3점): 1등급 100, 2등급 97, 3등급 94, 4등급 91, 5등급 88, 6등급 85, 7등급 82, 8등급 79, 9등급 76",
+      "history": "가산점(전형총점에 가산): 1~5등급 10점, 6등급 9점, 7등급 8점, 8등급 7점, 9등급 6점. 한국사 필수 응시",
+      "bonus": null,
+      "formula": "기본점수 700 + [{(①영역 × 0.4) + (②영역 × 0.4) + (통합사회/통합과학/직업탐구 상위 1과목 × 0.2)} × 수능반영비율 × 3] + 한국사 가산점. 예: 700 + [(36.4 + 32 + 16) × 1 × 3] + 10 = 963.2",
+      "total": 1000,
+      "pages": "16-17"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["gyo-general", "gyo-future", "gyo-regional1", "gyo-regional2", "gyo-worker", "gyo-rural", "gyo-vocational", "gyo-disabled", "practical-general", "practical-athlete", "jeongsi-gyo-general", "jeongsi-regional2", "jeongsi-worker", "jeongsi-practical", "jeongsi-rural", "jeongsi-vocational", "jeongsi-equity", "late-learner", "worker-flex"],
+      "subjects": "국어·영어·수학·사회(한국사 포함)·과학 교과 중 교과별 이수학점 총합이 10학점 이상인 교과 중 성적 상위 3개 교과군 (해당 교과군이 3개 미만이면 전 학년·전 교과 반영)",
+      "terms": "1학년 ~ 3학년 (수시 지원자는 모두 3학년 1학기까지), 학년별 반영비율 없음",
+      "grades": "과목별 등급을 100점 만점으로 환산: 5등급제·9등급제 최고 100점 ~ 최저 40점, 평어(수·우·미·양·가) 최고 96점 ~ 최저 40점 (등급별 점수는 원문에 없음)",
+      "achievement": "석차등급 미기재 교과목 제외",
+      "formula": "등급별 환산점수 평균 = Σ(등급별 환산점수 × 이수학점) ÷ 이수학점의 합. 전형총점 = ((등급별 환산점수 평균 − 40) ÷ 60 × 학생부 반영비율별 실질반영점수) + 학생부 반영비율 기본점수",
+      "extra": "학생부 100%: 교과 900점(기본 630, 실질 270) + 출결 100점(기본 60, 실질 40). 실기/실적 30%: 교과 270(기본 189, 실질 81) + 출결 30(기본 12, 실질 18). 출결은 미인정 결석만(지각·조퇴·결과 3회 = 1일), 재직자전형은 미반영. 검정고시는 평균성적으로 같은 식, 외국고는 A(95 이상) 3, B 3.5, C 4, D 4.5, E·F 5등급",
+      "pages": "3, 11-13, 22"
+    },
+    {
+      "tracks": ["gyo-talent"],
+      "subjects": "1학년: 국어·수학·영어·사회(한국사 포함)·과학 공통교과 중 교과별 성적 상위 3개 교과군(30%) / 2·3학년: 같은 교과의 일반선택·진로선택·융합선택 과목 중 원점수 상위 10과목(70%)",
+      "terms": "1학년 ~ 3학년 1학기",
+      "grades": "1학년 공통교과는 등급을 100점 만점으로 환산(최고 100점 ~ 최저 40점), 2·3학년은 원점수 활용",
+      "achievement": null,
+      "formula": "산식A(30%) = (((1학년 등급별 환산점수 평균 − 40) ÷ 60 × 실질반영점수) + 기본점수) × 30%. 산식B(70%) = ((원점수 상위 10과목 평균 × 실질반영배수) + 기본점수) × 70%, 원점수 평균 = Σ(원점수 × 이수학점) ÷ Σ이수학점. 전형총점 = 산식A + 산식B",
+      "extra": "교과 900점(기본 630, 실질 270) + 출결 100점(기본 60, 실질 40). 해당 교과군 선택과목 수강 과목이 5과목 미만이면 기본점수만 부여",
+      "pages": "3, 11-13"
+    }
+  ],
+  "tracks": {
+    "jong-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (검정고시·외국 고교 과정 이수자 등은 성적증명서와 활동 증빙서류(학생부 대체 서식))",
+      "units": null
+    },
+    "jong-social": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (검정고시·외국 고교 과정 이수자 등은 성적증명서와 활동 증빙서류(학생부 대체 서식)). 자립지원대상 아동·북한이탈주민 세부 제출 서류는 추후 공지",
+      "units": null
+    },
+    "jong-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (검정고시·외국 고교 과정 이수자 등은 성적증명서와 활동 증빙서류(학생부 대체 서식))",
+      "units": null
+    },
+    "gyo-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-talent": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-future": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-regional1": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-regional2": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyo-disabled": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "practical-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 30, "실기": 70 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "practical-athlete": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 30, "입상실적": 70 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-gyo-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-regional2": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-practical": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 30, "실기": 70 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "foreigner": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "면접": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "late-learner": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "worker-flex": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

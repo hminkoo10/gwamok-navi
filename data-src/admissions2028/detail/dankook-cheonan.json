@@ -1,0 +1,296 @@
+{
+  "univ": "dankook-cheonan",
+  "suneung": [
+    {
+      "group": "율곡혁신칼리지",
+      "units": "율곡혁신칼리지",
+      "tracks": ["csat-general"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 30, "수학": 35, "영어": 20, "탐구": 15 },
+      "inquiry": "통합사회·통합과학 중 상위 성적 1과목",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    },
+    {
+      "group": "인문",
+      "units": "인문사회계열광역, 외국어대학, 공공인재대학, 보건행정학과",
+      "tracks": ["csat-general", "csat-edu-opportunity", "csat-rural"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 35, "수학": 25, "영어": 20, "탐구": 20 },
+      "inquiry": "통합사회·통합과학 중 상위 성적 1과목",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    },
+    {
+      "group": "자연",
+      "units": "자연공학계열광역, 과학기술대학, 바이오융합대학, 보건과학대학(보건행정학과·심리학과 제외)",
+      "tracks": ["csat-general", "csat-edu-opportunity", "csat-rural"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 20, "수학": 40, "영어": 20, "탐구": 20 },
+      "inquiry": "통합사회·통합과학 중 상위 성적 1과목",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    },
+    {
+      "group": "자연(간호학과·심리학과)",
+      "units": "간호학과, 심리학과",
+      "tracks": ["csat-general", "csat-edu-opportunity", "csat-rural"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 30, "수학": 35, "영어": 20, "탐구": 15 },
+      "inquiry": "통합사회·통합과학 중 상위 성적 1과목",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    },
+    {
+      "group": "예체능",
+      "units": "예술대학, 스포츠과학대학",
+      "tracks": ["csat-practical"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 50, "영어": 30, "탐구": 20 },
+      "inquiry": "통합사회·통합과학 중 상위 성적 1과목. 수학 미반영",
+      "english": "등급별 점수(100점 기준): 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 40, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    },
+    {
+      "group": "의학·약학",
+      "units": "의예과, 치의예과, 약학과",
+      "tracks": ["csat-general", "csat-regional-medical-clinic", "csat-regional-medical-wide", "csat-rural"],
+      "use": "국어·수학 표준점수, 탐구 백분위 (영어는 등급별 점수)",
+      "weights": { "국어": 25, "수학": 40, "영어": 15, "탐구": 20 },
+      "inquiry": "통합과학 반영 (통합사회 미반영)",
+      "english": "의학·약학계열 등급별 점수(100점 기준): 1등급 100, 2등급 90, 3등급 70, 4등급 40, 5등급 30, 6등급 20, 7등급 15, 8등급 5, 9등급 0",
+      "history": "필수 응시. 등급별 가산점을 총점(1,000점)에 합산: 1~4등급 5, 5등급 4, 6등급 3, 7등급 2, 8등급 1, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "35"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["regional-balance", "subject-excellent", "regional-medi-bio", "practical", "worker"],
+      "subjects": "국어·영어·수학·사회·과학 (예능·체육계열은 국어·영어·사회). 반영교과 안에서 이수한 전 과목, 한국사는 사회에 포함",
+      "terms": "재학생 3학년 1학기까지, 졸업생 3학년 2학기까지. 학년별·교과별 가중치 없음",
+      "grades": "5등급제: 1등급 100, 2등급 98, 3등급 93, 4등급 60, 5등급 0 / 9등급제: 1등급 100, 2등급 99, 3등급 98, 4등급 96, 5등급 93, 6등급 85, 7등급 60, 8등급 10, 9등급 0. 9등급제 중 등급 없는 자(평어만 있는 자 등)는 석차백분율 구간(4·11·23·40·60·77·89·96%)으로 같은 점수 환산",
+      "achievement": "보통교과만 반영하고, 석차등급이 함께 있으면 석차등급만 반영. 5등급제 A 100, B 98, C 93, D 60, E 10 / 9등급제 A 100, B 93, C 10. 사회·과학 융합선택과목은 상위 3과목만",
+      "formula": null,
+      "extra": "출결(정량): 미인정 출결 일수에 따른 차등 배점, 학년 구분 없이 전 학년(재학생 3-1, 졸업생 3-2까지). 반영교과가 하나라도 없거나 교과성적 산출이 불가하면 학생부교과전형 선발 제외. 검정고시·외국고교 등 실기우수자 지원자는 실기 점수로 학생부(교과+출결) 환산",
+      "pages": "33-34"
+    },
+    {
+      "tracks": ["sports-special"],
+      "subjects": "국어·영어·사회 (체육계열). 반영교과 안에서 이수한 전 과목, 한국사는 사회에 포함",
+      "terms": "재학생 3학년 1학기까지, 졸업생 3학년 2학기까지. 학년별·교과별 가중치 없음",
+      "grades": "체육특기자 표: 5등급제 1등급 100, 2등급 90, 3등급 80, 4등급 70, 5등급 60 / 9등급제 1등급 100, 2등급 95, 3등급 90, 4등급 85, 5등급 80, 6등급 75, 7등급 70, 8등급 65, 9등급 60 (등급 없는 자는 석차백분율 구간으로 같은 점수)",
+      "achievement": "보통교과만 반영하고, 석차등급이 함께 있으면 석차등급만 반영. 5등급제 A 100, B 90, C 80, D 70, E 65 / 9등급제 A 100, B 80, C 65. 사회·과학 융합선택과목은 상위 3과목만",
+      "formula": null,
+      "extra": "출결(정량): 미인정 출결 일수에 따른 차등 배점, 전 학년. 검정고시, 학생부가 없거나 교과·출결 점수 산출이 불가한 자는 실적 점수로 학생부(교과+출결) 환산",
+      "pages": "33-34"
+    }
+  ],
+  "tracks": {
+    "dku-talent-doc": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (학업역량·진로역량·공동체역량 등 종합평가, 광역 모집단위는 자기주도역량·공동체역량). 검정고시는 검정고시 성적증명서, 외국고교는 성적증명서(학교소개서)로 대신하고 학생부 대체서식·학력 서류는 선택",
+      "units": null
+    },
+    "dku-talent-interview": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": "학교생활기록부를 통해 진로역량·발전가능성·공동체역량 등을 종합평가",
+      "essay": null,
+      "docs": "학교생활기록부. 검정고시는 검정고시 성적증명서, 외국고교는 성적증명서(학교소개서)로 대신하고 학생부 대체서식·학력 서류는 선택",
+      "units": null
+    },
+    "regional-medical-clinic": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": "학교생활기록부를 통해 진로역량·발전가능성·공동체역량 등을 종합평가",
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "regional-medical-wide": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": "학교생활기록부를 통해 진로역량·발전가능성·공동체역량 등을 종합평가",
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "military": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 62.5, "면접": 31.25, "체력평가": 6.25 } }
+      ],
+      "interview": "학교생활기록부를 통해 진로역량·공동체역량·인성적 자질(국가관·안보관) 등을 종합평가. 인성검사·신체검사·신원조회 P/F",
+      "essay": null,
+      "docs": "학교생활기록부, 국민체력100 체력측정 인증서 및 결과지 (체력평가는 기준표에 따라 40~100점)",
+      "units": null
+    },
+    "equal-opportunity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (학업역량·진로역량·공동체역량 등 종합평가, 광역 모집단위는 자기주도역량·공동체역량). 국가보훈 대상자는 대학입학특별전형대상자 증명서. 검정고시·외국고교 출신은 성적증명서로 대신",
+      "units": null
+    },
+    "social-consideration": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (학업역량·진로역량·공동체역량 등 종합평가). 검정고시·외국고교 출신은 성적증명서로 대신",
+      "units": null
+    },
+    "edu-opportunity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (학업역량·진로역량·공동체역량 등 종합평가). 검정고시·외국고교 출신은 성적증명서로 대신",
+      "units": null
+    },
+    "rural": {
+      "stages": [
+        { "step": "일괄(인문·자연)", "pick": null, "parts": { "서류": 100 } },
+        { "step": "1단계(의학·약학)", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계(의학·약학)", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": "의학·약학계열 2단계: 학교생활기록부를 통해 진로역량·발전가능성·공동체역량 등을 종합평가",
+      "essay": null,
+      "docs": "학교생활기록부 (학업역량·진로역량·공동체역량 등 종합평가)",
+      "units": null
+    },
+    "regional-balance": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 95, "출결": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "subject-excellent": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 95, "출결": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "regional-medi-bio": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 95, "출결": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "practical": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "실기": 80, "교과": 15, "출결": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "sports-special": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "실적": 85.11, "교과": 4.25, "출결": 10.64 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "경기실적증명서 (국제스포츠·태권도전공은 중앙경기단체 발급, 생활체육·스포츠경영·운동처방재활전공은 국제·전국규모대회, 실업·프로연맹 대회 실적증명서)",
+      "units": null
+    },
+    "overseas-nationals": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "공통(필수): 지원자격 서류 / 선택: 학력인정서류, 활동증빙서류 등",
+      "units": null
+    },
+    "overseas-full-nk": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "공통(필수): 지원자격 서류 / 선택: 학력인정서류, 활동증빙서류 등",
+      "units": null
+    },
+    "csat-general": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 90, "서류": 10 } },
+        { "step": "일괄(해병대군사학과)", "pick": null, "parts": { "수능": 83.33, "면접": 10.42, "체력평가": 6.25 } }
+      ],
+      "interview": "해병대군사학과: 진로역량·공동체역량·인성적 자질(국가관·안보관) 등 평가, 인성검사·신체검사·신원조회 P/F",
+      "essay": null,
+      "docs": "학교생활기록부 (진로적합성·학교생활 성실성 등 정성평가, 검정고시·외국고교 출신 등은 수능 점수로 환산). 해병대군사학과는 국민체력100 체력측정 인증서 및 결과지",
+      "units": null
+    },
+    "csat-regional-medical-clinic": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 90, "서류": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (진로적합성·학교생활 성실성 등 정성평가)",
+      "units": null
+    },
+    "csat-regional-medical-wide": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 90, "서류": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (진로적합성·학교생활 성실성 등 정성평가)",
+      "units": null
+    },
+    "csat-practical": {
+      "stages": [
+        { "step": "일괄(미술·문예창작·뉴뮤직)", "pick": null, "parts": { "실기": 70, "수능": 25, "출결": 5 } },
+        { "step": "일괄(스포츠과학대학)", "pick": null, "parts": { "실기": 60, "수능": 35, "출결": 5 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-edu-opportunity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 90, "서류": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (진로적합성·학교생활 성실성 등 정성평가). 검정고시·외국고교 출신 등은 수능 점수로 환산",
+      "units": null
+    },
+    "csat-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 90, "서류": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (진로적합성·학교생활 성실성 등 정성평가)",
+      "units": null
+    },
+    "worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

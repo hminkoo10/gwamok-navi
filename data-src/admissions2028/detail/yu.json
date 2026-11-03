@@ -1,0 +1,339 @@
+{
+  "univ": "yu",
+  "suneung": [
+    {
+      "group": "일반 (국어 우수)",
+      "units": "전 모집단위(의예과·약학부·예체능계열 제외): 국어·수학 중 우수한 영역 35%, 나머지 30%. 이 묶음은 국어가 수학보다 우수할 때",
+      "tracks": ["csat-general-ga", "csat-general-na", "csat-general-da", "csat-rural", "csat-vocational"],
+      "use": "백분위 (영어는 등급별 환산점수)",
+      "weights": { "국어": 35, "수학": 30, "영어": 20, "탐구": 15 },
+      "inquiry": "사회·과학 중 택1 (15%)",
+      "english": "등급별 환산점수(100점 만점): 1등급 100, 2등급 97, 3등급 92, 4등급 87, 5등급 82, 6등급 77, 7등급 70, 8등급 60, 9등급 50",
+      "history": "등급별 가산점: 1~4등급 10, 5등급 9.8, 6등급 9.6, 7등급 9.4, 8등급 9.2, 9등급 9.0",
+      "bonus": "자연계열 수학 5% 가산",
+      "formula": null,
+      "total": 800,
+      "pages": "5, 28-29, 36-37"
+    },
+    {
+      "group": "일반 (수학 우수)",
+      "units": "전 모집단위(의예과·약학부·예체능계열 제외): 국어·수학 중 우수한 영역 35%, 나머지 30%. 이 묶음은 수학이 국어보다 우수할 때",
+      "tracks": ["csat-general-ga", "csat-general-na", "csat-general-da", "csat-rural", "csat-vocational"],
+      "use": "백분위 (영어는 등급별 환산점수)",
+      "weights": { "국어": 30, "수학": 35, "영어": 20, "탐구": 15 },
+      "inquiry": "사회·과학 중 택1 (15%)",
+      "english": "등급별 환산점수(100점 만점): 1등급 100, 2등급 97, 3등급 92, 4등급 87, 5등급 82, 6등급 77, 7등급 70, 8등급 60, 9등급 50",
+      "history": "등급별 가산점: 1~4등급 10, 5등급 9.8, 6등급 9.6, 7등급 9.4, 8등급 9.2, 9등급 9.0",
+      "bonus": "자연계열 수학 5% 가산",
+      "formula": null,
+      "total": 800,
+      "pages": "5, 28-29, 36-37"
+    },
+    {
+      "group": "의예과·약학부",
+      "units": "의예과, 약학부",
+      "tracks": ["csat-general-na", "csat-regional", "csat-regional-equity-medical", "csat-regional-doctor", "csat-pharmacy-equity", "csat-rural"],
+      "use": "백분위 (영어는 등급별 환산점수)",
+      "weights": { "국어": 30, "수학": 35, "영어": 10, "탐구": 25 },
+      "inquiry": "사회·과학 모두 반영: 사회 10%, 과학 15%",
+      "english": "등급별 환산점수(100점 만점): 1등급 100, 2등급 97, 3등급 92, 4등급 87, 5등급 82, 6등급 77, 7등급 70, 8등급 60, 9등급 50",
+      "history": "등급별 가산점: 1~4등급 10, 5등급 9.8, 6등급 9.6, 7등급 9.4, 8등급 9.2, 9등급 9.0",
+      "bonus": null,
+      "formula": null,
+      "total": 800,
+      "pages": "5, 29-30, 34-36"
+    },
+    {
+      "group": "예체능계열",
+      "units": "예체능계열 (정시 체육학부, 시각·산업·생활제품디자인학과, 특수체육교육과): 국어·수학·영어·탐구 중 상위 3개 영역 각 33.3%",
+      "tracks": ["csat-general-na", "csat-practical-na", "csat-practical-da"],
+      "use": "백분위 (영어는 등급별 환산점수)",
+      "weights": { "국어": 33.3, "수학": 33.3, "영어": 33.3, "탐구": 33.3 },
+      "inquiry": "사회·과학 중 택1",
+      "english": "등급별 환산점수(100점 만점): 1등급 100, 2등급 97, 3등급 92, 4등급 87, 5등급 82, 6등급 77, 7등급 70, 8등급 60, 9등급 50",
+      "history": "등급별 가산점: 1~4등급 10, 5등급 9.8, 6등급 9.6, 7등급 9.4, 8등급 9.2, 9등급 9.0",
+      "bonus": null,
+      "formula": "국어, 수학, 영어, 탐구(사회·과학 중 택1) 중 상위 3개 영역을 각 33.3% 반영",
+      "total": null,
+      "pages": "5, 28-29, 32"
+    },
+    {
+      "group": "군사학과",
+      "units": "군사학과 (가군 군사학특별전형)",
+      "tracks": ["csat-military"],
+      "use": "백분위 (영어는 등급별 환산점수)",
+      "weights": { "국어": 35.7, "수학": 35.7, "영어": 28.6 },
+      "inquiry": null,
+      "english": "등급별 환산점수(100점 만점): 1등급 100, 2등급 97, 3등급 92, 4등급 87, 5등급 82, 6등급 77, 7등급 70, 8등급 60, 9등급 50",
+      "history": "필수 응시",
+      "bonus": null,
+      "formula": null,
+      "total": 700,
+      "pages": "31"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["subject-general", "subject-regional", "medical-creative", "regional-equity-medical", "regional-doctor-subject", "military-subject", "practical", "athlete", "rural", "pharmacy-equity", "csat-subject-general", "csat-worker"],
+      "subjects": "계열별 반영교과에서 이수한 모든 과목(공통과목, 일반·진로·융합선택). 인문사회: 1학년 국·수·영·사(역사/도덕 포함)·과, 2·3학년 국·수·영·사 / 자연: 1학년 국·수·영·사·과, 2·3학년 국·수·영·과 / 예체능: 1~3학년 국·영·사",
+      "terms": "학년별 반영비율 없음 (1~3학년 100%)",
+      "grades": "석차등급 환산점수(5등급제 기준): 1등급 100, 2등급 99, 3등급 98, 4등급 97, 5등급 95",
+      "achievement": "석차등급(1~5등급 또는 1~9등급)이 기재된 교과목만 반영, 등급 미제공 교과 미반영",
+      "formula": "학생부성적 = 교과성적 90% + 출결성적 5% + 서류평가(교과이수노력) 5%. 교과성적은 과목별 석차등급 환산점수와 이수학점(이수단위)을 반영",
+      "extra": "출결: 고교 3년간 미인정(무단) 결석일수를 출결성적 등급표로 적용(0~40점). 서류평가(교과이수노력): 반영교과 이수학점수(이수단위수) 기준 평가. 검정고시: 과목별 취득점수 100→98.5, 95~100 미만 98.25, 90~95 미만 98, 85~90 미만 97.5, 80~85 미만 97, 75~80 미만 96, 75 미만 95로 환산해 평균",
+      "pages": "5, 38-39"
+    }
+  ],
+  "tracks": {
+    "subject-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 5, "서류": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "subject-regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 5, "서류": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "medical-creative": {
+      "stages": [
+        { "step": "1단계", "pick": "7배수", "parts": { "교과": 90, "출결": 5, "서류": 5 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "regional-equity-medical": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 5, "서류": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "regional-doctor-subject": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 5, "서류": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "military-subject": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "교과": 90, "출결": 5, "서류": 5 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "체력검정": 10, "면접": 20 } }
+      ],
+      "interview": "2단계 면접고사 200점(20%). 신체검사·인성검사는 합격·불합격만 판정, 신원조사는 최종선발 심의 시 반영",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "comprehensive-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    },
+    "comprehensive-regional": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수 (의예과·약학부 10배수)", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    },
+    "comprehensive-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    },
+    "regional-doctor-comprehensive": {
+      "stages": [
+        { "step": "1단계", "pick": "10배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    },
+    "practical": {
+      "stages": [
+        { "step": "1단계(체육학전공)", "pick": "10배수", "parts": { "학생부": 100 } },
+        { "step": "2단계(체육학전공)", "pick": null, "parts": { "1단계": 40, "실기": 60 } },
+        { "step": "일괄(미술·디자인)", "pick": null, "parts": { "학생부": 30, "실기": 70 } },
+        { "step": "일괄(무용학전공·음악)", "pick": null, "parts": { "학생부": 20, "실기": 80 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "athlete": {
+      "stages": [
+        { "step": "일괄(육성체육)", "pick": null, "parts": { "학생부": 15, "입상실적": 85 } },
+        { "step": "일괄(생활체육)", "pick": null, "parts": { "학생부": 30, "입상실적": 70 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 5, "서류": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "pharmacy-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 5, "서류": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    },
+    "worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    },
+    "csat-general-ga": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general-na": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } },
+        { "step": "일괄(체육학부)", "pick": null, "parts": { "수능": 60, "실기": 40 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general-da": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-practical-na": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 20, "실기": 80 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-practical-da": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 30, "실기": 70 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-military": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "수능": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "체력검정": 10, "면접": 20 } }
+      ],
+      "interview": "2단계 면접고사 200점(20%). 신체검사·인성검사는 합격·불합격만 판정, 신원조사는 최종선발 심의 시 반영",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-subject-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 5, "서류": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-regional-equity-medical": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-regional-doctor": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-pharmacy-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 5, "서류": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-nk": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": "서류전형 시 필요하다고 판단되면 면접 또는 실기 테스트를 실시할 수 있음",
+      "essay": null,
+      "docs": "학교생활기록부, 자기소개서 등",
+      "units": null
+    },
+    "foreigner": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": "서류전형 시 필요하다고 판단되면 면접 또는 실기 테스트를 실시할 수 있음",
+      "essay": null,
+      "docs": "학업계획서, 자기소개서 등",
+      "units": null
+    }
+  }
+}

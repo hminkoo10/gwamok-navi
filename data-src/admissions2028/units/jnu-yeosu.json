@@ -1,0 +1,28 @@
+{
+  "univ": "jnu-yeosu",
+  "seats": {
+    "jnu-yeosu:공학계열": {"gyogwa-general": 126, "gyogwa-regional": 48, "gyogwa-vocational": 4, "gyogwa-special-edu": null, "jonghap-2": 40, "suneung-general": null},
+    "jnu-yeosu:건축디자인학과": {"gyogwa-general": 7, "gyogwa-regional": 3, "gyogwa-special-edu": null, "jonghap-2": 7, "jonghap-rural": 2, "suneung-general": 4},
+    "jnu-yeosu:의공학부": {"gyogwa-general": 30, "gyogwa-regional": 7, "gyogwa-special-edu": null, "jonghap-2": 9, "jonghap-rural": 1, "suneung-general": 5},
+    "jnu-yeosu:석유화학소재공학과": {"gyogwa-general": 24, "gyogwa-regional": 8, "gyogwa-special-edu": null, "jonghap-2": 8, "jonghap-rural": 1, "suneung-general": null},
+    "jnu-yeosu:국제학부(영어학전공)": {"gyogwa-general": 13, "gyogwa-special-edu": null, "jonghap-2": 6, "suneung-general": null},
+    "jnu-yeosu:국제학부(일본학전공)": {"gyogwa-general": 11, "gyogwa-regional": 3, "gyogwa-diversity": 2, "gyogwa-special-edu": null, "jonghap-2": 4, "jonghap-rural": 1, "suneung-general": null},
+    "jnu-yeosu:국제학부(중국학전공)": {"gyogwa-general": 10, "gyogwa-regional": 4, "gyogwa-special-edu": null, "jonghap-2": 8, "suneung-general": null},
+    "jnu-yeosu:글로벌비즈니스학부": {"gyogwa-general": 16, "gyogwa-regional": 6, "gyogwa-vocational": 1, "gyogwa-special-edu": null, "jonghap-2": 6, "suneung-general": null},
+    "jnu-yeosu:물류교통학과": {"gyogwa-general": 20, "gyogwa-regional": 7, "gyogwa-vocational": 1, "gyogwa-special-edu": null, "jonghap-2": 5, "suneung-general": null},
+    "jnu-yeosu:문화콘텐츠학부": {"gyogwa-general": 41, "gyogwa-regional": 9, "gyogwa-vocational": 2, "gyogwa-special-edu": null, "jonghap-2": 9, "jonghap-rural": 3, "suneung-general": null},
+    "jnu-yeosu:문화관광경영학과": {"gyogwa-general": 10, "gyogwa-regional": 6, "gyogwa-special-edu": null, "jonghap-2": 6, "suneung-general": null},
+    "jnu-yeosu:해양수산광역": {"gyogwa-general": 65, "gyogwa-regional": 22, "gyogwa-vocational": 5, "jonghap-2": 20, "suneung-general": 12},
+    "jnu-yeosu:기관시스템공학과": {"gyogwa-general": 14, "gyogwa-regional": 3, "gyogwa-vocational": 1, "gyogwa-special-edu": null, "jonghap-2": 3, "suneung-general": null},
+    "jnu-yeosu:조선해양공학과": {"gyogwa-general": 18, "gyogwa-regional": 3, "gyogwa-vocational": 1, "gyogwa-special-edu": null, "jonghap-2": 1, "suneung-general": null},
+    "jnu-yeosu:수산생명의학과": {"gyogwa-general": 13, "gyogwa-regional": 5, "gyogwa-special-edu": null, "jonghap-2": 5, "jonghap-rural": 1, "suneung-general": 4},
+    "jnu-yeosu:스마트수산자원관리학과": {"gyogwa-general": 22, "gyogwa-regional": 10, "gyogwa-vocational": 1, "gyogwa-special-edu": null, "jonghap-2": 8, "jonghap-rural": 1, "suneung-general": null},
+    "jnu-yeosu:창의융합학부": {"gyogwa-general": 19, "gyogwa-regional": 16, "jonghap-2": 16, "suneung-general": 5},
+    "jnu-yeosu:스마트응용설계공학과": {"gyogwa-early-employment": 20},
+    "jnu-yeosu:스마트ICT융합공학과": {"gyogwa-early-employment": 25},
+    "jnu-yeosu:스마트전기제어공학과": {"gyogwa-early-employment": 25},
+    "jnu-yeosu:디지털융합정보학과": {"gyogwa-early-employment": 20}
+  },
+  "pages": "29, 34-36, 38",
+  "notes": "null(인원 미정): gyogwa-special-edu 15개 학과(해양수산광역, 창의융합학부, 스마트응용설계학과, 스마트ICT융합공학과, 스마트전기제어공학과, 디지털융합정보학과 말고 전부) - ● 표시만 있고 단과대학별 1명을 ● 모집단위에서 선발. suneung-general 12개 학과(공학계열, 석유화학소재공학과, 국제학부(영어학전공), 국제학부(일본학전공), 국제학부(중국학전공), 글로벌비지니스학부, 물류교통학과, 문화콘텐츠학부, 문화관광경영학과, 기관시스템공학과, 조선해양공학과, 스마트수산자원관리학과) - 정시 정원이 없고 수시 미충원 인원만 정시 수능(일반)으로 이월해 뽑음(29쪽 군별 모집단위 이월 선발현황). 수능(일반)은 가·나·다군 인원 합. 문화콘텐츠학부는 학부 행과 전공예약 2행의 합. 공학계열·해양수산광역은 광역 모집단위 행 그대로."
+}

@@ -1,0 +1,246 @@
+{
+  "univ": "ssu",
+  "suneung": [
+    {
+      "group": "인문계열",
+      "units": "인문계열 모집단위 (정원외특별전형 포함)",
+      "tracks": ["csat-general", "rural-jeongsi", "basic-livelihood-jeongsi", "vocational-grad-jeongsi"],
+      "use": "표준점수(국어·수학·탐구), 등급(영어)",
+      "weights": { "국어": 35, "수학": 20, "영어": 20, "탐구": 25 },
+      "inquiry": "탐구 25% = 사회 15% + 과학 10%. 특성화고교졸업자전형은 직업탐구 또는 사회/과학 반영",
+      "english": "등급별 점수: 1등급 200, 2등급 200, 3등급 197, 4등급 193, 5등급 160, 6등급 144, 7등급 120, 8등급 72, 9등급 0",
+      "history": "필수 응시, 수능환산 총점에서 감점: 1~4등급 감점 없음, 5등급 -2점, 6등급 -2.5점, 7등급 -3점, 8등급 -3.5점, 9등급 -4점",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "40, 26, 29"
+    },
+    {
+      "group": "자유전공학부(인문)",
+      "units": "자유전공학부(인문) (다군 일반전형)",
+      "tracks": ["csat-general"],
+      "use": "표준점수(국어·수학·탐구), 등급(영어)",
+      "weights": { "국어": 30, "수학": 30, "영어": 15, "탐구": 25 },
+      "inquiry": "탐구 25% = 사회 15% + 과학 10%",
+      "english": "등급별 점수: 1등급 150, 2등급 150, 3등급 148, 4등급 145, 5등급 120, 6등급 108, 7등급 90, 8등급 54, 9등급 0",
+      "history": "필수 응시, 수능환산 총점에서 감점: 1~4등급 감점 없음, 5등급 -2점, 6등급 -2.5점, 7등급 -3점, 8등급 -3.5점, 9등급 -4점",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "40, 26"
+    },
+    {
+      "group": "경상계열",
+      "units": "경상계열 모집단위 (정원외특별전형 포함)",
+      "tracks": ["csat-general", "rural-jeongsi", "basic-livelihood-jeongsi", "vocational-grad-jeongsi"],
+      "use": "표준점수(국어·수학·탐구), 등급(영어)",
+      "weights": { "국어": 25, "수학": 35, "영어": 15, "탐구": 25 },
+      "inquiry": "탐구 25% = 사회 15% + 과학 10%. 특성화고교졸업자전형은 직업탐구 또는 사회/과학 반영",
+      "english": "등급별 점수: 1등급 150, 2등급 150, 3등급 148, 4등급 145, 5등급 120, 6등급 108, 7등급 90, 8등급 54, 9등급 0",
+      "history": "필수 응시, 수능환산 총점에서 감점: 1~4등급 감점 없음, 5등급 -2점, 6등급 -2.5점, 7등급 -3점, 8등급 -3.5점, 9등급 -4점",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "40, 26, 29"
+    },
+    {
+      "group": "자연계열",
+      "units": "자연계열 모집단위, 자유전공학부(자연) (정원외특별전형은 자연계열)",
+      "tracks": ["csat-general", "rural-jeongsi", "basic-livelihood-jeongsi", "vocational-grad-jeongsi"],
+      "use": "표준점수(국어·수학·탐구), 등급(영어)",
+      "weights": { "국어": 25, "수학": 35, "영어": 15, "탐구": 25 },
+      "inquiry": "탐구 25% = 사회 10% + 과학 15%. 특성화고교졸업자전형은 직업탐구 또는 사회/과학 반영",
+      "english": "등급별 점수: 1등급 150, 2등급 150, 3등급 148, 4등급 145, 5등급 120, 6등급 108, 7등급 90, 8등급 54, 9등급 0",
+      "history": "필수 응시, 수능환산 총점에서 감점: 1~4등급 감점 없음, 5등급 -2점, 6등급 -2.5점, 7등급 -3점, 8등급 -3.5점, 9등급 -4점",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "40, 26, 29"
+    },
+    {
+      "group": "실기/실적 위주",
+      "units": "다군 예술창작학부 문예창작전공, 스포츠학부 (실기 70% + 수능 30%)",
+      "tracks": ["practical-jeongsi"],
+      "use": "표준점수(국어), 등급(영어)",
+      "weights": { "국어": 50, "영어": 50 },
+      "inquiry": null,
+      "english": "등급별 점수: 1등급 150, 2등급 150, 3등급 148, 4등급 145, 5등급 120, 6등급 108, 7등급 90, 8등급 54, 9등급 0",
+      "history": "필수 응시, 수능환산 총점에서 감점: 1~4등급 감점 없음, 5등급 -2점, 6등급 -2.5점, 7등급 -3점, 8등급 -3.5점, 9등급 -4점",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "27, 40"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["subject-excellent", "essay-excellent"],
+      "subjects": "인문계열·경상계열·자유전공학부(인문): 국어·수학·영어·사회·한국사 교과(군)에 속한 전 과목 / 자연계열·자유전공학부(자연): 국어·수학·영어·과학 교과(군)에 속한 전 과목",
+      "terms": "학년별 가중치 없음. 졸업예정자 5개 학기(3학년 1학기까지), 졸업자 6개 학기(3학년 2학기까지). 공통·일반선택 80% + 진로선택 20%. 공통·일반선택 교과별: 인문 국35 수15 영35 사15, 경상 국20 수30 영35 사15, 자유전공(인문) 국30 수20 영30 사20, 자연·자유전공(자연) 국15 수35 영25 과25",
+      "grades": "공통·일반선택은 석차등급 반영 (2028학년도 이전 졸업자는 과목별 Z점수로 5등급 체제 변환). 석차등급·이수학점 고려 본교 자체 환산점수 (등급별 점수표는 시행계획에 없음, 수시모집요강 참고)",
+      "achievement": "진로선택은 성취도별 등급 부여: 2028학년도 졸업예정자 A·B 1등급, C·D 2등급, E 3등급 / 이전 졸업자 A 1등급, B 2등급, C 3등급. 융합선택 과목은 정성평가 반영",
+      "formula": null,
+      "extra": "교과우수자 학생부(정성) 10%: 고교 교육과정에서 지원 전공(계열) 관련 교과를 충실히 이수했는지 등 평가. 논술우수자 비교평가대상자(검정고시, 2025년 이전 졸업자 등)는 논술 점수로 교과 환산",
+      "pages": "38-39, 19, 21"
+    },
+    {
+      "tracks": ["arts-sports-talent"],
+      "subjects": "국어·수학·영어·사회·한국사 교과(군)에 속한 전 과목 (인문계열 반영교과), 공통과목·일반선택",
+      "terms": "학년별 가중치 없음. 졸업예정자 5개 학기(3학년 1학기까지), 졸업자 6개 학기(3학년 2학기까지). 교과별 국어 35, 수학 15, 영어 35, 사회(한국사 포함) 15",
+      "grades": "석차등급·이수단위 고려 본교 자체 환산점수 (등급별 점수표는 시행계획에 없음, 수시모집요강 참고)",
+      "achievement": null,
+      "formula": null,
+      "extra": "축구·체육(당구) 출결 감점: 미인정 결석 0일 감점 없음, 1~5일 -0.5점, 6일 이상 -1점. 연출·연기 2025년 2월 이전 졸업자 등 비교평가대상자는 실기 점수로 교과 환산",
+      "pages": "38-39, 23"
+    }
+  ],
+  "tracks": {
+    "future-talent-interview": {
+      "stages": [
+        { "step": "1단계", "pick": "3~3.5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 50, "면접": 50 } }
+      ],
+      "interview": "서류기반 면접, 블라인드 평가(성명·수험번호·출신 고교명·부모 직업 정보 등 블라인드). 1단계는 인문대학(문예창작전공 제외)·정보보호학과 3배수, 그 외 3.5배수",
+      "essay": null,
+      "docs": "학교생활기록부, 활동증빙서류(해당자에 한함)",
+      "units": null
+    },
+    "future-talent-document": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 활동증빙서류(해당자에 한함)",
+      "units": null
+    },
+    "equity": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 50, "면접": 50 } }
+      ],
+      "interview": "서류기반 면접, 블라인드 평가(성명·수험번호·출신 고교명·부모 직업 정보 등 블라인드)",
+      "essay": null,
+      "docs": "학교생활기록부, 활동증빙서류(해당자에 한함)",
+      "units": null
+    },
+    "ai-excellent": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 50, "면접": 50 } }
+      ],
+      "interview": "서류기반 면접, 블라인드 평가(성명·수험번호·출신 고교명·부모 직업 정보 등 블라인드)",
+      "essay": null,
+      "docs": "학교생활기록부, 활동증빙서류(해당자에 한함)",
+      "units": null
+    },
+    "special-education": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 50, "면접": 50 } }
+      ],
+      "interview": "서류기반 면접, 블라인드 평가(성명·수험번호·출신 고교명·부모 직업 정보 등 블라인드)",
+      "essay": null,
+      "docs": "학교생활기록부, 활동증빙서류(해당자에 한함)",
+      "units": null
+    },
+    "subject-excellent": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과(정량)": 90, "학생부(정성)": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "essay-excellent": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "논술": 90, "교과": 10 } }],
+      "interview": null,
+      "essay": "통합교과형, 인문계열·자연계열 2유형(인문·경상 통합 출제). 인문: 접근방식이 다양한 비구조화된 문제로 논지 전개 능력, 제시문의 주제·맥락 이해와 문제 해결 능력 평가 / 자연: 수학의 기본 개념을 이해하고 수리적 의사결정에 활용하는 문제",
+      "docs": null,
+      "units": null
+    },
+    "arts-sports-talent": {
+      "stages": [
+        { "step": "축구·체육(당구) 일괄", "pick": null, "parts": { "입상실적": 70, "면접": 20, "교과": 10 } },
+        { "step": "연출 1단계", "pick": "3배수", "parts": { "실기": 60, "교과": 40 } },
+        { "step": "연출 2단계", "pick": null, "parts": { "실기": 100 } },
+        { "step": "연기 1단계", "pick": "4배수", "parts": { "실기": 100 } },
+        { "step": "연기 2단계", "pick": null, "parts": { "실기": 90, "교과": 10 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational-worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 자기소개서(직무경험 및 학업계획)",
+      "units": null
+    },
+    "csat-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "practical-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "실기": 70, "수능": 30 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "basic-livelihood-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational-grad-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-school-abroad": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "고교 기간 교과성적과 각종 활동(수상실적, 어학능력, 봉사활동 등) 증빙 자료",
+      "units": null
+    },
+    "overseas-whole-course": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "고교 기간 교과성적과 각종 활동(수상실적, 어학능력, 봉사활동 등) 증빙 자료",
+      "units": null
+    },
+    "nk-defector": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "고교 기간 교과성적과 각종 활동(수상실적, 어학능력, 봉사활동 등) 증빙 자료",
+      "units": null
+    },
+    "pure-foreigner": {
+      "stages": [
+        { "step": "영화예술전공 외 일괄", "pick": null, "parts": { "서류": 100 } },
+        { "step": "영화예술전공 일괄", "pick": null, "parts": { "서류": 40, "면접": 60 } }
+      ],
+      "interview": "예술창작학부 영화예술전공만: 온라인 면접(인성 및 전공 소양 평가)",
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

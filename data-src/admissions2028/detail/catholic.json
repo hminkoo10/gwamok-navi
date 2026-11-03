@@ -1,0 +1,330 @@
+{
+  "univ": "catholic",
+  "suneung": [
+    {
+      "group": "전 모집단위(국어 우수)",
+      "units": "약학과·간호학과를 제외한 전 모집단위 (일반전형Ⅰ 가·나·다군, 성신특별전형 신학과, 농어촌학생·특성화고교졸업자 이월인원)",
+      "tracks": ["csat-1", "csat-seongsin", "csat-rural", "csat-vocational"],
+      "use": "백분위 (영어 등급별 환산점수, 한국사 등급별 감점)",
+      "weights": { "국어": 40, "수학": 20, "영어": 20, "탐구": 20 },
+      "inquiry": "통합사회/통합과학 중 상위 1과목 (특성화고교졸업자전형은 직업탐구 반영 가능, 그 외 전형은 직탐 미인정)",
+      "english": "환산점수: 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 50, 7등급 30, 8등급 10, 9등급 0",
+      "history": "감점: 1~4등급 0, 5~6등급 -1, 7~9등급 -2",
+      "bonus": null,
+      "formula": "국어·수학 중 우수 영역 40%, 다른 영역 20% (이 묶음은 국어가 우수한 경우)",
+      "total": null,
+      "pages": "30-31"
+    },
+    {
+      "group": "전 모집단위(수학 우수)",
+      "units": "약학과·간호학과를 제외한 전 모집단위 (일반전형Ⅰ 가·나·다군, 성신특별전형 신학과, 농어촌학생·특성화고교졸업자 이월인원)",
+      "tracks": ["csat-1", "csat-seongsin", "csat-rural", "csat-vocational"],
+      "use": "백분위 (영어 등급별 환산점수, 한국사 등급별 감점)",
+      "weights": { "국어": 20, "수학": 40, "영어": 20, "탐구": 20 },
+      "inquiry": "통합사회/통합과학 중 상위 1과목 (특성화고교졸업자전형은 직업탐구 반영 가능, 그 외 전형은 직탐 미인정)",
+      "english": "환산점수: 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 50, 7등급 30, 8등급 10, 9등급 0",
+      "history": "감점: 1~4등급 0, 5~6등급 -1, 7~9등급 -2",
+      "bonus": null,
+      "formula": "국어·수학 중 우수 영역 40%, 다른 영역 20% (이 묶음은 수학이 우수한 경우)",
+      "total": null,
+      "pages": "30-31"
+    },
+    {
+      "group": "간호학과",
+      "units": "간호학과 (일반전형Ⅰ 나군)",
+      "tracks": ["csat-1"],
+      "use": "표준점수 (영어·한국사 등급별 감점)",
+      "weights": { "국어": 30, "수학": 40, "탐구": 30 },
+      "inquiry": "통합사회 15%, 통합과학 15%",
+      "english": "반영비율 없이 등급별 감점: 1등급 0, 2등급 -1, 3등급 -3, 4등급 -5, 5등급 -7, 6등급 -9, 7등급 -12, 8등급 -15, 9등급 -20",
+      "history": "감점: 1~4등급 0, 5~6등급 -1, 7~9등급 -2",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "30-31"
+    },
+    {
+      "group": "약학과",
+      "units": "약학과 (일반전형Ⅰ 가군, 기회균형Ⅱ·농어촌학생 이월인원)",
+      "tracks": ["csat-1", "csat-equal-2", "csat-rural"],
+      "use": "표준점수 (영어·한국사 등급별 감점)",
+      "weights": { "국어": 30, "수학": 40, "탐구": 30 },
+      "inquiry": "통합사회 6%, 통합과학 24%",
+      "english": "반영비율 없이 등급별 감점: 1등급 0, 2등급 -1, 3등급 -3, 4등급 -5, 5등급 -7, 6등급 -9, 7등급 -12, 8등급 -15, 9등급 -20",
+      "history": "감점: 1~4등급 0, 5~6등급 -1, 7~9등급 -2",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "30-31"
+    },
+    {
+      "group": "일반전형Ⅱ(국어 반영)",
+      "units": "자유전공학부, 인문사회계열, 자연공학계열 (일반전형Ⅱ)",
+      "tracks": ["csat-2"],
+      "use": "백분위 (영어 등급별 환산점수, 한국사 등급별 감점)",
+      "weights": { "국어": 50, "영어": 20, "탐구": 30 },
+      "inquiry": "통합사회/통합과학 중 상위 1과목",
+      "english": "환산점수: 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 50, 7등급 30, 8등급 10, 9등급 0",
+      "history": "감점: 1~4등급 0, 5~6등급 -1, 7~9등급 -2",
+      "bonus": null,
+      "formula": "국어·수학 중 우수 1개 영역만 50% 반영 (이 묶음은 국어가 우수한 경우)",
+      "total": null,
+      "pages": "30-31"
+    },
+    {
+      "group": "일반전형Ⅱ(수학 반영)",
+      "units": "자유전공학부, 인문사회계열, 자연공학계열 (일반전형Ⅱ)",
+      "tracks": ["csat-2"],
+      "use": "백분위 (영어 등급별 환산점수, 한국사 등급별 감점)",
+      "weights": { "수학": 50, "영어": 20, "탐구": 30 },
+      "inquiry": "통합사회/통합과학 중 상위 1과목",
+      "english": "환산점수: 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 50, 7등급 30, 8등급 10, 9등급 0",
+      "history": "감점: 1~4등급 0, 5~6등급 -1, 7~9등급 -2",
+      "bonus": null,
+      "formula": "국어·수학 중 우수 1개 영역만 50% 반영 (이 묶음은 수학이 우수한 경우)",
+      "total": null,
+      "pages": "30-31"
+    },
+    {
+      "group": "의예과",
+      "units": "의예과 (일반전형Ⅲ 가군)",
+      "tracks": ["csat-3"],
+      "use": "표준점수 (영어·한국사 등급별 감점)",
+      "weights": { "국어": 30, "수학": 40, "탐구": 30 },
+      "inquiry": "통합사회 6%, 통합과학 24%",
+      "english": "반영비율 없이 등급별 감점: 1등급 0, 2등급 -1, 3등급 -3, 4등급 -5, 5등급 -7, 6등급 -9, 7등급 -12, 8등급 -15, 9등급 -20",
+      "history": "감점: 1~4등급 0, 5~6등급 -1, 7~9등급 -2",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "27,30-31"
+    },
+    {
+      "group": "음악과",
+      "units": "음악과 (실기 일반전형 가군, 실기 70% + 수능 30%)",
+      "tracks": ["practical-music-csat"],
+      "use": "백분위 (영어 등급별 환산점수, 한국사 등급별 감점)",
+      "weights": { "국어": 50, "영어": 50 },
+      "inquiry": "수학·탐구 미반영 (필수 응시: 국어·영어·한국사)",
+      "english": "환산점수: 1등급 100, 2등급 98, 3등급 95, 4등급 85, 5등급 70, 6등급 50, 7등급 30, 8등급 10, 9등급 0",
+      "history": "감점: 1~4등급 0, 5~6등급 -1, 7~9등급 -2",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "27,30-31"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["regional-balance", "rural", "vocational"],
+      "subjects": "지역균형·농어촌학생: 국어·수학·영어·사회(역사/도덕 포함)·과학 교과 (지역균형은 반영교과 미이수자 지원 불가) / 특성화고교졸업자: 전 과목",
+      "terms": "3학년 1학기까지, 학년별 가중치 없음 (1~3학년 100%)",
+      "grades": "공통·일반선택·전문교과 석차등급 배점: 1등급 100, 2등급 98, 3등급 96, 4등급 85, 5등급 70",
+      "achievement": "진로·융합선택, 공통과목 과학탐구실험, 체육·예술 교과(군), 석차등급 미제공 과목(수강자 5명 이하·공동교육과정·온라인 개설 등)은 성취도를 환산등급으로: A 1, B 2, C 3, D 4, E 5 (A·B·C 3단계는 1·2·3)",
+      "formula": "교과성적 = Σ(세부과목 석차등급별 배점 × 이수학점) ÷ Σ이수학점 × 전형별 교과 반영비율(90%). 석차등급/성취도를 이수학점으로 가중 평균한 환산석차등급 활용, 소수점 넷째 자리에서 반올림",
+      "extra": "출결 10%: 미인정 결석·조퇴·지각·결과 횟수를 그대로 합산, 3회 이하 10, 6회 이하 9, 9회 이하 8, 10회 이상 5",
+      "pages": "23-24"
+    }
+  ],
+  "tracks": {
+    "regional-balance": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "potential-document": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (해당자는 학교생활기록부 대체 서식)",
+      "units": null
+    },
+    "potential-interview": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "제출서류 기반 10분 내외 개별면접, 면접관 2인 이상 대 지원자 1인, 블라인드(교복·체육복 착용 불가). 평가: 학업역량 30%, 진로역량 50%, 공동체역량 20%",
+      "essay": null,
+      "docs": "학교생활기록부 (해당자는 학교생활기록부 대체 서식)",
+      "units": null
+    },
+    "catholic-leader": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "제출서류 기반 10분 내외 개별면접(면접관 2인 이상, 블라인드). 의예과는 인·적성면접 포함 개인별 20분 내외(상황 숙지 시간 별도 부여 가능), 신학과는 교리문답(합격/불합격 자료로만 활용). 평가: 학업 30·진로 50·공동체 20",
+      "essay": null,
+      "docs": "학교생활기록부 (해당자는 학교생활기록부 대체 서식)",
+      "units": null
+    },
+    "principal-rec": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수(간호학과 3배수)", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "제출서류 기반 10분 내외 개별면접(면접관 2인 이상, 블라인드). 의예과는 인·적성면접 포함 개인별 20분 내외(상황 숙지 시간 별도 부여 가능). 평가: 학업 30·진로 50·공동체 20",
+      "essay": null,
+      "docs": "학교생활기록부 (해당자는 학교생활기록부 대체 서식)",
+      "units": null
+    },
+    "equal-opportunity-1": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (해당자는 학교생활기록부 대체 서식)",
+      "units": null
+    },
+    "worker-in": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (해당자는 학교생활기록부 대체 서식)",
+      "units": null
+    },
+    "worker-out": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (해당자는 학교생활기록부 대체 서식)",
+      "units": null
+    },
+    "disabled": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "제출서류 기반 10분 내외 개별면접, 면접관 2인 이상 대 지원자 1인, 블라인드. 평가: 학업역량 30%, 진로역량 50%, 공동체역량 20%",
+      "essay": null,
+      "docs": "학교생활기록부 (해당자는 학교생활기록부 대체 서식)",
+      "units": null
+    },
+    "equal-opportunity-2": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (해당자는 학교생활기록부 대체 서식)",
+      "units": null
+    },
+    "rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": "신학과는 교리문답 추가 실시(합격/불합격 자료로만 활용)",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "essay": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "논술": 100 } }],
+      "interview": null,
+      "essay": "인문사회계열 90분 약술형(국어 10·수학 2문항), 자연공학계열 90분 약술형(국어 2·수학 10문항) / 약학·간호학과 90분, 의예과 100분 수리형 2~4문항(수리적·과학적 원리를 제시하는 제시문 활용). 고교 교육과정 범위와 수준에서 출제",
+      "docs": null,
+      "units": null
+    },
+    "practical-music": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "실기": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-1": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-2": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-3": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 95, "면접": 5 } }],
+      "interview": "인·적성면접",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-seongsin": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "practical-music-csat": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "실기": 70, "수능": 30 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-equal-2": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-parents": {
+      "stages": [
+        { "step": "의예·간호 외 일괄", "pick": null, "parts": { "면접": 100 } },
+        { "step": "의예·간호 1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "의예·간호 2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-full-course": {
+      "stages": [
+        { "step": "의예·간호 외 일괄", "pick": null, "parts": { "면접": 100 } },
+        { "step": "의예·간호 1단계", "pick": "일정 인원", "parts": { "서류": 100 } },
+        { "step": "의예·간호 2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "north-korean": {
+      "stages": [
+        { "step": "의예·간호 외 일괄", "pick": null, "parts": { "면접": 100 } },
+        { "step": "의예·간호 1단계", "pick": "일정 인원", "parts": { "서류": 100 } },
+        { "step": "의예·간호 2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

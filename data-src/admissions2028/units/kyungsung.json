@@ -1,0 +1,8 @@
+{
+  "univ": "kyungsung",
+  "seats": {
+    "kyungsung:약학과": { "general-subject": 8, "regional": 18, "regional-low-income": 2, "school-life": 5, "rural": 4, "low-income": 4, "jeongsi-general": 17, "jeongsi-rural": null, "jeongsi-low-income": null }
+  },
+  "pages": "4-6",
+  "notes": "5~6쪽 「모집단위별 모집인원」 표의 약학과 행. null: 정시 농어촌·저소득층(계획 0명, 수시 이월 인원만 모집, 4쪽). '전 모집단위(약학과 제외)'는 시행계획의 모집단위가 아니라(인문·자연·예체능 전 학과를 묶은 항목) 넣지 않음. 외국인 특별전형Ⅰ·Ⅱ 모집단위(27~28쪽)에 약학과는 없음."
+}

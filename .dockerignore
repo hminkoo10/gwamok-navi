@@ -1,0 +1,9 @@
+node_modules
+dist
+dist-server
+.env
+.env.*
+!.env.example
+
+# 공유 편제표 저장소
+/data

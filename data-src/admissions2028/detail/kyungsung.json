@@ -1,0 +1,226 @@
+{
+  "univ": "kyungsung",
+  "suneung": [
+    {
+      "group": "일반학과",
+      "units": "정시 일반전형 해당학과 (약학과, 사진학과·MEGA학부 제외)",
+      "tracks": ["jeongsi-general"],
+      "use": "표준점수 (영어는 등급을 표준점수로 환산)",
+      "weights": { "국어": 25, "수학": 25, "영어": 25, "탐구": 25 },
+      "inquiry": "탐구 영역 표준점수 합산 (원문 예시: 사회 65점 + 과학 60점)",
+      "english": "등급별 환산 표준점수: 1등급 200, 2등급 198, 3등급 195, 4등급 190, 5등급 185, 6등급 180, 7등급 175, 8등급 170, 9등급 165",
+      "history": null,
+      "bonus": null,
+      "formula": "국어·수학·영어·탐구 4개 영역 표준점수 합산 (영어는 환산 표준점수). 예: 국어 130 + 수학 120 + 영어 195 + 사회 65 + 과학 60 = 570점",
+      "total": null,
+      "pages": "3, 20"
+    },
+    {
+      "group": "약학과",
+      "units": "약학과 (정시 일반전형, 정시 농어촌·저소득층전형 약학과는 수능 100%)",
+      "tracks": ["jeongsi-general", "jeongsi-rural", "jeongsi-low-income"],
+      "use": "표준점수 (영어는 등급을 표준점수로 환산)",
+      "weights": { "국어": 25, "수학": 30, "영어": 20, "탐구": 25 },
+      "inquiry": "탐구(사회, 과학) 표준점수 합산",
+      "english": "등급별 환산 표준점수: 1등급 200, 2등급 198, 3등급 195, 4등급 190, 5등급 185, 6등급 180, 7등급 175, 8등급 170, 9등급 165",
+      "history": null,
+      "bonus": "과탐 표준점수의 5%를 가산점으로 반영",
+      "formula": "국어 + 수학×1.2 + 영어(환산)×0.8 + 사회 + 과학 + 가산점(과탐 표준점수 5%). 예: 국어 130 + 수학 120×1.2 + 영어 195×0.8 + 사회 65 + 과학 60 + 가산점 3 = 558점",
+      "total": null,
+      "pages": "3-4, 20"
+    },
+    {
+      "group": "2개 영역 (실기특별·사진·MEGA)",
+      "units": "정시 실기특별전형(공예디자인학과는 수능 미반영), 일반전형 사진학과·MEGA학부: 국어·수학·영어·탐구 4개 영역 중 2개 영역, 각 50%",
+      "tracks": ["jeongsi-practical", "jeongsi-general"],
+      "use": "표준점수 (영어는 등급을 표준점수로 환산)",
+      "weights": { "국어": 50, "수학": 50, "영어": 50, "탐구": 50 },
+      "inquiry": null,
+      "english": "등급별 환산 표준점수: 1등급 200, 2등급 198, 3등급 195, 4등급 190, 5등급 185, 6등급 180, 7등급 175, 8등급 170, 9등급 165",
+      "history": null,
+      "bonus": null,
+      "formula": "국어·수학·영어·탐구 중 2개 영역 표준점수 합산 (영어는 환산 표준점수, 각 영역 50%). 예: 국어 130 + 영어 195 = 325점. 실기특별전형은 모집단위별 수능 반영 비율(30%, 현대미술학과 10%)을 적용해 전형점수로 활용",
+      "total": null,
+      "pages": "3-4, 20"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["general-subject", "vocational-subject", "social-care", "practical", "athlete", "vocational-same-field", "rural", "low-income", "jeongsi-vocational", "jeongsi-rural", "jeongsi-low-income"],
+      "subjects": "국어·수학·영어·사회 또는 과학 교과에서 각 3과목씩 12과목 (사회 교과에 한국사·역사·도덕 포함). 약학과 제외",
+      "terms": "수시 5학기(3학년 1학기까지), 정시 6학기(3학년 2학기까지). 학년별 반영비율 없음(1~3학년 100)",
+      "grades": "1등급 100, 2등급 96, 3등급 92, 4등급 88, 5등급 84",
+      "achievement": "석차등급 기재 과목에 한하여 반영",
+      "formula": null,
+      "extra": "2027년 2월 이전 졸업자는 Z점수로 5등급 변환: 1.2816 이상(10% 이내) 1등급, 0.4125 이상 2등급, -0.4125 이상 3등급, -1.2816 이상 4등급, -1.2816 미만 5등급. 검정고시 출신 비교내신(합격점수): 99.00 이내 980, 99.00 초과~95.00 이내 960, 95.00 초과~85.00 이내 920, 85.00 초과~75.00 이내 880, 75.00 미만 840 (원문 표기). 졸업생의 출결 등 비교과는 3학년 2학기까지",
+      "pages": "3-4, 18-19"
+    },
+    {
+      "tracks": ["regional", "regional-low-income"],
+      "subjects": "국어·수학·영어·사회 또는 과학 교과 중 석차등급 상위 10과목 (사회 교과에 한국사·역사·도덕 포함). 약학과 제외",
+      "terms": "수시 5학기(3학년 1학기까지), 학년별 반영비율 없음(1~3학년 100)",
+      "grades": "1등급 100, 2등급 96, 3등급 92, 4등급 88, 5등급 84",
+      "achievement": "석차등급 기재 과목에 한하여 반영",
+      "formula": null,
+      "extra": "2027년 2월 이전 졸업자는 Z점수로 5등급 변환: 1.2816 이상(10% 이내) 1등급, 0.4125 이상 2등급, -0.4125 이상 3등급, -1.2816 이상 4등급, -1.2816 미만 5등급",
+      "pages": "3, 18"
+    },
+    {
+      "tracks": ["general-subject", "regional", "regional-low-income", "rural", "low-income"],
+      "subjects": "약학과: 국어·수학·영어·사회·과학 교과 전과목 (사회 교과에 한국사·역사·도덕 포함)",
+      "terms": "수시 5학기(3학년 1학기까지), 학년별 반영비율 없음(1~3학년 100)",
+      "grades": "1등급 100, 2등급 96, 3등급 92, 4등급 88, 5등급 84",
+      "achievement": "석차등급 기재 과목에 한하여 반영",
+      "formula": "교과 구분별 성적: Σ[(과목별 등급점수) × (과목별 이수단위)] ÷ Σ(과목별 이수단위)",
+      "extra": "2027년 2월 이전 졸업자는 Z점수로 5등급 변환: 1.2816 이상(10% 이내) 1등급, 0.4125 이상 2등급, -0.4125 이상 3등급, -1.2816 이상 4등급, -1.2816 미만 5등급",
+      "pages": "3, 18"
+    }
+  ],
+  "tracks": {
+    "general-subject": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "없음 (온라인 제공 미동의자는 고교 학교생활기록부 1부)",
+      "units": null
+    },
+    "regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "없음 (온라인 제공 미동의자는 고교 학교생활기록부 1부)",
+      "units": null
+    },
+    "regional-low-income": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "자격 증빙서류(기초생활수급자 증명서, 차상위 관련 증명서·확인서, 한부모가족 확인서 중 해당, 7일 이내 발급). 수급권자가 본인이 아니면 가족관계증명서. 온라인 제공 미동의자는 학교생활기록부",
+      "units": null
+    },
+    "vocational-subject": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "없음 (온라인 제공 미동의자는 학교생활기록부, 검정고시 출신은 합격증명서·성적증명서)",
+      "units": null
+    },
+    "social-care": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "자격별 증빙서류(보훈 대상자 증명서, 수급자·차상위·한부모 증명서, 만학도 주민등록초본, 다문화·다자녀 가족관계증명서, 아동복지시설·가정위탁 확인서, 부모 재직증명서 등, 7일 이내 발급). 온라인 제공 미동의자는 학교생활기록부",
+      "units": null
+    },
+    "school-life": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "없음 (온라인 제공 미동의자는 학교생활기록부. 해외고 출신은 학생부 대체서식과 졸업·성적·출입국 증명서 등 공증 번역본)",
+      "units": null
+    },
+    "practical": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "교과": 10, "실기": 90 } },
+        { "step": "일괄(스포츠건강학과 실질)", "pick": null, "parts": { "교과": 1.75, "실기": 98.25 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "없음 (온라인 제공 미동의자는 학교생활기록부, 검정고시 출신은 합격증명서·성적증명서)",
+      "units": null
+    },
+    "athlete": {
+      "stages": [{ "step": "일괄(실질 반영비율)", "pick": null, "parts": { "교과": 12.9, "출결": 6.45, "서류": 80.65 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "지원자격 확인서 1부(학교장 직인), 경기실적증명서(대한체육회) 1부. 온라인 제공 미동의자는 학교생활기록부",
+      "units": null
+    },
+    "vocational-same-field": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "없음 (온라인 제공 미동의자는 고교 학교생활기록부 1부)",
+      "units": null
+    },
+    "rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "지원자격 확인서(학교장 직인), 주민등록초본(자격1 학생·부·모, 자격2 학생), 학교생활기록부(자격1 중학교, 자격2 초·중학교), 자격1은 가족관계증명서(부모 사망·이혼 시 추가 서류). 7일 이내 발급",
+      "units": null
+    },
+    "low-income": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "자격 증빙서류(기초생활수급자 증명서, 차상위 관련 증명서·확인서, 한부모가족 확인서 중 해당, 7일 이내 발급). 온라인 제공 미동의자는 학교생활기록부, 검정고시 출신은 합격·성적증명서, 외국고 출신은 졸업·성적·출입국 증명서 공증 번역본",
+      "units": null
+    },
+    "jeongsi-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "없음 (온라인 제공 미동의자는 학교생활기록부, 검정고시 출신은 합격증명서. 외국고 출신은 졸업(예정)·출입국 증명서 등 공증 번역본)",
+      "units": null
+    },
+    "jeongsi-practical": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 30, "실기": 70 } },
+        { "step": "일괄(현대미술학과)", "pick": null, "parts": { "수능": 10, "실기": 90 } },
+        { "step": "일괄(공예디자인학과)", "pick": null, "parts": { "실기": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "없음 (온라인 제공 미동의자는 학교생활기록부, 검정고시 출신은 합격증명서. 외국고 출신은 졸업(예정)·출입국 증명서 등 공증 번역본)",
+      "units": null
+    },
+    "jeongsi-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-rural": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "교과": 100 } },
+        { "step": "일괄(약학과)", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-low-income": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "교과": 100 } },
+        { "step": "일괄(약학과)", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "foreigner-1": {
+      "stages": [
+        { "step": "1차 서류", "pick": "적격자(적격심사)", "parts": { "서류": 100 } },
+        { "step": "2차 면접", "pick": null, "parts": { "면접": 100 } }
+      ],
+      "interview": "1차 서류 적격심사(지원자격 요건) 통과자만 면접. 면접 100%: 수학능력(전공적성 등) 30, 의사표현 30, 학문적 소양 및 태도 20, 언어 20, 전체 면접관 평균 점수로 심사",
+      "essay": null,
+      "docs": "입학원서, 본인 여권 사본, 고교 졸업(예정)증명서, 지원자·부모 가족관계 증명 서류, 부모 여권 사본, 자기소개 및 수학계획서, 공인 어학성적표(해당자), 전형료 송금 확인증, 잔고증명서 등",
+      "units": null
+    },
+    "foreigner-2": {
+      "stages": [
+        { "step": "1차 서류", "pick": "적격자(적격심사)", "parts": { "서류": 100 } },
+        { "step": "2차 면접", "pick": null, "parts": { "면접": 100 } }
+      ],
+      "interview": "1차 서류 적격심사(지원자격 요건) 통과자만 면접. 면접 100%: 수학능력(전공적성 등) 30, 의사표현 30, 학문적 소양 및 태도 20, 언어 20, 전체 면접관 평균 점수로 심사",
+      "essay": null,
+      "docs": "입학원서, 본인 여권 사본, 고교 졸업(예정)증명서, 초·중·고 재학사실 증명서와 전 학년 성적증명서, 국적증명, 출입국 사실증명, 자기소개 및 수학계획서, 전형료 송금 확인증, 잔고증명서 등",
+      "units": null
+    }
+  }
+}

@@ -1,0 +1,353 @@
+{
+  "univ": "donga",
+  "suneung": [
+    {
+      "group": "인문·자연·간호·자유전공",
+      "units": "인문계열, 자연계열, 간호학과, 자유전공학부",
+      "tracks": ["jeongsi-ga", "jeongsi-na", "jeongsi-da", "jeongsi-regional-equity", "jeongsi-rural", "jeongsi-vocational"],
+      "use": "표준점수 (영어는 등급별 환산점수)",
+      "weights": { "국어": 25, "수학": 25, "영어": 25, "탐구": 25 },
+      "inquiry": "사회/과학탐구 2개: 사회 12.5%, 과학 12.5%. 특성화고교졸업자(동일계)는 사회/과학 또는 직업탐구(직업탐구 선택 시 25%)",
+      "english": "등급별 환산점수: 1등급 200, 2등급 198, 3등급 195, 4등급 192, 5등급 187, 6등급 182, 7등급 172, 8등급 162, 9등급 152",
+      "history": "가산점: 1~5등급 1점, 6등급 0.9점, 7등급 0.8점, 8등급 0.7점, 9등급 0.6점 (해당 전형요소에 반영 후 총점 환산)",
+      "bonus": null,
+      "formula": "국어·수학·탐구 3개 영역 표준점수와 영어 환산점수를 합산 (영역별 반영비율 적용)",
+      "total": 800,
+      "pages": "32-35, 42-45, 53"
+    },
+    {
+      "group": "의예과",
+      "units": "의예과",
+      "tracks": ["jeongsi-ga", "jeongsi-ga-regional", "jeongsi-doctor-wide", "jeongsi-doctor-district", "jeongsi-regional-equity", "jeongsi-rural"],
+      "use": "표준점수 (영어는 등급별 환산점수)",
+      "weights": { "국어": 20, "수학": 30, "영어": 20, "탐구": 30 },
+      "inquiry": "사회/과학탐구 2개: 사회 10%, 과학 20%",
+      "english": "등급별 환산점수: 1등급 200, 2등급 198, 3등급 195, 4등급 192, 5등급 187, 6등급 182, 7등급 172, 8등급 162, 9등급 152",
+      "history": "가산점: 1~5등급 1점, 6등급 0.9점, 7등급 0.8점, 8등급 0.7점, 9등급 0.6점 (해당 전형요소에 반영 후 총점 환산)",
+      "bonus": null,
+      "formula": "국어·수학·탐구 3개 영역 표준점수와 영어 환산점수를 합산 (영역별 반영비율 적용)",
+      "total": 800,
+      "pages": "4, 32-33, 39-42, 53"
+    },
+    {
+      "group": "예체능계열 (국어·수학 반영)",
+      "units": "예체능계열 (정시 태권도학과, 미술학과, 산업디자인학과, 체육학과): 영어 + 국어·수학·탐구 중 2개 영역. 이 묶음은 국어·수학을 반영할 때",
+      "tracks": ["jeongsi-na", "jeongsi-ga-practical", "jeongsi-na-practical"],
+      "use": "표준점수 (영어는 등급별 환산점수)",
+      "weights": { "국어": 33.33, "수학": 33.33, "영어": 33.33 },
+      "inquiry": null,
+      "english": "필수. 등급별 환산점수: 1등급 200, 2등급 198, 3등급 195, 4등급 192, 5등급 187, 6등급 182, 7등급 172, 8등급 162, 9등급 152",
+      "history": "가산점: 1~5등급 1점, 6등급 0.9점, 7등급 0.8점, 8등급 0.7점, 9등급 0.6점 (해당 전형요소에 반영 후 총점 환산)",
+      "bonus": null,
+      "formula": "영어 환산점수 + 국어·수학·사회/과학탐구(2개) 중 2개 영역 표준점수 합산",
+      "total": null,
+      "pages": "34, 36-37, 53"
+    },
+    {
+      "group": "예체능계열 (국어·탐구 반영)",
+      "units": "예체능계열 (정시 태권도학과, 미술학과, 산업디자인학과, 체육학과): 영어 + 국어·수학·탐구 중 2개 영역. 이 묶음은 국어·탐구를 반영할 때",
+      "tracks": ["jeongsi-na", "jeongsi-ga-practical", "jeongsi-na-practical"],
+      "use": "표준점수 (영어는 등급별 환산점수)",
+      "weights": { "국어": 33.33, "영어": 33.33, "탐구": 33.33 },
+      "inquiry": "사회/과학탐구 2개: 사회 16.67%, 과학 16.67%",
+      "english": "필수. 등급별 환산점수: 1등급 200, 2등급 198, 3등급 195, 4등급 192, 5등급 187, 6등급 182, 7등급 172, 8등급 162, 9등급 152",
+      "history": "가산점: 1~5등급 1점, 6등급 0.9점, 7등급 0.8점, 8등급 0.7점, 9등급 0.6점 (해당 전형요소에 반영 후 총점 환산)",
+      "bonus": null,
+      "formula": "영어 환산점수 + 국어·수학·사회/과학탐구(2개) 중 2개 영역 표준점수 합산",
+      "total": null,
+      "pages": "34, 36-37, 53"
+    },
+    {
+      "group": "예체능계열 (수학·탐구 반영)",
+      "units": "예체능계열 (정시 태권도학과, 미술학과, 산업디자인학과, 체육학과): 영어 + 국어·수학·탐구 중 2개 영역. 이 묶음은 수학·탐구를 반영할 때",
+      "tracks": ["jeongsi-na", "jeongsi-ga-practical", "jeongsi-na-practical"],
+      "use": "표준점수 (영어는 등급별 환산점수)",
+      "weights": { "수학": 33.33, "영어": 33.33, "탐구": 33.33 },
+      "inquiry": "사회/과학탐구 2개: 사회 16.67%, 과학 16.67%",
+      "english": "필수. 등급별 환산점수: 1등급 200, 2등급 198, 3등급 195, 4등급 192, 5등급 187, 6등급 182, 7등급 172, 8등급 162, 9등급 152",
+      "history": "가산점: 1~5등급 1점, 6등급 0.9점, 7등급 0.8점, 8등급 0.7점, 9등급 0.6점 (해당 전형요소에 반영 후 총점 환산)",
+      "bonus": null,
+      "formula": "영어 환산점수 + 국어·수학·사회/과학탐구(2개) 중 2개 영역 표준점수 합산",
+      "total": null,
+      "pages": "34, 36-37, 53"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["subject-excellence"],
+      "subjects": "국어·영어·수학·사회/과학 교과별 석차등급 상위 3과목씩 총 12과목 (공통·일반선택은 석차등급, 한국사는 사회 교과에 포함)",
+      "terms": "학년 구분 없이 3학년 1학기까지",
+      "grades": "기본점수 880 + 과목 등급점수 1등급 10, 2등급 8, 3등급 6, 4등급 4, 5등급 0 (최고 1,000 ~ 최저 880)",
+      "achievement": "진로·융합선택 성취도 A→1등급, B→2등급, C→3등급, D→4등급, E→5등급으로 환산해 최대 4과목 포함 (교과별 1과목만, 사회·과학 융합선택 제외)",
+      "formula": "(Σ(반영과목 과목별 석차 등급점수 × 과목별 이수단위) ÷ Σ반영과목 이수단위 × 12) + 기본점수 + 가산점수",
+      "extra": "2027년 2월 이전 졸업생: 9등급 1·2→1, 3·4→2, 5→3, 6·7→4, 8·9→5등급, 진로선택 성취도 A→1, B→3, C→5등급으로 환산",
+      "pages": "49-50, 52"
+    },
+    {
+      "tracks": ["regional-subject", "rural", "vocational"],
+      "subjects": "의예과 제외. 국어·영어·수학·사회/과학 교과 구분 없이 석차등급 상위 12과목 (공통·일반선택은 석차등급, 한국사는 사회 교과에 포함)",
+      "terms": "학년 구분 없이 3학년 1학기까지",
+      "grades": "기본점수 880 + 과목 등급점수 1등급 10, 2등급 8, 3등급 6, 4등급 4, 5등급 0 (최고 1,000 ~ 최저 880)",
+      "achievement": "진로·융합선택 성취도 A→1등급 ~ E→5등급으로 환산해 최대 4과목 포함 (교과별 개수 제한 없음, 사회·과학 융합선택 제외)",
+      "formula": "(Σ(반영과목 과목별 석차 등급점수 × 과목별 이수단위) ÷ Σ반영과목 이수단위 × 12) + 기본점수 + 가산점수",
+      "extra": "2027년 2월 이전 졸업생: 9등급 1·2→1, 3·4→2, 5→3, 6·7→4, 8·9→5등급, 진로선택 성취도 A→1, B→3, C→5등급으로 환산",
+      "pages": "49-50, 52"
+    },
+    {
+      "tracks": ["subject-career"],
+      "subjects": "국어·영어·수학·사회/과학 교과 구분 없이 성취도 상위 12과목 (공통과목과 일반·진로·융합선택 모두 성취도 반영, 사회·과학 융합선택 제외, 한국사는 사회 교과에 포함)",
+      "terms": "학년 구분 없이 3학년 1학기까지",
+      "grades": "기본점수 880 + 성취도 점수 A(1등급) 10, B(2등급) 8, C(3등급) 6, D(4등급) 4, E(5등급) 0 (최고 1,000 ~ 최저 880)",
+      "achievement": "성취도 A→1등급, B→2등급, C→3등급, D→4등급, E→5등급으로 환산",
+      "formula": "(Σ(반영과목 과목별 석차 등급점수 × 과목별 이수단위) ÷ Σ반영과목 이수단위 × 12) + 기본점수 + 가산점수",
+      "extra": "2027년 2월 이전 졸업생: 9등급 1·2→1, 3·4→2, 5→3, 6·7→4, 8·9→5등급, 진로선택 성취도 A→1, B→3, C→5등급으로 환산",
+      "pages": "50, 52"
+    },
+    {
+      "tracks": ["regional-subject", "rural", "regional-doctor-wide", "regional-doctor-district"],
+      "subjects": "의예과: 국어·영어·수학·과학 교과의 모든 과목 (공통과목과 일반·진로·융합선택 모두 석차등급 반영, 사회·과학 융합선택 제외). 교과별 가중치 국어 20%, 영어 20%, 수학 30%, 과학 30%",
+      "terms": "3학년 1학기까지",
+      "grades": "1등급 100, 2등급 99.5, 3등급 98, 4등급 80, 5등급 60 (최고 800 ~ 최저 480)",
+      "achievement": null,
+      "formula": "국어·영어: 각 Σ(과목별 석차 등급점수 × 이수단위) ÷ Σ이수단위 × 1.6, 수학·과학: 각 Σ(과목별 석차 등급점수 × 이수단위) ÷ Σ이수단위 × 2.4, 네 교과 환산점수를 합함",
+      "extra": "2027년 2월 이전 졸업생(의예과): 9등급 1→1, 2→2, 3·4→3, 5~7→4, 8·9→5등급, 진로선택 성취도 A→1, B→3, C→5등급으로 환산",
+      "pages": "50-52"
+    },
+    {
+      "tracks": ["arts-sports", "athlete", "jeongsi-na-practical"],
+      "subjects": "국어·영어·수학·사회/과학 교과 구분 없이 석차등급 상위 12과목 (한국사는 사회 교과에 포함). 정시 나군 음악학과도 같음",
+      "terms": "학년 구분 없이 3학년 1학기까지",
+      "grades": "1~5등급 점수. 산업디자인·미술학과: 기본 180 + 10/8/6/4/0 (300~180). 음악학과·체육특기자·정시 음악학과: 16/14/12/11/10, 가산 8 (200~120). 체육학과: 33/31/29/27/20, 가산 4 (400~240). 태권도학과: 20/18/16/14/12.5, 가산 10 (250~150)",
+      "achievement": "진로·융합선택 성취도 A→1등급 ~ E→5등급으로 환산해 최대 4과목 포함 (교과별 개수 제한 없음, 사회·과학 융합선택 제외)",
+      "formula": "(Σ(반영과목 과목별 석차 등급점수 × 과목별 이수단위) ÷ Σ반영과목 이수단위 × 12) + 기본점수 + 가산점수. 가산점수는 기본점수가 없는 전형에서 12과목 모두 1등급일 때만 더함",
+      "extra": "출석(결석일수 0~2 / 3~5 / 6~10 / 11~15 / 16일 이상): 태권도학과 50/47/44/38/30, 체육특기자 100/90/80/70/60. 미인정 지각·조퇴·결과 3회 = 결석 1회. 검정고시 출신은 평균점수 구간별 환산표 적용",
+      "pages": "49-52"
+    }
+  ],
+  "tracks": {
+    "potential": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": "면접 결시자는 불합격 처리",
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "school-life": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "equal-opportunity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "regional-comprehensive": {
+      "stages": [
+        { "step": "1단계", "pick": "8배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": "면접 결시자는 불합격 처리",
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "regional-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "lifelong": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "subject-excellence": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "regional-subject": {
+      "stages": [
+        { "step": "일괄(인문·자연·자유전공)", "pick": null, "parts": { "교과": 100 } },
+        { "step": "일괄(의예과)", "pick": null, "parts": { "교과": 80, "서류": 20 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "subject-career": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 80, "서류": 20 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "regional-doctor-wide": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 80, "서류": 20 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "regional-doctor-district": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 80, "서류": 20 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "rural": {
+      "stages": [
+        { "step": "일괄(인문·자연·자유전공)", "pick": null, "parts": { "교과": 100 } },
+        { "step": "일괄(의예과)", "pick": null, "parts": { "교과": 80, "서류": 20 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "arts-sports": {
+      "stages": [
+        { "step": "일괄(산업디자인·미술)", "pick": null, "parts": { "실기": 70, "교과": 30 } },
+        { "step": "일괄(음악학과)", "pick": null, "parts": { "실기": 80, "교과": 20 } },
+        { "step": "일괄(체육학과)", "pick": null, "parts": { "실기": 60, "교과": 40 } },
+        { "step": "일괄(태권도학과)", "pick": null, "parts": { "실기": 40, "교과": 25, "경기실적·단(품)증": 30, "출석": 5 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "athlete": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "경기실적": 70, "교과": 20, "출석": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "jeongsi-ga": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "jeongsi-ga-regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "jeongsi-na": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "jeongsi-da": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "jeongsi-ga-practical": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "실기": 70, "수능": 30 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "jeongsi-na-practical": {
+      "stages": [
+        { "step": "일괄(산업디자인학과)", "pick": null, "parts": { "실기": 70, "수능": 30 } },
+        { "step": "일괄(음악학과)", "pick": null, "parts": { "실기": 80, "교과": 20 } },
+        { "step": "일괄(체육학과)", "pick": null, "parts": { "실기": 60, "수능": 40 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "jeongsi-doctor-wide": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "jeongsi-doctor-district": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "jeongsi-regional-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "jeongsi-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "jeongsi-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "jeongsi-lifelong": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    },
+    "jeongsi-worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 관련 서류",
+      "units": null
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "univ": "gnue",
+  "seats": {
+    "gnue:초등교육과": {"regional-subject": 50, "teaching-aptitude": 50, "multicultural": 5, "rural": 9, "equity": 6, "jeonnam-rec": 50, "jeonnam-multicultural": 10, "regional-comprehensive": 60, "social-integration": 7, "disabled": 10, "adult": 10, "csat-general": 56, "csat-adult": 15, "csat-rural": null, "csat-equity": null}
+  },
+  "pages": "Ⅲ-1-가, Ⅲ-2-가, Ⅳ-1 (HWP)",
+  "notes": "모집단위는 초등교육과 하나 (Ⅲ-1 표에만 이름이 있고 Ⅲ-2·Ⅳ 표는 전형별 인원만 적음). null: 정시 농어촌·기초/차상위/한부모 (수시 미충원 시 이월 선발, Ⅳ-1)."
+}

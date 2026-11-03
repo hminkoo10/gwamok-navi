@@ -1,0 +1,285 @@
+{
+  "univ": "jnu",
+  "suneung": [
+    {
+      "group": "인문, 인문·자연",
+      "units": "인문계열 모집단위와 인문·자연 계열(자율전공학부(1년))",
+      "tracks": ["suneung-general"],
+      "use": "표준점수(국어·수학·탐구), 영어·한국사 등급점수",
+      "weights": { "국어": 40, "수학": 30, "영어": 20, "탐구": 10 },
+      "inquiry": "사탐·과탐·직탐 중 표준점수 높은 1과목",
+      "english": "등급점수: 1등급 200, 2등급 195, 3등급 190, 4등급 185, 5등급 180, 6등급 165, 7등급 150, 8등급 130, 9등급 0",
+      "history": "등급점수를 전형총점에 가산: 1~5등급 10, 6등급 9, 7등급 8, 8등급 7, 9등급 0 (1,000점 초과 가능)",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "23-25"
+    },
+    {
+      "group": "자연",
+      "units": "자연계열 모집단위 (간호·의학과·약학부·수의예과·치의학전문대학원 포함)",
+      "tracks": ["suneung-general", "suneung-regional", "suneung-regional-doctor"],
+      "use": "표준점수(국어·수학·탐구), 영어·한국사 등급점수",
+      "weights": { "국어": 30, "수학": 40, "영어": 20, "탐구": 10 },
+      "inquiry": "사탐·과탐·직탐 중 표준점수 높은 1과목 (수의과대학·약학대학·의과대학·치의학전문대학원은 탐구 2과목(사탐/과탐) 평균)",
+      "english": "등급점수: 1등급 200, 2등급 195, 3등급 190, 4등급 185, 5등급 180, 6등급 165, 7등급 150, 8등급 130, 9등급 0",
+      "history": "등급점수를 전형총점에 가산: 1~5등급 10, 6등급 9, 7등급 8, 8등급 7, 9등급 0 (1,000점 초과 가능)",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "4,23-25"
+    },
+    {
+      "group": "미술학과(이론전공)",
+      "units": "예술대학 미술학과(이론전공), 수시 미충원 인원 발생 시 모집 (실기 없음)",
+      "tracks": ["suneung-general"],
+      "use": "표준점수(국어·탐구), 영어·한국사 등급점수",
+      "weights": { "국어": 50, "영어": 30, "탐구": 20 },
+      "inquiry": "사탐·과탐·직탐 중 표준점수 높은 1과목",
+      "english": "등급점수: 1등급 300, 2등급 292.5, 3등급 285, 4등급 277.5, 5등급 270, 6등급 247.5, 7등급 225, 8등급 195, 9등급 0",
+      "history": "등급점수를 전형총점에 가산: 1~5등급 10, 6등급 9, 7등급 8, 8등급 7, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "23-25"
+    },
+    {
+      "group": "음악교육과",
+      "units": "사범대학 음악교육과 (나군, 수능 80% + 실기 20%)",
+      "tracks": ["suneung-general"],
+      "use": "표준점수(국어·탐구), 영어·한국사 등급점수",
+      "weights": { "국어": 50, "영어": 30, "탐구": 20 },
+      "inquiry": "사탐·과탐·직탐 중 표준점수 높은 1과목",
+      "english": "등급점수: 1등급 240, 2등급 234, 3등급 228, 4등급 222, 5등급 216, 6등급 198, 7등급 180, 8등급 156, 9등급 0",
+      "history": "등급점수를 전형총점에 가산: 1~5등급 10, 6등급 9, 7등급 8, 8등급 7, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": 800,
+      "pages": "23-25"
+    },
+    {
+      "group": "체육교육과",
+      "units": "사범대학 체육교육과 (수시 미충원 시 모집, 수능 80% + 실기 20%)",
+      "tracks": ["suneung-general"],
+      "use": "표준점수(국어·수학·탐구), 영어·한국사 등급점수",
+      "weights": { "국어": 40, "수학": 30, "영어": 20, "탐구": 10 },
+      "inquiry": "사탐·과탐·직탐 중 표준점수 높은 1과목",
+      "english": "등급점수: 1등급 160, 2등급 156, 3등급 152, 4등급 148, 5등급 144, 6등급 132, 7등급 120, 8등급 104, 9등급 0",
+      "history": "등급점수를 전형총점에 가산: 1~5등급 10, 6등급 9, 7등급 8, 8등급 7, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": 800,
+      "pages": "23-25"
+    },
+    {
+      "group": "미술(이론 제외)·국악·음악·디자인",
+      "units": "예술대학 미술학과(이론전공 제외)·국악학과·음악학과·디자인학과 (수능 30% + 실기 70%, 음악학과 피아노전공 외는 수시 미충원 시 모집)",
+      "tracks": ["silgi-arts-jeongsi"],
+      "use": "표준점수(국어·탐구), 영어·한국사 등급점수",
+      "weights": { "국어": 50, "영어": 30, "탐구": 20 },
+      "inquiry": "사탐·과탐·직탐 중 표준점수 높은 1과목",
+      "english": "등급점수: 1등급 90, 2등급 87.75, 3등급 85.5, 4등급 83.25, 5등급 81, 6등급 74.25, 7등급 67.5, 8등급 58.5, 9등급 0",
+      "history": "등급점수를 전형총점에 가산: 1~5등급 10, 6등급 9, 7등급 8, 8등급 7, 9등급 0",
+      "bonus": null,
+      "formula": null,
+      "total": 300,
+      "pages": "23-25"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["gyogwa-general", "gyogwa-regional", "gyogwa-balance", "gyogwa-social-care", "gyogwa-diversity", "gyogwa-vocational", "gyogwa-basic-support"],
+      "subjects": "국어·영어·수학·사회·과학 교과(군)의 석차등급 산출 과목 전체(이수학점 전체) + 진로/융합선택과목 성취도 상위 3과목. 제2외국어/한문은 인문대학 모집단위만, 예능 계열은 국어·영어·사회",
+      "terms": "1학년 1학기 ~ 3학년 1학기 (졸업자도 동일)",
+      "grades": "석차등급 1등급 100, 2등급 90, 3등급 80, 4등급 70, 5등급 0",
+      "achievement": "진로/융합선택 성취도 상위 3과목 등급점수: A 5, B 4, C 3, D 2, E 1 (3단계 성취도는 A 5, B 3, C 1). 3과목 미만 이수자는 비교내신",
+      "formula": "교과 660 + Σ(등급점수×이수학점) ÷ Σ이수학점 × 2.25 (885점) + 진로/융합 상위 3과목 등급점수 합 (15점) + 출결 90 + (1 − 결석일수 ÷ 21) × 10 (100점) = 1,000점",
+      "extra": "출결: 1학년 1학기~3학년 1학기(졸업자 3학년 2학기까지), 미인정 지각·조퇴·결과 3회 = 결석 1일, 21일 이상 기본점수만. 9등급제 성적은 Z점수로 5등급 환산, 검정고시는 취득점수 환산(100점 85 ~ 59점 이하 0). 학교폭력 일괄감점 1~3호 −25, 4~5호 −125, 6~9호 −250",
+      "pages": "12-16,20"
+    },
+    {
+      "tracks": ["gyogwa-arts-pe", "gyogwa-special-edu"],
+      "subjects": "국어·영어·수학·사회·과학 교과(군)의 석차등급 산출 과목 전체 + 진로/융합선택과목 성취도 상위 3과목. 예능 계열(음악교육과)은 국어·영어·사회",
+      "terms": "1학년 1학기 ~ 3학년 1학기 (졸업자도 동일)",
+      "grades": "석차등급 1등급 100, 2등급 90, 3등급 80, 4등급 70, 5등급 0",
+      "achievement": "진로/융합선택 성취도 상위 3과목 등급점수: A 5, B 4, C 3, D 2, E 1 (3단계 성취도는 A 5, B 3, C 1). 3과목 미만 이수자는 비교내신",
+      "formula": "교과 528 + Σ(등급점수×이수학점) ÷ Σ이수학점 × 1.80 (708점) + 진로/융합 상위 3과목 등급점수 합 × 0.8 (12점) + 출결 72 + (1 − 결석일수 ÷ 21) × 8 (80점) = 800점",
+      "extra": "출결: 1학년 1학기~3학년 1학기(졸업자 3학년 2학기까지), 미인정 지각·조퇴·결과 3회 = 결석 1일, 21일 이상 기본점수만. 학교폭력 감점(1단계에서만) 1~3호 −20, 4~5호 −100, 6~9호 −200",
+      "pages": "12-16,20"
+    },
+    {
+      "tracks": ["silgi-arts"],
+      "subjects": "예능 계열: 국어·영어·사회 교과(군)의 석차등급 산출 과목 전체 + 진로/융합선택과목 성취도 상위 3과목 (학생부교과전형과 같은 방법)",
+      "terms": "1학년 1학기 ~ 3학년 1학기 (졸업자도 동일)",
+      "grades": "석차등급 1등급 100, 2등급 90, 3등급 80, 4등급 70, 5등급 0",
+      "achievement": "진로/융합선택 성취도 상위 3과목 등급점수: A 5, B 4, C 3, D 2, E 1 (3단계 성취도는 A 5, B 3, C 1)",
+      "formula": "교과 198 + Σ(등급점수×이수학점) ÷ Σ이수학점 × 0.675 (265.5점) + 진로/융합 상위 3과목 등급점수 합 × 3/10 (4.5점) + 출결 27 + (1 − 결석일수 ÷ 21) × 3 (30점) = 300점",
+      "extra": "출결: 미인정 지각·조퇴·결과 3회 = 결석 1일, 21일 이상 기본점수만, 검정고시 출신자는 비교내신. 학교폭력 감점 1~3호 −7.5, 4~5호 −37.5, 6~9호 −75",
+      "pages": "18,20"
+    }
+  ],
+  "tracks": {
+    "gyogwa-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-balance": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-social-care": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-diversity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-basic-support": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-arts-pe": {
+      "stages": [
+        { "step": "1단계", "pick": "음악교육과 5배수, 체육교육과 3배수", "parts": { "학생부": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 66.7, "실기": 33.3 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-special-edu": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "학생부": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 66.7, "면접": 33.3 } }
+      ],
+      "interview": "학교생활기록부 기반 면접, 평가요소 진로·학업역량, 공동체역량 (기본 100점/만점 200점). 학생부가 없는 국외고 졸업(예정)자·검정고시 출신자는 별도 기준",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jonghap-1": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수 (수의·약학·의과대학·치의학전문대학원 6배수)", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "학교생활기록부 기반 면접평가, 평가요소 진로·학업역량, 공동체역량 (기본 150점/만점 300점)",
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 진로역량·학업역량·공동체역량)",
+      "units": null
+    },
+    "jonghap-regional-doctor": {
+      "stages": [
+        { "step": "1단계", "pick": "6배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "학교생활기록부 기반 면접평가, 평가요소 진로·학업역량, 공동체역량 (기본 150점/만점 300점)",
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 진로역량·학업역량·공동체역량)",
+      "units": null
+    },
+    "jonghap-farm-successor": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "학교생활기록부 기반 면접평가, 평가요소 진로·학업역량, 공동체역량 (기본 150점/만점 300점)",
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 진로역량·학업역량·공동체역량)",
+      "units": null
+    },
+    "jonghap-2": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 진로역량·학업역량·공동체역량)",
+      "units": null
+    },
+    "jonghap-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 진로역량·학업역량·공동체역량)",
+      "units": null
+    },
+    "silgi-arts": {
+      "stages": [
+        { "step": "일괄(음악·국악학과)", "pick": null, "parts": { "학생부": 17.6, "실기": 82.4 } },
+        { "step": "1단계(미술·디자인학과)", "pick": "5배수", "parts": { "학생부": 100 } },
+        { "step": "2단계(미술·디자인학과)", "pick": null, "parts": { "1단계": 17.6, "실기": 82.4 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "suneung-general": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } },
+        { "step": "일괄(음악·체육교육과)", "pick": null, "parts": { "수능": 80, "실기": 20 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "suneung-regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "suneung-regional-doctor": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "silgi-arts-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 30, "실기": 70 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "foreign": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수학할 수 있는 언어능력": 50, "수학할 수 있는 전공능력": 50 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "고교 졸업(예정)·재학·성적증명서, 외국정부 발급 가족관계 증명서, 외국국적증명서, 재정입증서류, 입학지원서, 여권사본, 한국어 또는 영어능력시험 성적표, 개인신상기록서, 학력조회동의서, 개인정보활용동의서",
+      "units": null
+    }
+  }
+}

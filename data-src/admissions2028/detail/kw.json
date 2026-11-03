@@ -1,0 +1,286 @@
+{
+  "univ": "kw",
+  "suneung": [
+    {
+      "group": "자연",
+      "units": "자연계열, 자율전공학부(자연) (스포츠융합과학과 제외)",
+      "tracks": ["csat-general", "csat-equity", "csat-rural"],
+      "use": "국어·수학·탐구 표준점수, 영어 등급별 변환점수, 한국사 등급별 가산점",
+      "weights": { "국어": 20, "수학": 40, "영어": 20, "탐구": 20 },
+      "inquiry": "사회탐구 5%, 과학탐구 15%. 반영 영역 중 1개라도 미응시하거나 응시 영역이 다르면 불합격",
+      "english": "변환점수: 1등급 150, 2등급 148, 3등급 145, 4등급 140, 5등급 132, 6등급 120, 7등급 108, 8등급 96, 9등급 0",
+      "history": "가산점(전형 총점 1,000점 기준에 부여): 1~4등급 10, 5등급 9.8, 6등급 9.6, 7등급 9.4, 8등급 9.2, 9등급 9.0",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "4,18-19"
+    },
+    {
+      "group": "인문",
+      "units": "인문계열, 자율전공학부(인문) (경영학부·국제통상학부 제외)",
+      "tracks": ["csat-general", "csat-equity", "csat-rural"],
+      "use": "국어·수학·탐구 표준점수, 영어 등급별 변환점수, 한국사 등급별 가산점",
+      "weights": { "국어": 35, "수학": 25, "영어": 20, "탐구": 20 },
+      "inquiry": "사회탐구 15%, 과학탐구 5%. 반영 영역 중 1개라도 미응시하거나 응시 영역이 다르면 불합격",
+      "english": "변환점수: 1등급 150, 2등급 148, 3등급 145, 4등급 140, 5등급 132, 6등급 120, 7등급 108, 8등급 96, 9등급 0",
+      "history": "가산점(전형 총점 1,000점 기준에 부여): 1~4등급 10, 5등급 9.8, 6등급 9.6, 7등급 9.4, 8등급 9.2, 9등급 9.0",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "4,18-19"
+    },
+    {
+      "group": "경영·국제통상",
+      "units": "경영학부 경영학전공, 경영학부 빅데이터경영전공, 국제통상학부",
+      "tracks": ["csat-general", "csat-equity", "csat-rural"],
+      "use": "국어·수학·탐구 표준점수, 영어 등급별 변환점수, 한국사 등급별 가산점",
+      "weights": { "국어": 30, "수학": 30, "영어": 20, "탐구": 20 },
+      "inquiry": "사회탐구 15%, 과학탐구 5%. 반영 영역 중 1개라도 미응시하거나 응시 영역이 다르면 불합격",
+      "english": "변환점수: 1등급 150, 2등급 148, 3등급 145, 4등급 140, 5등급 132, 6등급 120, 7등급 108, 8등급 96, 9등급 0",
+      "history": "가산점(전형 총점 1,000점 기준에 부여): 1~4등급 10, 5등급 9.8, 6등급 9.6, 7등급 9.4, 8등급 9.2, 9등급 9.0",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "4,18-19"
+    },
+    {
+      "group": "스포츠융합과학과",
+      "units": "스포츠융합과학과 (일반학생전형은 수능 40% + 학생부 30% + 실기 30%)",
+      "tracks": ["csat-sports-science", "csat-rural"],
+      "use": "국어·탐구 표준점수, 영어 등급별 변환점수, 한국사 등급별 가산점",
+      "weights": { "국어": 40, "영어": 30, "탐구": 30 },
+      "inquiry": "사회탐구 15%, 과학탐구 15%. 수학 미반영(수학 미응시자도 지원 가능)",
+      "english": "변환점수: 1등급 150, 2등급 148, 3등급 145, 4등급 140, 5등급 132, 6등급 120, 7등급 108, 8등급 96, 9등급 0",
+      "history": "가산점(전형 총점 1,000점 기준에 부여): 1~4등급 10, 5등급 9.8, 6등급 9.6, 7등급 9.4, 8등급 9.2, 9등급 9.0",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "16,18-19"
+    },
+    {
+      "group": "특성화고졸업자 자연",
+      "units": "자연계열",
+      "tracks": ["csat-vocational-grad"],
+      "use": "국어·수학·탐구 표준점수, 영어 등급별 변환점수, 한국사 등급별 가산점",
+      "weights": { "국어": 20, "수학": 40, "영어": 20, "탐구": 20 },
+      "inquiry": "지원자가 고른 영역 반영: 사회탐구 5%·과학탐구 15% 또는 직업탐구 20%",
+      "english": "변환점수: 1등급 150, 2등급 148, 3등급 145, 4등급 140, 5등급 132, 6등급 120, 7등급 108, 8등급 96, 9등급 0",
+      "history": "가산점(전형 총점 1,000점 기준에 부여): 1~4등급 10, 5등급 9.8, 6등급 9.6, 7등급 9.4, 8등급 9.2, 9등급 9.0",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "4,18-19"
+    },
+    {
+      "group": "특성화고졸업자 인문",
+      "units": "미디어커뮤니케이션학부, 동북아문화산업학부",
+      "tracks": ["csat-vocational-grad"],
+      "use": "국어·수학·탐구 표준점수, 영어 등급별 변환점수, 한국사 등급별 가산점",
+      "weights": { "국어": 35, "수학": 25, "영어": 20, "탐구": 20 },
+      "inquiry": "지원자가 고른 영역 반영: 사회탐구 15%·과학탐구 5% 또는 직업탐구 20%",
+      "english": "변환점수: 1등급 150, 2등급 148, 3등급 145, 4등급 140, 5등급 132, 6등급 120, 7등급 108, 8등급 96, 9등급 0",
+      "history": "가산점(전형 총점 1,000점 기준에 부여): 1~4등급 10, 5등급 9.8, 6등급 9.6, 7등급 9.4, 8등급 9.2, 9등급 9.0",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "4,18-19"
+    },
+    {
+      "group": "특성화고졸업자 경영·국제통상",
+      "units": "경영학부 경영학전공, 경영학부 빅데이터경영전공, 국제통상학부",
+      "tracks": ["csat-vocational-grad"],
+      "use": "국어·수학·탐구 표준점수, 영어 등급별 변환점수, 한국사 등급별 가산점",
+      "weights": { "국어": 30, "수학": 30, "영어": 20, "탐구": 20 },
+      "inquiry": "지원자가 고른 영역 반영: 사회탐구 15%·과학탐구 5% 또는 직업탐구 20%",
+      "english": "변환점수: 1등급 150, 2등급 148, 3등급 145, 4등급 140, 5등급 132, 6등급 120, 7등급 108, 8등급 96, 9등급 0",
+      "history": "가산점(전형 총점 1,000점 기준에 부여): 1~4등급 10, 5등급 9.8, 6등급 9.6, 7등급 9.4, 8등급 9.2, 9등급 9.0",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "4,18-19"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["regional-balance"],
+      "subjects": "국어·영어·수학·사회(한국사 포함)·과학 교과(군) 안에서 지원자가 이수한 모든 과목, 융합선택 미반영",
+      "terms": "교과는 졸업 여부와 관계없이 3학년 1학기까지, 학년별 반영비율 없음(전 학년 동일). 적용 대상 2026년 1월 졸업자~2028년 2월 졸업예정자",
+      "grades": "공통·일반선택: 석차등급 및 이수학점 (5등급제·9등급제 석차등급을 점수화, 등급별 점수표는 원문에 없음)",
+      "achievement": "진로선택: 성취도 및 이수학점 (점수표는 원문에 없음). 융합선택 미반영",
+      "formula": null,
+      "extra": "학생부 100% = 교과 90% + 비교과(출결) 10%. 출결은 졸업예정자 3학년 1학기, 졸업자 3학년 2학기까지 반영",
+      "pages": "8,17"
+    },
+    {
+      "tracks": ["essay"],
+      "subjects": "국어·영어·수학·사회(한국사 포함)·과학 교과(군) 안에서 지원자가 이수한 모든 과목, 융합선택 미반영",
+      "terms": "졸업 여부와 관계없이 3학년 1학기까지, 학년별 반영비율 없음(전 학년 동일). 적용 대상 2026년 1월 졸업자~2028년 2월 졸업예정자",
+      "grades": "공통·일반선택: 석차등급 및 이수학점 (5등급제·9등급제 석차등급을 점수화, 등급별 점수표는 원문에 없음)",
+      "achievement": "진로선택: 성취도 및 이수학점 (점수표는 원문에 없음). 융합선택 미반영",
+      "formula": null,
+      "extra": "학생부(20%)는 교과성적 100%, 출결 미반영. 학생부 성적 산출 불가자는 논술고사 점수로 비교내신",
+      "pages": "8,17"
+    },
+    {
+      "tracks": ["sports-talent"],
+      "subjects": "국어·영어·수학·사회(한국사 포함)·과학 교과(군) 안에서 지원자가 이수한 모든 과목, 융합선택 미반영",
+      "terms": "교과는 졸업 여부와 관계없이 3학년 1학기까지, 학년별 반영비율 없음(전 학년 동일). 적용 대상 2026년 1월 졸업자~2028년 2월 졸업예정자",
+      "grades": "공통·일반선택: 석차등급 및 이수학점 (5등급제·9등급제 석차등급을 점수화, 등급별 점수표는 원문에 없음)",
+      "achievement": "진로선택: 성취도 및 이수학점 (점수표는 원문에 없음). 융합선택 미반영",
+      "formula": null,
+      "extra": "학생부(10%) = 교과 70% + 출결 30% (전형 총점 기준 교과 7%, 출결 3%). 출결은 졸업예정자 3학년 1학기, 졸업자 3학년 2학기까지. 학생부 성적 산출 불가자는 경기실적 점수로 비교내신",
+      "pages": "8,17"
+    },
+    {
+      "tracks": ["csat-sports-science"],
+      "subjects": "국어·영어·사회(한국사 포함)·과학 교과(군) 안에서 지원자가 이수한 모든 과목 (스포츠융합과학과는 수학 미반영), 융합선택 미반영",
+      "terms": "졸업 여부와 관계없이 3학년 1학기까지, 학년별 반영비율 없음(전 학년 동일). 적용 대상 2026년 1월 졸업자~2028년 2월 졸업예정자",
+      "grades": "공통·일반선택: 석차등급 및 이수학점 (5등급제·9등급제 석차등급을 점수화, 등급별 점수표는 원문에 없음)",
+      "achievement": "진로선택: 성취도 및 이수학점 (점수표는 원문에 없음). 융합선택 미반영",
+      "formula": null,
+      "extra": "학생부(30%)는 교과성적 100%, 출결 미반영. 학생부 성적 산출 불가자는 수능 점수로 비교내신",
+      "pages": "16-17"
+    }
+  ],
+  "tracks": {
+    "talent-interview": {
+      "stages": [
+        { "step": "1단계", "pick": "3.5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": "입학사정관 2인 평가위원이 개별 대면 면접, 10분 이내. 평가서류 사전 검토로 구성한 개인별 질문으로 종합평가(문제 제시형 평가 없음), 블라인드 면접",
+      "essay": null,
+      "docs": "학교생활기록부 등 (검정고시 출신자는 학교생활기록부 대체 서식(본교 양식))",
+      "units": null
+    },
+    "talent-document": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    },
+    "software-talent": {
+      "stages": [
+        { "step": "1단계", "pick": "3.5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": "입학사정관 2인 평가위원이 개별 대면 면접, 10분 이내. 평가서류 사전 검토로 구성한 개인별 질문으로 종합평가(문제 제시형 평가 없음), 블라인드 면접",
+      "essay": null,
+      "docs": "학교생활기록부 등 (검정고시 출신자는 학교생활기록부 대체 서식(본교 양식))",
+      "units": null
+    },
+    "rural-susi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    },
+    "vocational-grad-susi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    },
+    "vocational-worker-susi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    },
+    "west-five-islands": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    },
+    "regional-balance": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "고등학교별 추천자 명단(지정된 방법으로 제출, 추천 인원 제한 없음)",
+      "units": null
+    },
+    "essay": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "논술": 80, "교과": 20 } }],
+      "interview": null,
+      "essay": "120분. 자연: 수리 논술 2문제(문제당 소문제 5개 내외), 고교 교과과정의 용어·개념으로 기술한 제시문과 함께 출제 / 인문: 통합교과형 논술 2문제(문제당 750자 내외), 여러 제시문을 서로 관련시켜 통합형으로 출제",
+      "docs": null,
+      "units": null
+    },
+    "sports-talent": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "경기실적": 60, "실기": 30, "교과": 7, "출결": 3 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-3y": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "면접": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-whole-course": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "면접": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "nk-defector": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "면접": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-sports-science": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 40, "교과": 30, "실기": 30 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-vocational-grad": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational-worker-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 등",
+      "units": null
+    }
+  }
+}

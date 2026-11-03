@@ -1,0 +1,265 @@
+{
+  "univ": "ajou",
+  "suneung": [
+    {
+      "group": "자연",
+      "units": "공과대학, 첨단ICT융합대학, 소프트웨어융합대학, 자연과학대학, 의학과, 간호학과(일반전형4 제외), 약학과, 첨단바이오융합대학, 자유전공학부(자연)",
+      "tracks": ["csat-general-1", "csat-regional-doctor", "csat-general-2", "csat-general-3", "csat-rural", "csat-equity", "csat-defense-it-2"],
+      "use": "국어·수학·탐구 표준점수, 영어 자체변환점수, 한국사 감점",
+      "weights": { "국어": 20, "수학": 40, "영어": 10, "탐구": 30 },
+      "inquiry": "사회탐구 5%, 과학탐구 25%로 나눠 각각 표준점수 반영. 지정 영역 일부라도 미응시하면 불합격",
+      "english": "변환점수(10%): 1등급 100, 2등급 98, 3등급 96, 4등급 84, 5등급 60, 6등급 40, 7등급 20, 8등급 10, 9등급 0",
+      "history": "수능총점에서 감점: 1~4등급 감점 없음, 5등급 -5, 6등급 -10, 7등급 -20, 8등급 -30, 9등급 -40",
+      "bonus": null,
+      "formula": "국어·수학·탐구: 표준점수 ÷ 2028학년도 해당 영역 표준점수 최고점 × 반영비율 × 1,000. 여기에 영어 변환점수를 더하고 한국사 감점",
+      "total": 1000,
+      "pages": "9"
+    },
+    {
+      "group": "인문1",
+      "units": "경영대학, 간호학과(일반전형4)(교차)",
+      "tracks": ["csat-general-3", "csat-general-4", "csat-rural", "csat-equity"],
+      "use": "국어·수학·탐구 표준점수, 영어 자체변환점수, 한국사 감점",
+      "weights": { "국어": 25, "수학": 35, "영어": 15, "탐구": 25 },
+      "inquiry": "사회탐구 20%, 과학탐구 5%로 나눠 각각 표준점수 반영. 지정 영역 일부라도 미응시하면 불합격",
+      "english": "변환점수(15%): 1등급 150, 2등급 147, 3등급 144, 4등급 126, 5등급 90, 6등급 60, 7등급 30, 8등급 15, 9등급 0",
+      "history": "수능총점에서 감점: 1~4등급 감점 없음, 5등급 -5, 6등급 -10, 7등급 -20, 8등급 -30, 9등급 -40",
+      "bonus": null,
+      "formula": "국어·수학·탐구: 표준점수 ÷ 2028학년도 해당 영역 표준점수 최고점 × 반영비율 × 1,000. 여기에 영어 변환점수를 더하고 한국사 감점",
+      "total": 1000,
+      "pages": "9"
+    },
+    {
+      "group": "인문2",
+      "units": "인문대학, 사회과학대학, 자유전공학부(인문)",
+      "tracks": ["csat-general-2", "csat-general-3", "csat-rural", "csat-equity"],
+      "use": "국어·수학·탐구 표준점수, 영어 자체변환점수, 한국사 감점",
+      "weights": { "국어": 35, "수학": 20, "영어": 15, "탐구": 30 },
+      "inquiry": "사회탐구 25%, 과학탐구 5%로 나눠 각각 표준점수 반영. 지정 영역 일부라도 미응시하면 불합격",
+      "english": "변환점수(15%): 1등급 150, 2등급 147, 3등급 144, 4등급 126, 5등급 90, 6등급 60, 7등급 30, 8등급 15, 9등급 0",
+      "history": "수능총점에서 감점: 1~4등급 감점 없음, 5등급 -5, 6등급 -10, 7등급 -20, 8등급 -30, 9등급 -40",
+      "bonus": null,
+      "formula": "국어·수학·탐구: 표준점수 ÷ 2028학년도 해당 영역 표준점수 최고점 × 반영비율 × 1,000. 여기에 영어 변환점수를 더하고 한국사 감점",
+      "total": 1000,
+      "pages": "9"
+    },
+    {
+      "group": "특성화",
+      "units": "공과대학, 첨단ICT융합대학, 소프트웨어융합대학, 첨단바이오융합대학, 경영대학, 자유전공학부(자연)",
+      "tracks": ["csat-vocational"],
+      "use": "국어·수학·탐구 표준점수, 영어 자체변환점수, 한국사 감점",
+      "weights": { "국어": 25, "수학": 40, "영어": 15, "탐구": 20 },
+      "inquiry": "직업탐구 또는 사회·과학탐구 반영 가능. 직탐 응시자는 직업탐구 표준점수 ÷ 직업탐구 표준점수 최고점, 사·과탐 응시자는 사회·과학탐구 표준점수 평균 ÷ 두 영역 표준점수 최고점의 평균 (× 반영비율 × 1,000)",
+      "english": "변환점수(15%): 1등급 150, 2등급 147, 3등급 144, 4등급 126, 5등급 90, 6등급 60, 7등급 30, 8등급 15, 9등급 0",
+      "history": "수능총점에서 감점: 1~4등급 감점 없음, 5등급 -5, 6등급 -10, 7등급 -20, 8등급 -30, 9등급 -40",
+      "bonus": null,
+      "formula": "국어·수학·탐구: 표준점수 ÷ 2028학년도 해당 영역 표준점수 최고점 × 반영비율 × 1,000. 여기에 영어 변환점수를 더하고 한국사 감점",
+      "total": 1000,
+      "pages": "9"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["high-school-rec", "essay", "football"],
+      "subjects": "국어·수학·영어·과학·사회 교과(편제), 계열 구분 없음. 교과(편제)명에 따라 반영하고 유사 과목은 별도 심의로 반영 가능",
+      "terms": "졸업예정자 1학년 1학기~3학년 1학기, 조기졸업자 1학년 1학기~2학년 1학기(고교추천전형 지원 불가). 학년별·교과별 가중치 없음",
+      "grades": "등급점수: 1등급 100, 2등급 96, 3등급 90, 4등급 80, 5등급 0 (기본점수 없음)",
+      "achievement": "성취도점수: A 100, B 96, C 90, D 80, E 0. 사회/과학 융합선택은 성취도만으로 상위 5과목 반영(성취도 높은 과목 우선, 같으면 이수학점 큰 과목). 그 밖에 등급이 없는 과목은 미반영",
+      "formula": "교과점수 = Σ과목점수 ÷ Σ이수학점. 과목점수 = (이수학점×등급점수×0.8) + (이수학점×성취도점수×0.2), 사회/과학 융합선택 과목은 이수학점×성취도점수",
+      "extra": "출결(1학년 1학기~3학년 1학기 미인정 결석, 미인정 지각·조퇴·결과 3회=결석 1일): 0~3일 고교추천 10·축구 1, 4~9일 8·0.8, 10~14일 6·0.6, 15~19일 4·0.4, 20일 이상 0. 검정고시·외국고·기졸업자 등은 논술/실적 점수로 비교내신(고교추천 제외)",
+      "pages": "6-7"
+    }
+  ],
+  "tracks": {
+    "high-school-rec": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "ace-interview": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "ace-document": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "equal-opportunity-1": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "equal-opportunity-2": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "regional-doctor": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "essay": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "논술": 90, "교과": 10 } }],
+      "interview": null,
+      "essay": "90분, 영어 제시문 없음. 자연계열(약학과 포함) 수리논술 / 의학과 수리논술 + 과학논술(생명과학) / 인문계열 통합논술(언어·사회). 고교 교육과정 수준, 공식 암기형 문제 없음, 수리·과학논술은 풀이과정 부분점수",
+      "docs": null,
+      "units": null
+    },
+    "football": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 4, "출결": 1, "실적": 40, "실기": 30, "면접": 25 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "special-ed": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "defense-it-1": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "2단계에서 면접과 함께 신체검사·체력검정·신원조회(P/F)",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-3yr": {
+      "stages": [
+        { "step": "의학·간호·약학 외 일괄", "pick": null, "parts": { "수강능력시험": 100 } },
+        { "step": "의학·간호·약학 1단계", "pick": "10배수", "parts": { "수강능력시험": 100 } },
+        { "step": "의학·간호·약학 2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general-1": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 95, "면접": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-regional-doctor": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 95, "면접": 5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general-2": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general-3": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general-4": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-rural": {
+      "stages": [
+        { "step": "의학과 일괄", "pick": null, "parts": { "수능": 95, "면접": 5 } },
+        { "step": "의학과 외 일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-defense-it-2": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "수능": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 80, "면접": 20 } }
+      ],
+      "interview": "2단계에서 면접과 함께 신체검사·체력검정·신원조회(P/F)",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-full-course": {
+      "stages": [
+        { "step": "의학·약학 외 일괄", "pick": null, "parts": { "면접": 100 } },
+        { "step": "의학·약학 1단계", "pick": "20명", "parts": { "수강능력시험": 100 } },
+        { "step": "의학·약학 2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "north-korean": {
+      "stages": [
+        { "step": "의학·간호·약학 외 일괄", "pick": null, "parts": { "면접": 100 } },
+        { "step": "의학·간호·약학 일괄", "pick": null, "parts": { "수강능력시험": 40, "면접": 30, "서류": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "worker-jonghap": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

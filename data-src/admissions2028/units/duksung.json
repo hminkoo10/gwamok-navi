@@ -1,0 +1,72 @@
+{
+  "univ": "duksung",
+  "seats": {
+    "duksung:인문사회": {
+      "school-rec": 40,
+      "duksung-talent-1": 52,
+      "duksung-talent-2": 73,
+      "essay": 70,
+      "equal-1-vocational": 6,
+      "equal-1-basic": 20,
+      "equal-1-disabled": 3,
+      "csat-1": 174,
+      "overseas-2pct": 4,
+      "overseas-full-course": null,
+      "north-korean": null
+    },
+    "duksung:유아교육과": {
+      "school-rec": 10,
+      "duksung-talent-2": 12,
+      "csat-1": 15
+    },
+    "duksung:과학기술대학": {
+      "school-rec": 20,
+      "duksung-talent-1": 25,
+      "duksung-talent-2": 25,
+      "essay": 40,
+      "equal-1-vocational": 5,
+      "equal-1-basic": 18,
+      "equal-1-worker": 63,
+      "csat-1": 84,
+      "overseas-2pct": 3,
+      "overseas-full-course": null,
+      "north-korean": null
+    },
+    "duksung:가상현실융합학과": {
+      "school-rec": 10,
+      "duksung-talent-2": 20,
+      "csat-1": 10
+    },
+    "duksung:데이터사이언스학과": {
+      "school-rec": 10,
+      "duksung-talent-2": 20,
+      "csat-1": 10
+    },
+    "duksung:AI신약학과": {
+      "school-rec": 10,
+      "duksung-talent-2": 20,
+      "csat-1": 10
+    },
+    "duksung:자유전공학부": {
+      "school-rec": 40,
+      "duksung-talent-1": 30,
+      "duksung-talent-2": 40,
+      "equal-1-rural": 26,
+      "equal-2-social": 24,
+      "csat-2": 100,
+      "overseas-2pct": 5,
+      "overseas-full-course": null,
+      "north-korean": null
+    },
+    "duksung:약학과": {
+      "school-rec": 20,
+      "duksung-talent-2": 27,
+      "essay": 5,
+      "equal-1-basic": 8,
+      "csat-1": 28,
+      "overseas-2pct": 8
+    }
+  },
+  "pages": "4, 16, 21",
+  "notes": "수시 p.4, 정시 p.16, 재외국민 p.21. 정시 수능우수전형Ⅰ은 가군(과학기술대학·약학과·미래인재대학 3개 학과)과 나군(인문사회·유아교육과)을 한 전형으로 적음. 인문사회=글로벌융합대학(인문사회) 모집단위(유아교육과 제외). 기회균형Ⅰ_특성화고교 입학생은 인문사회는 경영·회계·국제통상·의상디자인전공, 과학기술대학은 디지털소프트웨어공학부만, 특성화고 등을 졸업한 재직자(과학기술대학 63)는 디지털소프트웨어공학부 재직자 특화 전공만 선택 가능(p.5). null(인원 미정): 전 교육과정 이수자·북한이탈주민은 '제한 없음'이라 인문사회·과학기술대학·자유전공학부 null(약학대학은 '-'). 재외국민(2%)은 p.21의 단과대학별 수(약학대학 8=약학과)."
+}

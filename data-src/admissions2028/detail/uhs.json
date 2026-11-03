@@ -1,0 +1,210 @@
+{
+  "univ": "uhs",
+  "suneung": [
+    {
+      "group": "일반전형",
+      "units": "자율전공학부(1유형), 인문사회·경영·이공·디자인 자율전공학부(2유형), 웨슬리대학, 인문사회과학대학, 경영대학, 이공대학",
+      "tracks": ["csat-general", "rural-csat", "vocational-csat", "basic-support-csat"],
+      "use": "백분위 (영어는 등급별 배점)",
+      "weights": {},
+      "inquiry": "탐구(사회·과학·직업) 상위 1과목 30%",
+      "english": "등급별 배점: 1등급 100, 2등급 90, 3등급 87, 4등급 79, 5등급 70, 6등급 60, 7등급 50, 8등급 30, 9등급 20",
+      "history": "응시 필수(미응시 시 지원자격 미달), 가산점 없음",
+      "bonus": null,
+      "formula": "국어·수학·영어 중 상위 2과목 각 35% + 탐구 상위 1과목 30%",
+      "total": null,
+      "pages": "18, 20-21"
+    },
+    {
+      "group": "예술대학 실기전형",
+      "units": "음악학부(피아노·관현악·성악·실용음악), 실내디자인학과, 가구디자인학과, 산업디자인학과, 시각디자인학과",
+      "tracks": ["csat-practical"],
+      "use": "백분위 (영어는 등급별 배점)",
+      "weights": {},
+      "inquiry": "탐구 1과목",
+      "english": "등급별 배점: 1등급 100, 2등급 90, 3등급 87, 4등급 79, 5등급 70, 6등급 60, 7등급 50, 8등급 30, 9등급 20",
+      "history": "응시 필수(미응시 시 지원자격 미달), 가산점 없음",
+      "bonus": null,
+      "formula": "국어·수학·영어·탐구(1과목) 중 상위 2과목 각 50%",
+      "total": null,
+      "pages": "19"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["subject-excellent", "equal-opportunity", "social-consideration", "rural-extra", "basic-support-extra"],
+      "subjects": "국어/수학 교과 중 상위 5과목, 영어 교과 중 상위 4과목, 사회(한국사)/과학 교과 중 상위 5과목, 총 14과목 (공통과목+선택과목(일반·진로), 융합선택 미반영)",
+      "terms": "1학년 1학기~3학년 1학기, 학년별 차등 없이 100% (졸업자도 같음, 3학년 2학기 미반영)",
+      "grades": "2028년 졸업예정자(석차등급+성취도 조합): 100점 1+A·1+B·2+A / 95점 1+C·2+B·3+A / 90점 1+D·2+C·3+B·4+A / 85점 2+D·3+C·4+B / 80점 1+E·5+A / 75점 2+E·3+D·4+C·5+B / 70점 3+E·4+D·5+C / 60점 4+E·5+D·5+E. 2027년 이전 졸업자: 1등급 100, 2등급 98, 3등급 96, 4등급 94, 5등급 90, 6등급 85, 7등급 80, 8등급 70, 9등급 60",
+      "achievement": "활용지표 석차등급 및 성취도 (2028년 졸업예정자는 위 조합 배점). 성취도(수·우·미·양·가)만 있는 경우 2·4·6·8·9등급으로 환산",
+      "formula": null,
+      "extra": "특성화고·학력인정평생교육시설 출신자는 3학년 1학기까지 보통교과 전 과목(2단위 이상) 반영, 전문교과 미반영. 검정고시는 국·영·수·사(도덕·국사 포함)·과 5과목 취득점수를 등급 환산(95점 이상 3등급 ~ 39~1점 9등급). 외국고교 출신자 일괄 5등급",
+      "pages": "15-16"
+    },
+    {
+      "tracks": ["future-creative", "wesley", "practical"],
+      "subjects": "국어/수학 교과 중 상위 3과목, 영어 교과 중 상위 3과목, 사회(한국사)/과학 교과 중 상위 3과목, 총 9과목 (공통과목+선택과목(일반·진로), 융합선택 미반영)",
+      "terms": "1학년 1학기~3학년 1학기, 학년별 차등 없이 100% (졸업자도 같음, 3학년 2학기 미반영)",
+      "grades": "2028년 졸업예정자(석차등급+성취도 조합): 100점 1+A·1+B·2+A / 95점 1+C·2+B·3+A / 90점 1+D·2+C·3+B·4+A / 85점 2+D·3+C·4+B / 80점 1+E·5+A / 75점 2+E·3+D·4+C·5+B / 70점 3+E·4+D·5+C / 60점 4+E·5+D·5+E. 2027년 이전 졸업자: 1등급 100, 2등급 98, 3등급 96, 4등급 94, 5등급 90, 6등급 85, 7등급 80, 8등급 70, 9등급 60",
+      "achievement": "활용지표 석차등급 및 성취도 (2028년 졸업예정자는 위 조합 배점). 성취도(수·우·미·양·가)만 있는 경우 2·4·6·8·9등급으로 환산",
+      "formula": null,
+      "extra": "특성화고·학력인정평생교육시설 출신자는 3학년 1학기까지 보통교과 전 과목(2단위 이상) 반영, 전문교과 미반영. 검정고시는 국·영·수·사(도덕·국사 포함)·과 5과목 취득점수를 등급 환산(95점 이상 3등급 ~ 39~1점 9등급). 외국고교 출신자 일괄 5등급",
+      "pages": "15-16"
+    },
+    {
+      "tracks": ["vocational-extra"],
+      "subjects": "보통교과 전 과목 (교과목 단위 수 2단위부터), 전문교과 미반영",
+      "terms": "3학년 1학기까지",
+      "grades": "2028년 졸업예정자(석차등급+성취도 조합): 100점 1+A·1+B·2+A / 95점 1+C·2+B·3+A / 90점 1+D·2+C·3+B·4+A / 85점 2+D·3+C·4+B / 80점 1+E·5+A / 75점 2+E·3+D·4+C·5+B / 70점 3+E·4+D·5+C / 60점 4+E·5+D·5+E. 2027년 이전 졸업자: 1등급 100, 2등급 98, 3등급 96, 4등급 94, 5등급 90, 6등급 85, 7등급 80, 8등급 70, 9등급 60",
+      "achievement": "성취도(수·우·미·양·가)만 있는 경우 2·4·6·8·9등급으로 환산",
+      "formula": null,
+      "extra": null,
+      "pages": "15-16"
+    }
+  ],
+  "tracks": {
+    "subject-excellent": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "신학과: 세례증명서 필수 제출",
+      "units": null
+    },
+    "future-creative": {
+      "stages": [
+        { "step": "1단계", "pick": "7배수", "parts": { "교과": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 50, "면접": 50 } }
+      ],
+      "interview": "면접문항 사전 공지. 면접관 2인이 수험생 1인에게 3분 이내 질의응답, 기초적인 전공소양 질문으로 발전가능성 평가",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "wesley": {
+      "stages": [
+        { "step": "1단계", "pick": "7배수", "parts": { "교과": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 50, "면접": 50 } }
+      ],
+      "interview": "면접문항 사전 공지. 면접관 2인이 수험생 1인에게 3분 이내 질의응답, 기독교적 영성과 인성 평가",
+      "essay": null,
+      "docs": "세례증명서 필수 제출",
+      "units": null
+    },
+    "equal-opportunity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "social-consideration": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "fusion-1": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "fusion-2": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 50, "면접": 50 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "practical": {
+      "stages": [
+        { "step": "일괄(디자인 자율전공학부)", "pick": null, "parts": { "실기": 100 } },
+        { "step": "일괄(에이블아트·스포츠학과)", "pick": null, "parts": { "실기": 60, "면접": 40 } },
+        { "step": "일괄(음악학부)", "pick": null, "parts": { "교과": 10, "실기": 90 } },
+        { "step": "일괄(실내·가구·산업·시각디자인)", "pick": null, "parts": { "교과": 20, "실기": 80 } }
+      ],
+      "interview": "에이블아트·스포츠학과만: 공통 5분 내외, 지원동기, 의사표현(자기소개), 적응능력(상황답변·문제해결), 학업역량(수리능력·문해능력)",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural-extra": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational-extra": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "basic-support-extra": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "disabled-extra": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "실기": 60, "면접": 40 } }],
+      "interview": "공통 5분 내외: 지원동기, 의사표현(자기소개), 적응능력(상황답변·문제해결), 학업역량(수리능력·문해능력)",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "신학과: 세례증명서 필수 제출",
+      "units": null
+    },
+    "csat-practical": {
+      "stages": [
+        { "step": "일괄(음악학부)", "pick": null, "parts": { "수능": 10, "실기": 90 } },
+        { "step": "일괄(실내·가구·산업·시각디자인)", "pick": null, "parts": { "수능": 20, "실기": 80 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural-csat": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational-csat": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "basic-support-csat": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "disabled-csat": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "실기": 60, "면접": 40 } }],
+      "interview": "공통 5분 내외: 지원동기, 의사표현(자기소개), 적응능력(상황답변·문제해결), 학업역량(수리능력·문해능력)",
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

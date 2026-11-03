@@ -1,0 +1,369 @@
+{
+  "univ": "kangwon",
+  "suneung": [
+    {
+      "group": "인문사회",
+      "units": "경영대학, 농업생명과학대학(식품자원경제학과), 문화예술·공과대학(영상문화학과), 사범대학(인문사회계열), 사회과학대학, 인문대학, 글로벌미래융합대학(자유전공학부)",
+      "tracks": ["suneung-general", "suneung-rural-low-income"],
+      "use": "백분위 (영어는 등급별 백분위 점수)",
+      "weights": { "국어": 30, "수학": 20, "영어": 20, "탐구": 30 },
+      "inquiry": "사회탐구 100점(20%) + 과학탐구 50점(10%) 분리 반영",
+      "english": "등급별 백분위 점수: 1등급 100, 2등급 96, 3등급 92, 4등급 88, 5등급 80, 6등급 72, 7등급 64, 8등급 56, 9등급 0",
+      "history": "등급별 가감점: 1등급 +1.5, 2등급 +1.0, 3등급 +0.5, 4등급 0, 5등급 −0.5, 6등급 −1.0, 7등급 −1.5, 8등급 −2.0, 9등급 −2.5",
+      "bonus": "사회탐구에 가산점 10%",
+      "formula": null,
+      "total": 500,
+      "pages": "9,36-37"
+    },
+    {
+      "group": "자연과학·공학",
+      "units": "간호대학, 농업생명과학대학, 동물생명과학대학, 문화예술·공과대학(공학계열), 사범대학(가정교육과·과학교육학부·수학교육과), 산림환경과학대학, 수의과대학, 약학대학, 의과대학, 의생명과학대학, 자연과학대학, IT대학, 글로벌미래융합대학(자유전공학부)",
+      "tracks": ["suneung-general", "suneung-gangwon", "suneung-low-income-doctor", "suneung-rural-low-income"],
+      "use": "백분위 (영어는 등급별 백분위 점수)",
+      "weights": { "국어": 20, "수학": 30, "영어": 20, "탐구": 30 },
+      "inquiry": "사회탐구 50점(10%) + 과학탐구 100점(20%) 분리 반영",
+      "english": "등급별 백분위 점수: 1등급 100, 2등급 96, 3등급 92, 4등급 88, 5등급 80, 6등급 72, 7등급 64, 8등급 56, 9등급 0",
+      "history": "등급별 가감점: 1등급 +1.5, 2등급 +1.0, 3등급 +0.5, 4등급 0, 5등급 −0.5, 6등급 −1.0, 7등급 −1.5, 8등급 −2.0, 9등급 −2.5",
+      "bonus": "수학에 가산점 10%",
+      "formula": null,
+      "total": 500,
+      "pages": "9,36-37"
+    },
+    {
+      "group": "스포츠과학과(수학 반영)",
+      "units": "문화예술·공과대학 스포츠과학과, 수학 또는 영어 택1 중 수학 (수능 60% + 실기 40%)",
+      "tracks": ["suneung-general"],
+      "use": "백분위",
+      "weights": { "국어": 33.3, "수학": 33.3, "탐구": 33.3 },
+      "inquiry": "탐구 1과목",
+      "english": null,
+      "history": "등급별 가감점: 1등급 +1.5, 2등급 +1.0, 3등급 +0.5, 4등급 0, 5등급 −0.5, 6등급 −1.0, 7등급 −1.5, 8등급 −2.0, 9등급 −2.5",
+      "bonus": null,
+      "formula": null,
+      "total": 180,
+      "pages": "9,27,36-37"
+    },
+    {
+      "group": "스포츠과학과(영어 반영)",
+      "units": "문화예술·공과대학 스포츠과학과, 수학 또는 영어 택1 중 영어 (수능 60% + 실기 40%)",
+      "tracks": ["suneung-general"],
+      "use": "백분위 (영어는 등급별 백분위 점수)",
+      "weights": { "국어": 33.3, "영어": 33.3, "탐구": 33.3 },
+      "inquiry": "탐구 1과목",
+      "english": "등급별 백분위 점수: 1등급 100, 2등급 96, 3등급 92, 4등급 88, 5등급 80, 6등급 72, 7등급 64, 8등급 56, 9등급 0",
+      "history": "등급별 가감점: 1등급 +1.5, 2등급 +1.0, 3등급 +0.5, 4등급 0, 5등급 −0.5, 6등급 −1.0, 7등급 −1.5, 8등급 −2.0, 9등급 −2.5",
+      "bonus": null,
+      "formula": null,
+      "total": 180,
+      "pages": "9,27,36-37"
+    },
+    {
+      "group": "체육교육과(수학 반영)",
+      "units": "사범대학 체육교육과, 수학 또는 영어 택1 중 수학 (일반전형 수능 75% + 실기 25%, 농어촌학생전형은 수능 300점 만점·실기 없음)",
+      "tracks": ["suneung-general", "suneung-rural-low-income"],
+      "use": "백분위",
+      "weights": { "국어": 50, "수학": 50 },
+      "inquiry": "탐구 미반영",
+      "english": null,
+      "history": "등급별 가감점: 1등급 +1.5, 2등급 +1.0, 3등급 +0.5, 4등급 0, 5등급 −0.5, 6등급 −1.0, 7등급 −1.5, 8등급 −2.0, 9등급 −2.5",
+      "bonus": null,
+      "formula": null,
+      "total": 300,
+      "pages": "9,27-28,36-37"
+    },
+    {
+      "group": "체육교육과(영어 반영)",
+      "units": "사범대학 체육교육과, 수학 또는 영어 택1 중 영어 (일반전형 수능 75% + 실기 25%, 농어촌학생전형은 수능 300점 만점·실기 없음)",
+      "tracks": ["suneung-general", "suneung-rural-low-income"],
+      "use": "백분위 (영어는 등급별 백분위 점수)",
+      "weights": { "국어": 50, "영어": 50 },
+      "inquiry": "탐구 미반영",
+      "english": "등급별 백분위 점수: 1등급 100, 2등급 96, 3등급 92, 4등급 88, 5등급 80, 6등급 72, 7등급 64, 8등급 56, 9등급 0",
+      "history": "등급별 가감점: 1등급 +1.5, 2등급 +1.0, 3등급 +0.5, 4등급 0, 5등급 −0.5, 6등급 −1.0, 7등급 −1.5, 8등급 −2.0, 9등급 −2.5",
+      "bonus": null,
+      "formula": null,
+      "total": 300,
+      "pages": "9,27-28,36-37"
+    },
+    {
+      "group": "미술·디자인·무용·음악(수학 반영)",
+      "units": "실기/실적(일반전형) 미술학과, 수시 이월 시 디자인학과·무용학과·음악학과. 국어 70점 + 수학 또는 영어 50점 중 수학 (수능 40% + 실기 60%)",
+      "tracks": ["silgi-general-ga"],
+      "use": "백분위",
+      "weights": { "국어": 58.3, "수학": 41.7 },
+      "inquiry": "탐구 미반영",
+      "english": null,
+      "history": "등급별 가감점: 1등급 +1.5, 2등급 +1.0, 3등급 +0.5, 4등급 0, 5등급 −0.5, 6등급 −1.0, 7등급 −1.5, 8등급 −2.0, 9등급 −2.5",
+      "bonus": null,
+      "formula": null,
+      "total": 120,
+      "pages": "28,36-37"
+    },
+    {
+      "group": "미술·디자인·무용·음악(영어 반영)",
+      "units": "실기/실적(일반전형) 미술학과, 수시 이월 시 디자인학과·무용학과·음악학과. 국어 70점 + 수학 또는 영어 50점 중 영어 (수능 40% + 실기 60%)",
+      "tracks": ["silgi-general-ga"],
+      "use": "백분위 (영어는 등급별 백분위 점수)",
+      "weights": { "국어": 58.3, "영어": 41.7 },
+      "inquiry": "탐구 미반영",
+      "english": "등급별 백분위 점수: 1등급 100, 2등급 96, 3등급 92, 4등급 88, 5등급 80, 6등급 72, 7등급 64, 8등급 56, 9등급 0",
+      "history": "등급별 가감점: 1등급 +1.5, 2등급 +1.0, 3등급 +0.5, 4등급 0, 5등급 −0.5, 6등급 −1.0, 7등급 −1.5, 8등급 −2.0, 9등급 −2.5",
+      "bonus": null,
+      "formula": null,
+      "total": 120,
+      "pages": "28,36-37"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["general", "gangwon-talent", "low-income-gangwon", "general-qualitative", "gangwon-qualitative", "regional-doctor-qualitative", "social-care", "gyogwa-silgi", "rural", "low-income", "special-edu", "lifelong", "worker", "adult"],
+      "subjects": "국어·영어·수학·사회·과학 교과의 이수 전 과목(공통·일반·진로·융합선택, 융합선택 중 사회·과학 과목 제외), 교과등급 있는 과목만. 예체능계(무용·스포츠과학·디자인·미술·음악학과, 체육교육과)는 국어·영어·사회",
+      "terms": "1학년 1학기 ~ 3학년 1학기 (졸업생 포함), 정시모집은 3학년 2학기까지",
+      "grades": "교과등급 1등급 500, 2등급 470, 3등급 430, 4등급 380, 5등급 100 (2022 개정 이전 9등급: 500, 500, 470, 455, 430, 395, 380, 100, 100)",
+      "achievement": "교과 성취도 A 500, B 481, C 461, D 441, E 400. 2022 개정 이전은 석차등급별 성취도 환산(500, 500, 481, 471, 461, 451, 441, 400, 400), 2015 개정 진로선택(A·B·C) 과목은 미반영",
+      "formula": "Σ(과목 등급별 반영점수 × 학점) ÷ Σ학점 [500점, 최저 100] + Σ(과목 성취도별 반영점수 × 학점) ÷ Σ학점 [500점, 최저 400] = 1,000점 (교과등급 80% + 성취도 20%), 출결 가감점 별도",
+      "extra": "출결(미인정 결석, 교과 총점에 가감): 0일 +3, 1일 0, 2~3일 −3, 4~5일 −6, 6~7일 −9, 8~9일 −12, 10일 이상 −15. 미인정 지각·조퇴·결과 3회 = 결석 1회, 검정고시·국외고 등 출결 미제공자는 0점. 검정고시·국외고는 별도 환산표. 학교폭력: 3호 10%, 4호 20%, 5호 40%, 6~7호 60% 감점, 8~9호 불합격",
+      "pages": "7-8,32-34,39"
+    },
+    {
+      "tracks": ["vocational", "jeongsi-vocational"],
+      "subjects": "국어·영어·수학·사회·과학 교과의 이수 전 과목에 전문교과 포함. 등급이 없는 전문교과는 Z점수로 등급 산출",
+      "terms": "1학년 1학기 ~ 3학년 1학기 (졸업생 포함), 정시모집은 3학년 2학기까지",
+      "grades": "교과등급 1등급 500, 2등급 470, 3등급 430, 4등급 380, 5등급 100. 전문교과 Z점수 1.29 이상 1등급, 0.41 이상 2등급, −0.41 이상 3등급, −1.29 이상 4등급, 그 미만 5등급",
+      "achievement": "교과 성취도 A 500, B 481, C 461, D 441, E 400",
+      "formula": "Σ(과목 등급별 반영점수 × 학점) ÷ Σ학점 [500점] + Σ(과목 성취도별 반영점수 × 학점) ÷ Σ학점 [500점] = 1,000점, 출결 가감점 별도. Z = (과목점수 − 평균) ÷ 표준편차 (소수점 셋째 자리 반올림, ±3.0 한도)",
+      "extra": "출결(미인정 결석): 0일 +3, 1일 0, 2~3일 −3, 4~5일 −6, 6~7일 −9, 8~9일 −12, 10일 이상 −15. 학교폭력: 3호 10%, 4호 20%, 5호 40%, 6~7호 60% 감점, 8~9호 불합격",
+      "pages": "23,28,32-34,39"
+    },
+    {
+      "tracks": ["silgi-excellent", "sports-individual", "sports-team"],
+      "subjects": "예체능계(무용·스포츠과학·디자인·미술·음악학과, 체육교육과): 국어·영어·사회 교과의 이수 전 과목(공통·일반·진로·융합선택, 융합선택 중 사회·과학 과목 제외), 교과등급 있는 과목만",
+      "terms": "1학년 1학기 ~ 3학년 1학기 (졸업생 포함)",
+      "grades": "교과등급 1등급 500, 2등급 470, 3등급 430, 4등급 380, 5등급 100",
+      "achievement": "교과 성취도 A 500, B 481, C 461, D 441, E 400",
+      "formula": "학생부 교과 성적(1,000점, 출결 가감점 포함) × 1/10 = 100점 (최고 100, 최저 50)",
+      "extra": "출결(미인정 결석): 0일 +3, 1일 0, 2~3일 −3, 4~5일 −6, 6~7일 −9, 8~9일 −12, 10일 이상 −15. 학교폭력: 3호 10%, 4호 20%, 5호 40%, 6~7호 60% 감점, 8~9호 불합격",
+      "pages": "25-26,32-34,39"
+    }
+  ],
+  "tracks": {
+    "future-doc": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 학업역량 50%·진로역량 30%·공동체역량 20%, 자유전공학부는 진로역량 대신 자기주도역량)",
+      "units": null
+    },
+    "future-interview": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수(400%) 이내, 모집인원 6명 이상은 3배수 이내", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "서류": 60, "면접": 40 } }
+      ],
+      "interview": "학교생활기록부 기반 블라인드 개별 면접, 1인당 10분 내외. 평가요소 학업역량 30%·진로역량 50%(자유전공학부는 자기주도역량)·공동체역량 20%",
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 학업역량 30%·진로역량 50%·공동체역량 20%, 자유전공학부는 진로역량 대신 자기주도역량)",
+      "units": null
+    },
+    "farming-startup": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수(400%) 이내", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "서류": 60, "면접": 40 } }
+      ],
+      "interview": "학교생활기록부 기반 블라인드 개별 면접, 1인당 10분 내외. 평가요소 학업역량 30%·진로역량 50%·공동체역량 20%",
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 학업역량 30%·진로역량 50%·공동체역량 20%)",
+      "units": null
+    },
+    "equal-opportunity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 학업역량 50%·진로역량 30%·공동체역량 20%, 자유전공학부는 진로역량 대신 자기주도역량)",
+      "units": null
+    },
+    "general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gangwon-talent": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "low-income-gangwon": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "general-qualitative": {
+      "stages": [
+        { "step": "1단계", "pick": "7배수(700%) 이내", "parts": { "교과": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "교과": 80, "정성평가": 20 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "정성평가: 학교생활기록부 교과학습발달상황(교과이수내역·교과성적·세부능력 및 특기사항), 학업성취도 30%·전공관련 교과 이수 노력 30%·학업수행 충실도 40%",
+      "units": null
+    },
+    "gangwon-qualitative": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수(400%) 이내", "parts": { "교과": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "교과": 80, "정성평가": 20 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "정성평가: 학교생활기록부 교과학습발달상황(교과이수내역·교과성적·세부능력 및 특기사항), 학업성취도 30%·전공관련 교과 이수 노력 30%·학업수행 충실도 40%",
+      "units": null
+    },
+    "regional-doctor-qualitative": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수(400%) 이내", "parts": { "교과": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "교과": 80, "정성평가": 20 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "정성평가: 학교생활기록부 교과학습발달상황(교과이수내역·교과성적·세부능력 및 특기사항), 학업성취도 30%·전공관련 교과 이수 노력 30%·학업수행 충실도 40%",
+      "units": null
+    },
+    "social-care": {
+      "stages": [
+        { "step": "1단계", "pick": "7배수(700%) 이내", "parts": { "교과": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "교과": 80, "정성평가": 20 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "정성평가: 학교생활기록부 교과학습발달상황(교과이수내역·교과성적·세부능력 및 특기사항), 학업성취도 30%·전공관련 교과 이수 노력 30%·학업수행 충실도 40%",
+      "units": null
+    },
+    "gyogwa-silgi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 60, "실기": 40 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 80, "정성평가": 20 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "정성평가: 학교생활기록부 교과학습발달상황(교과이수내역·교과성적·세부능력 및 특기사항), 학업성취도 30%·전공관련 교과 이수 노력 30%·학업수행 충실도 40%",
+      "units": null
+    },
+    "low-income": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "special-edu": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 80, "정성평가": 20 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "자격확인: 특수교육대상자 (재)배치 결과 통지서, 장애인 증명서, 상이등급이 기재된 국가유공자 증명서. 정성평가: 학교생활기록부 교과학습발달상황, 학업성취도 30%·전공관련 교과 이수 노력 30%·학업수행 충실도 40%",
+      "units": null
+    },
+    "silgi-excellent": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 30, "실기": 70 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "sports-individual": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 30, "입상실적": 70 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "sports-team": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 30, "실기": 40, "입상실적": 30 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "suneung-general": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } },
+        { "step": "일괄(스포츠과학과)", "pick": null, "parts": { "수능": 60, "실기": 40 } },
+        { "step": "일괄(체육교육과)", "pick": null, "parts": { "수능": 75, "실기": 25 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "suneung-gangwon": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "silgi-general-ga": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 40, "실기": 60 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "suneung-low-income-doctor": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "suneung-rural-low-income": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "lifelong": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 70, "면접": 30 } }],
+      "interview": "블라인드 개별 면접, 수험생 1인당 10분 내외 (600점)",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "산업체 근무경력 증빙 서류(제출 서류로 증명되는 기간만 재직기간 산정). 4대 보험 비대상 농·수산업 등은 농지원부·농업경영체 증명서 등 공적 증명서, 4대 보험 미가입 영세 창업·자영업자는 사업자등록증·납세증명서",
+      "units": null
+    },
+    "adult": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 70, "면접": 30 } }],
+      "interview": "블라인드 개별 면접, 수험생 1인당 10분 내외 (600점)",
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

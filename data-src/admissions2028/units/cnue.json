@@ -1,0 +1,8 @@
+{
+  "univ": "cnue",
+  "seats": {
+    "cnue:초등교육과": {"teaching-aptitude": 50, "regional": 123, "veteran": 3, "multicultural-nk": 3, "rural": 12, "equity": 5, "disabled": 12, "adult": 20, "csat-general": 102, "csat-rural": null, "csat-equity": null, "csat-disabled": null, "csat-adult": null}
+  },
+  "pages": "6",
+  "notes": "null: 정시 정원외 4개 전형(농어촌·기회균형·장애인 등·만학도) — 수시 해당 전형 미충원분만 이월 모집해 표에 '명'만 있음 (6-7쪽)."
+}

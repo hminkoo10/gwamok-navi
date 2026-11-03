@@ -1,0 +1,258 @@
+{
+  "univ": "sogang",
+  "suneung": [
+    {
+      "group": "1유형 A형",
+      "units": "정시 전 전형(수능(지역균형) 제외) 전 계열. A형·B형 산출 점수 중 상위 점수를 반영",
+      "tracks": ["csat-general-na", "csat-general-da", "csat-rural", "csat-basic-living", "csat-disabled", "csat-vocational"],
+      "use": "국어·수학 표준점수, 탐구 백분위(변환표준점수), 영어·한국사 등급",
+      "weights": { "국어": 40, "수학": 46.7, "탐구": 13.3 },
+      "inquiry": "사회탐구·과학탐구 변환표준점수(백분위 환산 자체 변환표준점수, 수능 성적 발표일 이후 공지)의 합 × 0.4. 수능(특성화고교졸업자)전형은 직업탐구 인정",
+      "english": "등급별 가산점: 1등급 50, 2등급 49.5, 3등급 48.5, 4등급 47, 5등급 45, 6등급 42.5, 7등급 39.5, 8등급 36, 9등급 32",
+      "history": "등급별 가산점: 1~4등급 50, 5등급 49.5, 6등급 49, 7등급 48.5, 8등급 48, 9등급 47.5",
+      "bonus": null,
+      "formula": "국어 표준점수 × 1.2 + 수학 표준점수 × 1.4 + (사회탐구 변환표준점수 + 과학탐구 변환표준점수) × 0.4 + 영어 등급별 가산점 + 한국사 등급별 가산점 (B형 점수와 비교해 높은 점수 반영)",
+      "total": null,
+      "pages": "32-33"
+    },
+    {
+      "group": "1유형 B형",
+      "units": "정시 전 전형(수능(지역균형) 제외) 전 계열. A형·B형 산출 점수 중 상위 점수를 반영",
+      "tracks": ["csat-general-na", "csat-general-da", "csat-rural", "csat-basic-living", "csat-disabled", "csat-vocational"],
+      "use": "국어·수학 표준점수, 탐구 백분위(변환표준점수), 영어·한국사 등급",
+      "weights": { "국어": 46.7, "수학": 40, "탐구": 13.3 },
+      "inquiry": "사회탐구·과학탐구 변환표준점수(백분위 환산 자체 변환표준점수, 수능 성적 발표일 이후 공지)의 합 × 0.4. 수능(특성화고교졸업자)전형은 직업탐구 인정",
+      "english": "등급별 가산점: 1등급 50, 2등급 49.5, 3등급 48.5, 4등급 47, 5등급 45, 6등급 42.5, 7등급 39.5, 8등급 36, 9등급 32",
+      "history": "등급별 가산점: 1~4등급 50, 5등급 49.5, 6등급 49, 7등급 48.5, 8등급 48, 9등급 47.5",
+      "bonus": null,
+      "formula": "국어 표준점수 × 1.4 + 수학 표준점수 × 1.2 + (사회탐구 변환표준점수 + 과학탐구 변환표준점수) × 0.4 + 영어 등급별 가산점 + 한국사 등급별 가산점 (A형 점수와 비교해 높은 점수 반영)",
+      "total": null,
+      "pages": "32-33"
+    },
+    {
+      "group": "2유형 A형(지역균형)",
+      "units": "수능(지역균형) 전 계열. A형·B형 산출 점수 중 상위 점수를 반영",
+      "tracks": ["csat-regional"],
+      "use": "국어·수학·탐구 백분위, 영어·한국사 등급",
+      "weights": { "국어": 40, "수학": 46.7, "탐구": 13.3 },
+      "inquiry": "(사회탐구 백분위 + 과학탐구 백분위) ÷ 2 × 0.4",
+      "english": "등급별 가산점: 1등급 50, 2등급 49.5, 3등급 48.5, 4등급 47, 5등급 45, 6등급 42.5, 7등급 39.5, 8등급 36, 9등급 32",
+      "history": "등급별 가산점: 1~4등급 50, 5등급 49.5, 6등급 49, 7등급 48.5, 8등급 48, 9등급 47.5",
+      "bonus": null,
+      "formula": "국어 백분위 × 1.2 + 수학 백분위 × 1.4 + (사회탐구 백분위 + 과학탐구 백분위) ÷ 2 × 0.4 + 영어 등급별 가산점 + 한국사 등급별 가산점 (B형 점수와 비교해 높은 점수 반영). 수능 80%(400점)",
+      "total": 400,
+      "pages": "19, 32-33"
+    },
+    {
+      "group": "2유형 B형(지역균형)",
+      "units": "수능(지역균형) 전 계열. A형·B형 산출 점수 중 상위 점수를 반영",
+      "tracks": ["csat-regional"],
+      "use": "국어·수학·탐구 백분위, 영어·한국사 등급",
+      "weights": { "국어": 46.7, "수학": 40, "탐구": 13.3 },
+      "inquiry": "(사회탐구 백분위 + 과학탐구 백분위) ÷ 2 × 0.4",
+      "english": "등급별 가산점: 1등급 50, 2등급 49.5, 3등급 48.5, 4등급 47, 5등급 45, 6등급 42.5, 7등급 39.5, 8등급 36, 9등급 32",
+      "history": "등급별 가산점: 1~4등급 50, 5등급 49.5, 6등급 49, 7등급 48.5, 8등급 48, 9등급 47.5",
+      "bonus": null,
+      "formula": "국어 백분위 × 1.4 + 수학 백분위 × 1.2 + (사회탐구 백분위 + 과학탐구 백분위) ÷ 2 × 0.4 + 영어 등급별 가산점 + 한국사 등급별 가산점 (A형 점수와 비교해 높은 점수 반영). 수능 80%(400점)",
+      "total": 400,
+      "pages": "19, 32-33"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["rec-regional"],
+      "subjects": "체육·예술 과목을 제외한 전 과목(석차등급, 성취도가 모두 없는 과목은 반영 제외)",
+      "terms": null,
+      "grades": "석차등급(5등급) 800점: 석차등급 점수 = (5 − 등급평균) × 200",
+      "achievement": "성취도 100점: 성취도별 환산점수 A 100, B 90, C 70, D 40, E 0",
+      "formula": "등급평균 = Σ(반영 과목 등급 × 학점) ÷ Σ(반영 과목 학점), 석차등급 점수 = (5 − 등급평균) × 200. 성취도 점수 = Σ(성취도별 환산점수 × 학점) ÷ Σ(반영 과목 학점). 교과 90%(석차등급 800점 + 성취도 100점) + 출결 10%(100점)",
+      "extra": "출결(100점): 미인정 출결일수 = 결석 일수 + (지각 + 조퇴 + 결과 일수)/3(내림), 0~3일 100, 4~6일 98, 7~9일 96, 10~14일 90, 15일 이상 0",
+      "pages": "10, 28, 32"
+    },
+    {
+      "tracks": ["nonsul"],
+      "subjects": "체육·예술 과목 제외 성적 상위 12과목(동일 성적이면 학점이 큰 과목, 2그룹은 단위수가 큰 과목)",
+      "terms": null,
+      "grades": "등급평균별 반영점수(100점) 1그룹: 1.0이하~2.0이상 100, 2.0미만~3.0이상 99.5, 3.0미만~4.0이상 98, 4.0미만~4.5이상 95, 4.5미만~5.0이상 0 / 2그룹: 1.0이하~3.5이상 100, 3.5미만~5.0이상 99.5, 5.0미만~6.5이상 98, 6.5미만~8.0이상 95, 8.0미만~9.0이상 0",
+      "achievement": "1그룹(2022 개정, 2028년 2월 졸업예정자): 성취도 변환 등급 A=1, B=2, C=3, D=4, E=5, 석차 등급과 변환 등급 중 상위 등급 반영(성취도만 있는 융합선택과목은 변환 등급). 2그룹(2015 개정, 2027년 2월 졸업자): 진로선택과목 A=1, B=3, C=6등급",
+      "formula": "등급평균 = Σ(반영 과목 등급 × 학점) ÷ Σ(반영 과목 학점)(2그룹은 단위수), 등급 기준표에 따른 반영 점수. 논술 80%(800점) + 교과 10%(100점) + 출결 10%(100점)",
+      "extra": "출결(100점): 0~3일 100, 4~6일 98, 7~9일 96, 10~14일 90, 15일 이상 0. 비교점수: 2026년 2월 이전(포함) 졸업자, 성적 산출 가능 과목이 12과목 미만인 자, 성적 산출 불가자",
+      "pages": "16, 29-30, 32"
+    },
+    {
+      "tracks": ["csat-regional"],
+      "subjects": "체육·예술 과목 제외 성적 상위 12과목(동일 성적이면 학점이 큰 과목)",
+      "terms": null,
+      "grades": "등급평균별 반영점수(50점): 1.0이하~2.0이상 50, 2.0미만~3.0이상 49.5, 3.0미만~4.0이상 48, 4.0미만~4.5이상 45, 4.5미만~5.0이상 0",
+      "achievement": "성취도 변환 등급 A=1, B=2, C=3, D=4, E=5, 석차 등급과 변환 등급 중 상위 등급 반영(성취도만 있는 융합선택과목은 변환 등급)",
+      "formula": "등급평균 = Σ(반영 과목 등급 × 학점) ÷ Σ(반영 과목 학점), 등급 기준표에 따른 반영 점수. 수능 80%(400점) + 교과 10%(50점) + 출결 10%(50점)",
+      "extra": "출결(50점): 미인정 출결일수 0~3일 50, 4~6일 48, 7~9일 46, 10~14일 40, 15일 이상 0. 성적 산출 가능 과목이 12과목 미만이면 해당 과목만 반영, 전편입 시기에 따라 산출 가능 과목이 없으면 수능 성적에 따른 비교 점수",
+      "pages": "19, 31-32"
+    }
+  ],
+  "tracks": {
+    "rec-regional": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "교과(석차등급)": 80, "교과(성취도)": 10, "출결": 10 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "comp-general-1": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "comp-general-2": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "comp-equity": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "국가보훈대상자는 보훈(지)청장이 발급하는 대학입학특별전형대상자증명서 제출",
+      "units": null
+    },
+    "comp-values": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "comp-vocational": {
+      "stages": [
+        { "step": "1단계", "pick": "6배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 80, "면접": 20 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "nonsul": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "논술": 80, "교과": 10, "출결": 10 } }
+      ],
+      "interview": null,
+      "essay": "인문계열(지식융합미디어학부 포함): 통합교과형 논술, 인문/사회과학 관련 분야 제시문과 논제 제시. 자연계열: 수리형 논술, 수리 관련 제시문과 논제 제시",
+      "docs": null,
+      "units": null
+    },
+    "csat-general-na": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general-da": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-regional": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 80, "교과": 10, "출결": 10 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-rural": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-basic-living": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-disabled": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-vocational": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-middle-high": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-full-march": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "overseas-full-sept": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "north-korean": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "서류": 60, "면접": 40 } }
+      ],
+      "interview": "제출서류를 기반으로 진행하는 일반면접",
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "univ": "knsu",
+  "seats": {
+    "knsu:체육학과": {"athlete-susi": 176, "athlete-jeongsi": 59},
+    "knsu:경기지도학과": {"achievement-susi": 22, "special-education": 2, "foreigner-susi": 2, "achievement-jeongsi": 8, "overseas-korean": 1, "foreigner-jeongsi": null, "north-korean": 2},
+    "knsu:사회체육학과": {"subject-excellence": 4, "veteran": 1, "general": 55, "rural-jeongsi": 2, "social-care": 2, "west-sea-islands": 3, "overseas-korean": 1, "foreigner-jeongsi": null, "north-korean": 1},
+    "knsu:스포츠청소년지도학과": {"subject-excellence": 5, "veteran": 1, "general": 13, "csat-excellence": 11, "rural-jeongsi": 3, "social-care": 1, "west-sea-islands": 1, "overseas-korean": 1, "foreigner-jeongsi": null, "north-korean": 1},
+    "knsu:특수체육교육과": {"subject-excellence": 19, "veteran": 1, "special-education": 3, "general": 10, "rural-jeongsi": 1, "social-care": 1, "overseas-korean": 1, "foreigner-jeongsi": null, "north-korean": 1},
+    "knsu:스포츠산업학과": {"subject-excellence": 10, "general": 20, "rural-jeongsi": 3, "social-care": 2, "west-sea-islands": 1, "overseas-korean": 1, "foreigner-jeongsi": null, "north-korean": 1},
+    "knsu:운동건강관리학과": {"subject-excellence": 5, "veteran": 1, "general": 24, "rural-jeongsi": 3, "social-care": 1, "overseas-korean": 2, "foreigner-jeongsi": null, "north-korean": 1},
+    "knsu:노인체육복지학과": {"subject-excellence": 7, "veteran": 1, "general": 19, "csat-excellence": 3, "rural-jeongsi": 3, "social-care": 2, "overseas-korean": 1, "foreigner-jeongsi": null, "north-korean": 1},
+    "knsu:태권도학과": {"achievement-susi": 15, "practical": 5, "special-education": 8, "general": 10, "rural-jeongsi": 3, "overseas-korean": 2, "foreigner-jeongsi": null},
+    "knsu:공연예술학과": {"practical": 24, "subject-excellence": 6, "rural-susi": 2, "general": null, "foreigner-jeongsi": null, "north-korean": 1}
+  },
+  "pages": "3",
+  "notes": "체육학과는 개인종목·단체종목 두 행의 합. 공연예술학과는 '무용전공' 행. null: 정시 외국인 특별전형 — 합계가 '학교 수용 범위 내'이고 3쪽 표에서 '-'인 체육학과만 빼고 9개 학과 (24쪽 외국인군 자격에 태권도학과 단증 조건); 공연예술학과 정시 일반학생 — 3쪽 인원 칸은 비었지만 8쪽 일반학생 반영방법·16쪽 정시 면접에 공연예술학과가 있음."
+}

@@ -1,0 +1,168 @@
+{
+  "univ": "koreatech",
+  "suneung": [
+    {
+      "group": "공학·ICT융합계열",
+      "units": "공학융합계열, ICT융합계열, 자율전공(자연), AI·SW학석사통합(ICT융합계열)",
+      "tracks": ["csat-general", "csat-ai-sw-master"],
+      "use": "백분위",
+      "weights": { "국어": 20, "수학": 35, "영어": 20, "탐구": 25 },
+      "inquiry": "통합과학 25% (통합사회·성공적인 직업생활 미반영)",
+      "english": "등급별 환산점수: 1등급 20, 2등급 19.5, 3등급 19, 4등급 18, 5등급 16, 6등급 14, 7등급 12, 8등급 10, 9등급 8",
+      "history": null,
+      "bonus": null,
+      "formula": null,
+      "total": 100,
+      "pages": "14"
+    },
+    {
+      "group": "사회융합계열",
+      "units": "사회융합계열, 자율전공(인문)",
+      "tracks": ["csat-general"],
+      "use": "백분위",
+      "weights": { "국어": 35, "수학": 20, "영어": 20, "탐구": 25 },
+      "inquiry": "통합사회·통합과학·성공적인 직업생활 중 상위 1개 영역 25%",
+      "english": "등급별 환산점수: 1등급 20, 2등급 19.5, 3등급 19, 4등급 18, 5등급 16, 6등급 14, 7등급 12, 8등급 10, 9등급 8",
+      "history": null,
+      "bonus": null,
+      "formula": null,
+      "total": 100,
+      "pages": "14"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["subject-general"],
+      "subjects": "공학·ICT융합계열·자율전공(자연) 국어·수학·영어·과학 / 사회융합계열·자율전공(인문) 국어·수학·영어·사회, 교과 전 과목 (공통·일반선택·진로선택, 융합선택 미반영)",
+      "terms": "졸업예정자 3학년 1학기까지, 졸업생 3학년 2학기까지. 1~3학년 100%, 학년별 가중치 없음",
+      "grades": "공통·일반선택 석차등급. 재학생·2028년 2월 졸업예정자: 1등급 100, 2등급 95, 3등급 80, 4등급 50, 5등급 20 / 2027년 2월 이전 졸업자: 1등급 100, 2등급 99, 3등급 95, 4등급 85, 5등급 80, 6등급 55, 7등급 50, 8등급 40, 9등급 20",
+      "achievement": "진로선택 성취도. 재학생·졸업예정자: A 100, B 92, C 80, D 50, E 20 / 2027년 2월 이전 졸업자: A 92, B 75, C 30",
+      "formula": "Σ(과목별 등급점수(또는 성취도 점수) × 과목 이수단위 수) ÷ Σ과목 이수단위 수 (반영 총점 100점)",
+      "extra": "석차등급이 없는 과목은 석차백분율로 등급을 부여해 환산",
+      "pages": "12-13"
+    },
+    {
+      "tracks": ["subject-regional"],
+      "subjects": "공학·ICT융합계열·자율전공(자연) 국어·수학·영어·과학 / 사회융합계열·자율전공(인문) 국어·수학·영어·사회, 교과 전 과목 (공통·일반선택·진로선택, 융합선택 미반영)",
+      "terms": "졸업예정자 3학년 1학기까지, 졸업생 3학년 2학기까지. 1~3학년 100%, 학년별 가중치 없음",
+      "grades": null,
+      "achievement": "공통·일반선택·진로선택 모두 성취도와 이수단위로 반영. 재학생·졸업예정자: A 100, B 92, C 80, D 50, E 20 / 2027년 2월 이전 졸업자: A 92, B 75, C 30",
+      "formula": "Σ(과목별 등급점수(또는 성취도 점수) × 과목 이수단위 수) ÷ Σ과목 이수단위 수 (반영 총점 100점)",
+      "extra": null,
+      "pages": "12-13"
+    }
+  ],
+  "tracks": {
+    "creative-doc": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "creative-interview": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "ai-sw": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "social-integration": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational-hs": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural-student": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "special-education": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "chungnam-contract": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "subject-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "subject-regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "essay-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "논술": 100 } }],
+      "interview": null,
+      "essay": "공학·ICT융합계열 수리논술, 사회융합계열 자료제시형 언어논술",
+      "docs": null,
+      "units": null
+    },
+    "overseas-nationals": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "면접": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "foreigners": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "면접": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-ai-sw-master": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

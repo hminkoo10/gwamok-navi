@@ -1,0 +1,191 @@
+{
+  "univ": "sungkyul",
+  "suneung": [
+    {
+      "group": "전 모집단위",
+      "units": "전 모집단위 (일반전형·실기우수자·정원외 정시 전형 모두 같은 반영방법)",
+      "tracks": ["general-jeongsi", "practical-jeongsi", "vocational-jeongsi", "rural-jeongsi-suneung", "rural-jeongsi-practical", "equal-2-jeongsi"],
+      "use": "백분위 (영어는 등급별 환산점수)",
+      "weights": {},
+      "inquiry": "탐구(사회/과학/직업) 1개 영역 반영, 30%",
+      "english": "등급별 환산점수: 1등급 100, 2등급 97, 3등급 93, 4등급 88, 5등급 82, 6등급 70, 7등급 50, 8등급 25, 9등급 0",
+      "history": "필수 응시, 반영비율 없음",
+      "bonus": null,
+      "formula": "국어·수학·영어 3개 영역 중 2개 영역 선택 반영 70% + 탐구(사회/과학/직업) 1개 영역 30% (2개 영역 사이의 비율은 원문에 없음)",
+      "total": null,
+      "pages": "6"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["grade-excellent", "pastor-rec", "future-talent", "christian", "sku-creative", "equal-1", "practical-susi", "athlete", "vocational-susi", "rural-susi-gyogwa", "rural-susi-practical", "equal-2-susi"],
+      "subjects": "일반계고(일반고·자율고·특목고·영재학교): 국어·수학·영어·사회(역사/도덕 포함)·과학, 졸업생은 한국사 포함 / 특성화고·마이스터고·학력인정고·대안학교·각종학교·2년제고·방송통신고: 전 학년 전 과목(졸업예정자는 전문교과 제외). 반영 교과 중 석차등급이 높은 12과목",
+      "terms": "3학년 1학기까지. 학년별 반영비율 없음(100 공통). 학생부 요소: 교과 100, 출결 0",
+      "grades": "2028 졸업예정자(5등급): 1등급 100, 2등급 95, 3등급 88, 4등급 65, 5등급 20 / 졸업생(9등급): 1등급 100, 2등급 98, 3등급 95, 4등급 91, 5등급 86, 6등급 80, 7등급 65, 8등급 40, 9등급 20",
+      "achievement": "졸업예정자는 반영 12과목의 성취도를 20% 반영: A 100, B 90, C 80, D 70, E 60. 성취도만 있는 과목은 미반영",
+      "formula": "졸업예정자: Σ(석차등급 변환점수×이수단위)÷Σ이수단위×8 + Σ(성취도 변환점수×이수단위)÷Σ이수단위×2 / 졸업생: Σ(석차등급 변환점수×이수단위)÷Σ이수단위×10 (모두 1,000점 만점)",
+      "extra": "반영과목이 부족하면 기본점수(이수단위 1, 석차등급 9등급)로 반영. 일반(종합)고 특성화과정 이수자는 특성화고와 같은 반영 교과. 검정고시·외국고교 출신 반영방법은 수시 모집요강에서 정함. 체육특기자는 출결 5% 별도 반영",
+      "pages": "4-6"
+    }
+  ],
+  "tracks": {
+    "grade-excellent": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "pastor-rec": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 70, "면접": 30 } }],
+      "interview": "인성/사회성, 전공적합성, 의사소통능력 등 종합평가, 면접위원 평균 평가점수 반영",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "future-talent": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 70, "면접": 30 } }],
+      "interview": "인성/사회성, 전공적합성, 의사소통능력 등 종합평가, 면접위원 평균 평가점수 반영",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "christian": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "sku-creative": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "교과": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 40, "면접": 60 } }
+      ],
+      "interview": "토론면접(1개조 2~4명): 주제의 이해력, 주장의 논리력, 언어구사능력, 성실성(태도) 등 종합평가",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "equal-1": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "youngam-doc": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부(교과·비교과 전 내용 종합 정성평가): 학업역량 35%, 진로역량 40%, 공동체역량 25%",
+      "units": null
+    },
+    "youngam-interview": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 40, "면접": 60 } }
+      ],
+      "interview": "평가항목: 학업역량 30%(학업태도·학업의지·탐구력 등), 진로역량 40%(자기주도성·창의적 문제해결력·성장가능성 등), 공동체역량 30%(서류의 진실성·협업과 소통능력·성실성과 규칙준수·나눔과 배려·리더십 등)",
+      "essay": null,
+      "docs": "학교생활기록부(교과·비교과 전 내용 종합 정성평가). 1단계 서류평가: 학업역량 35%, 진로역량 45%, 공동체역량 20%",
+      "units": null
+    },
+    "practical-susi": {
+      "stages": [
+        { "step": "일괄(체육교육과)", "pick": null, "parts": { "교과": 40, "실기": 60 } },
+        { "step": "일괄(연기·영화·실용음악)", "pick": null, "parts": { "교과": 20, "실기": 80 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "athlete": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 15, "출결": 5, "수상실적": 55, "면접": 15, "실기": 10 } }],
+      "interview": "전공적합성, 의사소통능력, 인성/사회성 등 종합평가, 면접위원 평균 평가점수 반영",
+      "essay": null,
+      "docs": "수상실적 심사: 2027년 기준 최근 3년 이내 국제 규모 대회 또는 대한체육회 인정 전국 규모 대회 개인종목 수상실적(1~3위)",
+      "units": null
+    },
+    "vocational-susi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural-susi-gyogwa": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural-susi-practical": {
+      "stages": [
+        { "step": "일괄(체육교육과)", "pick": null, "parts": { "교과": 40, "실기": 60 } },
+        { "step": "일괄(연기예술·영화영상)", "pick": null, "parts": { "교과": 20, "실기": 80 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "equal-2-susi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "general-jeongsi": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } },
+        { "step": "일괄(체육교육과)", "pick": null, "parts": { "수능": 60, "실기": 40 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "practical-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 30, "실기": 70 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural-jeongsi-suneung": {
+      "stages": [
+        { "step": "일괄", "pick": null, "parts": { "수능": 100 } },
+        { "step": "일괄(체육교육과)", "pick": null, "parts": { "수능": 60, "실기": 40 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural-jeongsi-practical": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 30, "실기": 70 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "equal-2-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

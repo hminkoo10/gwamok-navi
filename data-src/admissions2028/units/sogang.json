@@ -1,0 +1,9 @@
+{
+  "univ": "sogang",
+  "seats": {
+    "sogang:자연계열 전 모집단위": {"rec-regional": 75, "comp-general-1": 212, "comp-general-2": 30, "comp-equity": 33, "comp-values": 16, "comp-vocational": 3, "nonsul": 63, "csat-general-na": 183, "csat-general-da": 46, "csat-regional": 46, "csat-rural": 20, "csat-basic-living": 10, "csat-disabled": 6, "csat-vocational": 3, "overseas-middle-high": 13, "overseas-full-march": null, "overseas-full-sept": null, "north-korean": null},
+    "sogang:인문계열": {"rec-regional": 105, "comp-general-1": 285, "comp-general-2": 44, "comp-equity": 52, "comp-values": 18, "comp-vocational": 3, "nonsul": 107, "csat-general-na": 256, "csat-general-da": 49, "csat-regional": 44, "csat-rural": 28, "csat-basic-living": 14, "csat-disabled": 9, "csat-vocational": 5, "overseas-middle-high": 18, "overseas-full-march": null, "overseas-full-sept": null, "north-korean": null}
+  },
+  "pages": "5-6, 25",
+  "notes": "수시 p.5, 정시 p.6, 재외국민 p.25 표의 행을 계열별로 더함. 인문/자연 구분은 계획의 선발단위 묶음을 따름: p.25 재외(중고교과정) 인문 18·자연 13 묶음(인문학기반자유전공학부는 인문, SCIENCE기반·AI기반자유전공학부는 자연), p.6 정원 외 통합 칸, p.16 '지식융합미디어학부도 인문계열'. 인문계열 = 인문학부·영문학부·유럽문화·중국문화·사회과학부·경제·경영·지식융합미디어·글로벌한국학부·게페르트국제학부·인문학기반자유전공학부. 자연계열 전 모집단위 = 수학·물리·화학·생명과학·전자·화공생명·기계·반도체·컴퓨터·인공지능·시스템반도체(계약학과, 정원 외 포함)·SCIENCE기반·AI기반자유전공학부. 정원 외 농어촌·기초생활·장애인·특성화고(수시·정시)와 재외(중고교과정)는 계열 묶음 칸 수 그대로(반도체·인공지능학과는 정시 정원 외 지원불가). null(인원 미정): 재외 전교육과정(3월·9월)·북한이탈주민은 '제한 없음'."
+}

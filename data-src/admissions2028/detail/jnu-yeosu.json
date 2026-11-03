@@ -1,0 +1,154 @@
+{
+  "univ": "jnu-yeosu",
+  "suneung": [
+    {
+      "group": "인문, 인문·자연",
+      "units": "인문계열 모집단위와 인문·자연 계열(창의융합학부)",
+      "tracks": ["suneung-general"],
+      "use": "표준점수(국어·수학·탐구), 영어·한국사 등급점수",
+      "weights": { "국어": 40, "수학": 30, "영어": 20, "탐구": 10 },
+      "inquiry": "사탐·과탐·직탐 중 표준점수 높은 1과목",
+      "english": "등급점수: 1등급 200, 2등급 195, 3등급 190, 4등급 185, 5등급 180, 6등급 165, 7등급 150, 8등급 130, 9등급 0",
+      "history": "등급점수를 전형총점에 가산: 1~5등급 10, 6등급 9, 7등급 8, 8등급 7, 9등급 0 (1,000점 초과 가능)",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "23-25"
+    },
+    {
+      "group": "자연",
+      "units": "자연계열 모집단위 (수산생명의학과, 건축디자인학과, 의공학부, 해양수산광역 등)",
+      "tracks": ["suneung-general"],
+      "use": "표준점수(국어·수학·탐구), 영어·한국사 등급점수",
+      "weights": { "국어": 30, "수학": 40, "영어": 20, "탐구": 10 },
+      "inquiry": "사탐·과탐·직탐 중 표준점수 높은 1과목",
+      "english": "등급점수: 1등급 200, 2등급 195, 3등급 190, 4등급 185, 5등급 180, 6등급 165, 7등급 150, 8등급 130, 9등급 0",
+      "history": "등급점수를 전형총점에 가산: 1~5등급 10, 6등급 9, 7등급 8, 8등급 7, 9등급 0 (1,000점 초과 가능)",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "23-25"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["gyogwa-general", "gyogwa-regional", "gyogwa-diversity", "gyogwa-vocational", "gyogwa-adult", "gyogwa-vocational-worker"],
+      "subjects": "국어·영어·수학·사회·과학 교과(군)의 석차등급 산출 과목 전체(이수학점 전체) + 진로/융합선택과목 성취도 상위 3과목",
+      "terms": "1학년 1학기 ~ 3학년 1학기 (졸업자도 동일)",
+      "grades": "석차등급 1등급 100, 2등급 90, 3등급 80, 4등급 70, 5등급 0",
+      "achievement": "진로/융합선택 성취도 상위 3과목 등급점수: A 5, B 4, C 3, D 2, E 1 (3단계 성취도는 A 5, B 3, C 1). 3과목 미만 이수자는 비교내신",
+      "formula": "교과 660 + Σ(등급점수×이수학점) ÷ Σ이수학점 × 2.25 (885점) + 진로/융합 상위 3과목 등급점수 합 (15점) + 출결 90 + (1 − 결석일수 ÷ 21) × 10 (100점) = 1,000점",
+      "extra": "출결: 1학년 1학기~3학년 1학기(졸업자 3학년 2학기까지), 미인정 지각·조퇴·결과 3회 = 결석 1일, 21일 이상 기본점수만. 9등급제 성적은 Z점수로 5등급 환산, 검정고시는 취득점수 환산(100점 85 ~ 59점 이하 0). 학교폭력 일괄감점 1~3호 −25, 4~5호 −125, 6~9호 −250",
+      "pages": "12-16,20"
+    },
+    {
+      "tracks": ["gyogwa-special-edu"],
+      "subjects": "국어·영어·수학·사회·과학 교과(군)의 석차등급 산출 과목 전체 + 진로/융합선택과목 성취도 상위 3과목",
+      "terms": "1학년 1학기 ~ 3학년 1학기 (졸업자도 동일)",
+      "grades": "석차등급 1등급 100, 2등급 90, 3등급 80, 4등급 70, 5등급 0",
+      "achievement": "진로/융합선택 성취도 상위 3과목 등급점수: A 5, B 4, C 3, D 2, E 1 (3단계 성취도는 A 5, B 3, C 1). 3과목 미만 이수자는 비교내신",
+      "formula": "교과 528 + Σ(등급점수×이수학점) ÷ Σ이수학점 × 1.80 (708점) + 진로/융합 상위 3과목 등급점수 합 × 0.8 (12점) + 출결 72 + (1 − 결석일수 ÷ 21) × 8 (80점) = 800점",
+      "extra": "출결: 1학년 1학기~3학년 1학기(졸업자 3학년 2학기까지), 미인정 지각·조퇴·결과 3회 = 결석 1일, 21일 이상 기본점수만. 학교폭력 감점(1단계에서만) 1~3호 −20, 4~5호 −100, 6~9호 −200",
+      "pages": "12-16,20"
+    },
+    {
+      "tracks": ["gyogwa-early-employment"],
+      "subjects": "국어·영어·수학·사회·과학 교과(군)의 석차등급 산출 과목 전체 + 진로/융합선택과목 성취도 상위 3과목",
+      "terms": "1학년 1학기 ~ 3학년 1학기 (졸업자도 동일)",
+      "grades": "석차등급 1등급 100, 2등급 90, 3등급 80, 4등급 70, 5등급 0",
+      "achievement": "진로/융합선택 성취도 상위 3과목 등급점수: A 5, B 4, C 3, D 2, E 1 (3단계 성취도는 A 5, B 3, C 1). 3과목 미만 이수자는 비교내신",
+      "formula": "교과 396 + Σ(등급점수×이수학점) ÷ Σ이수학점 × 1.35 (531점) + 진로/융합 상위 3과목 등급점수 합 × 0.6 (9점) + 출결 54 + (1 − 결석일수 ÷ 21) × 6 (60점) = 600점",
+      "extra": "출결: 1학년 1학기~3학년 1학기(졸업자 3학년 2학기까지), 미인정 지각·조퇴·결과 3회 = 결석 1일, 21일 이상 기본점수만. 학교폭력 일괄감점 1~3호 −25, 4~5호 −125, 6~9호 −250",
+      "pages": "12-16,20"
+    }
+  ],
+  "tracks": {
+    "gyogwa-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-diversity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-adult": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-vocational-worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-special-edu": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "학생부": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 66.7, "면접": 33.3 } }
+      ],
+      "interview": "학교생활기록부 기반 면접, 평가요소 진로·학업역량, 공동체역량 (기본 100점/만점 200점). 학생부가 없는 국외고 졸업(예정)자·검정고시 출신자는 별도 기준",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-early-employment": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "학생부": 60, "면접": 40 } }],
+      "interview": "학교생활기록부 기반 면접, 평가요소 진로·학업역량, 공동체역량 (기본 300점/만점 400점). 학생부가 없는 국외고 졸업(예정)자·검정고시 출신자는 별도 기준",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jonghap-2": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 진로역량·학업역량·공동체역량)",
+      "units": null
+    },
+    "jonghap-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 진로역량·학업역량·공동체역량)",
+      "units": null
+    },
+    "suneung-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "foreign": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수학할 수 있는 언어능력": 50, "수학할 수 있는 전공능력": 50 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "고교 졸업(예정)·재학·성적증명서, 외국정부 발급 가족관계 증명서, 외국국적증명서, 재정입증서류, 입학지원서, 여권사본, 한국어 또는 영어능력시험 성적표, 개인신상기록서, 학력조회동의서, 개인정보활용동의서",
+      "units": null
+    }
+  }
+}

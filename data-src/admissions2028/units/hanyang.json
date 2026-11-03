@@ -1,0 +1,52 @@
+{
+  "univ": "hanyang",
+  "seats": {
+    "hanyang:자연 전 모집단위": {
+      "recommend": 293,
+      "academic": 470,
+      "interview": 162,
+      "equal-opportunity": 68,
+      "social-integration": 5,
+      "essay": 172,
+      "csat-ga": 184,
+      "csat-na": 234,
+      "csat-da": 45,
+      "csat-rural": 46,
+      "csat-equity": 23,
+      "csat-vocational": 26,
+      "csat-disabled": 7,
+      "vocational-worker": null
+    },
+    "hanyang:인문 전 모집단위": {
+      "recommend": 88,
+      "academic": 206,
+      "interview": 79,
+      "equal-opportunity": 23,
+      "essay": 67,
+      "csat-ga": 102,
+      "csat-na": 58,
+      "csat-da": null,
+      "csat-rural": 15,
+      "csat-equity": 10,
+      "csat-vocational": 2,
+      "csat-disabled": 3,
+      "vocational-worker": null
+    },
+    "hanyang:상경 전 모집단위": {
+      "recommend": 70,
+      "academic": 98,
+      "interview": 25,
+      "equal-opportunity": 16,
+      "essay": 40,
+      "csat-ga": 31,
+      "csat-na": 75,
+      "csat-da": 20,
+      "csat-rural": 16,
+      "csat-equity": 9,
+      "csat-vocational": 9,
+      "csat-disabled": 3
+    }
+  },
+  "pages": "5-7",
+  "notes": "목록이 계열 단위(자연·인문·상경 전 모집단위)라 5~6쪽 정원 내 표에서 '계열' 칸이 자연·인문·상경인 모집단위 인원을 전형별로 더함(반도체공학과 계약학과 괄호 인원 포함, 예체능 제외; 표의 열 합이 6쪽 합계 행과 모두 맞음). 계열이 '인문/자연'인 의류학과·실내건축디자인학과와 한양인터칼리지학부의 자연·인문 통합 칸(추천형 36, 정시 다군 55)은 어느 계열에도 더하지 않음(인터칼리지 (자연)행의 학업형 57·면접형 20·고른기회 5·사회통합 5·논술 35는 자연, (인문)행의 학업형 27·논술 15는 인문). 정시는 군별 전형에 따로 적음. 정시 정원 외 특별전형 4개는 7쪽 '계열별 선발 인원' 표의 가군+나군(이 표는 정시 계열 설정을 따라 의류학과·실내건축디자인학과·한양인터칼리지학부를 상경으로 셈, 27쪽). null: 인문 정시 다군(인터칼리지 통합 55명뿐), 자연·인문 특성화고졸재직자(산업융합학부, 계열 자연/인문)."
+}

@@ -1,0 +1,223 @@
+{
+  "univ": "konkuk",
+  "suneung": [
+    {
+      "group": "A",
+      "units": "인문·자연 계열, KU자유전공학부: A와 B를 모두 적용해 높은 점수 반영 (단과대학 자유전공학부는 수능 900점 + 교과정성 100점)",
+      "tracks": ["ku-general", "ku-general-carryover", "basic-livelihood", "rural", "voc-grad"],
+      "use": "국어·수학·탐구 표준점수, 영어 등급별 환산 점수, 한국사 등급별 감점",
+      "weights": { "국어": 45, "수학": 35, "탐구": 10, "영어": 10 },
+      "inquiry": "사탐/과탐 중 상위 1개. 제2외국어·한문은 탐구로 불인정, 수능(특성화고교졸업자)만 직업탐구 포함",
+      "english": "등급별 환산 점수: 1등급 200, 2등급 197, 3등급 194, 4등급 190, 5등급 185, 6등급 180, 7등급 170, 8등급 160, 9등급 150",
+      "history": "등급별 감점: 1~4등급 0, 5등급 -1.00, 6등급 -1.75, 7등급 -3.00, 8등급 -4.25, 9등급 -5.00",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "49, 7, 36-45"
+    },
+    {
+      "group": "B",
+      "units": "인문·자연 계열, KU자유전공학부: A와 B를 모두 적용해 높은 점수 반영 (단과대학 자유전공학부는 수능 900점 + 교과정성 100점)",
+      "tracks": ["ku-general", "ku-general-carryover", "basic-livelihood", "rural", "voc-grad"],
+      "use": "국어·수학·탐구 표준점수, 영어 등급별 환산 점수, 한국사 등급별 감점",
+      "weights": { "국어": 35, "수학": 45, "탐구": 10, "영어": 10 },
+      "inquiry": "사탐/과탐 중 상위 1개. 제2외국어·한문은 탐구로 불인정, 수능(특성화고교졸업자)만 직업탐구 포함",
+      "english": "등급별 환산 점수: 1등급 200, 2등급 197, 3등급 194, 4등급 190, 5등급 185, 6등급 180, 7등급 170, 8등급 160, 9등급 150",
+      "history": "등급별 감점: 1~4등급 0, 5등급 -1.00, 6등급 -1.75, 7등급 -3.00, 8등급 -4.25, 9등급 -5.00",
+      "bonus": null,
+      "formula": null,
+      "total": 1000,
+      "pages": "49, 7, 36-45"
+    },
+    {
+      "group": "예체능 (수학 반영)",
+      "units": "예체능 계열 모집단위 (실기 전형의 예술디자인대학 예체능계·체육교육과·음악교육과, KU일반 수시 이월 시 영화예술학과): 수학과 탐구 중 반영점수가 높은 영역 1개를 30% 반영",
+      "tracks": ["practical", "ku-general-carryover"],
+      "use": "국어·수학·탐구 표준점수, 영어 등급별 환산 점수, 한국사 등급별 감점",
+      "weights": { "국어": 45, "수학": 30, "영어": 25 },
+      "inquiry": "수학과 탐구(사탐/과탐 상위 1개) 중 반영점수가 높은 영역 반영 (수학이나 탐구 중 한 영역 미응시 가능)",
+      "english": "등급별 환산 점수: 1등급 200, 2등급 197, 3등급 194, 4등급 190, 5등급 185, 6등급 180, 7등급 170, 8등급 160, 9등급 150",
+      "history": "등급별 감점: 1~4등급 0, 5등급 -1.00, 6등급 -1.75, 7등급 -3.00, 8등급 -4.25, 9등급 -5.00",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "49, 15, 38-39"
+    },
+    {
+      "group": "예체능 (탐구 반영)",
+      "units": "예체능 계열 모집단위 (실기 전형의 예술디자인대학 예체능계·체육교육과·음악교육과, KU일반 수시 이월 시 영화예술학과): 수학과 탐구 중 반영점수가 높은 영역 1개를 30% 반영",
+      "tracks": ["practical", "ku-general-carryover"],
+      "use": "국어·수학·탐구 표준점수, 영어 등급별 환산 점수, 한국사 등급별 감점",
+      "weights": { "국어": 45, "탐구": 30, "영어": 25 },
+      "inquiry": "사탐/과탐 중 상위 1개. 수학과 탐구 중 반영점수가 높은 영역 반영 (수학이나 탐구 중 한 영역 미응시 가능)",
+      "english": "등급별 환산 점수: 1등급 200, 2등급 197, 3등급 194, 4등급 190, 5등급 185, 6등급 180, 7등급 170, 8등급 160, 9등급 150",
+      "history": "등급별 감점: 1~4등급 0, 5등급 -1.00, 6등급 -1.75, 7등급 -3.00, 8등급 -4.25, 9등급 -5.00",
+      "bonus": null,
+      "formula": null,
+      "total": null,
+      "pages": "49, 15, 38-39"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["ku-regional", "equity", "voc-worker"],
+      "subjects": "교과정량: 국어·수학·영어·과학·사회·한국사 교과의 공통과목·일반선택과목·진로선택과목 중 상위 20개 과목 (2015 개정 교육과정은 공통·일반선택과목)",
+      "terms": "졸업예정자 3학년 1학기까지, 졸업자 3학년 2학기까지. 학년별·교과별 비율 없음",
+      "grades": "석차등급 및 이수학점(단위) 반영, 등급의 기준점수를 반영 (등급별 점수표는 시행계획에 없음)",
+      "achievement": "성취도 미반영",
+      "formula": null,
+      "extra": "학생부 온라인 제공 불가 고교 지원자 등은 서류평가로 비교내신. 학교폭력 조치사항 감점(전 전형, 총점 1,000점): 2호 20점, 3호 30점, 4호 200점, 5호 300점, 6~9호 500점",
+      "pages": "46, 48, 7"
+    },
+    {
+      "tracks": ["acting", "sports"],
+      "subjects": "교과정량: 국어·영어 교과의 공통과목·일반선택과목 전 과목 (2015·2022 개정 교육과정 모두 진로선택과목 미반영)",
+      "terms": "졸업예정자 3학년 1학기까지, 졸업자 3학년 2학기까지. 국어 50%, 영어 50%",
+      "grades": "석차등급 및 이수학점(단위) 반영, 등급의 기준점수를 반영 (등급별 점수표는 시행계획에 없음)",
+      "achievement": "성취도 미반영",
+      "formula": null,
+      "extra": "체육특기 2단계는 출결정량 5% 별도 반영(산출 방법은 시행계획에 없음). 체육특기 체육교육과는 경기실적으로 비교내신",
+      "pages": "46, 30"
+    },
+    {
+      "tracks": ["ku-regional", "ku-general"],
+      "subjects": "교과정성: 학교생활기록부 교과학습발달상황의 교과이수내역과 세부능력 및 특기사항 (KU:PICK 이수 추천 과목 반영)",
+      "terms": "KU지역균형: 졸업예정자 3학년 1학기까지, 졸업자 3학년 2학기까지 / KU일반 단과대학 자유전공학부: 3학년 2학기까지",
+      "grades": null,
+      "achievement": null,
+      "formula": null,
+      "extra": "평가요소: 학업역량(학업성취도, 학업태도, 탐구력), 진로역량(전공(계열) 관련 교과 이수 노력, 관련 교과 성취도). KU일반은 다군 단과대학 자유전공학부만 반영, 국외고 출신·학생부로 석차등급 산출 불가자 등은 수능성적으로 비교내신",
+      "pages": "47-48"
+    }
+  ],
+  "tracks": {
+    "ku-regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과정량": 70, "교과정성": 30 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 학교장 추천 명단",
+      "units": null
+    },
+    "ku-self": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "제출서류 기반 개별면접(서류 진위 확인, 인성 평가), 면접평가자 2인 대 지원자 1인, 개인당 10분 내외",
+      "essay": null,
+      "docs": "학교생활기록부 (대체서식 제출 대상자는 해당 서류)",
+      "units": null
+    },
+    "equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 70, "교과정량": 30 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 증빙서류",
+      "units": null
+    },
+    "special-ed": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "제출서류 기반 개별면접(서류 진위 확인, 인성 평가), 면접평가자 2인 대 지원자 1인, 개인당 10분 내외",
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 증빙서류",
+      "units": null
+    },
+    "ku-essay": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "논술": 100 } }],
+      "interview": null,
+      "essay": "계열 구분 없이 '통합'으로 출제. 국어+통합사회 1문항, 수학 3문항. 범위: 국어(공통국어1·2, 화법과언어, 독서와작문, 문학)·통합사회1·2, 수학(공통수학1·2, 대수, 미적분Ⅰ, 확률과통계)",
+      "docs": null,
+      "units": null
+    },
+    "acting": {
+      "stages": [
+        { "step": "1단계", "pick": "20배수", "parts": { "교과정량": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "실기": 100 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "sports": {
+      "stages": [
+        { "step": "1단계", "pick": "6배수", "parts": { "경기실적": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 50, "면접": 30, "교과정량": 15, "출결정량": 5 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "경기실적증명서 (테니스는 전 대회 출전기록·수상실적 포함)",
+      "units": null
+    },
+    "voc-worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 70, "교과정량": 30 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부, 지원자격 증빙서류",
+      "units": null
+    },
+    "overseas": {
+      "stages": [
+        { "step": "인문·자연 일괄", "pick": null, "parts": { "서류": 100 } },
+        { "step": "예체능·수의예과 1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "예체능·수의예과 2단계", "pick": null, "parts": { "1단계": 60, "면접": 40 } }
+      ],
+      "interview": "제출서류 기반 개별면접. 예술디자인대학 포트폴리오 기반 면접(면접대상자만 포트폴리오 업로드), 수의예과 인성면접",
+      "essay": null,
+      "docs": "학업 관련 서류(성적증명서, 학업 입증 서류 등)",
+      "units": null
+    },
+    "ku-general": {
+      "stages": [
+        { "step": "일괄(학과/학부)", "pick": null, "parts": { "수능": 100 } },
+        { "step": "일괄(단과대학 자유전공학부)", "pick": null, "parts": { "수능": 90, "교과정성": 10 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "단과대학 자유전공학부(다군)만 학교생활기록부",
+      "units": null
+    },
+    "practical": {
+      "stages": [
+        { "step": "예술디자인대학 1단계", "pick": "10배수", "parts": { "수능": 100 } },
+        { "step": "예술디자인대학 2단계", "pick": null, "parts": { "1단계": 60, "실기": 40 } },
+        { "step": "사범대학 일괄", "pick": null, "parts": { "수능": 60, "실기": 40 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "basic-livelihood": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "voc-grad": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "ku-general-carryover": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

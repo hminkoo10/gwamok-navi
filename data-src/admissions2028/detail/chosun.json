@@ -1,0 +1,308 @@
+{
+  "univ": "chosun",
+  "suneung": [
+    {
+      "group": "인문계",
+      "units": "인문계 모집단위",
+      "tracks": ["csat-general", "csat-low-income", "csat-rural", "csat-vocational"],
+      "use": "백분위(국어·수학·탐구, 반영비율에 따라 적용), 영어·한국사는 등급별 반영점수",
+      "weights": { "국어": 30, "수학": 25, "영어": 25, "탐구": 20 },
+      "inquiry": "통합사회·통합과학 중 우수한 1과목 (직업탐구 미반영). 반영 영역 중 미응시 영역은 0점",
+      "english": "등급별 반영점수: 1등급 200, 2등급 195, 3등급 190, 4등급 185, 5등급 180, 6등급 175, 7등급 170, 8등급 165, 9등급 0",
+      "history": "등급별 반영점수 가산: 1~3등급 10, 4~6등급 9, 7~9등급 8 (전형 총점 초과 가능, 응시 필수)",
+      "bonus": null,
+      "formula": null,
+      "total": 800,
+      "pages": "22-23"
+    },
+    {
+      "group": "자연계",
+      "units": "자연계 모집단위 (의예과·치의예과·약학과 제외)",
+      "tracks": ["csat-general", "csat-low-income", "csat-rural", "csat-vocational"],
+      "use": "백분위(국어·수학·탐구, 반영비율에 따라 적용), 영어·한국사는 등급별 반영점수",
+      "weights": { "국어": 25, "수학": 30, "영어": 25, "탐구": 20 },
+      "inquiry": "통합사회·통합과학 중 우수한 1과목 (직업탐구 미반영). 반영 영역 중 미응시 영역은 0점",
+      "english": "등급별 반영점수: 1등급 200, 2등급 195, 3등급 190, 4등급 185, 5등급 180, 6등급 175, 7등급 170, 8등급 165, 9등급 0",
+      "history": "등급별 반영점수 가산: 1~3등급 10, 4~6등급 9, 7~9등급 8 (전형 총점 초과 가능, 응시 필수)",
+      "bonus": null,
+      "formula": null,
+      "total": 800,
+      "pages": "22-23"
+    },
+    {
+      "group": "예체능계, 라이프케어(실기전형)",
+      "units": "예체능계 모집단위와 라이프케어(실기전형). 실기/실적(실기전형)은 수능 40% + 실기 60%",
+      "tracks": ["practical-jeongsi", "csat-general", "csat-low-income", "csat-rural", "csat-vocational"],
+      "use": "백분위(국어·탐구, 반영비율에 따라 적용), 영어·한국사는 등급별 반영점수",
+      "weights": { "국어": 50, "영어": 25, "탐구": 25 },
+      "inquiry": "통합사회·통합과학 중 우수한 1과목 (직업탐구 미반영), 수학 미반영",
+      "english": "등급별 반영점수: 1등급 200, 2등급 195, 3등급 190, 4등급 185, 5등급 180, 6등급 175, 7등급 170, 8등급 165, 9등급 0",
+      "history": "등급별 반영점수 가산: 1~3등급 10, 4~6등급 9, 7~9등급 8 (전형 총점 초과 가능, 응시 필수)",
+      "bonus": null,
+      "formula": null,
+      "total": 800,
+      "pages": "22-23"
+    },
+    {
+      "group": "의예과, 치의예과, 약학과",
+      "units": "의예과, 치의예과, 약학과 (국어·수학·영어·탐구 응시 필수, 미응시 영역이 있으면 부적격)",
+      "tracks": ["csat-general", "csat-regional", "csat-regional-doctor", "csat-regional-equity", "csat-rural"],
+      "use": "백분위(국어·수학·탐구, 반영비율에 따라 적용), 영어·한국사는 등급별 반영점수",
+      "weights": { "국어": 25, "수학": 35, "영어": 25, "탐구": 15 },
+      "inquiry": "통합과학만 반영 (통합사회·직업탐구 미반영)",
+      "english": "등급별 반영점수: 1등급 200, 2등급 195, 3등급 190, 4등급 185, 5등급 180, 6등급 175, 7등급 170, 8등급 165, 9등급 0",
+      "history": "등급별 반영점수 가산: 1~3등급 10, 4~6등급 9, 7~9등급 8 (전형 총점 초과 가능, 응시 필수)",
+      "bonus": null,
+      "formula": null,
+      "total": 800,
+      "pages": "22-23"
+    },
+    {
+      "group": "통합",
+      "units": "통합 계열 모집단위",
+      "tracks": ["csat-general", "csat-low-income", "csat-rural", "csat-vocational"],
+      "use": "백분위(국어·수학·탐구, 반영비율에 따라 적용), 영어·한국사는 등급별 반영점수",
+      "weights": { "국어": 25, "수학": 25, "영어": 25, "탐구": 25 },
+      "inquiry": "통합사회·통합과학 중 우수한 1과목 (직업탐구 미반영). 반영 영역 중 미응시 영역은 0점",
+      "english": "등급별 반영점수: 1등급 200, 2등급 195, 3등급 190, 4등급 185, 5등급 180, 6등급 175, 7등급 170, 8등급 165, 9등급 0",
+      "history": "등급별 반영점수 가산: 1~3등급 10, 4~6등급 9, 7~9등급 8 (전형 총점 초과 가능, 응시 필수)",
+      "bonus": null,
+      "formula": null,
+      "total": 800,
+      "pages": "22-23"
+    },
+    {
+      "group": "군사학과",
+      "units": "군사학과 (수능(군사학과전형) 1단계 수능 100%, 2단계 수능 70%)",
+      "tracks": ["csat-military"],
+      "use": "백분위 (영어는 등급별 점수)",
+      "weights": {},
+      "inquiry": "사회/과학 중 우수한 1과목 백분위 (직업탐구 미반영)",
+      "english": "등급별 점수: 1등급 100, 2등급 95, 3등급 90, 4등급 85, 5등급 80, 6등급 75, 7등급 70, 8등급 65, 9등급 60",
+      "history": "한국사 가산점 부여 (전형 총점을 초과할 수 있음)",
+      "bonus": null,
+      "formula": "국어·수학·영어·탐구(사회/과학 1과목) 중 상위 3개 영역 백분위 점수 평균 × 7 = 700점",
+      "total": 700,
+      "pages": "24"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["subject-general", "military-subject", "regional-subject", "regional-doctor", "regional-equity", "social-integration", "vocational-subject", "low-income-subject", "practical", "athlete", "lifelong", "worker", "lifelong-jeongsi", "worker-jeongsi"],
+      "subjects": "국어·수학·영어·사회·과학·한국사 교과의 석차등급이 있는 모든 과목(공통·일반선택·진로선택과목), 석차등급과 이수 학점 활용. 진로/융합선택과목(국어·영어·수학·사회·과학)은 성취도로 가산점",
+      "terms": "1학년 1학기 ~ 3학년 1학기 (재학생·졸업생 동일, 3학년 2학기 미반영, 3학년이 학기로 구분되지 않으면 3학년 전체)",
+      "grades": "2022 개정 5등급: 1등급 50, 2등급 39, 3등급 28, 4등급 17, 5등급 5. 2015 개정 이수 졸업자는 Z점수(셋째 자리 이하 버림)로 환산(1.29 이상 1, 1.28~0.42 2, 0.41~−0.41 3, −0.42~−1.28 4, −1.29 이하 5등급), 표준편차 미제공자는 석차백분율로 환산",
+      "achievement": "진로/융합선택 가산점(최대 4점): 반영교과 이수 과목 중 성취도 환산 점수 상위 3과목 평균(2022 개정 A 5, B 4, C 3, D 2, E 1 / 2015 개정 진로선택 A 5, B 3, C 1)이 4.0 이상 4점, 3.0 이상 3점, 2.0 이상 2점, 2.0 미만 1점",
+      "formula": "기본점수 445(교과 400, 출결 45) + 교과 Σ(반영과목 등급별 점수 × 이수학점) ÷ Σ이수학점 (50점) + 출결 5 − (결석일수 ÷ 2) (5점) = 500점, 진로/융합선택 가산점 별도(총점 초과 가능)",
+      "extra": "출결: 미인정 결석·지각·조퇴·결과만 반영, 지각·조퇴·결과 1회 = 0.3일(3회 = 결석 1일), 결석일수는 최대 10일. 검정고시·외국고: 기본 395 + 취득성적 환산점수 평균 + 출결 5 × (환산점수 ÷ 100). 학교폭력: 처분 호수에 따라 총점에서 5~35점(정시모집 15~75점) 감점, 8·9호 부적격, 군사학과는 1단계 총점에서 감점",
+      "pages": "4,8-15,20-21,25-29"
+    }
+  ],
+  "tracks": {
+    "subject-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "military-subject": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "교과": 90, "출결": 10 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 18.9, "체력검정": 27, "면접": 54.1 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "regional-subject": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "regional-doctor": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "regional-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "social-integration": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational-subject": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "low-income-subject": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "interview": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "학교생활기록부를 전형자료로 인성 및 가치관, 전공 및 적성영역에 대한 학업열의 등을 포괄적으로 종합평가 (30점, 최저 6점)",
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 진로역량·학업역량·공동체역량 포괄적 종합평가)",
+      "units": null
+    },
+    "document": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 진로역량·학업역량·공동체역량 포괄적 종합평가)",
+      "units": null
+    },
+    "rural-comprehensive": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 진로역량·학업역량·공동체역량 포괄적 종합평가)",
+      "units": null
+    },
+    "disabled": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (서류평가: 진로역량·학업역량·공동체역량 포괄적 종합평가)",
+      "units": null
+    },
+    "practical": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 36, "출결": 4, "실기": 60 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "athlete": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 28.125, "출결": 3.125, "실기": 31.25, "입상실적": 37.5 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "입상실적: 제출한 실적 중 가장 좋은 1개 반영(A 500, B 485, C 470, D 455, E 440, F 부적격). 단체경기 8강 이내 실적은 경기출전확인서 제출",
+      "units": null
+    },
+    "lifelong": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "worker": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "foreign": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "면접": 100 } }],
+      "interview": "지원자가 제출한 서류를 기초로 학업수행능력, 유학가능환경 등을 종합평가 (100점, 총점 70점 이상 합격)",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-regional-doctor": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-regional-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-military": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "수능": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "수능": 70, "체력검정": 10, "면접": 20 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "practical-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 40, "실기": 60 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-low-income": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "lifelong-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "worker-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

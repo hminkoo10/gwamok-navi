@@ -1,0 +1,18 @@
+{
+  "univ": "dankook-cheonan",
+  "seats": {
+    "dankook-cheonan:인문사회계열광역": {"equal-opportunity": 23, "regional-balance": 54, "csat-general": 30},
+    "dankook-cheonan:외국어대학": {"dku-talent-doc": 78, "social-consideration": 11, "edu-opportunity": 19, "rural": 14, "subject-excellent": 77, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 140, "csat-edu-opportunity": null, "csat-rural": null},
+    "dankook-cheonan:공공인재대학": {"dku-talent-doc": 35, "military": 30, "social-consideration": 5, "edu-opportunity": 8, "rural": 5, "subject-excellent": 35, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 61, "csat-edu-opportunity": null, "csat-rural": null, "worker": 30},
+    "dankook-cheonan:보건과학대학(인문계열)": {"dku-talent-doc": 8, "social-consideration": 1, "edu-opportunity": 2, "rural": 1, "subject-excellent": 7, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 15, "csat-edu-opportunity": null, "csat-rural": null},
+    "dankook-cheonan:자연공학계열광역": {"equal-opportunity": 32, "regional-balance": 100, "csat-general": 34},
+    "dankook-cheonan:과학기술대학": {"dku-talent-doc": 58, "social-consideration": 13, "edu-opportunity": 19, "rural": 14, "subject-excellent": 66, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 125, "csat-edu-opportunity": null, "csat-rural": null},
+    "dankook-cheonan:바이오융합대학": {"dku-talent-doc": 68, "equal-opportunity": 1, "social-consideration": 15, "edu-opportunity": 19, "rural": 16, "subject-excellent": 71, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 126, "csat-edu-opportunity": null, "csat-rural": null},
+    "dankook-cheonan:보건과학대학(자연계열)": {"dku-talent-doc": 35, "equal-opportunity": 3, "social-consideration": 1, "edu-opportunity": 2, "rural": 2, "subject-excellent": 34, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 78, "csat-edu-opportunity": null, "csat-rural": null},
+    "dankook-cheonan:의과대학": {"dku-talent-interview": 12, "regional-medical-clinic": 12, "regional-medical-wide": 6, "rural": 2, "regional-medi-bio": 12, "csat-general": 16, "csat-regional-medical-clinic": null, "csat-regional-medical-wide": null, "csat-rural": null},
+    "dankook-cheonan:치과대학": {"dku-talent-interview": 14, "rural": 1, "regional-medi-bio": 28, "csat-general": 28, "csat-rural": null},
+    "dankook-cheonan:약학대학": {"dku-talent-interview": 8, "rural": 3, "regional-medi-bio": 12, "csat-general": 10, "csat-rural": null}
+  },
+  "pages": "10-11, 38",
+  "notes": "10~11쪽 천안 「모집단위 및 모집인원」 표, 38쪽 재외국민. 단과대학 항목은 소속 학과(전공) 행의 합. 공공인재대학 = 공공정책학과·공공정책학과(야)·사회복지학과·해병대군사학과·식품자원경제학과 (군사학과 30 = 해병대군사학과, 특성화고졸재직자 30 = 공공정책학과(야)). 보건과학대학(인문)=보건행정학과, (자연)=심리학과·임상병리학과·물리치료학과·치위생학과 (표의 계열 칸대로). 정시 일반학생은 가·나·다군 합. 목록에 없는 율곡혁신칼리지(무전공, 지역균형 100·정시 73) 인원은 단과대학에 넣지 않음. null: 정시 교육기회배려자·농어촌학생(수시 미충원 인원만 이월, 그 수시 전형 인원이 있는 곳, 29~30쪽); 의예과 정시 지역의료인재 진료권·광역권(수시 미충원 시 다군 선발, 26~27쪽); 재외국민(학과별 최대모집 가능인원 안에서 계열별 선발)과 전 교육과정 이수자·북한이탈주민(모집인원 제한없음) — 38쪽 표에 학과가 있는 단과대학 (보건과학대학(자연)은 심리학과만 표에 있음)."
+}

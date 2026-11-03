@@ -1,0 +1,23 @@
+{
+  "univ": "dankook",
+  "seats": {
+    "dankook:퇴계혁신칼리지(인문계열)": {"regional-balance": null, "essay": 40, "csat-general": null},
+    "dankook:인문계열광역": {"dku-talent-doc": 20, "equal-opportunity": 8, "essay": 10, "csat-general": null},
+    "dankook:사회계열광역": {"dku-talent-doc": 20, "equal-opportunity": 37, "regional-balance": 36, "essay": 25, "csat-general": 30},
+    "dankook:문과대학": {"dku-talent-doc": 10, "dku-talent-interview": 17, "social-consideration": 8, "edu-opportunity": 9, "rural": 7, "special-edu": 4, "regional-balance": 11, "essay": 19, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 50, "csat-edu-opportunity": null, "csat-rural": null, "csat-special-edu": null},
+    "dankook:법과대학": {"dku-talent-doc": 5, "dku-talent-interview": 12, "social-consideration": 3, "edu-opportunity": 3, "rural": 3, "special-edu": 1, "regional-balance": 6, "essay": 13, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 24, "csat-edu-opportunity": null, "csat-rural": null, "csat-special-edu": null},
+    "dankook:사회과학대학": {"dku-talent-doc": 22, "dku-talent-interview": 31, "social-consideration": 12, "edu-opportunity": 15, "rural": 10, "special-edu": 5, "regional-balance": 22, "essay": 27, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 57, "csat-edu-opportunity": null, "csat-rural": null, "csat-special-edu": null},
+    "dankook:경영경제대학": {"dku-talent-doc": 22, "dku-talent-interview": 33, "social-consideration": 9, "edu-opportunity": 12, "rural": 8, "special-edu": 3, "regional-balance": 27, "essay": 36, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 85, "csat-edu-opportunity": null, "csat-rural": null, "csat-special-edu": null, "worker": 120},
+    "dankook:프리무스국제대학(인문계열)": {"dku-talent-doc": 4, "dku-talent-interview": 6, "social-consideration": 3, "regional-balance": 5, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 22},
+    "dankook:사범대학(인문계열)": {"dku-talent-doc": 6, "dku-talent-interview": 14, "special-edu": 2, "regional-balance": 8, "essay": 6, "csat-general": 32, "csat-special-edu": null},
+    "dankook:퇴계혁신칼리지(자연계열)": {"regional-balance": null, "essay": 23, "csat-general": null},
+    "dankook:공학계열광역": {"dku-talent-doc": 30, "regional-balance": 20, "essay": 38, "csat-general": 20},
+    "dankook:SW융합계열광역": {"sw-talent": 34, "csat-general": null},
+    "dankook:공과대학": {"dku-talent-doc": 45, "dku-talent-interview": 65, "equal-opportunity": 21, "social-consideration": 22, "edu-opportunity": 24, "rural": 16, "special-edu": 8, "regional-balance": 41, "essay": 56, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 149, "csat-edu-opportunity": null, "csat-rural": null, "csat-special-edu": null},
+    "dankook:SW융합대학": {"dku-talent-doc": 36, "dku-talent-interview": 8, "equal-opportunity": 12, "social-consideration": 12, "edu-opportunity": 11, "rural": 7, "special-edu": 4, "regional-balance": 29, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 85, "csat-edu-opportunity": null, "csat-rural": null, "csat-special-edu": null},
+    "dankook:프리무스국제대학(자연계열)": {"dku-talent-doc": 3, "dku-talent-interview": 5, "equal-opportunity": 2, "social-consideration": 1, "regional-balance": 3, "overseas-nationals": null, "overseas-full-nk": null, "csat-general": 16},
+    "dankook:사범대학(자연계열)": {"dku-talent-doc": 9, "dku-talent-interview": 12, "special-edu": 2, "regional-balance": 9, "essay": 7, "csat-general": 23, "csat-special-edu": null}
+  },
+  "pages": "8-9, 37",
+  "notes": "8~9쪽 죽전 「모집단위 및 모집인원」 표, 37쪽 재외국민. 단과대학 항목은 소속 학과(전공) 행의 합. SW융합대학 = 2028 계획의 AI융합대학(소프트웨어·컴퓨터공학·통계데이터사이언스·사이버보안·인공지능·AI건축융합학과). 경영경제대학에 산업경영학과(야)(DKU인재 서류형 3, 특성화고졸재직자 120) 포함. 사범대학(인문)=한문교육과·특수교육과, (자연)=수학교육과·과학교육과 (체육교육과 제외). 정시 일반학생은 가·나·다군 합. null: 퇴계혁신칼리지 지역균형선발 38·정시 다군 145(인문/자연 합친 한 칸, 논술만 인문 40·자연 23); 인문계열광역·SW융합계열광역 정시(정시 인원 없음, 수시 이월 시 다군 선발, 9쪽); 정시 교육기회배려자·농어촌학생·특수교육대상자(수시 미충원 인원만 이월, 그 수시 전형 인원이 있는 곳, 29~31쪽); 재외국민(학과별 최대모집 가능인원 안에서 계열별 인문 39·자연 40명 선발)과 전 교육과정 이수자·북한이탈주민(모집인원 제한없음) — 37쪽 표에 학과가 있는 단과대학."
+}

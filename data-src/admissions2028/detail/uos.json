@@ -1,0 +1,295 @@
+{
+  "univ": "uos",
+  "suneung": [
+    {
+      "group": "인문계열Ⅰ",
+      "units": "경제학부, 사회복지학과, 세무학과, 경영학부, 도시행정학과, 자유전공학부(인문)",
+      "tracks": ["general-liberal-natural", "equity-2-rural", "equity-2-vocational", "equity-2-basic", "equity-2-disabled"],
+      "use": "국어·수학·탐구 표준점수, 영어·한국사 등급별 차감",
+      "weights": { "국어": 35, "수학": 35, "탐구": 30 },
+      "inquiry": "탐구 2과목(사회/과학). 기회균형전형Ⅱ 특성화고교졸업자 특별전형은 직업탐구 인정 가능",
+      "english": "반영총점에서 등급별 차감: 1등급 0점, 2등급 -3점, 3등급 -12점, 4등급 -24점, 5등급 -44점, 6등급 -60점, 7등급 -84점, 8등급 -108점, 9등급 -120점",
+      "history": "반영총점에서 등급별 차감: 1~4등급 0점, 5등급 -2점, 6등급 -4점, 7등급 -6점, 8등급 -8점, 9등급 -10점",
+      "bonus": "사회탐구 표준점수 성적에 3% 가산점",
+      "formula": "국어 280점 + 수학 280점 + 탐구 240점 = 800점, 영어·한국사는 반영총점에서 등급별 차감",
+      "total": 800,
+      "pages": "22, 15, 18"
+    },
+    {
+      "group": "인문계열Ⅱ",
+      "units": "행정학과, 국제관계학과, 영어영문학과, 국어국문학과, 국사학과, 철학과, 중국어문화학과, 도시사회학과",
+      "tracks": ["general-liberal-natural", "equity-2-rural", "equity-2-vocational", "equity-2-basic", "equity-2-disabled"],
+      "use": "국어·수학·탐구 표준점수, 영어·한국사 등급별 차감",
+      "weights": { "국어": 40, "수학": 25, "탐구": 35 },
+      "inquiry": "탐구 2과목(사회/과학). 기회균형전형Ⅱ 특성화고교졸업자 특별전형은 직업탐구 인정 가능",
+      "english": "반영총점에서 등급별 차감: 1등급 0점, 2등급 -5점, 3등급 -13점, 4등급 -32점, 5등급 -56점, 6등급 -80점, 7등급 -112점, 8등급 -144점, 9등급 -160점",
+      "history": "반영총점에서 등급별 차감: 1~4등급 0점, 5등급 -2점, 6등급 -4점, 7등급 -6점, 8등급 -8점, 9등급 -10점",
+      "bonus": "사회탐구 표준점수 성적에 3% 가산점",
+      "formula": "국어 320점 + 수학 200점 + 탐구 280점 = 800점, 영어·한국사는 반영총점에서 등급별 차감",
+      "total": 800,
+      "pages": "22, 15, 18"
+    },
+    {
+      "group": "자연계열",
+      "units": "전자전기컴퓨터공학부·화학공학과·컴퓨터과학부·인공지능학과·수학과·건축학부·환경공학부 등 자연계열 모집단위, 자유전공학부(자연), 첨단융합학부",
+      "tracks": ["general-liberal-natural", "equity-2-rural", "equity-2-vocational", "equity-2-basic", "equity-2-disabled"],
+      "use": "국어·수학·탐구 표준점수, 영어·한국사 등급별 차감",
+      "weights": { "국어": 30, "수학": 40, "탐구": 30 },
+      "inquiry": "탐구 2과목(사회/과학). 기회균형전형Ⅱ 특성화고교졸업자 특별전형은 직업탐구 인정 가능",
+      "english": "반영총점에서 등급별 차감: 1등급 0점, 2등급 -2점, 3등급 -8점, 4등급 -16점, 5등급 -28점, 6등급 -40점, 7등급 -56점, 8등급 -72점, 9등급 -80점",
+      "history": "반영총점에서 등급별 차감: 1~4등급 0점, 5등급 -2점, 6등급 -4점, 7등급 -6점, 8등급 -8점, 9등급 -10점",
+      "bonus": "과학탐구 표준점수 성적에 3% 가산점",
+      "formula": "국어 240점 + 수학 320점 + 탐구 240점 = 800점, 영어·한국사는 반영총점에서 등급별 차감",
+      "total": 800,
+      "pages": "22, 15, 18"
+    },
+    {
+      "group": "음악학과",
+      "units": "음악학과(나군)",
+      "tracks": ["practical-music-jeongsi"],
+      "use": "국어 표준점수, 영어·한국사 등급별 차감",
+      "weights": { "국어": 100 },
+      "inquiry": null,
+      "english": "반영총점에서 등급별 차감: 1등급 0점, 2등급 -4점, 3등급 -15점, 4등급 -30점, 5등급 -55점, 6등급 -75점, 7등급 -105점, 8등급 -135점, 9등급 -150점",
+      "history": "반영총점에서 등급별 차감: 1~4등급 0점, 5등급 -2점, 6등급 -4점, 7등급 -6점, 8등급 -8점, 9등급 -10점",
+      "bonus": null,
+      "formula": "국어 300점 = 300점, 영어·한국사는 반영총점에서 등급별 차감",
+      "total": 300,
+      "pages": "22, 16"
+    },
+    {
+      "group": "디자인학과",
+      "units": "디자인학과(가군, 수시 미충원 이월인원 발생 시)",
+      "tracks": ["practical-design-jeongsi"],
+      "use": "국어·탐구 표준점수, 영어·한국사 등급별 차감",
+      "weights": { "국어": 65, "탐구": 35 },
+      "inquiry": "탐구(사회/과학) 표준점수 반영",
+      "english": "반영총점에서 등급별 차감: 1등급 0점, 2등급 -3점, 3등급 -12점, 4등급 -24점, 5등급 -44점, 6등급 -60점, 7등급 -84점, 8등급 -108점, 9등급 -120점",
+      "history": "반영총점에서 등급별 차감: 1~4등급 0점, 5등급 -2점, 6등급 -4점, 7등급 -6점, 8등급 -8점, 9등급 -10점",
+      "bonus": null,
+      "formula": "국어 260점 + 탐구 140점 = 400점, 영어·한국사는 반영총점에서 등급별 차감",
+      "total": 400,
+      "pages": "22, 16"
+    },
+    {
+      "group": "조각학과",
+      "units": "조각학과(가군)",
+      "tracks": ["practical-sculpture-jeongsi"],
+      "use": "국어 표준점수, 영어·한국사 등급별 차감",
+      "weights": { "국어": 100 },
+      "inquiry": null,
+      "english": "반영총점에서 등급별 차감: 1등급 0점, 2등급 -3점, 3등급 -12점, 4등급 -24점, 5등급 -44점, 6등급 -60점, 7등급 -84점, 8등급 -108점, 9등급 -120점",
+      "history": "반영총점에서 등급별 차감: 1~4등급 0점, 5등급 -2점, 6등급 -4점, 7등급 -6점, 8등급 -8점, 9등급 -10점",
+      "bonus": null,
+      "formula": "국어 300점 = 300점, 영어·한국사는 반영총점에서 등급별 차감",
+      "total": 300,
+      "pages": "22, 16"
+    },
+    {
+      "group": "스포츠과학과",
+      "units": "스포츠과학과(나군)",
+      "tracks": ["general-sports"],
+      "use": "국어·수학·탐구 표준점수, 영어·한국사 등급별 차감",
+      "weights": { "국어": 40, "수학": 30, "탐구": 30 },
+      "inquiry": "탐구 2과목(사회/과학) 표준점수 반영",
+      "english": "반영총점에서 등급별 차감: 1등급 0점, 2등급 -4점, 3등급 -13점, 4등급 -25점, 5등급 -46점, 6등급 -63점, 7등급 -88점, 8등급 -113점, 9등급 -125점",
+      "history": "반영총점에서 등급별 차감: 1~4등급 0점, 5등급 -2점, 6등급 -4점, 7등급 -6점, 8등급 -8점, 9등급 -10점",
+      "bonus": null,
+      "formula": "국어 200점 + 수학 150점 + 탐구 150점 = 500점, 영어·한국사는 반영총점에서 등급별 차감",
+      "total": 500,
+      "pages": "22, 15"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["regional-balance"],
+      "subjects": "전학년 전교과에서 석차등급으로 평가된 전과목",
+      "terms": "전학년(3학년 1학기까지 통산 5학기 이상 성적 취득 필요)",
+      "grades": null,
+      "achievement": "성적이 석차등급으로 산출되지 않은 과목은 미반영. 원점수·평균·석차등급이 모두 기재된 교과만 반영",
+      "formula": null,
+      "extra": "교과 정량평가 60%와 별도로 서류평가 40%에서 학생부 교과영역·출결상황을 중심으로 학업역량과 성실성을 평가",
+      "pages": "10, 21"
+    },
+    {
+      "tracks": ["practical-music-susi", "practical-design-susi"],
+      "subjects": "전학년 국어·영어 교과의 석차등급",
+      "terms": "전학년(최소 3학기 이상 성적 필요)",
+      "grades": null,
+      "achievement": "원점수·평균·석차등급이 모두 기재된 교과만 반영(졸업자는 표준편차까지 기재된 교과). 성적이 석차등급으로 산출되지 않은 과목은 미반영",
+      "formula": null,
+      "extra": null,
+      "pages": "14, 21"
+    },
+    {
+      "tracks": ["general-liberal-natural", "equity-2-rural", "equity-2-vocational", "equity-2-basic", "equity-2-disabled"],
+      "subjects": "인문/자연계열: 전학년 전교과의 전과목 석차등급",
+      "terms": "전학년",
+      "grades": null,
+      "achievement": "졸업예정자는 원점수·평균·석차등급이 모두 기재된 교과만, 졸업자는 원점수·평균·표준편차·석차등급이 모두 기재된 교과만 반영. 석차등급 미산출 과목은 미반영",
+      "formula": null,
+      "extra": "교과 18% + 출결 2%. 비교내신(2025년 2월 및 이전 졸업자, 외국 고교 과정 이수자, 검정고시 출신자 등): 수능 등급 평균에 따른 점수 부여",
+      "pages": "15, 18, 21"
+    },
+    {
+      "tracks": ["general-sports", "practical-music-jeongsi"],
+      "subjects": "예체능계열: 전학년 국어·영어 교과의 전과목 석차등급",
+      "terms": "전학년",
+      "grades": null,
+      "achievement": "졸업예정자는 원점수·평균·석차등급이 모두 기재된 교과만, 졸업자는 원점수·평균·표준편차·석차등급이 모두 기재된 교과만 반영. 석차등급 미산출 과목은 미반영",
+      "formula": null,
+      "extra": "교과영역만 반영(출결 미반영). 비교내신(2025년 2월 및 이전 졸업자, 검정고시 출신자 등): 수능 등급 평균에 따른 점수 부여",
+      "pages": "15-16, 21"
+    }
+  ],
+  "tracks": {
+    "essay": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "논술": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부(또는 동등 학력 인정 서류)",
+      "units": null
+    },
+    "regional-balance": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 60, "서류": 40 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "general-susi": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "서류": 50, "면접": 50 } }
+      ],
+      "interview": "면접위원 2인이 지원자 1인을 대상으로 학업역량·잠재역량·사회역량 중심의 종합적 사고력, 문제해결능력, 의사소통능력, 공적윤리의식, 제출서류의 진실성 등을 약 12분 내외 평가",
+      "essay": null,
+      "docs": "학교생활기록부(또는 학생부 대체서식). 서류는 성명·수험번호·출신고교명 등을 블라인드 처리하여 평가",
+      "units": null
+    },
+    "equity-1": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "서류": 50, "면접": 50 } }
+      ],
+      "interview": "면접위원 2인이 지원자 1인을 대상으로 학업역량·잠재역량·사회역량 중심의 종합적 사고력, 문제해결능력, 의사소통능력, 공적윤리의식, 제출서류의 진실성 등을 약 12분 내외 평가",
+      "essay": null,
+      "docs": "학교생활기록부(또는 학생부 대체서식), 지원자격 확인서류",
+      "units": null
+    },
+    "social-contribution": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "서류": 50, "면접": 50 } }
+      ],
+      "interview": "면접위원 2인이 지원자 1인을 대상으로 학업역량·잠재역량·사회역량 중심의 종합적 사고력, 문제해결능력, 의사소통능력, 공적윤리의식, 제출서류의 진실성 등을 약 12분 내외 평가",
+      "essay": null,
+      "docs": "학교생활기록부(또는 학생부 대체서식), 지원자격 확인서류",
+      "units": null
+    },
+    "practical-music-susi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "실기": 90, "교과": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "practical-design-susi": {
+      "stages": [
+        { "step": "1단계", "pick": "10배수", "parts": { "교과": 100 } },
+        { "step": "2단계", "pick": "5배수", "parts": { "교과": 45, "실기": 55 } },
+        { "step": "3단계", "pick": null, "parts": { "교과": 40, "실기": 50, "면접": 10 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부",
+      "units": null
+    },
+    "general-liberal-natural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 80, "교과": 18, "출결": 2 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부(또는 동등 학력 인정 서류)",
+      "units": null
+    },
+    "general-sports": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "수능": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "수능": 50, "교과": 20, "실기": 30 } }
+      ],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부(또는 동등 학력 인정 서류)",
+      "units": null
+    },
+    "practical-music-jeongsi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "실기": 60, "수능": 30, "교과": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부(또는 동등 학력 인정 서류)",
+      "units": null
+    },
+    "practical-sculpture-jeongsi": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "수능": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "실기": 50, "수능": 30, "면접": 20 } }
+      ],
+      "interview": "실기고사 결과물을 토대로 면접 평가",
+      "essay": null,
+      "docs": "학교생활기록부(또는 동등 학력 인정 서류)",
+      "units": null
+    },
+    "practical-design-jeongsi": {
+      "stages": [
+        { "step": "1단계", "pick": "6배수", "parts": { "수능": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "실기": 50, "수능": 40, "면접": 10 } }
+      ],
+      "interview": "실기고사 결과물을 토대로 면접 평가",
+      "essay": null,
+      "docs": "학교생활기록부(또는 동등 학력 인정 서류)",
+      "units": null
+    },
+    "equity-2-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 80, "교과": 18, "출결": 2 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부(또는 동등 학력 인정 서류), 지원자격 확인서류",
+      "units": null
+    },
+    "equity-2-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 80, "교과": 18, "출결": 2 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부(또는 동등 학력 인정 서류), 지원자격 확인서류",
+      "units": null
+    },
+    "equity-2-basic": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 80, "교과": 18, "출결": 2 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부(또는 동등 학력 인정 서류), 지원자격 확인서류",
+      "units": null
+    },
+    "equity-2-disabled": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 80, "교과": 18, "출결": 2 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부(또는 동등 학력 인정 서류), 지원자격 확인서류",
+      "units": null
+    },
+    "overseas": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "고등학교 졸업(예정)증명서, 초·중·고등학교 재학증명서·성적증명서, 출입국사실증명서, 사실증명발급·열람신청위임장, 여권 사본, 자기소개서, 언어능력 증빙서류, 기타활동 증빙서류",
+      "units": null
+    },
+    "north-korean": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 50, "면접": 50 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부(또는 동등 학력 인정 서류, 대체서식 가능), 지원자격 확인서류, 자기소개서, 학업계획서",
+      "units": null
+    }
+  }
+}

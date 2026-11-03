@@ -1,0 +1,32 @@
+{
+  "univ": "seoultech",
+  "seats": {
+    "seoultech:기계시스템공학부(지능형로봇전공)": { "school-rec": 20, "seoultech-talent": 33, "equal-chance": 5, "rural-susi": 3, "csat-general": 27, "rural-jeongsi": null },
+    "seoultech:기계시스템공학부(미래자동차전공)": { "school-rec": 11, "seoultech-talent": 19, "veteran": 1, "equal-chance": 3, "rural-susi": 2, "csat-general": 14, "rural-jeongsi": null },
+    "seoultech:기계공학과": { "school-rec": 28, "seoultech-talent": 52, "veteran": 1, "equal-chance": 9, "rural-susi": 6, "csat-general": 39, "rural-jeongsi": null },
+    "seoultech:안전공학과": { "school-rec": 11, "seoultech-talent": 20, "veteran": 1, "equal-chance": 3, "rural-susi": 2, "csat-general": 15, "rural-jeongsi": null },
+    "seoultech:신소재공학과": { "school-rec": 12, "seoultech-talent": 25, "veteran": 1, "equal-chance": 4, "rural-susi": 1, "csat-general": 21, "rural-jeongsi": null },
+    "seoultech:건설시스템공학과": { "school-rec": 20, "seoultech-talent": 37, "veteran": 1, "equal-chance": 8, "rural-susi": 1, "csat-general": 29, "rural-jeongsi": null },
+    "seoultech:건축학부(건축공학전공)": { "school-rec": 12, "seoultech-talent": 23, "veteran": 1, "equal-chance": 4, "rural-susi": 2, "csat-general": 18, "rural-jeongsi": null },
+    "seoultech:건축학부(건축학전공)": { "school-rec": 9, "seoultech-talent": 17, "veteran": 1, "equal-chance": 3, "rural-susi": 1, "csat-general": 13, "rural-jeongsi": null },
+    "seoultech:전기정보공학과": { "school-rec": 26, "seoultech-talent": 40, "veteran": 1, "equal-chance": 7, "rural-susi": 1, "csat-general": 29, "rural-jeongsi": null },
+    "seoultech:전자공학과": { "school-rec": 14, "seoultech-talent": 24, "equal-chance": 5, "rural-susi": 1, "csat-general": 18, "rural-jeongsi": null },
+    "seoultech:스마트ICT융합공학과": { "school-rec": 11, "seoultech-talent": 17, "veteran": 1, "equal-chance": 3, "rural-susi": 1, "csat-general": 10, "rural-jeongsi": null },
+    "seoultech:컴퓨터공학과": { "school-rec": 18, "seoultech-talent": 33, "veteran": 1, "equal-chance": 3, "rural-susi": 1, "csat-general": 30, "rural-jeongsi": null },
+    "seoultech:화공생명공학과": { "school-rec": 12, "seoultech-talent": 22, "veteran": 1, "equal-chance": 3, "rural-susi": 1, "csat-general": 17, "rural-jeongsi": null },
+    "seoultech:환경공학과": { "school-rec": 14, "seoultech-talent": 27, "veteran": 1, "equal-chance": 2, "rural-susi": 3, "csat-general": 25, "rural-jeongsi": null },
+    "seoultech:식품생명공학과": { "school-rec": 10, "seoultech-talent": 16, "veteran": 1, "equal-chance": 2, "rural-susi": 3, "csat-general": 8, "rural-jeongsi": null },
+    "seoultech:정밀화학과": { "school-rec": 7, "seoultech-talent": 16, "veteran": 1, "equal-chance": 2, "rural-susi": 3, "csat-general": 13, "rural-jeongsi": null },
+    "seoultech:안경광학과": { "school-rec": 7, "seoultech-talent": 15, "veteran": 1, "equal-chance": 2, "rural-susi": 3, "csat-general": 12, "rural-jeongsi": null },
+    "seoultech:바이오메디컬학과": { "school-rec": 7, "seoultech-future": 14, "rural-susi": 2, "csat-general": 7, "rural-jeongsi": null },
+    "seoultech:산업공학과(산업정보시스템전공)": { "school-rec": 16, "seoultech-talent": 21, "veteran": 1, "equal-chance": 3, "rural-susi": 1, "csat-general": 8, "rural-jeongsi": null },
+    "seoultech:산업공학과(ITM전공)": { "school-rec": 8, "seoultech-talent": 13, "equal-chance": 1, "rural-susi": 1, "csat-general": 8, "rural-jeongsi": null },
+    "seoultech:MSDE학과": { "school-rec": 9, "seoultech-talent": 15, "equal-chance": 1, "rural-susi": 2, "csat-general": 13, "rural-jeongsi": null },
+    "seoultech:경영학과(글로벌테크노경영전공)": { "school-rec": 9, "seoultech-talent": 15, "equal-chance": 1, "rural-susi": 2, "csat-general": 10, "rural-jeongsi": null },
+    "seoultech:인공지능응용학과": { "school-rec": 18, "seoultech-future": 30, "equal-chance": 1, "rural-susi": 2, "csat-general": 18 },
+    "seoultech:지능형반도체공학과": { "school-rec": 16, "seoultech-future": 23, "equal-chance": 1, "rural-susi": 2, "csat-general": 14 },
+    "seoultech:미래에너지융합학과": { "school-rec": 6, "seoultech-future": 9, "equal-chance": 1, "rural-susi": 2, "csat-general": 4 }
+  },
+  "pages": "6-7, 15",
+  "notes": "수시는 6쪽, 정시는 7쪽 표. 산업공학과 두 전공과 경영학과(글로벌테크노경영전공)는 표의 _자연·_인문 두 행을 합함. csat-general은 가·나·다군 수능 100% 중 그 학과가 모집하는 군의 인원. null: rural-jeongsi(정시 농어촌, 15쪽 '해당 모집단위(가군, 나군)'에서 수시 미충원 인원만 선발)는 정시가 가·나군인 학과에만 적고, 다군인 인공지능응용·지능형반도체·미래에너지융합학과는 뺌."
+}

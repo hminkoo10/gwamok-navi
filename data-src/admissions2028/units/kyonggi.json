@@ -1,0 +1,8 @@
+{
+  "univ": "kyonggi",
+  "seats": {
+    "kyonggi:수학과": {"subject-excellent": 2, "school-rec": 3, "rural-gyogwa": 2, "kgu-jonghap": 10, "equal-opportunity": 2, "overseas-nationals": null, "overseas-full-course": null, "north-korean": null, "foreign-parents": null, "csat-1": 4, "rural-csat": null}
+  },
+  "pages": "7, 9, 22, 34",
+  "notes": "7쪽 수시·9쪽 정시 「모집단위별 및 전형별 모집인원」 표의 수학과 행. 정시 일반학생Ⅰ은 다군. null: 재외국민 및 외국인(수원캠퍼스 36명 한 칸)·전 교육과정 이수자·북한이탈주민(제한 없음, 22쪽), 부모가 모두 외국인인 외국인(모집단위 '학과/전공', 인원 없음, 34쪽), 정시 농어촌학생(★ 수시 미충원 이월만, 8·9쪽). '인문/예체능'·'자연/공학(수학과 제외)'은 권장과목 자료집의 계열 묶음이고 시행계획에는 계열 구분이 없어 넣지 않음. 자유전공학부(수원·서울, 무전공)의 논술·일반학생Ⅱ 인원은 학과에 넣지 않음."
+}

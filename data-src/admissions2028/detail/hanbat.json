@@ -1,0 +1,284 @@
+{
+  "univ": "hanbat",
+  "suneung": [
+    {
+      "group": "공학",
+      "units": "공학 계열 모집단위 (자율전공학부·빅데이터헬스케어융합학과 제외)",
+      "tracks": ["jeongsi-ga", "jeongsi-na", "jeongsi-da", "carry-master", "carry-night", "carry-rural", "carry-vocational", "carry-social-care"],
+      "use": "백분위 (영어는 등급별 반영점수)",
+      "weights": {},
+      "inquiry": "사회·과학·직업 중 1과목",
+      "english": "등급별 반영점수: 1등급 100, 2등급 95, 3등급 90, 4등급 85, 5등급 80, 6등급 70, 7등급 60, 8등급 40, 9등급 0",
+      "history": "필수 응시, 수능 성적 계산에는 반영하지 않음",
+      "bonus": "과학탐구가 반영되는 경우 취득 백분위 10% 가산점",
+      "formula": "수학 40%(필수) + 국어·영어·탐구(1과목) 중 상위 두 과목 각 30%. 영역별 환산점수 = (백분위점수×500/100)×반영비율, 수능 환산 총점 = Σ영역별 환산점수 (소수점 넷째 자리에서 반올림)",
+      "total": 500,
+      "pages": "26"
+    },
+    {
+      "group": "인문/경상/디자인/예체능",
+      "units": "인문·경상·디자인·예체능 계열, 자율전공학부, 빅데이터헬스케어융합학과",
+      "tracks": ["jeongsi-ga", "jeongsi-na", "jeongsi-da", "jeongsi-na-silgi", "carry-night", "carry-rural", "carry-vocational", "carry-social-care"],
+      "use": "백분위 (영어는 등급별 반영점수)",
+      "weights": {},
+      "inquiry": "사회·과학·직업 중 1과목",
+      "english": "등급별 반영점수: 1등급 100, 2등급 95, 3등급 90, 4등급 85, 5등급 80, 6등급 70, 7등급 60, 8등급 40, 9등급 0",
+      "history": "필수 응시, 수능 성적 계산에는 반영하지 않음",
+      "bonus": null,
+      "formula": "국어·수학·영어·탐구(1과목) 중 상위 세 과목 평균 점수 반영. 영역별 환산점수 = (백분위점수×500/100)×반영비율, 수능 환산 총점 = Σ영역별 환산점수 (소수점 넷째 자리에서 반올림)",
+      "total": 500,
+      "pages": "26"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["gyogwa-general", "regional-gyogwa", "gyogwa-social-integration", "rural", "social-care"],
+      "subjects": "【국어·수학·영어】 교과별 상위 4과목 + 【사회·과학】 교과 중 상위 6과목, 총 18과목 (공통 및 선택과목(일반·진로), 사회는 역사·윤리·도덕·한국사 포함). 교과(군) 반영비율 국·영·수·사과: 공학 20·25·35·20, 인문/디자인 25·25·25·25, 경상 25·25·30·20, 자율전공학부·빅데이터헬스케어융합학과 20·25·30·25",
+      "terms": "1~3학년 이수 과목 중 상위 과목 (학년별 구분 없이 100%), 이수학점은 3학년 1학기까지",
+      "grades": "2028년 이후 졸업(예정)자 석차등급 점수: 1등급 10, 2등급 9.5, 3등급 8.8, 4등급 5.5, 5등급 2. 2008~2027년 졸업자는 공통·일반선택 과목을 Z점수로 1~5등급 환산(같은 점수, 진로선택 미반영), 2007년 2월 이전 졸업자는 과목석차 백분율·평어로 환산",
+      "achievement": "사회·과학 선택과목(일반·진로) 중 3과목은 석차등급과 성취도 중 상위 성적 반영 (성취도 A·B·C·D·E → 1·2·3·4·5등급). 진로선택은 석차등급·성취도 5단계 병기 과목만",
+      "formula": "평균등급점수(A) = Σ교과(군)[Σ등급점수 ÷ 교과(군) 반영교과 수 × 교과(군) 반영비율]; 교과 점수 = (A × 45점) × 가중치(B). B: 국·영·수·사·과 총 이수학점 100 미만 1.0, 100 이상 1.1",
+      "extra": "출결(사고결석일수): 0일 50점, 1일 이하 48점, 2~5일 45점, 6~10일 40점, 11일 이상 30점. 융합선택·과학탐구실험 미반영(이수학점 가중치에는 포함). 과목 수 부족 시 기본점수(5등급)",
+      "pages": "13, 20-23"
+    },
+    {
+      "tracks": ["gyogwa-master"],
+      "subjects": "【국어·수학·영어】 교과별 상위 4과목 + 【사회·과학】 교과 중 상위 6과목, 총 18과목 (공통 및 선택과목(일반·진로), 사회는 역사·윤리·도덕·한국사 포함). 교과(군) 반영비율 공학 국어 20·영어 25·수학 35·사회·과학 20",
+      "terms": "1~3학년 이수 과목 중 상위 과목 (학년별 구분 없이 100%), 이수학점은 3학년 1학기까지",
+      "grades": "2028년 이후 졸업(예정)자 석차등급 점수: 1등급 10, 2등급 9.5, 3등급 8.8, 4등급 5.5, 5등급 2. 2008~2027년 졸업자는 공통·일반선택 과목을 Z점수로 1~5등급 환산(같은 점수, 진로선택 미반영), 2007년 2월 이전 졸업자는 과목석차 백분율·평어로 환산",
+      "achievement": "사회·과학 선택과목(일반·진로) 중 3과목은 석차등급과 성취도 중 상위 성적 반영 (성취도 A·B·C·D·E → 1·2·3·4·5등급). 진로선택은 석차등급·성취도 5단계 병기 과목만",
+      "formula": "평균등급점수(A) = Σ교과(군)[Σ등급점수 ÷ 교과(군) 반영교과 수 × 교과(군) 반영비율]; 교과 점수 = A × 31.5점",
+      "extra": "출결(사고결석일수): 0일 35점, 1일 이하 33점, 2~5일 30점, 6~10일 25점, 11일 이상 20점. 교과정성평가 30%는 교과학습발달상황(교과이수현황+교과성적+세특) 정성평가",
+      "pages": "5, 13, 20-23"
+    },
+    {
+      "tracks": ["vocational-grad"],
+      "subjects": "【국어·수학·영어】 교과별 상위 2과목 + 【사회·과학】 교과 중 상위 4과목, 총 10과목 (공통 및 선택과목(일반), 보통교과만). 교과(군) 반영비율 국·영·수·사과: 공학 20·25·35·20, 인문/디자인 25·25·25·25, 경상 25·25·30·20, 자율전공학부·빅데이터헬스케어융합학과 20·25·30·25",
+      "terms": "1~3학년 이수 과목 중 상위 과목 (학년별 구분 없이 100%)",
+      "grades": "2028년 이후 졸업(예정)자 석차등급 점수: 1등급 10, 2등급 9.5, 3등급 8.8, 4등급 5.5, 5등급 2. 2008~2027년 졸업자는 공통·일반선택 과목을 Z점수로 1~5등급 환산(같은 점수), 2007년 2월 이전 졸업자는 과목석차 백분율·평어로 환산",
+      "achievement": null,
+      "formula": "평균등급점수(A) = Σ교과(군)[Σ등급점수 ÷ 교과(군) 반영교과 수 × 교과(군) 반영비율]; 교과 점수 = A × 45점",
+      "extra": "출결(사고결석일수): 0일 50점, 1일 이하 48점, 2~5일 45점, 6~10일 40점, 11일 이상 30점",
+      "pages": "13, 20-23"
+    },
+    {
+      "tracks": ["silgi-general"],
+      "subjects": "【국어·영어】 교과별 상위 4과목 + 【수학·사회·과학】 교과 중 상위 6과목, 총 14과목 (공통 및 선택과목(일반·진로)). 교과(군) 반영비율 국어 40·영어 30·수학·사회·과학 30",
+      "terms": "1~3학년 이수 과목 중 상위 과목 (학년별 구분 없이 100%)",
+      "grades": "2028년 이후 졸업(예정)자 석차등급 점수: 1등급 10, 2등급 9.5, 3등급 8.8, 4등급 5.5, 5등급 2. 2008~2027년 졸업자는 공통·일반선택 과목을 Z점수로 1~5등급 환산(같은 점수, 진로선택 미반영)",
+      "achievement": "수학·사회·과학 선택과목(일반·진로) 중 3과목은 석차등급과 성취도 중 상위 성적 반영 (성취도 A·B·C·D·E → 1·2·3·4·5등급)",
+      "formula": "평균등급점수(A) = Σ교과(군)[Σ등급점수 ÷ 교과(군) 반영교과 수 × 교과(군) 반영비율]; 교과 점수 = A × 18점",
+      "extra": "출결(사고결석일수): 0일 20점, 1일 이하 18점, 2~5일 16점, 6~10일 13점, 11일 이상 10점. 융합선택·과학탐구실험 미반영",
+      "pages": "15, 20-23"
+    }
+  ],
+  "tracks": {
+    "gyogwa-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "regional-gyogwa": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-master": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 63, "출결": 7, "교과정성평가": 30 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "gyogwa-social-integration": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jonghap-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "regional-jonghap": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "발표 및 질의응답 등 종합평가",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "software-talent": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "발표 및 질의응답 등 종합평가",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jonghap-night": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "발표 및 질의응답 등 종합평가",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "silgi-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 36, "출결": 4, "실기": 60 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "silgi-excellent": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "실기": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "vocational-grad": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "social-care": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "special-edu": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "발표 및 질의응답 등 종합평가",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "worker-night": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "발표 및 질의응답 등 종합평가",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "adult-night": {
+      "stages": [
+        { "step": "1단계", "pick": "5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "발표 및 질의응답 등 종합평가",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-ga": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-na": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-da": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-na-silgi": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 40, "실기": 60 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "carry-master": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "carry-night": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "carry-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "carry-vocational": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "carry-social-care": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-worker-night": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "jeongsi-adult-night": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

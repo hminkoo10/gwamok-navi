@@ -1,0 +1,14 @@
+{
+  "univ": "kau",
+  "seats": {
+    "kau:공과대학": {"essay": 42, "gyogwa": 33, "principal-rec": 18, "future-talent": 43, "equal-opportunity": 12, "general": 50, "overseas-3y": null, "overseas-full": null, "nk": null, "foreign-parents": null, "rural": 9, "voc-grad": 4},
+    "kau:AI융합대학": {"essay": 44, "gyogwa": 33, "principal-rec": 18, "future-talent": 44, "equal-opportunity": 13, "general": 52, "overseas-3y": null, "overseas-full": null, "nk": null, "foreign-parents": null, "rural": 9, "voc-grad": 4},
+    "kau:스마트드론공학과": {"essay": 12, "gyogwa": 8, "principal-rec": 5, "future-talent": 10, "equal-opportunity": 3, "general": 10, "overseas-3y": null, "overseas-full": null, "nk": null, "foreign-parents": null, "rural": 2, "voc-grad": 1},
+    "kau:AI자율주행시스템공학과": {"essay": 9, "gyogwa": 6, "principal-rec": 4, "future-talent": 10, "equal-opportunity": 2, "general": 9, "overseas-3y": null, "overseas-full": null, "nk": null, "foreign-parents": null, "rural": 2, "voc-grad": 1},
+    "kau:항공경영대학(이학적성)": {"essay": 15, "gyogwa": null, "principal-rec": null, "future-talent": 12, "equal-opportunity": 5, "general": 14, "overseas-3y": null, "overseas-full": null, "nk": null, "foreign-parents": null, "rural": 4},
+    "kau:항공운항학과": {"essay": 8, "gyogwa": 8, "principal-rec": 4, "future-talent": 9, "equal-opportunity": 2, "general": 9, "overseas-3y": null, "overseas-full": null, "foreign-parents": null, "rural": 3},
+    "kau:항공경영대학(사회적성)": {"essay": 19, "gyogwa": null, "principal-rec": null, "future-talent": 14, "equal-opportunity": 7, "general": 20, "overseas-3y": null, "overseas-full": null, "nk": null, "foreign-parents": null, "rural": 4, "voc-grad": 2}
+  },
+  "pages": "7-8",
+  "notes": "7쪽 정원 내, 8쪽 정원 외 모집인원 표. 교과성적우수자는 유형Ⅰ+유형Ⅱ 합. null: 항공·경영대학(이학/사회적성)의 교과성적우수자·학교장추천(적성 구분 없이 항공·경영대학으로 유형Ⅰ 14·유형Ⅱ 10·학교장추천 12명 선발, 7쪽 ※※※); 재외국민 및 외국인(전체 모집단위 16명 한 칸), 전교육과정해외이수자·북한이탈주민·부모모두외국인인 외국인(제한없음, 북한이탈주민은 항공운항학과 선발 안 함; 6·8쪽). 특성화고교출신자는 항공·경영대학(이학적성)·항공운항학과 '-'라 뺌. 목록에 없는 자유전공학부(공학·이학·사회적성) 인원은 넣지 않음."
+}

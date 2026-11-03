@@ -1,0 +1,156 @@
+{
+  "univ": "gnue",
+  "suneung": [
+    {
+      "group": "초등교육과",
+      "units": "초등교육과",
+      "tracks": ["csat-general", "csat-adult", "csat-rural", "csat-equity"],
+      "use": "백분위 (영어는 등급별 반영점수, 한국사는 등급별 가산점)",
+      "weights": { "국어": 25, "수학": 25, "영어": 25, "탐구": 25 },
+      "inquiry": "탐구(통합사회·통합과학) 2과목 평균 백분위",
+      "english": "등급별 반영점수: 1등급 250, 2등급 240, 3등급 230, 4등급 220, 5등급 210, 6등급 200, 7등급 190, 8등급 180, 9등급 170",
+      "history": "응시 필수. 등급별 가산점: 1·2등급 2점, 3·4등급 1.5점, 5·6등급 1점, 7·8등급 0.5점, 9등급 0점 (가산점으로 합계 1,000점을 넘을 수 있음)",
+      "bonus": null,
+      "formula": "[(국어, 수학, 탐구(2과목 평균) 영역 백분위 합) ÷ 300] × 750 + 영어 등급별 반영점수 + 한국사 등급별 가산점",
+      "total": 1000,
+      "pages": "Ⅳ-3, Ⅳ-4"
+    }
+  ],
+  "record": [
+    {
+      "tracks": ["regional-subject"],
+      "subjects": "석차등급 및 이수학점(단위)이 표기된 전 과목 (성취도는 정성평가)",
+      "terms": "졸업예정자 3학년 1학기까지, 졸업자 전 학년. 학년별 반영비율 적용 안 함",
+      "grades": "반영 과목 전체의 석차등급을 본교 학생부 성적 산출식에 따라 이수학점(단위)을 적용해 반영 (세부 반영방법은 2028학년도 수시모집요강)",
+      "achievement": "성취도는 정성평가 (교과정성평가)",
+      "formula": null,
+      "extra": "교과성적 800점(80%) + 교과정성평가 200점(20%). 교과정성평가는 학생부 출결상황·교과학습발달상황을 정성평가",
+      "pages": "Ⅲ-1"
+    }
+  ],
+  "tracks": {
+    "regional-subject": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "교과": 80, "교과정성평가": 20 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "학교생활기록부 (교과정성평가 자료: 출결상황, 교과학습발달상황)",
+      "units": null
+    },
+    "teaching-aptitude": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 70, "면접": 30 } }],
+      "interview": "비대면: 온라인으로 올린 면접 영상을 면접위원 2명이 지원자 1명씩 평가 (지원자 전체)",
+      "essay": null,
+      "docs": "학교생활기록부 또는 학교생활기록부 대체서류 (서류평가 자료)",
+      "units": null
+    },
+    "multicultural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 70, "면접": 30 } }],
+      "interview": "비대면: 온라인으로 올린 면접 영상을 면접위원 2명이 지원자 1명씩 평가 (지원자 전체)",
+      "essay": null,
+      "docs": "학교생활기록부 또는 학교생활기록부 대체서류 (서류평가 자료)",
+      "units": null
+    },
+    "rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 70, "면접": 30 } }],
+      "interview": "비대면: 온라인으로 올린 면접 영상을 면접위원 2명이 지원자 1명씩 평가 (지원자 전체)",
+      "essay": null,
+      "docs": "학교생활기록부 또는 학교생활기록부 대체서류 (서류평가 자료)",
+      "units": null
+    },
+    "equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 70, "면접": 30 } }],
+      "interview": "비대면: 온라인으로 올린 면접 영상을 면접위원 2명이 지원자 1명씩 평가 (지원자 전체)",
+      "essay": null,
+      "docs": "학교생활기록부 또는 학교생활기록부 대체서류 (서류평가 자료)",
+      "units": null
+    },
+    "jeonnam-rec": {
+      "stages": [
+        { "step": "1단계", "pick": "2.5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "대면 개별 면접: 면접위원 2명이 지원자 1명을 평가 (1단계 합격자 전체)",
+      "essay": null,
+      "docs": "학교생활기록부 또는 학교생활기록부 대체서류 (서류평가 자료)",
+      "units": null
+    },
+    "jeonnam-multicultural": {
+      "stages": [
+        { "step": "1단계", "pick": "2.5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "대면 개별 면접: 면접위원 2명이 지원자 1명을 평가 (1단계 합격자 전체)",
+      "essay": null,
+      "docs": "학교생활기록부 또는 학교생활기록부 대체서류 (서류평가 자료)",
+      "units": null
+    },
+    "regional-comprehensive": {
+      "stages": [
+        { "step": "1단계", "pick": "2.5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "대면 개별 면접: 면접위원 2명이 지원자 1명을 평가 (1단계 합격자 전체)",
+      "essay": null,
+      "docs": "학교생활기록부 또는 학교생활기록부 대체서류 (서류평가 자료)",
+      "units": null
+    },
+    "social-integration": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "대면 개별 면접: 면접위원 2명이 지원자 1명을 평가 (1단계 합격자 전체)",
+      "essay": null,
+      "docs": "학교생활기록부 또는 학교생활기록부 대체서류 (서류평가 자료)",
+      "units": null
+    },
+    "disabled": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "대면 개별 면접: 면접위원 2명이 지원자 1명을 평가 (1단계 합격자 전체)",
+      "essay": null,
+      "docs": "학교생활기록부 또는 학교생활기록부 대체서류 (서류평가 자료)",
+      "units": null
+    },
+    "adult": {
+      "stages": [
+        { "step": "1단계", "pick": "4배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "대면 개별 면접: 면접위원 2명이 지원자 1명을 평가 (1단계 합격자 전체)",
+      "essay": null,
+      "docs": "학교생활기록부 또는 학교생활기록부 대체서류 (서류평가 자료)",
+      "units": null
+    },
+    "csat-general": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-adult": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-rural": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "csat-equity": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "수능": 90, "출결": 10 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

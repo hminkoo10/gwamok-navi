@@ -1,0 +1,65 @@
+{
+  "univ": "postech",
+  "suneung": [],
+  "record": [],
+  "tracks": {
+    "general-1": {
+      "stages": [
+        { "step": "1단계", "pick": "3.5배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 40, "면접": 60 } }
+      ],
+      "interview": "과학공학계 글로벌 리더로서의 잠재력, 사고력, 이공계 분야 수학을 위한 기본 역량과 태도 등을 종합평가. 면접 결시자는 불합격",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "general-2": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 70, "면접": 30 } }
+      ],
+      "interview": "과학공학계 글로벌 리더로서의 잠재력, 사고력, 이공계 분야 수학을 위한 기본 역량과 태도 등을 종합평가. 면접 결시자는 불합격",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "balanced-regional": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "balanced-integrated": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": "자격 확인 서류 (서류발급 인정 기간 내 발급 가능해야 함, 국가보훈대상자는 보훈(지)청장 발행 대학입학 특별전형 대상자 증명서)",
+      "units": null
+    },
+    "balanced-low-income": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "semiconductor-talent": {
+      "stages": [
+        { "step": "1단계", "pick": "3배수", "parts": { "서류": 100 } },
+        { "step": "2단계", "pick": null, "parts": { "1단계": 50, "면접": 50 } }
+      ],
+      "interview": "과학공학계 글로벌 리더로서의 잠재력, 사고력, 이공계 분야 수학을 위한 기본 역량과 태도 등을 종합평가. 면접 결시자는 불합격",
+      "essay": null,
+      "docs": null,
+      "units": null
+    },
+    "foreign": {
+      "stages": [{ "step": "일괄", "pick": null, "parts": { "서류": 100 } }],
+      "interview": null,
+      "essay": null,
+      "docs": null,
+      "units": null
+    }
+  }
+}

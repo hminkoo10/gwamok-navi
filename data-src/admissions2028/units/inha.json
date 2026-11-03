@@ -1,0 +1,344 @@
+{
+  "univ": "inha",
+  "seats": {
+    "inha:기계공학과": {
+      "future-interview": 24,
+      "future-document": 21,
+      "equal-opportunity": 5,
+      "rural": 4,
+      "west-five-islands": null,
+      "regional-balance": 18,
+      "essay": 23,
+      "csat-general": 23,
+      "csat-vocational": 2,
+      "csat-rural": null
+    },
+    "inha:전기전자공학부": {
+      "future-interview": 42,
+      "future-document": 38,
+      "equal-opportunity": 7,
+      "rural": 11,
+      "west-five-islands": null,
+      "regional-balance": 30,
+      "essay": 34,
+      "csat-general": 38,
+      "csat-vocational": 7,
+      "csat-rural": null
+    },
+    "inha:반도체시스템공학과": {
+      "future-interview": 13,
+      "future-document": 11,
+      "equal-opportunity": 4,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 11,
+      "essay": 13,
+      "csat-general": 28,
+      "csat-rural": null
+    },
+    "inha:항공우주공학과": {
+      "future-interview": 11,
+      "future-document": 10,
+      "equal-opportunity": 2,
+      "rural": 3,
+      "west-five-islands": null,
+      "regional-balance": 8,
+      "essay": 9,
+      "csat-general": 11,
+      "csat-vocational": 3,
+      "csat-rural": null
+    },
+    "inha:조선해양공학과": {
+      "future-interview": 10,
+      "future-document": 9,
+      "equal-opportunity": 3,
+      "rural": 3,
+      "west-five-islands": null,
+      "regional-balance": 8,
+      "essay": 10,
+      "csat-general": 11,
+      "csat-vocational": 1,
+      "csat-rural": null
+    },
+    "inha:사회인프라공학과": {
+      "future-interview": 12,
+      "future-document": 10,
+      "equal-opportunity": 3,
+      "rural": 3,
+      "west-five-islands": null,
+      "regional-balance": 9,
+      "essay": 10,
+      "csat-general": 11,
+      "csat-rural": null
+    },
+    "inha:건축학부": {
+      "future-interview": 16,
+      "future-document": 14,
+      "equal-opportunity": 4,
+      "rural": 4,
+      "west-five-islands": null,
+      "regional-balance": 12,
+      "essay": 12,
+      "csat-general": 15,
+      "csat-vocational": 2,
+      "csat-rural": null
+    },
+    "inha:화학공학과": {
+      "future-interview": 16,
+      "future-document": 16,
+      "equal-opportunity": 4,
+      "rural": 4,
+      "west-five-islands": null,
+      "regional-balance": 16,
+      "essay": 14,
+      "csat-general": 17,
+      "csat-vocational": 2,
+      "csat-rural": null
+    },
+    "inha:고분자공학과": {
+      "future-interview": 7,
+      "future-document": 7,
+      "equal-opportunity": 2,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 6,
+      "essay": 6,
+      "csat-general": 8,
+      "csat-vocational": 2,
+      "csat-rural": null
+    },
+    "inha:신소재공학과": {
+      "future-interview": 16,
+      "future-document": 16,
+      "equal-opportunity": 4,
+      "rural": 4,
+      "west-five-islands": null,
+      "regional-balance": 16,
+      "essay": 14,
+      "csat-general": 17,
+      "csat-vocational": 3,
+      "csat-rural": null
+    },
+    "inha:이차전지융합학과": {
+      "future-interview": 7,
+      "future-document": 6,
+      "equal-opportunity": 2,
+      "rural": 1,
+      "west-five-islands": null,
+      "regional-balance": 5,
+      "essay": 6,
+      "csat-general": 14,
+      "csat-rural": null
+    },
+    "inha:환경공학과": {
+      "future-interview": 7,
+      "future-document": 7,
+      "equal-opportunity": 2,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 7,
+      "essay": 6,
+      "csat-general": 8,
+      "csat-rural": null
+    },
+    "inha:에너지자원공학과": {
+      "future-interview": 14,
+      "equal-opportunity": 2,
+      "west-five-islands": null,
+      "essay": 4,
+      "csat-general": 5
+    },
+    "inha:산업경영공학과": {
+      "future-interview": 9,
+      "future-document": 7,
+      "equal-opportunity": 2,
+      "rural": 3,
+      "west-five-islands": null,
+      "regional-balance": 6,
+      "essay": 7,
+      "csat-general": 8,
+      "csat-vocational": 2,
+      "csat-rural": null
+    },
+    "inha:공간정보공학과": {
+      "future-interview": 7,
+      "future-document": 5,
+      "equal-opportunity": 2,
+      "rural": 3,
+      "west-five-islands": null,
+      "regional-balance": 5,
+      "essay": 6,
+      "csat-general": 7,
+      "csat-rural": null
+    },
+    "inha:스마트모빌리티공학과": {
+      "future-interview": 7,
+      "future-document": 6,
+      "equal-opportunity": 2,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 6,
+      "essay": 6,
+      "csat-general": 16,
+      "csat-rural": null
+    },
+    "inha:인공지능공학과": {
+      "future-interview": 16,
+      "future-document": 16,
+      "equal-opportunity": 4,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 16,
+      "essay": 13,
+      "csat-general": 35,
+      "csat-rural": null
+    },
+    "inha:데이터사이언스학과": {
+      "future-interview": 9,
+      "future-document": 8,
+      "equal-opportunity": 3,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 7,
+      "essay": 7,
+      "csat-general": 19,
+      "csat-rural": null
+    },
+    "inha:디자인테크놀로지학과": {
+      "future-interview": 20,
+      "practical-csat": 20
+    },
+    "inha:컴퓨터공학과": {
+      "future-interview": 26,
+      "future-document": 22,
+      "equal-opportunity": 6,
+      "rural": 4,
+      "west-five-islands": null,
+      "regional-balance": 21,
+      "essay": 29,
+      "csat-general": 56,
+      "csat-vocational": 3,
+      "csat-rural": null
+    },
+    "inha:물리학과": {
+      "future-interview": 10,
+      "future-document": 9,
+      "equal-opportunity": 2,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 8,
+      "essay": 5,
+      "csat-general": null,
+      "csat-rural": null
+    },
+    "inha:화학과": {
+      "future-interview": 12,
+      "future-document": 10,
+      "equal-opportunity": 2,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 9,
+      "essay": 8,
+      "csat-general": null,
+      "csat-rural": null
+    },
+    "inha:해양과학과": {
+      "future-interview": 10,
+      "future-document": 7,
+      "equal-opportunity": 2,
+      "rural": 3,
+      "west-five-islands": null,
+      "regional-balance": 6,
+      "essay": 5,
+      "csat-general": null,
+      "csat-rural": null
+    },
+    "inha:식품영양학과": {
+      "future-interview": 7,
+      "future-document": 5,
+      "equal-opportunity": 2,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 4,
+      "essay": 4,
+      "csat-general": null,
+      "csat-rural": null
+    },
+    "inha:수학과": {
+      "future-interview": 7,
+      "future-document": 6,
+      "equal-opportunity": 2,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 6,
+      "essay": 7,
+      "csat-general": null,
+      "csat-rural": null
+    },
+    "inha:통계학과": {
+      "future-interview": 7,
+      "future-document": 6,
+      "equal-opportunity": 2,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 6,
+      "essay": 4,
+      "csat-general": null,
+      "csat-vocational": 1,
+      "csat-rural": null
+    },
+    "inha:의예과": {
+      "future-interview": 25,
+      "regional-doctor": 7,
+      "rural": 2,
+      "west-five-islands": 1,
+      "essay": 8,
+      "csat-general": 16,
+      "csat-regional-doctor": null,
+      "csat-rural": null
+    },
+    "inha:간호학과": {
+      "future-interview": 28,
+      "equal-opportunity": 2,
+      "rural": 1,
+      "west-five-islands": 1,
+      "regional-balance": 17,
+      "essay": 19,
+      "csat-general": 42,
+      "csat-rural": null
+    },
+    "inha:생명공학과": {
+      "future-interview": 12,
+      "equal-opportunity": 2,
+      "rural": 3,
+      "west-five-islands": null,
+      "regional-balance": 7,
+      "essay": 8,
+      "csat-general": 16,
+      "csat-vocational": 1,
+      "csat-rural": null
+    },
+    "inha:생명과학과": {
+      "future-interview": 9,
+      "equal-opportunity": 2,
+      "rural": 2,
+      "west-five-islands": null,
+      "regional-balance": 5,
+      "essay": 6,
+      "csat-general": 13,
+      "csat-rural": null
+    },
+    "inha:첨단바이오의약학과": {
+      "future-interview": 14,
+      "west-five-islands": null,
+      "csat-general": 9
+    },
+    "inha:바이오식품공학과": {
+      "future-interview": 14,
+      "west-five-islands": null,
+      "csat-general": 8
+    }
+  },
+  "pages": "6-7, 24, 28",
+  "notes": "p.6-7 표. 정시 가·나·다군 수는 일반(csat-general)으로, 실기/실적 모집단위(디자인테크놀로지학과, p.28)는 practical-csat로 적음. null(인원 미정): 서해5도는 의예과·간호학과만 1명이고 나머지 '1' 표시 학과는 계열별(인문 2·자연 1) 안의 최대 인원이라 null, 자연과학대학 6개 학과 수능(일반)은 수시 이월인원만(p.24)이라 null, 의예과 정시 지역의사선발과 수시 농어촌 인원이 있는 학과의 정시 농어촌은 이월인원만이라 null. 목록에 없는 자유전공융합학부(무전공)의 인원은 학과에 넣지 않음. 이름 대응: 화학공학과=화학공학전공, 이차전지융합학과=이차전지공학전공, 인공지능학과=인공지능공학과, 스마트모빌리니티공학과=스마트모빌리티공학과."
+}
